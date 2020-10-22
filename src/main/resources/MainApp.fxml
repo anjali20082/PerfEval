@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="560.0" style="-fx-background-color: #2A0033;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iiitd.nrl.evalapp.Main">
+   <children>
+      <Pane layoutY="63.0" prefHeight="561.0" prefWidth="560.0">
+         <children>
+            <Separator layoutX="50.0" layoutY="494.0" opacity="0.15" prefHeight="3.0" prefWidth="423.0" />
+            <Separator layoutX="58.0" layoutY="28.0" opacity="0.15" prefHeight="3.0" prefWidth="423.0" />
+            <Label layoutX="58.0" layoutY="54.0" prefHeight="18.0" prefWidth="481.0" text="2. Connect your Android smartphone to your laptop with USB cable." textFill="WHITE" />
+            <Label layoutX="59.0" layoutY="76.0" prefHeight="16.0" prefWidth="235.0" text="3. Click on Run Tests." textFill="WHITE" />
+            <Label layoutX="58.0" layoutY="35.0" text="1. Enable Developer Options on your Android and allow USB debugging." textFill="WHITE" />
+            <Label layoutX="58.0" layoutY="96.0" prefHeight="16.0" prefWidth="481.0" text="4. While the tests are running you may have to unlock your app in case " textFill="WHITE" />
+
+            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="213.0" layoutY="278.0">
+               <image>
+                  <Image url="@linkedin.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="278.0" layoutY="278.0">
+               <image>
+                  <Image url="@fb.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="53.0" fitWidth="102.0" layoutX="115.0" layoutY="424.0">
+               <image>
+                  <Image url="@paytm.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="55.0" fitWidth="82.0" layoutX="241.0" layoutY="424.0">
+               <image>
+                  <Image url="@gnews.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="366.0" layoutY="278.0">
+               <image>
+                  <Image url="@dailyhunt.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="125.0" layoutY="353.0">
+               <image>
+                  <Image url="@flipkart.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="60.0" fitWidth="96.0" layoutX="229.0" layoutY="353.0">
+               <image>
+                  <Image url="@hotstar.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="123.0" layoutY="278.0">
+               <image>
+                  <Image url="@amazon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="82.0" fitWidth="96.0" layoutX="348.0" layoutY="342.0">
+               <image>
+                  <Image url="@youtube.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="58.0" layoutY="134.0" prefHeight="16.0" prefWidth="469.0" text="5. In all other cases please refrain from performing any kind of activity" textFill="WHITE" />
+            <Label layoutX="59.0" layoutY="115.0" text="there is an app lock or enter UPI ID in payments app," textFill="WHITE" />
+            <Label layoutX="59.0" layoutY="152.0" text="on your phone." textFill="WHITE" />
+            <Label layoutX="59.0" layoutY="204.0" prefHeight="16.0" prefWidth="490.0" text="Note: For Paytm and Amazon Pay UPI, there will be a transfer of Re. 1/-" textFill="WHITE" />
+            <Label layoutX="60.0" layoutY="222.0" prefHeight="16.0" prefWidth="469.0" text="to Abhivandan's or Prince's account and for Mobikwik, there will be a " textFill="WHITE" />
+            <Label layoutX="59.0" layoutY="257.0" prefHeight="16.0" prefWidth="365.0" text="                 THANK YOU FOR YOUR KIND CO-OPERATION" textFill="WHITE" />
+            <Label layoutX="59.0" layoutY="169.0" prefHeight="16.0" prefWidth="469.0" text="6. Please install/update the below mentioned apps. If installed" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="59.0" layoutY="185.0" prefHeight="16.0" prefWidth="469.0" text="for the 1st time, then complete the first steps in the app." textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Label>
+            <Button fx:id="runTest11" layoutX="83.0" layoutY="508.0" mnemonicParsing="false" onAction="#clickRun" prefHeight="34.0" prefWidth="359.0" style="-fx-background-color: lightgreen;" text="Tests Completed">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+            <Button fx:id="runTest1" layoutX="83.0" layoutY="507.0" mnemonicParsing="false" onAction="#clickRun" prefHeight="34.0" prefWidth="359.0" style="-fx-background-color: yellow;" text="Tests started ...">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+            <Button fx:id="runTest" layoutX="83.0" layoutY="508.0" mnemonicParsing="false" onAction="#clickRun" prefHeight="34.0" prefWidth="359.0" style="-fx-background-color: #CE201C;" text="Run Tests" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="355.0" layoutY="421.0">
+               <image>
+                  <Image url="@mobikwik.jpeg" />
+               </image>
+            </ImageView>
+            <Label layoutX="61.0" layoutY="238.0" prefHeight="16.0" prefWidth="469.0" text="a transfer of Rs 5/-." textFill="WHITE" />
+         </children>
+      </Pane>
+      <Label alignment="CENTER" layoutX="127.0" layoutY="39.0" prefHeight="35.0" prefWidth="272.0" text="Start Testing..." textFill="#ddd9d9">
+         <font>
+            <Font name="Candara" size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

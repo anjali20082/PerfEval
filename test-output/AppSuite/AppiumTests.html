@@ -1,0 +1,408 @@
+<html>
+<head>
+<title>TestNG:  AppiumTests</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>AppiumTests</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>22/1/0</td>
+</tr><tr>
+<td>Started on:</td><td>Thu Oct 22 15:56:18 IST 2020</td>
+</tr>
+<tr><td>Total time:</td><td>617 seconds (617498 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='iiitd.nrl.evalapp.FacebookTests.followUnfollow()'><b>followUnfollow</b><br>Test class: iiitd.nrl.evalapp.FacebookTests</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.AndroidUIAutomator: new UiSelector().descriptionMatches(&quot;(?i)Kangana Ranaut Page · Artist · Actor · KanganaRanaut · 2M like this(?-i)&quot;) (tried for 10 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at iiitd.nrl.evalapp.FacebookTests.followUnfollow(FacebookTests.java:130)
+	at iiitd.nrl.evalapp.Main.clickRun(Main.java:121)
+	at com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:83)
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1782)
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1670)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Node.fireEvent(Node.java:8879)
+	at javafx.scene.control.Button.fire(Button.java:200)
+	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:206)
+	at com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3851)
+	at javafx.scene.Scene$MouseHandler.access$1200(Scene.java:3579)
+	at javafx.scene.Scene.processMouseEvent(Scene.java:1849)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2588)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:397)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:434)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:390)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:433)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:556)
+	at com.sun.glass.ui.View.notifyMouse(View.java:942)
+	at com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
+	at com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$11(GtkApplication.java:277)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;prince-Lenovo-Legion&apos;, ip: &apos;127.0.1.1&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.4.0-52-generic&apos;, java.version: &apos;11.0.8&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appActivity: com.facebook.katana.activit..., appPackage: com.facebook.katana, databaseEnabled: false, desired: {appActivity: com.facebook.katana.activit..., appPackage: com.facebook.katana, fullReset: false, noReset: true, platformName: android}, deviceApiLevel: 30, deviceManufacturer: Google, deviceModel: Pixel 3a, deviceName: 95TAY0VNB4, deviceScreenDensity: 490, deviceScreenSize: 1080x2220, deviceUDID: 95TAY0VNB4, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 3.0625, platform: LINUX, platformName: Android, platformVersion: 11, statBarHeight: 74, takesScreenshot: true, viewportRect: {height: 1999, left: 0, top: 74, width: 1080}, warnings: {}, webStorageEnabled: false}
+Session ID: 50df8f02-18d0-404d-a16f-a51f87d8b48b
+*** Element info: {Using=-android uiautomator, value=new UiSelector().descriptionMatches(&quot;(?i)Kangana Ranaut Page · Artist · Actor · KanganaRanaut · 2M like this(?-i)&quot;)}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:41)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:61)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at io.appium.java_client.FindsByAndroidUIAutomator.findElementByAndroidUIAutomator(FindsByAndroidUIAutomator.java:38)
+	at io.appium.java_client.MobileBy$ByAndroidUIAutomator.findElement(MobileBy.java:210)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:57)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:182)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:179)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	... 83 more
+... Removed 35 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace466332663", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace466332663'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.AndroidUIAutomator: new UiSelector().descriptionMatches(&quot;(?i)Kangana Ranaut Page · Artist · Actor · KanganaRanaut · 2M like this(?-i)&quot;) (tried for 10 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at iiitd.nrl.evalapp.FacebookTests.followUnfollow(FacebookTests.java:130)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.Main.clickRun(Main.java:121)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:76)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:273)
+	at com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:83)
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1782)
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1670)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Node.fireEvent(Node.java:8879)
+	at javafx.scene.control.Button.fire(Button.java:200)
+	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:206)
+	at com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3851)
+	at javafx.scene.Scene$MouseHandler.access$1200(Scene.java:3579)
+	at javafx.scene.Scene.processMouseEvent(Scene.java:1849)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2588)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:397)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:434)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:390)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:433)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:556)
+	at com.sun.glass.ui.View.notifyMouse(View.java:942)
+	at com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
+	at com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$11(GtkApplication.java:277)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;prince-Lenovo-Legion&apos;, ip: &apos;127.0.1.1&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.4.0-52-generic&apos;, java.version: &apos;11.0.8&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appActivity: com.facebook.katana.activit..., appPackage: com.facebook.katana, databaseEnabled: false, desired: {appActivity: com.facebook.katana.activit..., appPackage: com.facebook.katana, fullReset: false, noReset: true, platformName: android}, deviceApiLevel: 30, deviceManufacturer: Google, deviceModel: Pixel 3a, deviceName: 95TAY0VNB4, deviceScreenDensity: 490, deviceScreenSize: 1080x2220, deviceUDID: 95TAY0VNB4, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 3.0625, platform: LINUX, platformName: Android, platformVersion: 11, statBarHeight: 74, takesScreenshot: true, viewportRect: {height: 1999, left: 0, top: 74, width: 1080}, warnings: {}, webStorageEnabled: false}
+Session ID: 50df8f02-18d0-404d-a16f-a51f87d8b48b
+*** Element info: {Using=-android uiautomator, value=new UiSelector().descriptionMatches(&quot;(?i)Kangana Ranaut Page · Artist · Actor · KanganaRanaut · 2M like this(?-i)&quot;)}
+	at jdk.internal.reflect.GeneratedConstructorAccessor33.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:41)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:61)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at io.appium.java_client.FindsByAndroidUIAutomator.findElementByAndroidUIAutomator(FindsByAndroidUIAutomator.java:38)
+	at io.appium.java_client.MobileBy$ByAndroidUIAutomator.findElement(MobileBy.java:210)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:57)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:182)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:179)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	... 83 more
+</pre></div></td>
+<td>17</td>
+<td>iiitd.nrl.evalapp.FacebookTests@4d3e022f</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='iiitd.nrl.evalapp.MobikwikTests.SendMoneyFromWallet()'><b>SendMoneyFromWallet</b><br>Test class: iiitd.nrl.evalapp.MobikwikTests</td>
+<td></td>
+<td>21</td>
+<td>iiitd.nrl.evalapp.MobikwikTests@63acfb61</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.HotstarTests.addWatchlistTest()'><b>addWatchlistTest</b><br>Test class: iiitd.nrl.evalapp.HotstarTests</td>
+<td></td>
+<td>11</td>
+<td>iiitd.nrl.evalapp.HotstarTests@2f6fe170</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.YouTubeTests.channelTest()'><b>channelTest</b><br>Test class: iiitd.nrl.evalapp.YouTubeTests</td>
+<td></td>
+<td>11</td>
+<td>iiitd.nrl.evalapp.YouTubeTests@115d17f3</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.FlipkartTests.deleteFromCartTest()'><b>deleteFromCartTest</b><br>Test class: iiitd.nrl.evalapp.FlipkartTests</td>
+<td></td>
+<td>6</td>
+<td>iiitd.nrl.evalapp.FlipkartTests@6a3f83c2</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.AmazonTests.deleteFromCartTest()'><b>deleteFromCartTest</b><br>Test class: iiitd.nrl.evalapp.AmazonTests</td>
+<td></td>
+<td>8</td>
+<td>iiitd.nrl.evalapp.AmazonTests@56ad999</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.GooglenewsTests.headlinesTest()'><b>headlinesTest</b><br>Test class: iiitd.nrl.evalapp.GooglenewsTests</td>
+<td></td>
+<td>96</td>
+<td>iiitd.nrl.evalapp.GooglenewsTests@2fd11ef4</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.DailyhuntTests.livetvTest()'><b>livetvTest</b><br>Test class: iiitd.nrl.evalapp.DailyhuntTests</td>
+<td></td>
+<td>8</td>
+<td>iiitd.nrl.evalapp.DailyhuntTests@64917561</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.LinkedInTests.myConnections()'><b>myConnections</b><br>Test class: iiitd.nrl.evalapp.LinkedInTests</td>
+<td></td>
+<td>7</td>
+<td>iiitd.nrl.evalapp.LinkedInTests@1d8a048f</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.PaytmTests.paySomeone()'><b>paySomeone</b><br>Test class: iiitd.nrl.evalapp.PaytmTests</td>
+<td></td>
+<td>18</td>
+<td>iiitd.nrl.evalapp.PaytmTests@759b5783</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.AmazonPayTest.payUsingAmazonPay()'><b>payUsingAmazonPay</b><br>Test class: iiitd.nrl.evalapp.AmazonPayTest</td>
+<td></td>
+<td>26</td>
+<td>iiitd.nrl.evalapp.AmazonPayTest@48891bc7</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.YouTubeTests.playTest()'><b>playTest</b><br>Test class: iiitd.nrl.evalapp.YouTubeTests</td>
+<td></td>
+<td>10</td>
+<td>iiitd.nrl.evalapp.YouTubeTests@115d17f3</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.FacebookTests.postGroup()'><b>postGroup</b><br>Test class: iiitd.nrl.evalapp.FacebookTests</td>
+<td></td>
+<td>12</td>
+<td>iiitd.nrl.evalapp.FacebookTests@4d3e022f</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.LinkedInTests.searchPerson()'><b>searchPerson</b><br>Test class: iiitd.nrl.evalapp.LinkedInTests</td>
+<td></td>
+<td>11</td>
+<td>iiitd.nrl.evalapp.LinkedInTests@1d8a048f</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.FacebookTests.searchPerson()'><b>searchPerson</b><br>Test class: iiitd.nrl.evalapp.FacebookTests</td>
+<td></td>
+<td>8</td>
+<td>iiitd.nrl.evalapp.FacebookTests@4d3e022f</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.HotstarTests.searchTest()'><b>searchTest</b><br>Test class: iiitd.nrl.evalapp.HotstarTests</td>
+<td></td>
+<td>8</td>
+<td>iiitd.nrl.evalapp.HotstarTests@2f6fe170</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.GooglenewsTests.searchTest()'><b>searchTest</b><br>Test class: iiitd.nrl.evalapp.GooglenewsTests</td>
+<td></td>
+<td>18</td>
+<td>iiitd.nrl.evalapp.GooglenewsTests@2fd11ef4</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.DailyhuntTests.searchTest()'><b>searchTest</b><br>Test class: iiitd.nrl.evalapp.DailyhuntTests</td>
+<td></td>
+<td>9</td>
+<td>iiitd.nrl.evalapp.DailyhuntTests@64917561</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.FlipkartTests.searchTest()'><b>searchTest</b><br>Test class: iiitd.nrl.evalapp.FlipkartTests</td>
+<td></td>
+<td>13</td>
+<td>iiitd.nrl.evalapp.FlipkartTests@6a3f83c2</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.AmazonTests.searchTest()'><b>searchTest</b><br>Test class: iiitd.nrl.evalapp.AmazonTests</td>
+<td></td>
+<td>87</td>
+<td>iiitd.nrl.evalapp.AmazonTests@56ad999</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.LinkedInTests.sendMessage()'><b>sendMessage</b><br>Test class: iiitd.nrl.evalapp.LinkedInTests</td>
+<td></td>
+<td>10</td>
+<td>iiitd.nrl.evalapp.LinkedInTests@1d8a048f</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.HotstarTests.trendingTest()'><b>trendingTest</b><br>Test class: iiitd.nrl.evalapp.HotstarTests</td>
+<td></td>
+<td>8</td>
+<td>iiitd.nrl.evalapp.HotstarTests@2f6fe170</td></tr>
+<tr>
+<td title='iiitd.nrl.evalapp.LinkedInTests.viewProfile()'><b>viewProfile</b><br>Test class: iiitd.nrl.evalapp.LinkedInTests</td>
+<td></td>
+<td>7</td>
+<td>iiitd.nrl.evalapp.LinkedInTests@1d8a048f</td></tr>
+</table><p>
+</body>
+</html>
