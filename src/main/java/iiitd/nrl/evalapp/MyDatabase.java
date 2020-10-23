@@ -32,6 +32,7 @@ public class MyDatabase {
 
         Document document = new Document("Location", Main.studentLocation);
         document.append("Tests Started at", currentTime);
+        document.append("App Tests Version", Main.version);
 
         student_collection.insertOne(document);
     }
@@ -41,6 +42,12 @@ public class MyDatabase {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String currentTime = dtf.format(now);
+
+        Main.count++;
+        System.out.println("Test No. " + Main.count + "/" + Main.totalTests + " Completed");
+        System.out.println("App: " + appName);
+        System.out.println("Test: " + testName);
+        System.out.println("Status: " + testStatus + "\n");
 
         Document document = new Document("Test Started at", currentTime);
         document.append("App Name", appName);

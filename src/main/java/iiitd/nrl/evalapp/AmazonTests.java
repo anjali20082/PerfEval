@@ -29,6 +29,7 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 
+@SuppressWarnings("unchecked")
 public class AmazonTests {
 	AndroidDriver<MobileElement> driver;
 	String appName = "Amazon";
@@ -36,8 +37,7 @@ public class AmazonTests {
 
     @AfterClass
     public void update() {
-		Main.count++;
-		Main.updateTestStatus();
+
     }
     
 	@BeforeMethod
@@ -47,6 +47,8 @@ public class AmazonTests {
 		cap.setCapability("appActivity", "com.amazon.mShop.android.home.HomeActivity");
 		cap.setCapability("noReset", "true");
 		cap.setCapability("fullReset", "false");
+		cap.setCapability("autoGrantPermissions", true);
+		cap.setCapability("autoAcceptAlerts", true);
 		URL url;
 		try {
 			url = new URL("http://127.0.0.1:4723/wd/hub");
@@ -76,6 +78,8 @@ public class AmazonTests {
 		long time = testResult.getEndMillis() - testResult.getStartMillis();
         String connType = getConnectionType();
 
+
+
         MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
         driver.quit();
 	}
@@ -90,7 +94,7 @@ public class AmazonTests {
 		((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
 		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
 				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-						+ "new UiSelector().textContains(\"Sponsored\"));"))).click();		
+						+ "new UiSelector().className(\"android.widget.TextView\").textContains(\"Sponsored\"));"))).click();
 		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
 				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
 						+ "new UiSelector().textContains(\"Add to Cart\"));"))).click();

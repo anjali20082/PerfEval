@@ -30,7 +30,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
-
+@SuppressWarnings("unchecked")
 public class HotstarTests {
 	AndroidDriver<MobileElement> driver;
 	String appName = "Hotstar";
@@ -38,8 +38,7 @@ public class HotstarTests {
 
 	@AfterClass
     public void update() {
-		Main.count++;
-		Main.updateTestStatus();
+
     }
     
 	@BeforeMethod
@@ -49,7 +48,8 @@ public class HotstarTests {
 		cap.setCapability("appActivity", "in.startv.hotstar.rocky.launch.splash.SplashActivity");
 		cap.setCapability("noReset", "true");
 		cap.setCapability("fullReset", "false");
-        cap.setCapability("autoGrantPermissions", true);
+		cap.setCapability("autoGrantPermissions", true);
+		cap.setCapability("autoAcceptAlerts", true);
 
 		URL url;
 		try {
@@ -100,12 +100,7 @@ public class HotstarTests {
 		testName = "Trending Test";
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Open navigation drawer"))).click();
-	
 		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Trending\")"))).click();
-		
-
-
-		
 	}
 	
 	@Test

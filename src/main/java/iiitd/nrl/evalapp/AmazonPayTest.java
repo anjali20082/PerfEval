@@ -31,6 +31,7 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 
+@SuppressWarnings("unchecked")
 public class AmazonPayTest {
 	AndroidDriver<MobileElement> driver;
 	String appName = "AmazonPay";
@@ -38,8 +39,7 @@ public class AmazonPayTest {
 
 	@AfterClass
     public void update() {
-		Main.count++;
-		Main.updateTestStatus();
+
     }
     
 	@BeforeMethod
@@ -49,6 +49,9 @@ public class AmazonPayTest {
 		cap.setCapability("appActivity", "com.amazon.mShop.android.home.HomeActivity");
 		cap.setCapability("noReset", "true");
 		cap.setCapability("fullReset", "false");
+		cap.setCapability("autoGrantPermissions", true);
+		cap.setCapability("autoAcceptAlerts", true);
+
 		URL url;
 		try {
 			url = new URL("http://127.0.0.1:4723/wd/hub");
@@ -103,8 +106,8 @@ public class AmazonPayTest {
 
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"To UPI ID\")"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"E.g. phonenumber@apl\")"))).sendKeys("sachdevanikhil204@okaxis");    
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"E.g. phonenumber@apl\")"))).sendKeys("wlccpnas@okaxis");    
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"E.g. phonenumber@apl\")"))).sendKeys("sachdevanikhil204@okaxis");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"E.g. phonenumber@apl\")"))).sendKeys("wlccpnas@okaxis");
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Verify and proceed\")"))).click();
 			

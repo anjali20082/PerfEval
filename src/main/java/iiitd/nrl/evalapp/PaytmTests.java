@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+@SuppressWarnings("unchecked")
 public class PaytmTests {
     AndroidDriver<MobileElement> driver;
     AppiumDriverLocalService service;
@@ -25,8 +26,7 @@ public class PaytmTests {
 	
 	@AfterClass
     public void update() {
-		Main.count++;
-		Main.updateTestStatus();
+
     }
     
     @BeforeMethod
@@ -37,6 +37,8 @@ public class PaytmTests {
         cap.setCapability("noReset", "true");
 		cap.setCapability("fullReset", "false");
         cap.setCapability("autoGrantPermissions", true);
+        cap.setCapability("autoAcceptAlerts", true);
+
         URL url;
         try {
             url = new URL("http://127.0.0.1:4723/wd/hub");
@@ -85,7 +87,7 @@ public class PaytmTests {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/image_container_1"))).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/enter_mobile_upi_tv"))).click();
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/searchView"))).sendKeys("8076011980");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/searchView"))).sendKeys("8802647803");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/rl_main_row"))).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).sendKeys("1");

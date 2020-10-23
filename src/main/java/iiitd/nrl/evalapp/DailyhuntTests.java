@@ -31,7 +31,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
-
+@SuppressWarnings("unchecked")
 public class DailyhuntTests  {
 	AndroidDriver<MobileElement> driver;
 	String appName = "Dailyhunt";
@@ -39,8 +39,7 @@ public class DailyhuntTests  {
 	
 	@AfterClass
     public void update() {
-		Main.count++;
-		Main.updateTestStatus();
+
     }
     
 	@BeforeMethod
@@ -51,6 +50,7 @@ public class DailyhuntTests  {
 		cap.setCapability("noReset", "true");
 		cap.setCapability("fullReset", "false");
         cap.setCapability("autoGrantPermissions", true);
+		cap.setCapability("autoAcceptAlerts", true);
 
 		URL url;
 		try {

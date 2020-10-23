@@ -31,6 +31,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
+@SuppressWarnings("unchecked")
 public class FacebookTests {
 	AndroidDriver<MobileElement> driver;
 	String appName = "Facebook";
@@ -38,8 +39,7 @@ public class FacebookTests {
 	
 	@AfterClass
     public void update() {
-		Main.count++;
-		Main.updateTestStatus();
+
     }
     
 	@BeforeMethod
@@ -49,6 +49,8 @@ public class FacebookTests {
 		cap.setCapability("appActivity", "com.facebook.katana.activity.FbMainTabActivity");
 		cap.setCapability("noReset", "true");
 		cap.setCapability("fullReset", "false");
+		cap.setCapability("autoGrantPermissions", true);
+		cap.setCapability("autoAcceptAlerts", true);
 		URL url;
 		try {
 			url = new URL("http://127.0.0.1:4723/wd/hub");
@@ -94,7 +96,7 @@ public class FacebookTests {
 	}
 
 
-//	@Test
+	@Test
 	public void postGroup() throws InterruptedException{
 		
 		testName = "Post in a group Test";

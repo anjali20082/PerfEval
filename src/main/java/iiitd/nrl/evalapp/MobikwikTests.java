@@ -29,6 +29,7 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 
+@SuppressWarnings("unchecked")
 public class MobikwikTests {
 	AndroidDriver<MobileElement> driver;
 	String appName = "Mobikwik";
@@ -36,8 +37,7 @@ public class MobikwikTests {
 
     @AfterClass
     public void update() {
-		Main.count++;
-		Main.updateTestStatus();
+
     }
     
 	@BeforeMethod
@@ -47,6 +47,9 @@ public class MobikwikTests {
 		cap.setCapability("appActivity", "com.mobikwik_new.MobikwikHomeScreenActivity");
 		cap.setCapability("noReset", "true");
 		cap.setCapability("fullReset", "false");
+		cap.setCapability("autoGrantPermissions", true);
+		cap.setCapability("autoAcceptAlerts", true);
+
 		URL url;
 		try {
 			url = new URL("http://127.0.0.1:4723/wd/hub");

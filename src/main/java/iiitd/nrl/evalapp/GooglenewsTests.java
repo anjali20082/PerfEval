@@ -27,6 +27,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
+@SuppressWarnings("unchecked")
 public class GooglenewsTests {
 	AndroidDriver<MobileElement> driver;
 	String appName = "GoogleNews";
@@ -34,8 +35,7 @@ public class GooglenewsTests {
 
     @AfterClass
     public void update() {
-		Main.count++;
-		Main.updateTestStatus();
+
     }
 	
 	@BeforeMethod

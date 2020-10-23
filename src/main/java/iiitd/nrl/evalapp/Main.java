@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.TestNG;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
@@ -19,9 +21,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unchecked")
 public class Main extends Application {
 
+    protected static float version = 1.2f;
+
     protected static int count = 0;
+
+    protected static int totalTests = 23;
 
     @FXML
     protected Button about, back, proceed;
@@ -37,7 +44,12 @@ public class Main extends Application {
 
     protected static String studentEmailId, studentLocation;
 
+    public void initialize() throws IOException {
+        boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
 
+        Process process = Runtime.getRuntime()
+                .exec(String.format("appium"));
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -82,8 +94,9 @@ public class Main extends Application {
 
     @FXML
     void clickRun(ActionEvent e) throws IOException, InterruptedException {
+        System.out.println("Tests Started ...");
         runTest.setVisible(false);
-        Thread.sleep(5000);
+        Thread.sleep(1000);
 
         TestNG runner=new TestNG();
         XmlSuite suite = new XmlSuite();
@@ -121,11 +134,8 @@ public class Main extends Application {
         runTest1.setVisible(false);
     }
 
-    public static void updateTestStatus() {
-
-    }
-
     public static void main(String[] args) {
+        Logger logger = LoggerFactory.getLogger(Main.class);
         MyDatabase.setUpDatabase();
         launch(args);
     }

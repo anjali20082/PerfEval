@@ -31,6 +31,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
+@SuppressWarnings("unchecked")
 public class FlipkartTests {
 	AndroidDriver<MobileElement> driver;
 	String appName = "Flipkart";
@@ -38,8 +39,7 @@ public class FlipkartTests {
 
 	@AfterClass
     public void update() {
-		Main.count++;
-		Main.updateTestStatus();
+
     }
     
 	@BeforeMethod
@@ -49,7 +49,8 @@ public class FlipkartTests {
 		cap.setCapability("appActivity", "com.flipkart.android.activity.HomeFragmentHolderActivity");
 		cap.setCapability("noReset", "true");
 		cap.setCapability("fullReset", "false");
-        cap.setCapability("autoGrantPermissions", true);
+		cap.setCapability("autoGrantPermissions", true);
+		cap.setCapability("autoAcceptAlerts", true);
 		URL url;
 		try {
 			url = new URL("http://127.0.0.1:4723/wd/hub");

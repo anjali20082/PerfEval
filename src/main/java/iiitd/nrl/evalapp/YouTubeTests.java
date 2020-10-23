@@ -36,6 +36,7 @@ import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
+@SuppressWarnings("unchecked")
 public class YouTubeTests {
 	AndroidDriver<MobileElement> driver;
 
@@ -92,9 +93,7 @@ public class YouTubeTests {
 	
 	@AfterClass
     public void update() {
-		Main.count++;
-		Main.updateTestStatus();
-//		process.destroy();
+
     }
 	
 	@BeforeMethod
@@ -104,7 +103,8 @@ public class YouTubeTests {
 		cap.setCapability("appActivity", "com.google.android.youtube.HomeActivity");
 		cap.setCapability("noReset", "true");
 		cap.setCapability("fullReset", "false");
-        cap.setCapability("autoGrantPermissions", true);
+		cap.setCapability("autoGrantPermissions", true);
+		cap.setCapability("autoAcceptAlerts", true);
 
 		URL url;
 		try {
