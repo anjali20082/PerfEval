@@ -44,12 +44,12 @@ public class Main extends Application {
 
     protected static String studentEmailId, studentLocation;
 
-    public void initialize() throws IOException {
-        boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
-
-        Process process = Runtime.getRuntime()
-                .exec(String.format("appium"));
-    }
+//    public void initialize() throws IOException {
+//        boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
+//
+//        Process process = Runtime.getRuntime()
+//                .exec(String.format("appium"));
+//    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
