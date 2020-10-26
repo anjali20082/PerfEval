@@ -168,20 +168,4 @@ public class YouTubeTests {
 				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
 						+ "new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\"));"))).click();
 	}
-	
-//	@Test
-//	public void showTrending() throws InterruptedException{
-//
-//		testName = "Show Trending Videos Test";
-//		WebDriverWait wait = new WebDriverWait(driver, 10);
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Button[@content-desc=\"Explore\"]/android.widget.TextView"))).click();
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//android.view.ViewGroup[@content-desc=\"Trending\"])[2]"))).click();
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]"))).click();
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//android.view.ViewGroup[@content-desc=\"Music\"])[2]"))).click();
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]"))).click();
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//android.view.ViewGroup[@content-desc=\"Fashion & beauty\"])[2]"))).click();
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]"))).click();		
-//	}
-	
-	
 }

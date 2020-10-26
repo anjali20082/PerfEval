@@ -102,7 +102,7 @@ public class FlipkartTests {
 	}
 
 	@Test(dependsOnMethods={"searchTest"})
-	public void deleteFromCartTest(){
+	public void deleteFromCartTest() throws InterruptedException {
 		
 		testName = "Delete from Cart Test";
 		WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -111,5 +111,6 @@ public class FlipkartTests {
 				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
 						+ "new UiSelector().textContains(\"Remove\"));"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]"))).click();
+		Thread.sleep(2000);
 	}
 }

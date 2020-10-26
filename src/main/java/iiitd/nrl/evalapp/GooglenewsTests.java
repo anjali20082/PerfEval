@@ -45,6 +45,8 @@ public class GooglenewsTests {
 		cap.setCapability("appActivity", "com.google.apps.dots.android.app.activity.CurrentsStartActivity");
 		cap.setCapability("noReset", "true");
 		cap.setCapability("fullReset", "false");
+		cap.setCapability("autoAcceptAlerts", true);
+
 		URL url;
 		try {
 			url = new URL("http://127.0.0.1:4723/wd/hub");

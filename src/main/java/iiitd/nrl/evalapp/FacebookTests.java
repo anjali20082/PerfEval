@@ -92,7 +92,8 @@ public class FacebookTests {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Kangana Ranaut");
 		((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup"))).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().descriptionContains(\"Kangana Ranaut\")"))).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup"))).click();
 	}
 
 
@@ -127,9 +128,8 @@ public class FacebookTests {
 		((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
 
 //		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionMatches(\"(?i)Kangana Ranaut Page · Artist · Actor · KanganaRanaut · 2M like this(?-i)\")"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup"))).click();
-
-
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup"))).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().descriptionContains(\"Kangana Ranaut\")"))).click();
 		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionMatches(\"(?i)Like Button(?-i)\")"))).click();
 //
 //		if(!driver.findElementsByAccessibilityId("like button").isEmpty()) {

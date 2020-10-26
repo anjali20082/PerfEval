@@ -24,7 +24,7 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 public class Main extends Application {
 
-    protected static float version = 1.4f;
+    protected static float version = 1.5f;
 
     protected static int count = 0;
 
