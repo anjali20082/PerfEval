@@ -50,6 +50,8 @@ public class LinkedInTests {
 		cap.setCapability("fullReset", "false");
 		cap.setCapability("autoGrantPermissions", true);
 		cap.setCapability("autoAcceptAlerts", true);
+		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
+
 		URL url;
 		try {
 			url = new URL("http://127.0.0.1:4723/wd/hub");
@@ -78,7 +80,7 @@ public class LinkedInTests {
 		long time = testResult.getEndMillis() - testResult.getStartMillis();
         String connType = getConnectionType();
 
-        MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
+//        MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
         driver.quit();
 	}
 	
@@ -99,7 +101,9 @@ public class LinkedInTests {
 		testName = "Check my connections";
 		WebDriverWait wait = new WebDriverWait(driver, 15);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/tab_relationships"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/mynetwork_my_communitities_entry_point_container"))).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/mynetwork_my_communitities_entry_point_container"))).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().descriptionMatches(\"(?i).*Manage my network.*(?-i)\");"))).click();
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Connections\")"))).click();
 		Thread.sleep(2000);		
 	}
@@ -112,8 +116,14 @@ public class LinkedInTests {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/search_bar_text"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/search_bar_edit_text"))).sendKeys("Bill Gates");
 		((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"People\")"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]"))).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"People\")"))).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().resourceId(\"com.linkedin.android:id/search_kcard_header_container\").text(\"People\")"))).click();
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+				"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.linkedin.android:id/search_kcard_header_name\").scrollable(true)).scrollIntoView("
+						+ "new UiSelector().text(\"Bill Gates\"));"))).click();
+
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]"))).click();
 
 	}
 	

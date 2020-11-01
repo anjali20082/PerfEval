@@ -46,6 +46,8 @@ public class GooglenewsTests {
 		cap.setCapability("noReset", "true");
 		cap.setCapability("fullReset", "false");
 		cap.setCapability("autoAcceptAlerts", true);
+		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
+
 
 		URL url;
 		try {

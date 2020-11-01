@@ -98,6 +98,7 @@ public class YouTubeTests {
 	
 	@BeforeMethod
 	public void launchCap() {
+		System.out.println("Youtube launchcap");
 		DesiredCapabilities cap=new DesiredCapabilities();
 		cap.setCapability("appPackage", "com.google.android.youtube");
 		cap.setCapability("appActivity", "com.google.android.youtube.HomeActivity");
@@ -105,6 +106,7 @@ public class YouTubeTests {
 		cap.setCapability("fullReset", "false");
 		cap.setCapability("autoGrantPermissions", true);
 		cap.setCapability("autoAcceptAlerts", true);
+		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
 
 		URL url;
 		try {

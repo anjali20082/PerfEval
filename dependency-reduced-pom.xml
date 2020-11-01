@@ -26,7 +26,7 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>iiitd.nrl.evalapp.Main</mainClass>
+          <mainClass>iiitd.nrl.evalapp.WelcomePageLauncher</mainClass>
         </configuration>
       </plugin>
       <plugin>

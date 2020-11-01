@@ -3,64 +3,6 @@
 <suite name="Failed suite [AppSuite]">
   <test name="AppiumTests(failed)">
     <classes>
-      <class name="iiitd.nrl.evalapp.DailyhuntTests">
-        <methods>
-          <include name="livetvTest"/>
-          <include name="restart"/>
-          <include name="searchTest"/>
-          <include name="launchCap"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.DailyhuntTests -->
-      <class name="iiitd.nrl.evalapp.FacebookTests">
-        <methods>
-          <include name="postGroup"/>
-          <include name="restart"/>
-          <include name="searchPerson"/>
-          <include name="followUnfollow"/>
-          <include name="launchCap"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.FacebookTests -->
-      <class name="iiitd.nrl.evalapp.GooglenewsTests">
-        <methods>
-          <include name="restart"/>
-          <include name="headlinesTest"/>
-          <include name="launchCap"/>
-          <include name="searchTest"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.GooglenewsTests -->
-      <class name="iiitd.nrl.evalapp.HotstarTests">
-        <methods>
-          <include name="addWatchlistTest"/>
-          <include name="trendingTest"/>
-          <include name="restart"/>
-          <include name="launchCap"/>
-          <include name="searchTest"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.HotstarTests -->
-      <class name="iiitd.nrl.evalapp.LinkedInTests">
-        <methods>
-          <include name="sendMessage"/>
-          <include name="viewProfile"/>
-          <include name="myConnections"/>
-          <include name="launchCap"/>
-          <include name="searchPerson"/>
-          <include name="restart"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.LinkedInTests -->
-      <class name="iiitd.nrl.evalapp.AmazonTests">
-        <methods>
-          <include name="restart"/>
-          <include name="deleteFromCartTest"/>
-          <include name="launchCap"/>
-          <include name="searchTest"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.AmazonTests -->
-      <class name="iiitd.nrl.evalapp.PaytmTests">
-        <methods>
-          <include name="launchCap"/>
-          <include name="paySomeone"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.PaytmTests -->
       <class name="iiitd.nrl.evalapp.YouTubeTests">
         <methods>
           <include name="launchCap"/>
@@ -69,28 +11,6 @@
           <include name="restart"/>
         </methods>
       </class> <!-- iiitd.nrl.evalapp.YouTubeTests -->
-      <class name="iiitd.nrl.evalapp.MobikwikTests">
-        <methods>
-          <include name="SendMoneyFromWallet"/>
-          <include name="launchCap"/>
-          <include name="restart"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.MobikwikTests -->
-      <class name="iiitd.nrl.evalapp.AmazonPayTest">
-        <methods>
-          <include name="restart"/>
-          <include name="launchCap"/>
-          <include name="payUsingAmazonPay"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.AmazonPayTest -->
-      <class name="iiitd.nrl.evalapp.FlipkartTests">
-        <methods>
-          <include name="restart"/>
-          <include name="deleteFromCartTest"/>
-          <include name="searchTest"/>
-          <include name="launchCap"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.FlipkartTests -->
     </classes>
   </test> <!-- AppiumTests(failed) -->
 </suite> <!-- Failed suite [AppSuite] -->
