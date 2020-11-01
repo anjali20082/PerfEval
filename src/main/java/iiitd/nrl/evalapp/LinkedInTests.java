@@ -80,7 +80,7 @@ public class LinkedInTests {
 		long time = testResult.getEndMillis() - testResult.getStartMillis();
         String connType = getConnectionType();
 
-//        MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
+        MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
         driver.quit();
 	}
 	
@@ -117,11 +117,12 @@ public class LinkedInTests {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/search_bar_edit_text"))).sendKeys("Bill Gates");
 		((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"People\")"))).click();
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().resourceId(\"com.linkedin.android:id/search_kcard_header_container\").text(\"People\")"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/search_kcard_header_name"))).click();
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-				"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.linkedin.android:id/search_kcard_header_name\").scrollable(true)).scrollIntoView("
-						+ "new UiSelector().text(\"Bill Gates\"));"))).click();
+//		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+//				"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.linkedin.android:id/search_kcard_header_name\").scrollable(true)).scrollIntoView("
+//						+ "new UiSelector().text(\"Bill Gates\"));"))).click();
+		Thread.sleep(2000);
 
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]"))).click();
 
@@ -135,7 +136,7 @@ public class LinkedInTests {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/ad_notification_badge_icon"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/messaging_compose_button"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/msglib_recipient_input"))).sendKeys("Abhivandan Pandey");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.view.ViewGroup[@content-desc=\"Name this conversation\"]/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.view.ViewGroup[@content-desc=\"Name this chat\"]/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/messaging_keyboard_text_input_container"))).sendKeys("Code says hello");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/keyboard_send_button"))).click();
 	}	

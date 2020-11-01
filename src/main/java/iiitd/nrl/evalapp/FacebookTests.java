@@ -103,7 +103,7 @@ public class FacebookTests {
 	public void postGroup() throws InterruptedException{
 		
 		testName = "Post in a group Test";
-		WebDriverWait wait = new WebDriverWait(driver, 15);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionMatches(\".*(?i)Groups(?-i).*\")"))).click();
 //		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.view.View[@content-desc=\"Groups, Tab 3 of 6\"]"))).click();
 //		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.view.ViewGroup[@content-desc=\"Your Groups\"]"))).click();

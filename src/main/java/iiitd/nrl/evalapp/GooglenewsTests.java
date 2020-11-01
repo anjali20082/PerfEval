@@ -89,14 +89,22 @@ public class GooglenewsTests {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/search_button"))).click();
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/open_search_view_edit_text"))).sendKeys("delhi");
-		driver.findElement(By.id("com.google.android.apps.magazines:id/open_search_view_edit_text")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/suggest_text")));
-		List<MobileElement> results= (List<MobileElement>) driver.findElementsById("com.google.android.apps.magazines:id/suggest_text");
-		results.get(0).click();		
+//		driver.findElement(By.id("com.google.android.apps.magazines:id/open_search_view_edit_text")).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/suggest_text")));
+//		List<MobileElement> results= (List<MobileElement>) driver.findElementsById("com.google.android.apps.magazines:id/suggest_text");
+//		results.get(0).click();
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+				"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/suggest_text\").scrollable(true)).scrollIntoView("
+						+ "new UiSelector().textMatches(\"Delhi\"));"))).click();
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/edition_pager_header_default_content")));
 		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
 		"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/recycler_view\").scrollable(true)).scrollIntoView("
-				+ "new UiSelector().textContains(\"View Full coverage\"));"))).click();	
+				+ "new UiSelector().textContains(\"View Full coverage\"));"))).click();
+
+
+
 	}
 	
 	@Test

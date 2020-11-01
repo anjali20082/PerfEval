@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class MyDatabase {
-    protected static float version = 1.6f;
+    protected static float version = 1.7f;
     protected static int count = 0;
     protected static int totalTests = 0;
     public static MongoClient mongoClient;
@@ -82,7 +82,7 @@ public class MyDatabase {
             String pingLogFile = "";
 
             while ((line = br.readLine()) != null) {
-                pingLogFile += line;
+                pingLogFile += line + "\n";
             }
 
             Document pingDocument = new Document("Time Uploaded", currentTime);
