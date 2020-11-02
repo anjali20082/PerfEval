@@ -71,7 +71,7 @@ public class PaytmTests {
 		long time = testResult.getEndMillis() - testResult.getStartMillis();
         String connType = getConnectionType();
 
-        MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
+//        MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
         driver.quit();
 	}
 	
@@ -87,10 +87,23 @@ public class PaytmTests {
         	driver.findElement(By.id("net.one97.paytm:id/iv_cross_background")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/image_container_1"))).click();
+
+        if (!driver.findElements(By.id("com.android.permissioncontroller:id/permission_allow_button")).isEmpty())
+            driver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).click();
+
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/enter_mobile_upi_tv"))).click();
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/searchView"))).sendKeys("8802647803");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/rl_main_row"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/searchView"))).sendKeys("8076929402");
+
+        if (!driver.findElements(By.id("net.one97.paytm:id/proceed_btn")).isEmpty())
+            driver.findElement(By.id("net.one97.paytm:id/proceed_btn")).click();
+        else
+            driver.findElement(By.id("net.one97.paytm:id/rl_main_row")).click();
+
+
+
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/rl_main_row"))).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).sendKeys("1");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/ll_uni_pay"))).click();

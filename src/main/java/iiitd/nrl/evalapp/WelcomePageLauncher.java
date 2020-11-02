@@ -94,7 +94,6 @@ public class WelcomePageLauncher extends Application {
             XmlTest test = new XmlTest(suite);
             test.setName("AppiumTests");
             List<XmlClass> classes = new ArrayList<XmlClass>();
-            System.out.println("amazon selected:" + apps_to_run.get("amazon"));
             if (youtube_cb.isSelected()) {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.YouTubeTests"));
                 MyDatabase.totalTests += 2;
