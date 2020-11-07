@@ -100,8 +100,8 @@ public class GooglenewsTests {
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/edition_pager_header_default_content")));
 		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-		"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/recycler_view\").scrollable(true)).scrollIntoView("
-				+ "new UiSelector().textContains(\"View Full coverage\"));"))).click();
+				"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/recycler_view\").scrollable(true)).scrollIntoView("
+						+ "new UiSelector().textContains(\"View Full coverage\"));"))).click();
 
 
 

@@ -90,7 +90,7 @@ public class AmazonPayTest {
 	@Test
     public void payUsingAmazonPay() {
 		
-        testName = "Pay Using Amazon Pay UPI";
+        testName = "pay using amazon pay upi";
         WebDriverWait wait = new WebDriverWait(driver, 30);     
         wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
 				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("

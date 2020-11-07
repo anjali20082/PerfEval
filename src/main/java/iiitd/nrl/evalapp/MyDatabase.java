@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class MyDatabase {
-    protected static float version = 1.7f;
+    protected static float version = 1.8f;
     protected static int count = 0;
     protected static int totalTests = 0;
     public static MongoClient mongoClient;

@@ -71,7 +71,7 @@ public class PaytmTests {
 		long time = testResult.getEndMillis() - testResult.getStartMillis();
         String connType = getConnectionType();
 
-//        MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
+        MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
         driver.quit();
 	}
 	

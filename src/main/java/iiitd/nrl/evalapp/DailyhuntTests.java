@@ -90,7 +90,7 @@ public class DailyhuntTests  {
 	@Test
 	public void searchTest(){
 
-		testName = "Search News Test";
+		testName = "search news";
 		WebDriverWait wait = new WebDriverWait(driver, 15);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/global_search"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/search_box"))).sendKeys("sports");
@@ -101,7 +101,7 @@ public class DailyhuntTests  {
 	@Test
 	public void livetvTest() throws InterruptedException{
 
-		testName = "Live TV Test";
+		testName = "live tv";
 		WebDriverWait wait = new WebDriverWait(driver, 15);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/scrollable_bottom_container")));
 		

@@ -35,7 +35,7 @@ public class WelcomePageLauncher extends Application {
     protected Label alert;
 
     @FXML
-    protected CheckBox amazon_cb, flipkart_cb, youtube_cb, hotstar_cb, linkedin_cb, facebook_cb, googlenews_cb, dailyhunt_cb, amazonpay_cb, paytm_cb, mobikwik_cb;
+    protected CheckBox amazon_cb, flipkart_cb, youtube_cb, hotstar_cb, linkedin_cb, facebook_cb, googlenews_cb, dailyhunt_cb, amazonpay_cb, paytm_cb, mobikwik_cb, telegram_cb;
     protected HashMap<String, Boolean> apps_to_run = new HashMap<>();
 
     protected static String studentEmailId, studentLocation;
@@ -52,6 +52,7 @@ public class WelcomePageLauncher extends Application {
         apps_to_run.put("amazonpay", true);
         apps_to_run.put("paytm", true);
         apps_to_run.put("mobikwik", true);
+        apps_to_run.put("telegram", true);
     }
 
     @Override
@@ -126,6 +127,11 @@ public class WelcomePageLauncher extends Application {
             if (amazon_cb.isSelected()) {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.AmazonTests"));
                 MyDatabase.totalTests += 2;
+            }
+
+            if (telegram_cb.isSelected()) {
+                classes.add(new XmlClass("iiitd.nrl.evalapp.TelegramTests"));
+                MyDatabase.totalTests += 1;
             }
 
             // payment apps
