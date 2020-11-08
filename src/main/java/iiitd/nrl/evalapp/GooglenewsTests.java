@@ -31,7 +31,7 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 public class GooglenewsTests {
 	AndroidDriver<MobileElement> driver;
 	String appName = "GoogleNews";
-    String testName;
+	String testName = "NA";
 
     @AfterClass
     public void update() {

@@ -20,12 +20,12 @@
             <Label layoutX="58.0" layoutY="35.0" text="1. Enable Developer Options on your Android and allow USB debugging." textFill="WHITE" />
             <Label layoutX="58.0" layoutY="96.0" prefHeight="16.0" prefWidth="481.0" text="4. While the tests are running you may have to unlock your app in case " textFill="WHITE" />
 
-            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="176.0" layoutY="281.0">
+            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="181.0" layoutY="281.0">
                <image>
                   <Image url="@linkedin.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="176.0" layoutY="353.0">
+            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="181.0" layoutY="353.0">
                <image>
                   <Image url="@fb.png" />
                </image>
@@ -50,7 +50,7 @@
                   <Image url="@flipkart.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="60.0" fitWidth="96.0" layoutX="261.0" layoutY="353.0">
+            <ImageView fitHeight="60.0" fitWidth="96.0" layoutX="275.0" layoutY="353.0">
                <image>
                   <Image url="@hotstar.jpg" />
                </image>
@@ -60,7 +60,7 @@
                   <Image url="@amazon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="82.0" fitWidth="96.0" layoutX="263.0" layoutY="268.0">
+            <ImageView fitHeight="82.0" fitWidth="96.0" layoutX="277.0" layoutY="268.0">
                <image>
                   <Image url="@youtube.png" />
                </image>
@@ -96,15 +96,20 @@
                   <Font size="19.0" />
                </font>
             </Button>
-            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="176.0" layoutY="422.0">
+            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="181.0" layoutY="422.0">
                <image>
                   <Image url="@mobikwik.jpeg" />
                </image>
             </ImageView>
             <Label layoutX="61.0" layoutY="238.0" prefHeight="16.0" prefWidth="469.0" text="a transfer of Rs 5/-." textFill="WHITE" />
-            <ImageView fitHeight="60.0" fitWidth="62.0" layoutX="278.0" layoutY="422.0">
+            <ImageView fitHeight="60.0" fitWidth="62.0" layoutX="294.0" layoutY="422.0">
                <image>
                   <Image url="@telegram.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="60.0" fitWidth="62.0" layoutX="394.0" layoutY="422.0">
+               <image>
+                  <Image url="@whatsapp.png" />
                </image>
             </ImageView>
          </children>

@@ -35,25 +35,9 @@ public class WelcomePageLauncher extends Application {
     protected Label alert;
 
     @FXML
-    protected CheckBox amazon_cb, flipkart_cb, youtube_cb, hotstar_cb, linkedin_cb, facebook_cb, googlenews_cb, dailyhunt_cb, amazonpay_cb, paytm_cb, mobikwik_cb, telegram_cb;
-    protected HashMap<String, Boolean> apps_to_run = new HashMap<>();
+    protected CheckBox amazon_cb, flipkart_cb, youtube_cb, hotstar_cb, linkedin_cb, facebook_cb, googlenews_cb, dailyhunt_cb, amazonpay_cb, paytm_cb, mobikwik_cb, telegram_cb, whatsapp_cb;
 
     protected static String studentEmailId, studentLocation;
-
-    public void initialize() {
-        apps_to_run.put("amazon", true);
-        apps_to_run.put("flipkart", true);
-        apps_to_run.put("youtube", true);
-        apps_to_run.put("hotstar", true);
-        apps_to_run.put("linkedin", true);
-        apps_to_run.put("facebook", true);
-        apps_to_run.put("googlenews", true);
-        apps_to_run.put("dailyhunt", true);
-        apps_to_run.put("amazonpay", true);
-        apps_to_run.put("paytm", true);
-        apps_to_run.put("mobikwik", true);
-        apps_to_run.put("telegram", true);
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -131,6 +115,11 @@ public class WelcomePageLauncher extends Application {
 
             if (telegram_cb.isSelected()) {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.TelegramTests"));
+                MyDatabase.totalTests += 1;
+            }
+
+            if (whatsapp_cb.isSelected()) {
+                classes.add(new XmlClass("iiitd.nrl.evalapp.WhatsappTests"));
                 MyDatabase.totalTests += 1;
             }
 

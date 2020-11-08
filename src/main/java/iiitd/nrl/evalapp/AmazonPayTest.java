@@ -35,7 +35,7 @@ import io.appium.java_client.service.local.flags.GeneralServerFlag;
 public class AmazonPayTest {
 	AndroidDriver<MobileElement> driver;
 	String appName = "AmazonPay";
-    String testName;
+	String testName = "NA";
 
 	@AfterClass
     public void update() {

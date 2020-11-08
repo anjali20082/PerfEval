@@ -22,7 +22,7 @@ public class PaytmTests {
     AndroidDriver<MobileElement> driver;
     AppiumDriverLocalService service;
     String appName = "Paytm";
-    String testName;
+    String testName = "NA";
 	
 	@AfterClass
     public void update() {

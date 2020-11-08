@@ -15,10 +15,11 @@ public class MainAppLauncher {
     protected Button runTest, runTest1, runTest11;
 
     @FXML
-    void clickRun(ActionEvent e) throws IOException, InterruptedException {
+    void clickRun(ActionEvent e) throws InterruptedException {
         System.out.println("Tests Started ...");
         runTest.setVisible(false);
         Thread.sleep(1000);
+
         // finally execute the runner using run method
         runner.run();
         runTest1.setVisible(false);

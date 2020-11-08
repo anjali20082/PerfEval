@@ -42,7 +42,7 @@ public class YouTubeTests {
 
 	AppiumDriverLocalService service;
 	String appName = "Youtube";
-    String testName;
+	String testName = "NA";
 //	Process process = null;
 //
 //	

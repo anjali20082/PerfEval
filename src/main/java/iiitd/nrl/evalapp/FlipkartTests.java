@@ -35,7 +35,7 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 public class FlipkartTests {
 	AndroidDriver<MobileElement> driver;
 	String appName = "Flipkart";
-    String testName;
+	String testName = "NA";
 
 	@AfterClass
     public void update() {

@@ -33,7 +33,7 @@ import io.appium.java_client.service.local.flags.GeneralServerFlag;
 public class MobikwikTests {
 	AndroidDriver<MobileElement> driver;
 	String appName = "Mobikwik";
-    String testName;
+	String testName = "NA";
 
     @AfterClass
     public void update() {

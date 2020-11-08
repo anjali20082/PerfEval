@@ -40,7 +40,7 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 public class FacebookTests {
 	AndroidDriver<MobileElement> driver;
 	String appName = "Facebook";
-    String testName;
+	String testName = "NA";
 	
 	@AfterClass
     public void update() {

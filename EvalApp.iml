@@ -96,5 +96,8 @@
     <orderEntry type="library" name="Maven: org.mongodb:mongo-java-driver:3.12.7" level="project" />
     <orderEntry type="library" name="Maven: org.testng:testng:6.10" level="project" />
     <orderEntry type="library" name="Maven: com.beust:jcommander:1.48" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:4.10" level="project" />
+    <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
   </component>
 </module>

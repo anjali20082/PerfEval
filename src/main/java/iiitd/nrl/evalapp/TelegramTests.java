@@ -23,7 +23,7 @@ import io.appium.java_client.android.AndroidDriver;
 public class TelegramTests  {
     AndroidDriver<MobileElement> driver;
     String appName = "Telegram";
-    String testName;
+    String testName = "NA";
     @AfterClass
     public void update() {
 

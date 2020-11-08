@@ -24,12 +24,12 @@
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Separator layoutX="62.0" layoutY="343.0" opacity="0.15" prefHeight="3.0" prefWidth="423.0" />
+                <Separator layoutX="62.0" layoutY="386.0" opacity="0.15" prefHeight="3.0" prefWidth="423.0" />
                 <Separator layoutX="58.0" layoutY="12.0" opacity="0.15" prefHeight="3.0" prefWidth="423.0" />
                 <Button fx:id="about" layoutX="134.0" layoutY="446.0" mnemonicParsing="false" onAction="#clickAbout" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: blue;" text="ABOUT" textFill="WHITE" />
                 <Button fx:id="proceed" layoutX="332.0" layoutY="447.0" mnemonicParsing="false" onAction="#clickProceed" prefHeight="34.0" prefWidth="112.0" style="-fx-background-color: #CE201C;" text="PROCEED" textFill="WHITE" />
                 <TextField fx:id="locn" layoutX="214.0" layoutY="80.0" prefHeight="34.0" prefWidth="281.0" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" stylesheets="@style.css" />
-                <Label id="alert" fx:id="alert" alignment="CENTER" layoutX="136.0" layoutY="301.0" prefHeight="25.0" prefWidth="281.0" textFill="RED">
+                <Label id="alert" fx:id="alert" alignment="CENTER" layoutX="136.0" layoutY="344.0" prefHeight="25.0" prefWidth="281.0" textFill="RED">
                     <font>
                         <Font name="Candara Bold" size="20.0" />
                     </font>
@@ -41,17 +41,19 @@
             </Label>
             <CheckBox fx:id="amazon_cb" layoutX="73.0" layoutY="193.0" mnemonicParsing="false" selected="true" text="Amazon" textFill="#cfda01" />
             <Label layoutX="73.0" layoutY="168.0" text="Non-payment apps:" textFill="#ddd9d9" />
-            <CheckBox fx:id="linkedin_cb" layoutX="163.0" layoutY="193.0" mnemonicParsing="false" selected="true" text="LinkedIn" textFill="#cfda01" />
+            <CheckBox fx:id="linkedin_cb" layoutX="167.0" layoutY="193.0" mnemonicParsing="false" selected="true" text="LinkedIn" textFill="#cfda01" />
             <CheckBox fx:id="youtube_cb" layoutX="267.0" layoutY="193.0" mnemonicParsing="false" selected="true" text="YouTube" textFill="#cfda01" />
             <CheckBox fx:id="googlenews_cb" layoutX="368.0" layoutY="193.0" mnemonicParsing="false" selected="true" text="Google News" textFill="#cfda01" />
             <CheckBox fx:id="flipkart_cb" layoutX="73.0" layoutY="219.0" mnemonicParsing="false" selected="true" text="Flipkart" textFill="#cfda01" />
-            <CheckBox fx:id="facebook_cb" layoutX="162.0" layoutY="219.0" mnemonicParsing="false" selected="true" text="Facebook" textFill="#cfda01" />
+            <CheckBox fx:id="facebook_cb" layoutX="166.0" layoutY="219.0" mnemonicParsing="false" selected="true" text="Facebook" textFill="#cfda01" />
             <CheckBox fx:id="hotstar_cb" layoutX="267.0" layoutY="219.0" mnemonicParsing="false" selected="true" text="Hotstar" textFill="#cfda01" />
             <CheckBox fx:id="dailyhunt_cb" layoutX="368.0" layoutY="219.0" mnemonicParsing="false" selected="true" text="DailyHunt" textFill="#cfda01" />
-            <Label layoutX="71.0" layoutY="252.0" text="Payment apps:" textFill="#ddd9d9" />
-            <CheckBox fx:id="amazonpay_cb" layoutX="72.0" layoutY="276.0" mnemonicParsing="false" selected="true" text="Amazon Pay UPI" textFill="#cfda01" />
-            <CheckBox fx:id="paytm_cb" layoutX="267.0" layoutY="276.0" mnemonicParsing="false" selected="true" text="Paytm" textFill="#cfda01" />
-            <CheckBox fx:id="mobikwik_cb" layoutX="368.0" layoutY="276.0" mnemonicParsing="false" selected="true" text="Mobikwik" textFill="#cfda01" />
+            <Label layoutX="71.0" layoutY="295.0" text="Payment apps:" textFill="#ddd9d9" />
+            <CheckBox fx:id="amazonpay_cb" layoutX="72.0" layoutY="319.0" mnemonicParsing="false" selected="true" text="Amazon Pay UPI" textFill="#cfda01" />
+            <CheckBox fx:id="paytm_cb" layoutX="267.0" layoutY="319.0" mnemonicParsing="false" selected="true" text="Paytm" textFill="#cfda01" />
+            <CheckBox fx:id="mobikwik_cb" layoutX="368.0" layoutY="319.0" mnemonicParsing="false" selected="true" text="Mobikwik" textFill="#cfda01" />
+            <CheckBox fx:id="telegram_cb" layoutX="73.0" layoutY="246.0" mnemonicParsing="false" selected="true" text="Telegram" textFill="#cfda01" />
+            <CheckBox fx:id="whatsapp_cb" layoutX="166.0" layoutY="246.0" mnemonicParsing="false" selected="true" text="WhatsApp" textFill="#cfda01" />
 
             </children>
         </Pane>
