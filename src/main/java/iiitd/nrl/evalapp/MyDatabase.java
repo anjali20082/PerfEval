@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class MyDatabase {
-    protected static float version = 1.9f;
+    protected static float version = 2.0f;
     protected static int count = 0;
     protected static int totalTests = 0;
     public static MongoClient mongoClient;
@@ -76,9 +76,11 @@ public class MyDatabase {
 
     public static void sendPINGLog() {
         List<String> ping_files = List.of("www.google.com.log", "www.amazon.com.log", "www.mobikwik.com.log");
+        List<String> filenames = List.of("google", "amazon", "mobikwik");
 
+        int i = 0;
         for (String filename:ping_files) {
-            File file = new File(filename);
+            File file = new File("../../" + filename);
             BufferedReader br = null;
             try {
                 br = new BufferedReader(new FileReader(file));
@@ -116,7 +118,7 @@ public class MyDatabase {
                     jsonObject.put("TTL", ttl);
                     jsonObject.put("ResponseTime", time);
 
-                    pingLogFile += jsonObject.toJSONString() + "\n";
+                    pingLogFile += jsonObject.toJSONString() + ",";
                 }
 
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -124,8 +126,9 @@ public class MyDatabase {
                 String currentTime = dtf.format(now);
 
                 Document pingDocument = new Document("Time Uploaded", currentTime);
-                pingDocument.append("Ping " + filename, pingLogFile);
+                pingDocument.append("ping-" + filenames.get(i++), pingLogFile);
 
+//                student_collection = database.getCollection("prince17080");
                 student_collection.insertOne(pingDocument);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

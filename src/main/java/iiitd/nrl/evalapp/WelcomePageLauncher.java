@@ -165,6 +165,7 @@ public class WelcomePageLauncher extends Application {
 
     public static void main(String[] args) {
         MyDatabase.setUpDatabase();
-        launch(args);
+        MyDatabase.sendPINGLog();
+//        launch(args);
     }
 }
