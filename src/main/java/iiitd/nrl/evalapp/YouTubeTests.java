@@ -4,9 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import io.appium.java_client.serverevents.TimedEvent;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -98,7 +104,6 @@ public class YouTubeTests {
 	
 	@BeforeMethod
 	public void launchCap() {
-		System.out.println("Youtube launchcap");
 		DesiredCapabilities cap=new DesiredCapabilities();
 		cap.setCapability("appPackage", "com.google.android.youtube");
 		cap.setCapability("appActivity", "com.google.android.youtube.HomeActivity");
@@ -111,7 +116,7 @@ public class YouTubeTests {
 		URL url;
 		try {
 			url = new URL("http://127.0.0.1:4723/wd/hub");
-			driver=new AndroidDriver<MobileElement>(url,cap);	
+			driver=new AndroidDriver<MobileElement>(url,cap);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -134,31 +139,46 @@ public class YouTubeTests {
 	
 	@AfterMethod
 	public void restart(ITestResult testResult) {
-		long time = testResult.getEndMillis() - testResult.getStartMillis();
-        String connType = getConnectionType();
+		String jsonString = driver.getEvents().getJsonData();
+		System.out.println(jsonString);
+		int offset = -1;
+		long timeTaken = 0;
+		if (testResult.isSuccess()) {
+			if (testResult.getName() == "playTest") {
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+			} else if (testResult.getName() == "channelTest") {
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -2);
+			}
+		}
 
-        MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
+        MyDatabase.addTestResult(appName, testName, timeTaken, getConnectionType(), testResult.isSuccess());
+
         driver.quit();
 	}
 	
 	@Test
 	public void playTest() throws InterruptedException {
-		testName = "Play Test";
-		WebDriverWait wait = new WebDriverWait(driver, 5);
+		testName = "play test";
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/menu_item_1")));
 		driver.findElement(By.id("com.google.android.youtube:id/menu_item_1")).click();
 		driver.findElement(By.id("com.google.android.youtube:id/search_edit_text")).sendKeys("manikarnika");	
 		((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Official Trailer\")"))).click();
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//android.widget.ImageView[@content-desc=\" \"])[1]"))).click();
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+						+ "new UiSelector().descriptionContains(\"Official Trailer\"));"))).isDisplayed();
+
+		driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Official Trailer\")")).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.google.android.youtube:id/title"))).isDisplayed();
+//		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("0 minutes 1 seconds elapsed of 3 minutes 20 seconds"))).isDisplayed();
+
 		Thread.sleep(2000);
-				
 	}
 	
 	@Test
 	public void channelTest() throws InterruptedException{
-
-		testName = "Find Channel Test";
+		testName = "find channel";
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/menu_item_1")));
 		driver.findElement(By.id("com.google.android.youtube:id/menu_item_1")).click();
@@ -168,6 +188,9 @@ public class YouTubeTests {
 		
 		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
 				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-						+ "new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\"));"))).click();
+						+ "new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\"));"))).isDisplayed();
+
+		driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\")")).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Subscribe to Unacademy UPSC."))).isDisplayed();
 	}
 }

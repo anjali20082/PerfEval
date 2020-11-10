@@ -106,11 +106,11 @@ public class WelcomePageLauncher extends Application {
             }
             if (flipkart_cb.isSelected()) {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.FlipkartTests"));
-                MyDatabase.totalTests += 2;
+                MyDatabase.totalTests += 3;
             }
             if (amazon_cb.isSelected()) {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.AmazonTests"));
-                MyDatabase.totalTests += 2;
+                MyDatabase.totalTests += 3;
             }
 
             if (telegram_cb.isSelected()) {
@@ -165,7 +165,6 @@ public class WelcomePageLauncher extends Application {
 
     public static void main(String[] args) {
         MyDatabase.setUpDatabase();
-        MyDatabase.sendPINGLog();
-//        launch(args);
+        launch(args);
     }
 }

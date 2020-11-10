@@ -12,7 +12,10 @@ import com.mongodb.client.gridfs.model.GridFSUploadOptions;
 import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -20,7 +23,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class MyDatabase {
-    protected static float version = 2.0f;
+    protected static float version = 2.1f;
     protected static int count = 0;
     protected static int totalTests = 0;
     public static MongoClient mongoClient;
@@ -48,8 +51,28 @@ public class MyDatabase {
         document.append("App Tests Version", version);
 
         student_collection.insertOne(document);
-//        MyDatabase.sendPINGLog();
+    }
 
+    public static long getTimeTaken(String jsonString, int startOffset, int endOffset) {
+
+        JSONParser parser = new JSONParser();
+
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = (JSONObject) parser.parse(jsonString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        JSONArray commands = (JSONArray) jsonObject.get("commands");
+        JSONObject startEvent = (JSONObject) commands.get(commands.size() + startOffset);
+        JSONObject endEvent = (JSONObject) commands.get(commands.size() + endOffset);
+
+        long startTime = (long) startEvent.get("startTime");
+        long endTime = (long) endEvent.get("endTime");
+        long timeTaken = endTime - startTime; // time difference in mill seconds
+
+        return timeTaken;
     }
 
     public static void addTestResult(String appName, String testName, long time, String connType, boolean testStatus)
@@ -80,7 +103,7 @@ public class MyDatabase {
 
         int i = 0;
         for (String filename:ping_files) {
-            File file = new File("../../" + filename);
+            File file = new File(filename);
             BufferedReader br = null;
             try {
                 br = new BufferedReader(new FileReader(file));
@@ -136,9 +159,5 @@ public class MyDatabase {
                 e.printStackTrace();
             }
         }
-    }
-
-    public void sendPingFile(String filename) {
-
     }
 }

@@ -83,7 +83,21 @@ public class AmazonTests {
         MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
         driver.quit();
 	}
-	
+
+	@Test
+	public void searchProduct() throws InterruptedException {
+		testName = "search product";
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text"))).sendKeys("laptop");
+
+		((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+		Thread.sleep(1000);
+//		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+//				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+//						+ "new UiSelector().className(\"android.widget.TextView\").textContains(\"Sponsored\"));"))).click();
+	}
+
 	@Test
 	public void addToCart(){
 		testName = "add to cart";
@@ -98,20 +112,6 @@ public class AmazonTests {
 		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
 				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
 						+ "new UiSelector().textContains(\"Add to Cart\"));"))).click();
-	}
-
-	@Test
-	public void searchProduct() throws InterruptedException {
-		testName = "search product";
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text"))).sendKeys("laptop");
-
-		((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-		Thread.sleep(1000);
-//		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-//				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-//						+ "new UiSelector().className(\"android.widget.TextView\").textContains(\"Sponsored\"));"))).click();
 	}
 
 	@Test(dependsOnMethods={"addToCart"})

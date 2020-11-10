@@ -78,17 +78,38 @@ public class FlipkartTests {
 	
 	@AfterMethod
 	public void restart(ITestResult testResult) {
-		long time = testResult.getEndMillis() - testResult.getStartMillis();
-        String connType = getConnectionType();
+		String jsonString = driver.getEvents().getJsonData();
+		System.out.println(jsonString);
+		int offset = -1;
+		long timeTaken = 0;
+		if (testResult.isSuccess()) {
+			if (testResult.getName() == "playTest") {
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+			} else if (testResult.getName() == "channelTest") {
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+			}
+		}
 
-        MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
+		MyDatabase.addTestResult(appName, testName, timeTaken, getConnectionType(), testResult.isSuccess());
         driver.quit();
+	}
+
+	@Test
+	public void searchTest() throws InterruptedException {
+
+		testName = "search product";
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.flipkart.android:id/search_widget_textbox"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.flipkart.android:id/search_autoCompleteTextView"))).sendKeys("phone");
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.RelativeLayout[1]"))).click();
+		Thread.sleep(1000);
 	}
 	
 	@Test
-	public void searchTest() throws InterruptedException{
+	public void addToCart() throws InterruptedException{
 
-		testName = "Add to Cart Test";
+		testName = "add to cart";
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.flipkart.android:id/search_widget_textbox"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.flipkart.android:id/search_autoCompleteTextView"))).sendKeys("phone");
@@ -108,10 +129,10 @@ public class FlipkartTests {
 		
 	}
 
-	@Test(dependsOnMethods={"searchTest"})
+	@Test(dependsOnMethods={"addToCart"})
 	public void deleteFromCartTest() throws InterruptedException {
 		
-		testName = "Delete from Cart Test";
+		testName = "delete from cart";
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.flipkart.android:id/cart_bg_icon"))).click();
 		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(

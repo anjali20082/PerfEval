@@ -63,10 +63,18 @@ public class WhatsappTests {
 
     @AfterMethod
     public void restart(ITestResult testResult) {
-        long time = testResult.getEndMillis() - testResult.getStartMillis();
-        String connType = getConnectionType();
-
-        MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
+        String jsonString = driver.getEvents().getJsonData();
+        System.out.println(jsonString);
+        int offset = -1;
+        long timeTaken = 0;
+        if (testResult.isSuccess()) {
+            if (testResult.getName() == "playTest") {
+                timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+            } else if (testResult.getName() == "channelTest") {
+                timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+            }
+        }
+        MyDatabase.addTestResult(appName, testName, timeTaken, getConnectionType(), testResult.isSuccess());
         driver.quit();
     }
 
@@ -78,7 +86,8 @@ public class WhatsappTests {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/search_input"))).sendKeys("automation testing");
         wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Automation Testing"))).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/entry"))).sendKeys("Hi, this is an automated text");
+
         wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Send"))).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/date"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Sent"))).click();
     }
 }
