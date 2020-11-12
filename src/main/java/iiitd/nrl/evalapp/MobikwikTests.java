@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
@@ -60,7 +61,7 @@ public class MobikwikTests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (WebDriverException e) {
-	        MyDatabase.addTestResult(appName, "App Not Installed", 0, "Not Connected" , false);
+	        MyDatabase.addTestResult(appName, "App Not Installed", null, "Not Connected" , false);
 		}
 			
 	}
@@ -78,11 +79,25 @@ public class MobikwikTests {
 	
 	@AfterMethod
 	public void restart(ITestResult testResult) {
-		long time = testResult.getEndMillis() - testResult.getStartMillis();
-        String connType = getConnectionType();
+		String jsonString = driver.getEvents().getJsonData();
+		System.out.println(jsonString);
+		long timeTaken = 0;
 
-        MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
-        driver.quit();
+		HashMap<String, Long> main_events = new HashMap<>();
+
+		if (testResult.isSuccess()) {
+			if (testResult.getName() == "playTest") {
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+				main_events.put(testResult.getName(), timeTaken);
+			} else if (testResult.getName() == "channelTest") {
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -2);
+				main_events.put(testResult.getName(), timeTaken);
+			}
+		}
+
+		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess());
+
+		driver.quit();
 	}
 	
 	@Test

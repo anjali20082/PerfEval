@@ -2,6 +2,7 @@ package iiitd.nrl.evalapp;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
 import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
@@ -46,7 +47,7 @@ public class WhatsappTests {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (WebDriverException e) {
-            MyDatabase.addTestResult(appName, testName, 0, "App Not Installed", false);
+            MyDatabase.addTestResult(appName, testName, null, "App Not Installed", false);
         }
     }
 
@@ -64,22 +65,24 @@ public class WhatsappTests {
     @AfterMethod
     public void restart(ITestResult testResult) {
         String jsonString = driver.getEvents().getJsonData();
-        System.out.println(jsonString);
-        int offset = -1;
         long timeTaken = 0;
+
+        String event_name = "";
+        HashMap<String, Long> main_events = new HashMap<>();
+
         if (testResult.isSuccess()) {
-            if (testResult.getName() == "playTest") {
-                timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
-            } else if (testResult.getName() == "channelTest") {
-                timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+            if (testResult.getName() == "sendMessage") {
+                event_name = "sending message";
+                timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -2);
+                main_events.put(event_name, timeTaken);
             }
         }
-        MyDatabase.addTestResult(appName, testName, timeTaken, getConnectionType(), testResult.isSuccess());
+        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess());
         driver.quit();
     }
 
     @Test
-    public void searchTest() throws InterruptedException {
+    public void sendMessage() throws InterruptedException {
         testName = "send message";
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/menuitem_search"))).click();

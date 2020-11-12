@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.TouchAction;
@@ -66,7 +67,7 @@ public class FacebookTests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (WebDriverException e) {
-	        MyDatabase.addTestResult(appName, testName, 0, "App Not Installed" , false);
+	        MyDatabase.addTestResult(appName, testName, null, "App Not Installed" , false);
 		}
 			
 	}
@@ -83,11 +84,25 @@ public class FacebookTests {
 	
 	@AfterMethod
 	public void restart(ITestResult testResult) {
-		long time = testResult.getEndMillis() - testResult.getStartMillis();
-        String connType = getConnectionType();
-        
-        MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
-        driver.quit();
+		String jsonString = driver.getEvents().getJsonData();
+		System.out.println(jsonString);
+		long timeTaken = 0;
+
+		HashMap<String, Long> main_events = new HashMap<>();
+
+		if (testResult.isSuccess()) {
+			if (testResult.getName() == "playTest") {
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+				main_events.put(testResult.getName(), timeTaken);
+			} else if (testResult.getName() == "channelTest") {
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -2);
+				main_events.put(testResult.getName(), timeTaken);
+			}
+		}
+
+		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess());
+
+		driver.quit();
 	}
 	
 	@Test

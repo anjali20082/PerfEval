@@ -20,6 +20,7 @@ import org.json.simple.parser.ParseException;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 
 public class MyDatabase {
@@ -75,7 +76,7 @@ public class MyDatabase {
         return timeTaken;
     }
 
-    public static void addTestResult(String appName, String testName, long time, String connType, boolean testStatus)
+    public static void addTestResult(String appName, String testName, HashMap<String, Long> main_events, String connType, boolean testStatus)
     {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
@@ -90,7 +91,16 @@ public class MyDatabase {
         Document document = new Document("Test Started at", currentTime);
         document.append("App Name", appName);
         document.append("Test Name", testName);
-        document.append("Time Taken", time);
+
+        document.append("Time Taken", main_events);
+
+
+//        for (String key: main_events.keySet()) {
+//            long time = main_events.get(key);
+//
+//        }
+
+
         document.append("ConnectionType", connType);
         document.append("Test Passed", testStatus);
 

@@ -121,7 +121,7 @@ public class YouTubeTests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (WebDriverException e) {
-	        MyDatabase.addTestResult(appName, testName, 0, "App Not Installed" , false);
+	        MyDatabase.addTestResult(appName, testName, null, "App Not Installed" , false);
 		}
 			
 	}
@@ -141,17 +141,21 @@ public class YouTubeTests {
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
 		System.out.println(jsonString);
-		int offset = -1;
 		long timeTaken = 0;
+
+		HashMap<String, Long> main_events = new HashMap<>();
+
 		if (testResult.isSuccess()) {
 			if (testResult.getName() == "playTest") {
 				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+				main_events.put(testResult.getName(), timeTaken);
 			} else if (testResult.getName() == "channelTest") {
 				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -2);
+				main_events.put(testResult.getName(), timeTaken);
 			}
 		}
 
-        MyDatabase.addTestResult(appName, testName, timeTaken, getConnectionType(), testResult.isSuccess());
+		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess());
 
         driver.quit();
 	}

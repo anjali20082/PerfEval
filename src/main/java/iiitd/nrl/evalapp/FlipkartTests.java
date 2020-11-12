@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -60,7 +61,7 @@ public class FlipkartTests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (WebDriverException e) {
-	        MyDatabase.addTestResult(appName, testName, 0, "App Not Installed" , false);
+	        MyDatabase.addTestResult(appName, testName, null, "App Not Installed" , false);
 		}
 			
 	}
@@ -80,18 +81,34 @@ public class FlipkartTests {
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
 		System.out.println(jsonString);
-		int offset = -1;
 		long timeTaken = 0;
+
+		HashMap<String, Long> main_events = new HashMap<>();
+
 		if (testResult.isSuccess()) {
 			if (testResult.getName() == "playTest") {
 				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+				main_events.put(testResult.getName(), timeTaken);
 			} else if (testResult.getName() == "channelTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -2);
+				main_events.put(testResult.getName(), timeTaken);
 			}
 		}
 
-		MyDatabase.addTestResult(appName, testName, timeTaken, getConnectionType(), testResult.isSuccess());
-        driver.quit();
+		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess());
+
+		driver.quit();
+	}
+
+	@Test
+	public void getProduct() throws InterruptedException {
+		testName = "search product";
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.flipkart.android:id/search_widget_textbox"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.flipkart.android:id/search_autoCompleteTextView"))).sendKeys("phone");
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.RelativeLayout[1]"))).click();
+		Thread.sleep(1000);
 	}
 
 	@Test
@@ -104,6 +121,11 @@ public class FlipkartTests {
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.RelativeLayout[1]"))).click();
 		Thread.sleep(1000);
+		// Search Completed
+
+
+		
+
 	}
 	
 	@Test

@@ -16,6 +16,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
 @SuppressWarnings("unchecked")
 public class PaytmTests {
@@ -49,7 +50,7 @@ public class PaytmTests {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (WebDriverException e) {
-	        MyDatabase.addTestResult(appName, testName, 0, "App Not Installed" , false);
+	        MyDatabase.addTestResult(appName, testName, null, "App Not Installed" , false);
 	        driver.quit();
 		}
 
@@ -68,10 +69,24 @@ public class PaytmTests {
 
 	@AfterMethod
 	public void restart(ITestResult testResult) {
-		long time = testResult.getEndMillis() - testResult.getStartMillis();
-        String connType = getConnectionType();
+        String jsonString = driver.getEvents().getJsonData();
+        System.out.println(jsonString);
+        long timeTaken = 0;
 
-        MyDatabase.addTestResult(appName, testName, time, connType, testResult.isSuccess());
+        HashMap<String, Long> main_events = new HashMap<>();
+
+        if (testResult.isSuccess()) {
+            if (testResult.getName() == "playTest") {
+                timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+                main_events.put(testResult.getName(), timeTaken);
+            } else if (testResult.getName() == "channelTest") {
+                timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -2);
+                main_events.put(testResult.getName(), timeTaken);
+            }
+        }
+
+        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess());
+
         driver.quit();
 	}
 	
