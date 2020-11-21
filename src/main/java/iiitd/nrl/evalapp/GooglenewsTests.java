@@ -33,6 +33,7 @@ public class GooglenewsTests {
 	AndroidDriver<MobileElement> driver;
 	String appName = "GoogleNews";
 	String testName = "NA";
+	String testStatusReason = "NA";
 
     @AfterClass
     public void update() {
@@ -46,9 +47,9 @@ public class GooglenewsTests {
 		cap.setCapability("appActivity", "com.google.apps.dots.android.app.activity.CurrentsStartActivity");
 		cap.setCapability("noReset", "true");
 		cap.setCapability("fullReset", "false");
+		cap.setCapability("autoGrantPermissions", true);
 		cap.setCapability("autoAcceptAlerts", true);
 		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
-
 
 		URL url;
 		try {
@@ -58,7 +59,7 @@ public class GooglenewsTests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (WebDriverException e) {
-	        MyDatabase.addTestResult(appName, testName, null, "App Not Installed" , false);
+			MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
 		}
 	}
 	
@@ -72,66 +73,62 @@ public class GooglenewsTests {
         	return "Wifi & MobileData";
         return "Wifi";
     }
-	
+
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
 		System.out.println(jsonString);
 		long timeTaken = 0;
 
-		HashMap<String, Long> main_events = new HashMap<>();
+		HashMap<String, Long> main_events = new HashMap<String, Long>();
 
 		if (testResult.isSuccess()) {
-			if (testResult.getName() == "playTest") {
+			if (testResult.getName() == "searchTest") {
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -6);
+				main_events.put("search", timeTaken);
 				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
-				main_events.put(testResult.getName(), timeTaken);
-			} else if (testResult.getName() == "channelTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -2);
-				main_events.put(testResult.getName(), timeTaken);
+				main_events.put("full coverage", timeTaken);
 			}
 		}
 
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess());
+		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
 		driver.quit();
 	}
-	
+
 	@Test
 	public void searchTest() throws InterruptedException{
 
 		testName = "Search News Test";
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/search_button"))).click();
+		WebDriverWait wait = new WebDriverWait(driver, 300);
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/open_search_view_edit_text"))).sendKeys("delhi");
-//		driver.findElement(By.id("com.google.android.apps.magazines:id/open_search_view_edit_text")).click();
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/suggest_text")));
-//		List<MobileElement> results= (List<MobileElement>) driver.findElementsById("com.google.android.apps.magazines:id/suggest_text");
-//		results.get(0).click();
+		try {
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-				"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/suggest_text\").scrollable(true)).scrollIntoView("
-						+ "new UiSelector().textMatches(\"Delhi\"));"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/search_button"))).click();
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/edition_pager_header_default_content")));
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-				"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/recycler_view\").scrollable(true)).scrollIntoView("
-						+ "new UiSelector().textContains(\"View Full coverage\"));"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/open_search_view_edit_text"))).sendKeys("delhi");
 
+			/* search news  test measurement starts*/
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/suggest_text\").scrollable(true)).scrollIntoView("
+							+ "new UiSelector().textMatches(\"Delhi\"));"))).click();
 
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/rect_icon")));
+			/* search news  test measurement stops*/
 
-	}
-	
-	@Test
-	public void headlinesTest() throws InterruptedException{
+			/* load news  test measurement starts*/
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/recycler_view\").scrollable(true)).scrollIntoView("
+							+ "new UiSelector().textContains(\"View Full coverage\"));"))).click();
 
-		testName = "Headlines Test";
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/tab_headlines"))).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("India"))).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-				"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/recycler_view\").scrollable(true)).scrollIntoView("
-						+ "new UiSelector().resourceId(\"com.google.android.apps.magazines:id/story_metadata_icon\"));"))).click();		
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+							+ "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/card\"));"))));
+			/* load news  test measurement stops*/
+		} catch (Exception e) {
+			testStatusReason = e.toString();
+			throw e;
+		}
 	}
 
 }

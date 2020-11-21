@@ -37,12 +37,9 @@ public class AmazonPayTest {
 	AndroidDriver<MobileElement> driver;
 	String appName = "AmazonPay";
 	String testName = "NA";
+	String testStatusReason = "NA";
 
-	@AfterClass
-    public void update() {
 
-    }
-    
 	@BeforeMethod
 	public void launchCap() throws IOException {
 		DesiredCapabilities cap=new DesiredCapabilities();
@@ -54,7 +51,6 @@ public class AmazonPayTest {
 		cap.setCapability("autoAcceptAlerts", true);
 		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
 
-
 		URL url;
 		try {
 			url = new URL("http://127.0.0.1:4723/wd/hub");
@@ -63,7 +59,7 @@ public class AmazonPayTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (WebDriverException e) {
-	        MyDatabase.addTestResult(appName, "App Not Installed", null, "Not Connected" , false);
+			MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
 		}
 			
 	}
@@ -88,16 +84,13 @@ public class AmazonPayTest {
 		HashMap<String, Long> main_events = new HashMap<>();
 
 		if (testResult.isSuccess()) {
-			if (testResult.getName() == "playTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
-				main_events.put(testResult.getName(), timeTaken);
-			} else if (testResult.getName() == "channelTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -2);
+			if (testResult.getName() == "payUsingAmazonPay") {
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -7, -2);
 				main_events.put(testResult.getName(), timeTaken);
 			}
 		}
-
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess());
+		System.out.println("test status reason:" + testStatusReason);
+		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
 		driver.quit();
 	}
@@ -106,34 +99,46 @@ public class AmazonPayTest {
     public void payUsingAmazonPay() {
 		
         testName = "pay using amazon pay upi";
-        WebDriverWait wait = new WebDriverWait(driver, 30);     
-        wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-						+ "new UiSelector().textContains(\"Amazon Pay\"));"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Send Money\")"))).click();
-        
-		if (!driver.findElements(By.xpath("//android.widget.Button[@content-desc=\"Close\"]/android.widget.ImageView")).isEmpty())
-            driver.findElement(By.xpath("//android.widget.Button[@content-desc=\"Close\"]/android.widget.ImageView")).click();
-		
-        if (!driver.findElements(MobileBy.AndroidUIAutomator("UiSelector().text(\"Allow Access\")")).isEmpty())
-        	driver.findElement(MobileBy.AndroidUIAutomator("UiSelector().text(\"Allow Access\")")).click();
-		
-		if (!driver.findElements(MobileBy.AndroidUIAutomator("UiSelector().text(\"Allow\")")).isEmpty())
-			driver.findElement(MobileBy.AndroidUIAutomator("UiSelector().text(\"Allow\")")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        try {
 
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"To UPI ID\")"))).click();
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"E.g. phonenumber@apl\")"))).sendKeys("sachdevanikhil204@okaxis");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"E.g. phonenumber@apl\")"))).sendKeys("wlccpnas@okaxis");
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Verify and proceed\")"))).click();
-			
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("1");
-		((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+							+ "new UiSelector().textContains(\"Amazon Pay\"));"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Send Money\")"))).click();
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Send Money\")"))).click();
+			if (!driver.findElements(By.xpath("//android.widget.Button[@content-desc=\"Close\"]/android.widget.ImageView")).isEmpty()) {
+				driver.findElement(By.xpath("//android.widget.Button[@content-desc=\"Close\"]/android.widget.ImageView")).click();
+			}
 
-        wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Copy Details\")"))).click();
-    }
+			if (!driver.findElements(MobileBy.AndroidUIAutomator("UiSelector().text(\"Allow Access\")")).isEmpty()) {
+				driver.findElement(MobileBy.AndroidUIAutomator("UiSelector().text(\"Allow Access\")")).click();
+			}
+
+			if (!driver.findElements(MobileBy.AndroidUIAutomator("UiSelector().text(\"Allow\")")).isEmpty()) {
+				driver.findElement(MobileBy.AndroidUIAutomator("UiSelector().text(\"Allow\")")).click();
+			}
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"To UPI ID\")"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"E.g. phonenumber@apl\")"))).sendKeys("sachdevanikhil204@okaxis");
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"E.g. phonenumber@apl\")"))).sendKeys("wlccpnas@okaxis");
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Verify and proceed\")"))).click();
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("1");
+			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Send Money\")"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().textContains(\"Transaction failed\")"))).isDisplayed();
+
+			if (!driver.findElements(MobileBy.AndroidUIAutomator("UiSelector().text(\"Transaction passed\")")).isEmpty()) {
+				testStatusReason = "Transaction passed";
+			} else {
+				testStatusReason = "Transaction failed";
+			}
+		} catch (Exception e) {
+			testStatusReason = e.toString();
+			throw e;
+		}
+	}
 }

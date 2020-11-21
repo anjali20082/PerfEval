@@ -37,6 +37,7 @@ public class DailyhuntTests  {
 	AndroidDriver<MobileElement> driver;
 	String appName = "Dailyhunt";
 	String testName = "NA";
+	String testStatusReason = "NA";
 	
 	@AfterClass
     public void update() {
@@ -50,10 +51,9 @@ public class DailyhuntTests  {
 		cap.setCapability("appActivity", "com.newshunt.appview.common.ui.activity.HomeActivity");
 		cap.setCapability("noReset", "true");
 		cap.setCapability("fullReset", "false");
-        cap.setCapability("autoGrantPermissions", true);
+		cap.setCapability("autoGrantPermissions", true);
 		cap.setCapability("autoAcceptAlerts", true);
 		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
-
 
 		URL url;
 		try {
@@ -63,7 +63,7 @@ public class DailyhuntTests  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (WebDriverException e) {
-	        MyDatabase.addTestResult(appName, testName, null, "App Not Installed" , false);
+			MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
 		}
 			
 	}
@@ -78,54 +78,76 @@ public class DailyhuntTests  {
         	return "Wifi & MobileData";
         return "Wifi";
     }
-	
+
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
 		System.out.println(jsonString);
 		long timeTaken = 0;
 
-		HashMap<String, Long> main_events = new HashMap<>();
+		HashMap<String, Long> main_events = new HashMap<String, Long>();
 
 		if (testResult.isSuccess()) {
-			if (testResult.getName() == "playTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+			if (testResult.getName() == "searchTest") {
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2); // 8 and 10
+
 				main_events.put(testResult.getName(), timeTaken);
-			} else if (testResult.getName() == "channelTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -2);
+			} else if (testResult.getName() == "livetvTest") {
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2); // 7 and 9
 				main_events.put(testResult.getName(), timeTaken);
 			}
 		}
 
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess());
+		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
 		driver.quit();
 	}
-	
+
 	@Test
 	public void searchTest(){
 
 		testName = "search news";
-		WebDriverWait wait = new WebDriverWait(driver, 15);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/global_search"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/search_box"))).sendKeys("sports");
-		((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"News\")"))).click();
+		WebDriverWait wait = new WebDriverWait(driver, 300);
+
+		try {
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/global_search"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/search_box"))).sendKeys("sports");
+			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+
+			/* Search news time measurement starts*/
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"News\")"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/follow_button")));
+			/* Search news time measurement stops*/
+		} catch (Exception e) {
+			testStatusReason = e.toString();
+			throw e;
+		}
 	}
-	
+
 	@Test
 	public void livetvTest() throws InterruptedException{
 
 		testName = "live tv";
-		WebDriverWait wait = new WebDriverWait(driver, 15);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/scrollable_bottom_container")));
-		
-		List<MobileElement> bottomBar = (List<MobileElement>) driver.findElementsById("com.eterno:id/navbar_appsection_icon");
-		bottomBar.get(1).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/root_view")));
-		List<MobileElement> news = (List<MobileElement>) driver.findElementsById("com.eterno:id/root_view");
-		news.get(0).click();
-		Thread.sleep(2000);	
+		WebDriverWait wait = new WebDriverWait(driver, 300);
+
+		try {
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/scrollable_bottom_container")));
+
+			List<MobileElement> bottomBar = (List<MobileElement>) driver.findElementsById("com.eterno:id/navbar_appsection_icon");
+			bottomBar.get(1).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/root_view")));
+			List<MobileElement> news = (List<MobileElement>) driver.findElementsById("com.eterno:id/root_view");
+
+			/* live tv time measurement starts*/
+			news.get(0).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/constraint_lyt")));
+			/* live tv time measurement stops*/
+		} catch (Exception e) {
+			testStatusReason = e.toString();
+			throw e;
+		}
 	}
 
 }

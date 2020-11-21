@@ -25,6 +25,7 @@ public class WhatsappTests {
     AndroidDriver<MobileElement> driver;
     String appName = "Whatsapp";
     String testName = "NA";
+    String testStatusReason = "NA";
 
     @AfterClass
     public void update() {
@@ -39,6 +40,8 @@ public class WhatsappTests {
         cap.setCapability("fullReset", "false");
         cap.setCapability("autoGrantPermissions", true);
         cap.setCapability("autoAcceptAlerts", true);
+        cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
+
         URL url;
         try {
             url = new URL("http://127.0.0.1:4723/wd/hub");
@@ -47,7 +50,7 @@ public class WhatsappTests {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (WebDriverException e) {
-            MyDatabase.addTestResult(appName, testName, null, "App Not Installed", false);
+            MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
         }
     }
 
@@ -65,6 +68,7 @@ public class WhatsappTests {
     @AfterMethod
     public void restart(ITestResult testResult) {
         String jsonString = driver.getEvents().getJsonData();
+        System.out.println(jsonString);
         long timeTaken = 0;
 
         String event_name = "";
@@ -73,11 +77,11 @@ public class WhatsappTests {
         if (testResult.isSuccess()) {
             if (testResult.getName() == "sendMessage") {
                 event_name = "sending message";
-                timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -2);
+                timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
                 main_events.put(event_name, timeTaken);
             }
         }
-        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess());
+        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
         driver.quit();
     }
 
@@ -85,12 +89,22 @@ public class WhatsappTests {
     public void sendMessage() throws InterruptedException {
         testName = "send message";
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/menuitem_search"))).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/search_input"))).sendKeys("automation testing");
-        wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Automation Testing"))).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/entry"))).sendKeys("Hi, this is an automated text");
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Send"))).click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Sent"))).click();
+        try {
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/menuitem_search"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/search_input"))).sendKeys("automation testing");
+            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Automation Testing"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/entry"))).sendKeys("Hi, this is an automated text");
+
+            /* sending message time measurement starts */
+            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Send"))).click();
+            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Sent"))).isDisplayed();
+            /* sending message time measurement stops */
+
+        } catch (Exception e) {
+            testStatusReason = e.toString();
+            throw e;
+        }
     }
 }

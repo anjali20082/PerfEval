@@ -35,6 +35,7 @@ public class AmazonTests {
 	AndroidDriver<MobileElement> driver;
 	String appName = "Amazon";
 	String testName = "NA";
+	String testStatusReason = "NA";
 
     @AfterClass
     public void update() {
@@ -60,7 +61,7 @@ public class AmazonTests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (WebDriverException e) {
-	        MyDatabase.addTestResult(appName, "App Not Installed", null, "Not Connected" , false);
+			MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
 		}
 			
 	}
@@ -85,16 +86,21 @@ public class AmazonTests {
 		HashMap<String, Long> main_events = new HashMap<>();
 
 		if (testResult.isSuccess()) {
-			if (testResult.getName() == "playTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+			if (testResult.getName() == "searchProduct") {
+
+				timeTaken = MyDatabase.getTimeTaken(jsonString, 7, 7) + MyDatabase.getTimeTaken(jsonString, 12, 14);
 				main_events.put(testResult.getName(), timeTaken);
-			} else if (testResult.getName() == "channelTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -2);
-				main_events.put(testResult.getName(), timeTaken);
+
+				timeTaken = MyDatabase.getTimeTaken(jsonString, 18, 20);
+				main_events.put("addToCart", timeTaken);
+
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -2);
+				main_events.put("deleteFromCart", timeTaken);
 			}
 		}
 
-//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess());
+		System.out.println("testStatusReason:" + testStatusReason);
+		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
 		driver.quit();
 	}
@@ -103,57 +109,90 @@ public class AmazonTests {
 	public void searchProduct() throws InterruptedException {
 		testName = "search product";
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text")))).click();
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text")))).sendKeys("laptop");
 
-		((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Prime Eligible\");")))).isDisplayed();
+		try {
 
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-						+ "new UiSelector().className(\"android.widget.TextView\").textContains(\"Sponsored\"));")))).click();
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text")))).click();
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text")))).sendKeys("laptop");
 
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"out of 5 stars\");")))).isDisplayed();
-		// Search Product Completed
+			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Prime Eligible\");")))).isDisplayed();
 
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
-				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-						+ "new UiSelector().textContains(\"Add to Cart\"));")))).click();
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+							+ "new UiSelector().className(\"android.widget.TextView\").textContains(\"Sponsored\"));")))).click();
 
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/chrome_action_bar_cart_count")))).click();
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"out of 5 stars\");")))).isDisplayed();
+			// Search Product Completed - 14th
 
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
-				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-						+ "new UiSelector().textContains(\"delete\"));")))).click();
 
+			/* add product test measurement starts 18th*/
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+							+ "new UiSelector().textContains(\"Add to Cart\"));")))).click();
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
+							"new UiSelector().text(\"Added to cart\");")))).isDisplayed();
+			/* add product test measurement stops 20th*/
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().description(\"Cart\");")))).click();
+//			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/chrome_action_bar_cart")))).click();
+
+			/* delete product test measurement starts*/
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+							+ "new UiSelector().text(\"Delete\"));")))).click();
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
+							"new UiSelector().textContains(\"was removed from Shopping Cart\");")))).isDisplayed();
+			/* delete product test measurement stops*/
+
+		} catch (Exception e) {
+			testStatusReason = e.toString();
+			throw e;
+		}
 	}
 
-	@Test
+//	@Test
 	public void addToCart(){
 		testName = "add to cart";
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text"))).sendKeys("laptop");
 
-		((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-						+ "new UiSelector().className(\"android.widget.TextView\").textContains(\"Sponsored\"));"))).click();
+		try {
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-						+ "new UiSelector().textContains(\"Add to Cart\"));"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text"))).sendKeys("laptop");
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"out of 5 stars\"));"))).isDisplayed();
+			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+							+ "new UiSelector().className(\"android.widget.TextView\").textContains(\"Sponsored\"));"))).click();
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+							+ "new UiSelector().textContains(\"Add to Cart\"));"))).click();
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"out of 5 stars\"));"))).isDisplayed();
+		} catch (Exception e) {
+			testStatusReason = e.toString();
+			throw e;
+		}
 	}
 
-	@Test(dependsOnMethods={"addToCart"})
+//	@Test(dependsOnMethods={"addToCart"})
 	public void deleteFromCart(){
 		testName = "delete from cart";
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/chrome_action_bar_cart_count"))).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-						+ "new UiSelector().textContains(\"delete\"));"))).click();
+
+		try {
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/chrome_action_bar_cart_count"))).click();
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+							+ "new UiSelector().textContains(\"delete\"));"))).click();
+		} catch (Exception e) {
+			testStatusReason = e.toString();
+			throw e;
+		}
 	}
 }

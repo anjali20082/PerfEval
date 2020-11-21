@@ -54,7 +54,7 @@ public class MyDatabase {
         student_collection.insertOne(document);
     }
 
-    public static long getTimeTaken(String jsonString, int startOffset, int endOffset) {
+    public static long getTimeTaken(String jsonString, int startIndex, int endIndex) {
 
         JSONParser parser = new JSONParser();
 
@@ -66,8 +66,15 @@ public class MyDatabase {
         }
 
         JSONArray commands = (JSONArray) jsonObject.get("commands");
-        JSONObject startEvent = (JSONObject) commands.get(commands.size() + startOffset);
-        JSONObject endEvent = (JSONObject) commands.get(commands.size() + endOffset);
+
+        if (startIndex < 0)
+            startIndex = commands.size() + startIndex;
+
+        if (endIndex < 0)
+            endIndex = commands.size() + endIndex;
+
+        JSONObject startEvent = (JSONObject) commands.get(startIndex);
+        JSONObject endEvent = (JSONObject) commands.get(endIndex);
 
         long startTime = (long) startEvent.get("startTime");
         long endTime = (long) endEvent.get("endTime");
@@ -76,7 +83,7 @@ public class MyDatabase {
         return timeTaken;
     }
 
-    public static void addTestResult(String appName, String testName, HashMap<String, Long> main_events, String connType, boolean testStatus)
+    public static void addTestResult(String appName, String testName, HashMap<String, Long> main_events, String connType, boolean testStatus, String testStatusReason)
     {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
@@ -87,6 +94,7 @@ public class MyDatabase {
         System.out.println("App: " + appName);
         System.out.println("Test: " + testName);
         System.out.println("Status: " + testStatus + "\n");
+        System.out.println("Reason: " + testStatusReason + "\n");
 
         Document document = new Document("Test Started at", currentTime);
         document.append("App Name", appName);

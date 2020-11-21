@@ -49,6 +49,8 @@ public class YouTubeTests {
 	AppiumDriverLocalService service;
 	String appName = "Youtube";
 	String testName = "NA";
+	String testStatusReason = "NA";
+
 //	Process process = null;
 //
 //	
@@ -96,12 +98,7 @@ public class YouTubeTests {
 //		process.destroy();
 //        System.out.println("Service stopped");
 //    }
-	
-	@AfterClass
-    public void update() {
 
-    }
-	
 	@BeforeMethod
 	public void launchCap() {
 		DesiredCapabilities cap=new DesiredCapabilities();
@@ -121,7 +118,7 @@ public class YouTubeTests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (WebDriverException e) {
-	        MyDatabase.addTestResult(appName, testName, null, "App Not Installed" , false);
+			MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
 		}
 			
 	}
@@ -155,7 +152,7 @@ public class YouTubeTests {
 			}
 		}
 
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess());
+		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
         driver.quit();
 	}
@@ -164,37 +161,49 @@ public class YouTubeTests {
 	public void playTest() throws InterruptedException {
 		testName = "play test";
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/menu_item_1")));
-		driver.findElement(By.id("com.google.android.youtube:id/menu_item_1")).click();
-		driver.findElement(By.id("com.google.android.youtube:id/search_edit_text")).sendKeys("manikarnika");	
-		((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-						+ "new UiSelector().descriptionContains(\"Official Trailer\"));"))).isDisplayed();
+		try {
 
-		driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Official Trailer\")")).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.google.android.youtube:id/title"))).isDisplayed();
-//		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("0 minutes 1 seconds elapsed of 3 minutes 20 seconds"))).isDisplayed();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/menu_item_1")));
+			driver.findElement(By.id("com.google.android.youtube:id/menu_item_1")).click();
+			driver.findElement(By.id("com.google.android.youtube:id/search_edit_text")).sendKeys("manikarnika");
+			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
 
-		Thread.sleep(2000);
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+							+ "new UiSelector().descriptionContains(\"Official Trailer\"));"))).isDisplayed();
+
+			driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Official Trailer\")")).click();
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.google.android.youtube:id/title"))).isDisplayed();
+
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			testStatusReason = e.toString();
+			throw e;
+		}
 	}
 	
 	@Test
 	public void channelTest() throws InterruptedException{
 		testName = "find channel";
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/menu_item_1")));
-		driver.findElement(By.id("com.google.android.youtube:id/menu_item_1")).click();
-		
-		driver.findElement(By.id("com.google.android.youtube:id/search_edit_text")).sendKeys("unacademy upsc");	
-		((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-		
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-						+ "new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\"));"))).isDisplayed();
 
-		driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\")")).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Subscribe to Unacademy UPSC."))).isDisplayed();
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/menu_item_1")));
+			driver.findElement(By.id("com.google.android.youtube:id/menu_item_1")).click();
+
+			driver.findElement(By.id("com.google.android.youtube:id/search_edit_text")).sendKeys("unacademy upsc");
+			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+							+ "new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\"));"))).isDisplayed();
+
+			driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\")")).click();
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Subscribe to Unacademy UPSC."))).isDisplayed();
+		} catch (Exception e) {
+			testStatusReason = e.toString();
+			throw e;
+		}
 	}
 }

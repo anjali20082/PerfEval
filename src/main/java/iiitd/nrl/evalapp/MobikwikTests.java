@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
+import com.sun.jdi.event.ExceptionEvent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -35,6 +36,7 @@ public class MobikwikTests {
 	AndroidDriver<MobileElement> driver;
 	String appName = "Mobikwik";
 	String testName = "NA";
+	String testStatusReason = "NA";
 
     @AfterClass
     public void update() {
@@ -52,7 +54,6 @@ public class MobikwikTests {
 		cap.setCapability("autoAcceptAlerts", true);
 		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
 
-
 		URL url;
 		try {
 			url = new URL("http://127.0.0.1:4723/wd/hub");
@@ -61,7 +62,7 @@ public class MobikwikTests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (WebDriverException e) {
-	        MyDatabase.addTestResult(appName, "App Not Installed", null, "Not Connected" , false);
+			MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
 		}
 			
 	}
@@ -86,29 +87,41 @@ public class MobikwikTests {
 		HashMap<String, Long> main_events = new HashMap<>();
 
 		if (testResult.isSuccess()) {
-			if (testResult.getName() == "playTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
-				main_events.put(testResult.getName(), timeTaken);
-			} else if (testResult.getName() == "channelTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -2);
+			if (testResult.getName() == "sendMoneyFromWallet") {
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -2);
 				main_events.put(testResult.getName(), timeTaken);
 			}
 		}
 
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess());
+		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
 		driver.quit();
 	}
 	
 	@Test
-	public void SendMoneyFromWallet(){
+	public void sendMoneyFromWallet(){
 		
 		testName = "Send Money From Wallet";
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Via Wallet\")"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/edit_field"))).sendKeys("9667316335");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/edt_txt_transfer_amount"))).sendKeys("5");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/btn_p2p_action"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/btn_new_transfer"))).click();	
+
+		try {
+
+			if (!driver.findElements(By.id("com.mobikwik_new:id/cross_button")).isEmpty()) {
+				driver.findElement(By.id("com.mobikwik_new:id/cross_button")).click();
+			}
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Via Wallet\")"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/edit_field"))).sendKeys("9667316335");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/edt_txt_transfer_amount"))).sendKeys("5");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/btn_p2p_action"))).click();
+
+			/* sending money time measurement starts */
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/btn_new_transfer"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Money sent successfully\")"))).click();
+			/* sending money time measurement stops */
+		} catch (Exception e) {
+			testStatusReason = e.toString();
+			throw e;
+		}
 	}
 }

@@ -4,8 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import org.junit.rules.ExpectedException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -25,6 +31,8 @@ public class TelegramTests  {
     AndroidDriver<MobileElement> driver;
     String appName = "Telegram";
     String testName = "NA";
+    String testStatusReason = "NA";
+
     @AfterClass
     public void update() {
 
@@ -39,6 +47,8 @@ public class TelegramTests  {
         cap.setCapability("fullReset", "false");
         cap.setCapability("autoGrantPermissions", true);
         cap.setCapability("autoAcceptAlerts", true);
+        cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
+
         URL url;
         try {
             url = new URL("http://127.0.0.1:4723/wd/hub");
@@ -47,7 +57,7 @@ public class TelegramTests  {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (WebDriverException e) {
-	        MyDatabase.addTestResult(appName, testName, null, "App Not Installed" , false);
+            MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
         }
 
     }
@@ -72,35 +82,60 @@ public class TelegramTests  {
         HashMap<String, Long> main_events = new HashMap<>();
 
         if (testResult.isSuccess()) {
-            if (testResult.getName() == "playTest") {
-                timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
-                main_events.put(testResult.getName(), timeTaken);
-            } else if (testResult.getName() == "channelTest") {
-                timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -2);
+            if (testResult.getName() == "sendMessage") {
+                timeTaken = MyDatabase.getTimeTaken(jsonString, 12, -2);
                 main_events.put(testResult.getName(), timeTaken);
             }
         }
 
-        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess());
+        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
         driver.quit();
     }
 
     @Test
-    public void sendMessage(){
+    public void sendMessage() throws Exception {
         testName = "send message";
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
-        //  android.widget.EditText  class sendkeys
-        //  Automation Testing EvalApp, 2 members   text
-        //  android.widget.EditText  class sendkeys
-        //   Send   acc-id click
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("automation testing evalapp");
-        List<MobileElement> results= (List<MobileElement>) driver.findElementsByClassName("android.view.ViewGroup");
-        results.get(0).click();
 
-//		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().textContains(\"Automation Testing EvalApp\")"))).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("and we meet here as well");
-        wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Send"))).click();
+        try {
+            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("automation testing evalapp");
+            List<MobileElement> results= (List<MobileElement>) driver.findElementsByClassName("android.view.ViewGroup");
+            results.get(0).click();
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("and we meet here as well");
+
+            // calculate time of below 2 commands
+            int before_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Sent\");")).size();
+
+            /* sending message time measurement starts */
+            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Send"))).click();
+
+            Calendar calendar = Calendar.getInstance();
+            long startTime = calendar.getTimeInMillis();
+            long currentTime = startTime;
+            long limitTime = startTime + 30000;
+
+            int after_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Sent\");")).size();
+            while (currentTime < limitTime && after_length <= before_length) {
+                after_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Sent\");")).size();
+
+                calendar = Calendar.getInstance();
+                currentTime = calendar.getTimeInMillis();
+            }
+
+            if (currentTime >= limitTime) {
+                throw new Exception("Message not sent");
+            }
+
+            /* sending message time measurement stops */
+
+        } catch (Exception e) {
+            testStatusReason = e.toString();
+            throw e;
+        }
+
+//        and we meet here as well Sent at 4:59 PM, Seen
     }
 }

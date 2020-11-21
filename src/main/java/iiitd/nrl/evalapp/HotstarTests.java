@@ -36,6 +36,7 @@ public class HotstarTests {
 	AndroidDriver<MobileElement> driver;
 	String appName = "Hotstar";
 	String testName = "NA";
+	String testStatusReason = "NA";
 
 	@AfterClass
     public void update() {
@@ -53,7 +54,6 @@ public class HotstarTests {
 		cap.setCapability("autoAcceptAlerts", true);
 		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
 
-
 		URL url;
 		try {
 			url = new URL("http://127.0.0.1:4723/wd/hub");
@@ -62,7 +62,7 @@ public class HotstarTests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (WebDriverException e) {
-	        MyDatabase.addTestResult(appName, testName, null, "App Not Installed" , false);
+			MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
 		}
 			
 	}
@@ -77,59 +77,64 @@ public class HotstarTests {
         	return "Wifi & MobileData";
         return "Wifi";
     }
-	
+
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
 		System.out.println(jsonString);
 		long timeTaken = 0;
 
-		HashMap<String, Long> main_events = new HashMap<>();
+		HashMap<String, Long> main_events = new HashMap<String, Long>();
 
 		if (testResult.isSuccess()) {
-			if (testResult.getName() == "playTest") {
+			if (testResult.getName() == "searchTest") {
 				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
 				main_events.put(testResult.getName(), timeTaken);
-			} else if (testResult.getName() == "channelTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -2);
+			} else if (testResult.getName() == "trendingTest") {
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
 				main_events.put(testResult.getName(), timeTaken);
 			}
 		}
 
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess());
+		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
 		driver.quit();
 	}
-	
+
 	@Test
 	public void searchTest(){
 
 		testName = "Search Test";
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/search_text"))).sendKeys("dil bechara");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.ImageView[2]"))).click();
+		WebDriverWait wait = new WebDriverWait(driver, 300);
+		try {
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/search_text"))).sendKeys("dil bechara");
+			/* search video time measurement starts*/
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.ImageView[2]"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/metadata_download")));
+			/* search video time measurement stops*/
+		} catch (Exception e) {
+			testStatusReason = e.toString();
+			throw e;
+		}
 	}
-	
+
 	@Test
 	public void trendingTest(){
 
 		testName = "Trending Test";
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Open navigation drawer"))).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Trending\")"))).click();
+		WebDriverWait wait = new WebDriverWait(driver, 300);
+		try {
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Open navigation drawer"))).click();
+			/* load trending videos page time measurement starts*/
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Trending\")"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/frame_player")));
+			/* load trending videos page time measurement stops*/
+		} catch (Exception e) {
+			testStatusReason = e.toString();
+			throw e;
+		}
 	}
-	
-	@Test
-	public void addWatchlistTest(){
 
-		testName = "Add to Watchlist Test";
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-						+ "new UiSelector().textContains(\"Popular Movies\"));"))).click();
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/image"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/addToWatchlistIcon"))).click();		
-	}
 }
