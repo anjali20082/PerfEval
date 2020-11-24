@@ -80,7 +80,7 @@ public class LinkedInTests {
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
-		System.out.println(jsonString);
+//		System.out.println(jsonString);
 		long timeTaken = 0;
 
 		HashMap<String, Long> main_events = new HashMap<String, Long>();

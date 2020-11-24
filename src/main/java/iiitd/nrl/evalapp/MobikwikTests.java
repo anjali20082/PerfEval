@@ -81,14 +81,14 @@ public class MobikwikTests {
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
-		System.out.println(jsonString);
+//		System.out.println(jsonString);
 		long timeTaken = 0;
 
 		HashMap<String, Long> main_events = new HashMap<>();
 
 		if (testResult.isSuccess()) {
 			if (testResult.getName() == "sendMoneyFromWallet") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -2);
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
 				main_events.put(testResult.getName(), timeTaken);
 			}
 		}
@@ -113,11 +113,9 @@ public class MobikwikTests {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Via Wallet\")"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/edit_field"))).sendKeys("9667316335");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/edt_txt_transfer_amount"))).sendKeys("5");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/btn_p2p_action"))).click();
-
 			/* sending money time measurement starts */
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/btn_new_transfer"))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Money sent successfully\")"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/btn_p2p_action"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Money sent successfully\")")));
 			/* sending money time measurement stops */
 		} catch (Exception e) {
 			testStatusReason = e.toString();

@@ -78,7 +78,7 @@ public class AmazonPayTest {
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
-		System.out.println(jsonString);
+//		System.out.println(jsonString);
 		long timeTaken = 0;
 
 		HashMap<String, Long> main_events = new HashMap<>();
@@ -89,7 +89,7 @@ public class AmazonPayTest {
 				main_events.put(testResult.getName(), timeTaken);
 			}
 		}
-		System.out.println("test status reason:" + testStatusReason);
+//		System.out.println("test status reason:" + testStatusReason);
 		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
 		driver.quit();
@@ -99,7 +99,7 @@ public class AmazonPayTest {
     public void payUsingAmazonPay() {
 		
         testName = "pay using amazon pay upi";
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = new WebDriverWait(driver, 300);
         try {
 
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(

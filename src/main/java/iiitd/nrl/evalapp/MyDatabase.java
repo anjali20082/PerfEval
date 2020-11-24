@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MyDatabase {
-    protected static float version = 2.1f;
+    protected static float version = 2.4f;
     protected static int count = 0;
     protected static int totalTests = 0;
     public static MongoClient mongoClient;
@@ -103,21 +103,19 @@ public class MyDatabase {
         document.append("Time Taken", main_events);
 
 
-//        for (String key: main_events.keySet()) {
-//            long time = main_events.get(key);
-//
-//        }
-
-
         document.append("ConnectionType", connType);
         document.append("Test Passed", testStatus);
+
+        document.append("Status Reason", testStatusReason);
 
         student_collection.insertOne(document);
     }
 
     public static void sendPINGLog() {
-        List<String> ping_files = List.of("www.google.com.log", "www.amazon.com.log", "www.mobikwik.com.log");
-        List<String> filenames = List.of("google", "amazon", "mobikwik");
+//        List<String> ping_files = List.of("www.google.com.log", "www.amazon.com.log", "www.mobikwik.com.log");
+        List<String> ping_files = List.of("www.google.com.log");
+//        List<String> filenames = List.of("google", "amazon", "mobikwik");
+        List<String> filenames = List.of("google");
 
         int i = 0;
         for (String filename:ping_files) {

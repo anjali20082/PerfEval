@@ -68,7 +68,7 @@ public class WhatsappTests {
     @AfterMethod
     public void restart(ITestResult testResult) {
         String jsonString = driver.getEvents().getJsonData();
-        System.out.println(jsonString);
+//        System.out.println(jsonString);
         long timeTaken = 0;
 
         String event_name = "";
@@ -76,7 +76,6 @@ public class WhatsappTests {
 
         if (testResult.isSuccess()) {
             if (testResult.getName() == "sendMessage") {
-                event_name = "sending message";
                 timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
                 main_events.put(event_name, timeTaken);
             }
@@ -88,7 +87,7 @@ public class WhatsappTests {
     @Test
     public void sendMessage() throws InterruptedException {
         testName = "send message";
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = new WebDriverWait(driver, 300);
 
         try {
 

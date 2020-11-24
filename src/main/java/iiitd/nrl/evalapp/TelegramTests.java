@@ -76,7 +76,7 @@ public class TelegramTests  {
     @AfterMethod
     public void restart(ITestResult testResult) {
         String jsonString = driver.getEvents().getJsonData();
-        System.out.println(jsonString);
+//        System.out.println(jsonString);
         long timeTaken = 0;
 
         HashMap<String, Long> main_events = new HashMap<>();
@@ -96,7 +96,7 @@ public class TelegramTests  {
     @Test
     public void sendMessage() throws Exception {
         testName = "send message";
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = new WebDriverWait(driver, 300);
 
         try {
             wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
@@ -115,7 +115,7 @@ public class TelegramTests  {
             Calendar calendar = Calendar.getInstance();
             long startTime = calendar.getTimeInMillis();
             long currentTime = startTime;
-            long limitTime = startTime + 30000;
+            long limitTime = startTime + 300000;
 
             int after_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Sent\");")).size();
             while (currentTime < limitTime && after_length <= before_length) {

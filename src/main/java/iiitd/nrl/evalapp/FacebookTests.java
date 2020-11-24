@@ -86,7 +86,7 @@ public class FacebookTests {
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
-		System.out.println(jsonString);
+//		System.out.println(jsonString);
 		long timeTaken = 0;
 
 		HashMap<String, Long> main_events = new HashMap<String, Long>();
@@ -98,7 +98,7 @@ public class FacebookTests {
 			}
 			else if (testResult.getName() == "searchPerson") {
 				timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -2);
-				main_events.put("search person", timeTaken);
+				main_events.put(testResult.getName(), timeTaken);
 
 			}
 		}
@@ -125,7 +125,10 @@ public class FacebookTests {
 							+ "new UiSelector().descriptionMatches(\"(?i)Evaluation of Apps Button(?-i)\"));"))).click();
 
 
-			new TouchAction(driver).press(new PointOption().withCoordinates(new Point(500, 350))).waitAction(new WaitOptions().withDuration(Duration.ofSeconds(1))).moveTo(new PointOption().withCoordinates(new Point(500, 750))).release().perform();
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollToBeginning(10);")));
+
+//			new TouchAction(driver).press(new PointOption().withCoordinates(new Point(500, 350))).waitAction(new WaitOptions().withDuration(Duration.ofSeconds(1))).moveTo(new PointOption().withCoordinates(new Point(500, 750))).release().perform();
 
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Write something…"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
@@ -145,7 +148,7 @@ public class FacebookTests {
 	@Test
 	public void searchPerson() throws InterruptedException{
 
-		testName = "follow/unfollow";
+		testName = "search person";
 		WebDriverWait wait = new WebDriverWait(driver, 300);
 
 		try {

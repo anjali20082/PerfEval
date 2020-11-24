@@ -83,7 +83,7 @@ public class FlipkartTests {
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
-		System.out.println(jsonString);
+//		System.out.println(jsonString);
 		long timeTaken = 0;
 
 		HashMap<String, Long> main_events = new HashMap<>();
@@ -91,18 +91,18 @@ public class FlipkartTests {
 		if (testResult.isSuccess()) {
 			if (testResult.getName() == "getProduct") {
 				timeTaken = MyDatabase.getTimeTaken(jsonString, 8, 8) + MyDatabase.getTimeTaken(jsonString, 10, 12);
-				main_events.put("search product", timeTaken);
+				main_events.put("searchProduct", timeTaken);
 
 				if (addToCartClicked) {
 					timeTaken = MyDatabase.getTimeTaken(jsonString, 17, 19);
-					main_events.put("add to cart", timeTaken);
+					main_events.put("addToCart", timeTaken);
 				}
 
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -7, -8);
-				main_events.put("go to cart", timeTaken);
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -7);
+				main_events.put("goToCart", timeTaken);
 
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -2, -6);
-				main_events.put("remove from cart", timeTaken);
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -6, -2);
+				main_events.put("removeFromCart", timeTaken);
 			}
 		}
 
@@ -114,7 +114,7 @@ public class FlipkartTests {
 	@Test
 	public void getProduct() throws InterruptedException {
 		testName = "search product";
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 300);
 
 		try {
 

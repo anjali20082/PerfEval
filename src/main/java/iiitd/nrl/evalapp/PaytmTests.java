@@ -71,7 +71,7 @@ public class PaytmTests {
 	@AfterMethod
 	public void restart(ITestResult testResult) {
         String jsonString = driver.getEvents().getJsonData();
-        System.out.println(jsonString);
+//        System.out.println(jsonString);
         long timeTaken = 0;
 
         HashMap<String, Long> main_events = new HashMap<>();
@@ -83,7 +83,7 @@ public class PaytmTests {
             }
         }
 
-//        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
         driver.quit();
 	}
@@ -91,7 +91,7 @@ public class PaytmTests {
     @Test
     public void sendMoneyFromWallet() throws InterruptedException {
         testName = "Pay Nikhil Re. 1/-";
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 300);
 
         try {
 

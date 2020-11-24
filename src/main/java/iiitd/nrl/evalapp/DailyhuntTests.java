@@ -82,15 +82,14 @@ public class DailyhuntTests  {
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
-		System.out.println(jsonString);
+//		System.out.println(jsonString);
 		long timeTaken = 0;
 
 		HashMap<String, Long> main_events = new HashMap<String, Long>();
 
 		if (testResult.isSuccess()) {
-			if (testResult.getName() == "searchTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2); // 8 and 10
-
+			if (testResult.getName() == "searchNews") {
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -3); // 8 and 10
 				main_events.put(testResult.getName(), timeTaken);
 			} else if (testResult.getName() == "livetvTest") {
 				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2); // 7 and 9
@@ -104,20 +103,24 @@ public class DailyhuntTests  {
 	}
 
 	@Test
-	public void searchTest(){
+	public void searchNews(){
 
 		testName = "search news";
 		WebDriverWait wait = new WebDriverWait(driver, 300);
 
 		try {
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/global_search"))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/search_box"))).sendKeys("sports");
-			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/global_search"))).click();
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/search_box"))).sendKeys("sports");
+//			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"News\")"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/news_title"))).click();
+
 
 			/* Search news time measurement starts*/
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"News\")"))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/follow_button")));
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"News\")"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/icon"))).isDisplayed();
 			/* Search news time measurement stops*/
 		} catch (Exception e) {
 			testStatusReason = e.toString();

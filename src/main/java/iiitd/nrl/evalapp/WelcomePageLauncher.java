@@ -88,29 +88,21 @@ public class WelcomePageLauncher extends Application {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.HotstarTests"));
                 MyDatabase.totalTests += 3;
             }
-            if (googlenews_cb.isSelected()) {
-                classes.add(new XmlClass("iiitd.nrl.evalapp.GooglenewsTests"));
-                MyDatabase.totalTests += 2;
-            }
-            if (dailyhunt_cb.isSelected()) {
-                classes.add(new XmlClass("iiitd.nrl.evalapp.DailyhuntTests"));
-                MyDatabase.totalTests += 2;
-            }
             if (linkedin_cb.isSelected()) {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.LinkedInTests"));
-                MyDatabase.totalTests += 4;
+                MyDatabase.totalTests += 3;
             }
             if (facebook_cb.isSelected()) {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.FacebookTests"));
-                MyDatabase.totalTests += 3;
+                MyDatabase.totalTests += 2;
             }
             if (flipkart_cb.isSelected()) {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.FlipkartTests"));
-                MyDatabase.totalTests += 3;
+                MyDatabase.totalTests += 1;
             }
             if (amazon_cb.isSelected()) {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.AmazonTests"));
-                MyDatabase.totalTests += 3;
+                MyDatabase.totalTests += 1;
             }
 
             if (telegram_cb.isSelected()) {
@@ -121,6 +113,15 @@ public class WelcomePageLauncher extends Application {
             if (whatsapp_cb.isSelected()) {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.WhatsappTests"));
                 MyDatabase.totalTests += 1;
+            }
+
+            if (googlenews_cb.isSelected()) {
+                classes.add(new XmlClass("iiitd.nrl.evalapp.GooglenewsTests"));
+                MyDatabase.totalTests += 1;
+            }
+            if (dailyhunt_cb.isSelected()) {
+                classes.add(new XmlClass("iiitd.nrl.evalapp.DailyhuntTests"));
+                MyDatabase.totalTests += 2;
             }
 
             // payment apps

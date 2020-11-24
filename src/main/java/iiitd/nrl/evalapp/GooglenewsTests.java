@@ -77,20 +77,21 @@ public class GooglenewsTests {
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
-		System.out.println(jsonString);
+//		System.out.println(jsonString);
 		long timeTaken = 0;
 
 		HashMap<String, Long> main_events = new HashMap<String, Long>();
 
 		if (testResult.isSuccess()) {
 			if (testResult.getName() == "searchTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -6);
-				main_events.put("search", timeTaken);
 				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
-				main_events.put("full coverage", timeTaken);
+				main_events.put("searchNews", timeTaken);
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+//				main_events.put("fullCoverage", timeTaken);
 			}
 		}
 
+//		System.out.println(testStatusReason);
 		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
 		driver.quit();
@@ -104,26 +105,37 @@ public class GooglenewsTests {
 
 		try {
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/search_button"))).click();
-
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/open_search_view_edit_text"))).sendKeys("delhi");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/title_and_body"))).click();
+//
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/open_search_view_edit_text"))).sendKeys("delhi");
 
 			/* search news  test measurement starts*/
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-					"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/suggest_text\").scrollable(true)).scrollIntoView("
-							+ "new UiSelector().textMatches(\"Delhi\"));"))).click();
-
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/rect_icon")));
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+//					"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/suggest_text\").scrollable(true)).scrollIntoView("
+//							+ "new UiSelector().textMatches(\"Delhi\"));"))).click();
+//
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/rect_icon")));
 			/* search news  test measurement stops*/
 
 			/* load news  test measurement starts*/
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-					"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/recycler_view\").scrollable(true)).scrollIntoView("
-							+ "new UiSelector().textContains(\"View Full coverage\"));"))).click();
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+//					"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/recycler_view\").scrollable(true)).scrollIntoView("
+//							+ "new UiSelector().textContains(\"View Full coverage\"));"))).click();
 
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
-					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-							+ "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/card\"));"))));
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+//							"new UiSelector().text(\"View Full Coverage\");"))).click();
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView(" +
+							"new UiSelector().text(\"Times of India\"));"))).click();
+
+
+//			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
+//					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+//							+ "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/card\"));")))).click();
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiSelector().text(\"TOI\");"))).isDisplayed();
 			/* load news  test measurement stops*/
 		} catch (Exception e) {
 			testStatusReason = e.toString();
