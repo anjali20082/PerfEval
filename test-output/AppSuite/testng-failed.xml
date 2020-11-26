@@ -3,14 +3,14 @@
 <suite name="Failed suite [AppSuite]">
   <test name="AppiumTests(failed)">
     <classes>
-      <class name="iiitd.nrl.evalapp.YouTubeTests">
+      <class name="iiitd.nrl.evalapp.DailyhuntTests">
         <methods>
-          <include name="launchCap"/>
-          <include name="channelTest"/>
-          <include name="playTest"/>
+          <include name="livetvTest"/>
           <include name="restart"/>
+          <include name="launchCap"/>
+          <include name="searchNews"/>
         </methods>
-      </class> <!-- iiitd.nrl.evalapp.YouTubeTests -->
+      </class> <!-- iiitd.nrl.evalapp.DailyhuntTests -->
     </classes>
   </test> <!-- AppiumTests(failed) -->
 </suite> <!-- Failed suite [AppSuite] -->

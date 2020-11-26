@@ -89,14 +89,14 @@ public class HotstarTests {
 		if (testResult.isSuccess()) {
 			if (testResult.getName() == "searchTest") {
 				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
-				main_events.put(testResult.getName(), timeTaken);
+//				main_events.put(testResult.getName(), timeTaken);
 			} else if (testResult.getName() == "trendingTest") {
 				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
-				main_events.put(testResult.getName(), timeTaken);
+//				main_events.put(testResult.getName(), timeTaken);
 			}
 		}
 
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
 		driver.quit();
 	}

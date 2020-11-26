@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,7 +38,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-AppSuite" class="navigator-link">
-              <span class="suite-name border-failed">AppSuite</span>
+              <span class="suite-name border-passed">AppSuite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -91,35 +91,26 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods, 1 failed,  1 skipped,  </span>
+                    <span class="method-stats">2 methods,   2 passed</span>
                   </li>
                   <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-AppSuite" class="hide-methods failed suite-AppSuite"> (hide)</a> <!-- hide-methods failed suite-AppSuite -->
-                      <a href="#" panel-name="suite-AppSuite" class="show-methods failed suite-AppSuite"> (show)</a> <!-- show-methods failed suite-AppSuite -->
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-AppSuite" class="hide-methods passed suite-AppSuite"> (hide)</a> <!-- hide-methods passed suite-AppSuite -->
+                      <a href="#" panel-name="suite-AppSuite" class="show-methods passed suite-AppSuite"> (show)</a> <!-- show-methods passed suite-AppSuite -->
                     </span>
-                    <div class="method-list-content failed suite-AppSuite">
+                    <div class="method-list-content passed suite-AppSuite">
                       <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-AppSuite" title="iiitd.nrl.evalapp.YouTubeTests" class="method navigator-link" hash-for-method="channelTest">channelTest</a> <!-- method navigator-link -->
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-AppSuite" title="iiitd.nrl.evalapp.DailyhuntTests" class="method navigator-link" hash-for-method="livetvTest">livetvTest</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content failed suite-AppSuite -->
-                  </li>
-                  <li>
-                    <span class="method-list-title skipped">Skipped methods</span>
-                    <span class="show-or-hide-methods skipped">
-                      <a href="#" panel-name="suite-AppSuite" class="hide-methods skipped suite-AppSuite"> (hide)</a> <!-- hide-methods skipped suite-AppSuite -->
-                      <a href="#" panel-name="suite-AppSuite" class="show-methods skipped suite-AppSuite"> (show)</a> <!-- show-methods skipped suite-AppSuite -->
-                    </span>
-                    <div class="method-list-content skipped suite-AppSuite">
                       <span>
-                        <img src="skipped.png" width="3%"/>
-                        <a href="#" panel-name="suite-AppSuite" title="iiitd.nrl.evalapp.YouTubeTests" class="method navigator-link" hash-for-method="playTest">playTest</a> <!-- method navigator-link -->
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-AppSuite" title="iiitd.nrl.evalapp.DailyhuntTests" class="method navigator-link" hash-for-method="searchNews">searchNews</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content skipped suite-AppSuite -->
+                    </div> <!-- method-list-content passed suite-AppSuite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -131,149 +122,28 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-AppSuite" class="panel AppSuite">
-          <div class="suite-AppSuite-class-failed">
+          <div class="suite-AppSuite-class-passed">
             <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">iiitd.nrl.evalapp.YouTubeTests</span>
+              <img src="passed.png"/>
+              <span class="class-name">iiitd.nrl.evalapp.DailyhuntTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="channelTest">
-                  </a> <!-- channelTest -->
-                  <span class="method-name">channelTest</span>
-                  <div class="stack-trace">java.lang.NullPointerException
-	at java.base/java.util.Objects.requireNonNull(Objects.java:221)
-	at org.openqa.selenium.support.ui.FluentWait.&lt;init&gt;(FluentWait.java:106)
-	at org.openqa.selenium.support.ui.WebDriverWait.&lt;init&gt;(WebDriverWait.java:85)
-	at org.openqa.selenium.support.ui.WebDriverWait.&lt;init&gt;(WebDriverWait.java:45)
-	at iiitd.nrl.evalapp.YouTubeTests.channelTest(YouTubeTests.java:162)
-	at iiitd.nrl.evalapp.MainAppLauncher.clickRun(MainAppLauncher.java:23)
-	at com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:83)
-	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1782)
-	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1670)
-	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
-	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
-	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
-	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
-	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
-	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
-	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
-	at javafx.event.Event.fireEvent(Event.java:198)
-	at javafx.scene.Node.fireEvent(Node.java:8879)
-	at javafx.scene.control.Button.fire(Button.java:200)
-	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:206)
-	at com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
-	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
-	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
-	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
-	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
-	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
-	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
-	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
-	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
-	at javafx.event.Event.fireEvent(Event.java:198)
-	at javafx.scene.Scene$MouseHandler.process(Scene.java:3851)
-	at javafx.scene.Scene$MouseHandler.access$1200(Scene.java:3579)
-	at javafx.scene.Scene.processMouseEvent(Scene.java:1849)
-	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2588)
-	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:397)
-	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
-	at java.base/java.security.AccessController.doPrivileged(Native Method)
-	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:434)
-	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:390)
-	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:433)
-	at com.sun.glass.ui.View.handleMouseEvent(View.java:556)
-	at com.sun.glass.ui.View.notifyMouse(View.java:942)
-	at com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
-	at com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$11(GtkApplication.java:277)
-	at java.base/java.lang.Thread.run(Thread.java:834)
-... Removed 32 stack frames
-</div> <!-- stack-trace -->
+                  <a name="livetvTest">
+                  </a> <!-- livetvTest -->
+                  <span class="method-name">livetvTest</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-AppSuite-class-failed -->
-          <div class="suite-AppSuite-class-skipped">
-            <div class="main-panel-header rounded-window-top">
-              <img src="skipped.png"/>
-              <span class="class-name">iiitd.nrl.evalapp.YouTubeTests</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="playTest">
-                  </a> <!-- playTest -->
-                  <span class="method-name">playTest</span>
-                  <div class="stack-trace">java.lang.NullPointerException
-	at iiitd.nrl.evalapp.YouTubeTests.getConnectionType(YouTubeTests.java:125)
-	at iiitd.nrl.evalapp.YouTubeTests.restart(YouTubeTests.java:138)
-	at iiitd.nrl.evalapp.MainAppLauncher.clickRun(MainAppLauncher.java:23)
-	at com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:83)
-	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1782)
-	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1670)
-	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
-	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
-	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
-	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
-	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
-	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
-	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
-	at javafx.event.Event.fireEvent(Event.java:198)
-	at javafx.scene.Node.fireEvent(Node.java:8879)
-	at javafx.scene.control.Button.fire(Button.java:200)
-	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:206)
-	at com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
-	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
-	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
-	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
-	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
-	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
-	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
-	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
-	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
-	at javafx.event.Event.fireEvent(Event.java:198)
-	at javafx.scene.Scene$MouseHandler.process(Scene.java:3851)
-	at javafx.scene.Scene$MouseHandler.access$1200(Scene.java:3579)
-	at javafx.scene.Scene.processMouseEvent(Scene.java:1849)
-	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2588)
-	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:397)
-	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
-	at java.base/java.security.AccessController.doPrivileged(Native Method)
-	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:434)
-	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:390)
-	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:433)
-	at com.sun.glass.ui.View.handleMouseEvent(View.java:556)
-	at com.sun.glass.ui.View.notifyMouse(View.java:942)
-	at com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
-	at com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$11(GtkApplication.java:277)
-	at java.base/java.lang.Thread.run(Thread.java:834)
-... Removed 34 stack frames
-</div> <!-- stack-trace -->
+                  <a name="searchNews">
+                  </a> <!-- searchNews -->
+                  <span class="method-name">searchNews</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-AppSuite-class-skipped -->
+          </div> <!-- suite-AppSuite-class-passed -->
         </div> <!-- panel AppSuite -->
         <div panel-name="test-xml-AppSuite" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -285,7 +155,7 @@
 &lt;suite name=&quot;AppSuite&quot;&gt;
   &lt;test name=&quot;AppiumTests&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;iiitd.nrl.evalapp.YouTubeTests&quot;/&gt;
+      &lt;class name=&quot;iiitd.nrl.evalapp.DailyhuntTests&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- AppiumTests --&gt;
 &lt;/suite&gt; &lt;!-- AppSuite --&gt;
@@ -327,18 +197,18 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(2);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'channelTest')
-data.setCell(0, 2, 'iiitd.nrl.evalapp.YouTubeTests')
-data.setCell(0, 3, 1);
+data.setCell(0, 1, 'livetvTest')
+data.setCell(0, 2, 'iiitd.nrl.evalapp.DailyhuntTests')
+data.setCell(0, 3, 10671);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'playTest')
-data.setCell(1, 2, 'iiitd.nrl.evalapp.YouTubeTests')
-data.setCell(1, 3, 0);
+data.setCell(1, 1, 'searchNews')
+data.setCell(1, 2, 'iiitd.nrl.evalapp.DailyhuntTests')
+data.setCell(1, 3, 10366);
 window.suiteTableData['AppSuite']= { tableData: data, tableDiv: 'times-div-AppSuite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 ms</span>
+              <span class="suite-total-time">Total running time: 21 seconds</span>
               <div id="times-div-AppSuite">
               </div> <!-- times-div-AppSuite -->
             </div> <!-- times-div -->
@@ -364,27 +234,35 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">iiitd.nrl.evalapp.YouTubeTests</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">iiitd.nrl.evalapp.DailyhuntTests</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">launchCap</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">channelTest</span>
-                <span class="method-start">25802 ms</span>
+                <span class="method-name">livetvTest</span>
+                <span class="method-start">11695 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">restart([TestResult name=channelTest status=FAILURE method=YouTubeTests.channelTest()[pri:0, instance:iiitd....)</span>
-                <span class="method-start">25804 ms</span>
+                <span class="method-name">restart([TestResult name=livetvTest status=SUCCESS method=DailyhuntTests.livetvTest()[pri:0, instance:iiitd....)</span>
+                <span class="method-start">22366 ms</span>
               </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">launchCap</span>
+                <span class="method-start">23434 ms</span>
+              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">playTest</span>
-                <span class="method-start">25804 ms</span>
+                <span class="method-name">searchNews</span>
+                <span class="method-start">33201 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">restart([TestResult name=searchNews status=SUCCESS method=DailyhuntTests.searchNews()[pri:0, instance:iiitd....)</span>
+                <span class="method-start">43567 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-class after">
+                <span class="method-name">update</span>
+                <span class="method-start">44594 ms</span>
+              </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->
