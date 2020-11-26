@@ -96,7 +96,7 @@ public class HotstarTests {
 			}
 		}
 
-//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
 		driver.quit();
 	}

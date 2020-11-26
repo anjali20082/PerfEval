@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import io.appium.java_client.clipboard.ClipboardContentType;
 import io.appium.java_client.serverevents.TimedEvent;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -163,7 +164,45 @@ public class YouTubeTests {
 
         driver.quit();
 	}
-	
+
+//	@Test
+	public void copyDebugInfo() throws InterruptedException {
+		testName = "copy debug info";
+		WebDriverWait wait = new WebDriverWait(driver, 300);
+
+		try {
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/menu_item_1")));
+			driver.findElement(By.id("com.google.android.youtube:id/menu_item_1")).click();
+			driver.findElement(By.id("com.google.android.youtube:id/search_edit_text")).sendKeys("manikarnika");
+
+			/* searching video time measurement starts */
+			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+							+ "new UiSelector().descriptionContains(\"Official Trailer\"));"))).isDisplayed();
+			/* searching video time measurement starts */
+
+
+			driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Official Trailer\")")).click();
+//			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.google.android.youtube:id/title"))).isDisplayed();
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.google.android.youtube:id/player_overflow_button"))).click();
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().text(\"Stats for nerds\")"))).click();
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.google.android.youtube:id/copy_debug_info_button"))).click();
+
+			System.out.println(driver.getClipboardText());
+
+//			Thread.sleep(500);
+
+		} catch (Exception e) {
+			testStatusReason = e.toString();
+			throw e;
+		}
+	}
+
+
 	@Test
 	public void playTest() throws InterruptedException {
 		testName = "play test";
@@ -187,7 +226,6 @@ public class YouTubeTests {
 			driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Official Trailer\")")).click();
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.google.android.youtube:id/title"))).isDisplayed();
 
-			Thread.sleep(2000);
 		} catch (Exception e) {
 			testStatusReason = e.toString();
 			throw e;

@@ -133,7 +133,7 @@ public class FacebookTests {
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Write something…"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("It does not matter how slow you go, as long as you don't stop    -Confucius");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Hi, this is an automated post");
 			/* post group time measurement starts */
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("POST"))).click();
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(

@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MyDatabase {
-    protected static float version = 2.4f;
+    protected static float version = 2.6f;
     protected static int count = 0;
     protected static int totalTests = 0;
     public static MongoClient mongoClient;
@@ -36,14 +36,13 @@ public class MyDatabase {
         String uri = "mongodb+srv://admin17080:Shadow%40ps99@cluster0.ssjoc.gcp.mongodb.net/TestingApps?retryWrites=true&w=majority";
         mongoClient = MongoClients.create(uri);
         database = mongoClient.getDatabase("TestingApps");
-        System.out.println("Database setup done");
+//        System.out.println("Database setup done");
     }
 
     public static void testsStarted()
     {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        System.out.println(dtf.format(now));
         String currentTime = dtf.format(now);
         student_collection = database.getCollection(WelcomePageLauncher.studentEmailId);
 
@@ -96,26 +95,22 @@ public class MyDatabase {
         System.out.println("Status: " + testStatus + "\n");
         System.out.println("Reason: " + testStatusReason + "\n");
 
-        Document document = new Document("Test Started at", currentTime);
-        document.append("App Name", appName);
-        document.append("Test Name", testName);
-
-        document.append("Time Taken", main_events);
-
-
-        document.append("ConnectionType", connType);
-        document.append("Test Passed", testStatus);
-
-        document.append("Status Reason", testStatusReason);
+        Document document = new Document("startedAt", currentTime);
+        document.append("app", appName);
+        document.append("test", testName);
+        document.append("times", main_events);
+        document.append("connType", connType);
+        document.append("status", testStatus);
+        document.append("reason", testStatusReason);
 
         student_collection.insertOne(document);
     }
 
     public static void sendPINGLog() {
-//        List<String> ping_files = List.of("www.google.com.log", "www.amazon.com.log", "www.mobikwik.com.log");
-        List<String> ping_files = List.of("www.google.com.log");
-//        List<String> filenames = List.of("google", "amazon", "mobikwik");
-        List<String> filenames = List.of("google");
+        List<String> ping_files = List.of("www.google.com.log", "www.amazon.com.log", "www.mobikwik.com.log");
+//        List<String> ping_files = List.of("www.google.com.log");
+        List<String> filenames = List.of("Google", "Amazon", "Mobikwik");
+//        List<String> filenames = List.of("google");
 
         int i = 0;
         for (String filename:ping_files) {
@@ -139,6 +134,8 @@ public class MyDatabase {
                 String ttl = "";
                 String time = "";
 
+                JSONArray jsonArray = new JSONArray();
+
                 while ((line = br.readLine()) != null) {
                     if (line.contains("Date"))
                         datetime = line.substring(line.indexOf(":")+1);
@@ -153,19 +150,21 @@ public class MyDatabase {
                     }
 
                     JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("Timestamp", datetime);
-                    jsonObject.put("TTL", ttl);
-                    jsonObject.put("ResponseTime", time);
+                    jsonObject.put("t", datetime);
+                    jsonObject.put("ttl", ttl);
+                    jsonObject.put("rt", time);
+                    jsonArray.add(jsonObject);
 
-                    pingLogFile += jsonObject.toJSONString() + ",";
                 }
+                pingLogFile += jsonArray.toJSONString();
 
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-                LocalDateTime now = LocalDateTime.now();
-                String currentTime = dtf.format(now);
+//                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+//                LocalDateTime now = LocalDateTime.now();
+//                String currentTime = dtf.format(now);
 
-                Document pingDocument = new Document("Time Uploaded", currentTime);
-                pingDocument.append("ping-" + filenames.get(i++), pingLogFile);
+                System.out.println("Time uploaded: " + System.currentTimeMillis());
+                Document pingDocument = new Document("Time Uploaded", System.currentTimeMillis());
+                pingDocument.append("ping" + filenames.get(i++), pingLogFile);
 
 //                student_collection = database.getCollection("prince17080");
                 student_collection.insertOne(pingDocument);

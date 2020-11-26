@@ -91,7 +91,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods,   2 passed</span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -102,12 +102,7 @@
                     <div class="method-list-content passed suite-AppSuite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-AppSuite" title="iiitd.nrl.evalapp.DailyhuntTests" class="method navigator-link" hash-for-method="livetvTest">livetvTest</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-AppSuite" title="iiitd.nrl.evalapp.DailyhuntTests" class="method navigator-link" hash-for-method="searchNews">searchNews</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-AppSuite" title="iiitd.nrl.evalapp.AmazonTests" class="method navigator-link" hash-for-method="searchProduct">searchProduct</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-AppSuite -->
@@ -125,21 +120,14 @@
           <div class="suite-AppSuite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">iiitd.nrl.evalapp.DailyhuntTests</span>
+              <span class="class-name">iiitd.nrl.evalapp.AmazonTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="livetvTest">
-                  </a> <!-- livetvTest -->
-                  <span class="method-name">livetvTest</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="searchNews">
-                  </a> <!-- searchNews -->
-                  <span class="method-name">searchNews</span>
+                  <a name="searchProduct">
+                  </a> <!-- searchProduct -->
+                  <span class="method-name">searchProduct</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -155,7 +143,7 @@
 &lt;suite name=&quot;AppSuite&quot;&gt;
   &lt;test name=&quot;AppiumTests&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;iiitd.nrl.evalapp.DailyhuntTests&quot;/&gt;
+      &lt;class name=&quot;iiitd.nrl.evalapp.AmazonTests&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- AppiumTests --&gt;
 &lt;/suite&gt; &lt;!-- AppSuite --&gt;
@@ -195,20 +183,16 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(2);
+data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'livetvTest')
-data.setCell(0, 2, 'iiitd.nrl.evalapp.DailyhuntTests')
-data.setCell(0, 3, 10671);
-data.setCell(1, 0, 1)
-data.setCell(1, 1, 'searchNews')
-data.setCell(1, 2, 'iiitd.nrl.evalapp.DailyhuntTests')
-data.setCell(1, 3, 10366);
+data.setCell(0, 1, 'searchProduct')
+data.setCell(0, 2, 'iiitd.nrl.evalapp.AmazonTests')
+data.setCell(0, 3, 37654);
 window.suiteTableData['AppSuite']= { tableData: data, tableDiv: 'times-div-AppSuite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 21 seconds</span>
+              <span class="suite-total-time">Total running time: 37 seconds</span>
               <div id="times-div-AppSuite">
               </div> <!-- times-div-AppSuite -->
             </div> <!-- times-div -->
@@ -234,34 +218,22 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">iiitd.nrl.evalapp.DailyhuntTests</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">iiitd.nrl.evalapp.AmazonTests</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">launchCap</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">livetvTest</span>
-                <span class="method-start">11695 ms</span>
+                <span class="method-name">searchProduct</span>
+                <span class="method-start">15892 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">restart([TestResult name=livetvTest status=SUCCESS method=DailyhuntTests.livetvTest()[pri:0, instance:iiitd....)</span>
-                <span class="method-start">22366 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <span class="method-name">launchCap</span>
-                <span class="method-start">23434 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="test-method">
-                <span class="method-name">searchNews</span>
-                <span class="method-start">33201 ms</span>
-              </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">restart([TestResult name=searchNews status=SUCCESS method=DailyhuntTests.searchNews()[pri:0, instance:iiitd....)</span>
-                <span class="method-start">43567 ms</span>
+                <span class="method-name">restart([TestResult name=searchProduct status=SUCCESS method=AmazonTests.searchProduct()[pri:0, instance:iii...)</span>
+                <span class="method-start">53546 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
                 <span class="method-name">update</span>
-                <span class="method-start">44594 ms</span>
+                <span class="method-start">54253 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

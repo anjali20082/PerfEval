@@ -79,6 +79,8 @@ public class MainAppLauncher {
                                         testThread.join();
                                         runTest.setText("Tests Completed");
                                         runTest.setStyle("-fx-background-color: lightgreen; ");
+
+                                        MyDatabase.sendPINGLog();
                                     }
                                     else{
                                         Alert alert = new Alert(AlertType.ERROR);
@@ -99,12 +101,12 @@ public class MainAppLauncher {
 
 
 
+
         chkThread.start();
 
 
 //        runTest1.setVisible(false);
 
-//        MyDatabase.sendPINGLog();
     }
 
     public void setTestNGRunner(TestNG r) {
