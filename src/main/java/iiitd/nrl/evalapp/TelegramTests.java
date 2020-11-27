@@ -100,11 +100,11 @@ public class TelegramTests  {
 
         try {
             wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("automation testing evalapp");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Automation Testing EvalApp");
             List<MobileElement> results= (List<MobileElement>) driver.findElementsByClassName("android.view.ViewGroup");
             results.get(0).click();
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("and we meet here as well");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Hi, this is an automated text");
 
             // calculate time of below 2 commands
             int before_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Sent\");")).size();

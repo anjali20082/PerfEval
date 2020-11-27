@@ -111,7 +111,8 @@ public class MobikwikTests {
 			}
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Via Wallet\")"))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/edit_field"))).sendKeys("9667316335");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/edit_field"))).sendKeys("8802647803");
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/edit_field"))).sendKeys("9667316335");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/edt_txt_transfer_amount"))).sendKeys("5");
 			/* sending money time measurement starts */
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.mobikwik_new:id/btn_p2p_action"))).click();
