@@ -148,6 +148,7 @@ public class WelcomePageLauncher extends Application {
             // now set xml file for execution
             runner.setXmlSuites(suitefiles);
 
+            System.out.println("test files added");
             controller.setTestNGRunner(runner);
             Stage stage = (Stage) proceed.getScene().getWindow();
             stage.setScene(new Scene(testScreen));

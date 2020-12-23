@@ -1,17 +1,10 @@
 package iiitd.nrl.evalapp;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.gridfs.GridFSBucket;
-import com.mongodb.client.gridfs.GridFSBuckets;
-import com.mongodb.client.gridfs.model.GridFSUploadOptions;
-import com.mongodb.util.JSON;
 import org.bson.Document;
-import org.bson.types.ObjectId;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -24,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MyDatabase {
-    protected static float version = 2.6f;
+    protected static float version = 2.8f;
     protected static int count = 0;
     protected static int totalTests = 0;
     public static MongoClient mongoClient;

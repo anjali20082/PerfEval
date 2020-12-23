@@ -1,49 +1,25 @@
 package iiitd.nrl.evalapp;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import io.appium.java_client.clipboard.ClipboardContentType;
-import io.appium.java_client.serverevents.TimedEvent;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
-import io.appium.java_client.service.local.AppiumServiceBuilder;
-import io.appium.java_client.service.local.flags.GeneralServerFlag;
-import io.appium.java_client.touch.TapOptions;
-import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-@SuppressWarnings("unchecked")
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
+
 public class YouTubeTests {
 	AndroidDriver<MobileElement> driver;
 
@@ -51,6 +27,8 @@ public class YouTubeTests {
 	String appName = "Youtube";
 	String testName = "NA";
 	String testStatusReason = "NA";
+	String video_time = "";
+	String copy_info = "";
 
 //	Process process = null;
 //
@@ -141,6 +119,10 @@ public class YouTubeTests {
 //		System.out.println(jsonString);
 		long timeTaken = 0;
 
+		System.out.println(video_time);
+
+		System.out.println(copy_info);
+
 		HashMap<String, Long> main_events = new HashMap<>();
 
 		if (testResult.isSuccess()) {
@@ -160,7 +142,7 @@ public class YouTubeTests {
 			}
 		}
 
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
         driver.quit();
 	}
@@ -195,6 +177,110 @@ public class YouTubeTests {
 			System.out.println(driver.getClipboardText());
 
 //			Thread.sleep(500);
+
+		} catch (Exception e) {
+			testStatusReason = e.toString();
+			throw e;
+		}
+	}
+
+//	def start_dump(self):
+//	p = subprocess.Popen("tcpdump -i " + configuration.interface
+//                             + " -v -tt -n -B 12288 \"udp or tcp\" > "
+//									 + os.path.join(self.get_path(),
+//	configuration.location + "_PC_tcpdump" + "_scen_"
+//			+ self.scenario_index + "_vid_" + self.video_id
+//                                            + "_rep_" + str(self.iteration) + ".log"),
+//	shell=True, preexec_fn=os.setsid, stdout=subprocess.PIPE,
+//	stderr=subprocess.PIPE)
+//			self.processes.append(p)
+//	log_output(p, False)
+//        logger.debug("TCPDUMP started on the PC")
+//
+//	p = subprocess.Popen('''adb -s ''' + Measurement.get_current_device() +
+//			''' shell "su -c tcpdump -i wlan0 -v -tt -n -B 12288''' \
+//			+ ''' 'udp or tcp' > /sdcard/tcpdump.log"''',
+//	shell=True, preexec_fn=os.setsid, stdout=subprocess.PIPE,
+//	stderr=subprocess.PIPE)
+//
+//			self.processes.append(p)
+//	log_output(p, False)
+//        logger.debug("TCPDUMP started on the Phone")
+//
+//	p = subprocess.Popen("tcpdump -tt -i " + configuration.interface + " udp port 53 > "
+//			+ os.path.join(self.get_path(),
+//	configuration.location + "_PC_dns" + "_scen_"
+//			+ self.scenario_index + "_vid_" + self.video_id + "_rep_"
+//			+ str(self.iteration) + ".log"),
+//	shell=True, preexec_fn=os.setsid, stdout=subprocess.PIPE,
+//	stderr=subprocess.PIPE)
+//			self.processes.append(p)
+//	log_output(p, False)
+//        logger.debug("DNS logging started on the PC")
+
+	@Test
+	public void copyVideoTime() throws InterruptedException {
+		testName = "copy debug info";
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+
+		try {
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/menu_item_1")));
+			driver.findElement(By.id("com.google.android.youtube:id/menu_item_1")).click();
+			driver.findElement(By.id("com.google.android.youtube:id/search_edit_text")).sendKeys("manikarnika");
+
+			/* searching video time measurement starts */
+			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+							+ "new UiSelector().descriptionContains(\"Official Trailer\"));"))).isDisplayed();
+			/* searching video time measurement starts */
+
+
+			driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Official Trailer\")")).click();
+//			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.google.android.youtube:id/title"))).isDisplayed();
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.google.android.youtube:id/player_overflow_button"))).click();
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().text(\"Stats for nerds\")"))).click();
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.google.android.youtube:id/copy_debug_info_button")));
+			MobileElement copyInfoButton = driver.findElement(By.id("com.google.android.youtube:id/copy_debug_info_button"));
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"\\d*:\\d*\")")));
+			MobileElement video_seeker = driver.findElementByAndroidUIAutomator("new UiSelector().textMatches(\"\\d*:\\d*\")");
+			int i = 0;
+
+			Thread copyInfoThread = new Thread(
+				new Runnable() {
+					@Override
+					public void run() {
+
+						int i = 0;
+						while (i++ < 10) {
+							copyInfoButton.click();
+							copy_info += driver.getClipboardText();
+							copy_info += "\n";
+							try {
+								Thread.sleep(300);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+
+			);
+
+			copyInfoThread.start();
+
+			while (i++ < 10) {
+				video_time += video_seeker.getText();
+				video_time += "\n";
+				Thread.sleep(300);
+			}
+
+			copyInfoThread.join();
+
 
 		} catch (Exception e) {
 			testStatusReason = e.toString();

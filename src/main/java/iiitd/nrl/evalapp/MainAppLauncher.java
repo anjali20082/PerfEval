@@ -99,12 +99,7 @@ public class MainAppLauncher {
                 }
         );
 
-
-
-
         chkThread.start();
-
-
 //        runTest1.setVisible(false);
 
     }

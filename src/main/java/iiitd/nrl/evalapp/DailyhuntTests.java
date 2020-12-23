@@ -104,20 +104,17 @@ public class DailyhuntTests  {
 
 	@Test
 	public void searchNews(){
-
 		testName = "search news";
 		WebDriverWait wait = new WebDriverWait(driver, 300);
-
 		try {
-
 //			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/global_search"))).click();
 //			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/search_box"))).sendKeys("sports");
 //			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"News\")"))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/news_title"))).click();
-
-
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/news_title"))).click();
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(" + "new UiSelector().resourceId(\"com.eterno:id/news_home_view_pager\").scrollable(true)).scrollIntoView("
+							+ "new UiSelector().resourceId(\"com.eterno:id/news_title\"));")))).click();
 			/* Search news time measurement starts*/
 //			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"News\")"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/icon"))).isDisplayed();
@@ -127,22 +124,16 @@ public class DailyhuntTests  {
 			throw e;
 		}
 	}
-
 	@Test
 	public void livetvTest() throws InterruptedException{
-
 		testName = "live tv";
 		WebDriverWait wait = new WebDriverWait(driver, 300);
-
 		try {
-
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/scrollable_bottom_container")));
-
 			List<MobileElement> bottomBar = (List<MobileElement>) driver.findElementsById("com.eterno:id/navbar_appsection_icon");
 			bottomBar.get(1).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/root_view")));
 			List<MobileElement> news = (List<MobileElement>) driver.findElementsById("com.eterno:id/root_view");
-
 			/* live tv time measurement starts*/
 			news.get(0).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/constraint_lyt")));
