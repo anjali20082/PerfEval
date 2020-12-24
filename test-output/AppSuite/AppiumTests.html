@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed Dec 23 22:30:23 IST 2020</td>
+<td>Started on:</td><td>Wed Dec 23 23:43:58 IST 2020</td>
 </tr>
-<tr><td>Total time:</td><td>50 seconds (50245 ms)</td>
+<tr><td>Total time:</td><td>62 seconds (62685 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,42 +76,20 @@ function toggleAllBoxes() {
 </tr>
 <tr>
 <td title='iiitd.nrl.evalapp.AmazonTests.searchProduct()'><b>searchProduct</b><br>Test class: iiitd.nrl.evalapp.AmazonTests</td>
-<td><div><pre>org.openqa.selenium.StaleElementReferenceException: The referenced element is no longer attached to the DOM
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/stale_element_reference.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;prince-Lenovo-Legion&apos;, ip: &apos;127.0.1.1&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.4.0-58-generic&apos;, java.version: &apos;11.0.9.1&apos;
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appActivity: com.amazon.mShop.android.ho..., appPackage: in.amazon.mShop.android.sho..., autoAcceptAlerts: true, autoGrantPermissions: true, databaseEnabled: false, desired: {appActivity: com.amazon.mShop.android.ho..., appPackage: in.amazon.mShop.android.sho..., autoAcceptAlerts: true, autoGrantPermissions: true, fullReset: false, noReset: true, platformName: android, uiautomator2ServerInstallTimeout: 60000}, deviceApiLevel: 30, deviceManufacturer: Google, deviceModel: Pixel 3a, deviceName: 95TAY0VNB4, deviceScreenDensity: 490, deviceScreenSize: 1080x2220, deviceUDID: 95TAY0VNB4, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 3.0625, platform: LINUX, platformName: Android, platformVersion: 11, statBarHeight: 74, takesScreenshot: true, uiautomator2ServerInstallTimeout: 60000, viewportRect: {height: 1999, left: 0, top: 74, width: 1080}, warnings: {}, webStorageEnabled: false}
-Session ID: 9bbe7488-525d-4305-8477-8adb608b8e74
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:41)
-	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
-	at io.appium.java_client.DefaultGenericMobileElement.execute(DefaultGenericMobileElement.java:45)
-	at io.appium.java_client.MobileElement.execute(MobileElement.java:1)
-	at io.appium.java_client.android.AndroidElement.execute(AndroidElement.java:1)
-	at org.openqa.selenium.remote.RemoteWebElement.isDisplayed(RemoteWebElement.java:326)
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.AndroidUIAutomator: new UiSelector().descriptionContains(&quot;out of 5 stars&quot;); (tried for 10 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
 	at iiitd.nrl.evalapp.AmazonTests.searchProduct(AmazonTests.java:125)
 	at iiitd.nrl.evalapp.MainAppLauncher$1$1$1.run(MainAppLauncher.java:74)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-... Removed 26 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1203792456", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1203792456'><pre>org.openqa.selenium.StaleElementReferenceException: The referenced element is no longer attached to the DOM
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/stale_element_reference.html
+Caused by: org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;prince-Lenovo-Legion&apos;, ip: &apos;127.0.1.1&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.4.0-58-generic&apos;, java.version: &apos;11.0.9.1&apos;
+System info: host: &apos;DESKTOP-ETN7O10&apos;, ip: &apos;192.168.1.22&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.9&apos;
 Driver info: io.appium.java_client.android.AndroidDriver
 Capabilities {appActivity: com.amazon.mShop.android.ho..., appPackage: in.amazon.mShop.android.sho..., autoAcceptAlerts: true, autoGrantPermissions: true, databaseEnabled: false, desired: {appActivity: com.amazon.mShop.android.ho..., appPackage: in.amazon.mShop.android.sho..., autoAcceptAlerts: true, autoGrantPermissions: true, fullReset: false, noReset: true, platformName: android, uiautomator2ServerInstallTimeout: 60000}, deviceApiLevel: 30, deviceManufacturer: Google, deviceModel: Pixel 3a, deviceName: 95TAY0VNB4, deviceScreenDensity: 490, deviceScreenSize: 1080x2220, deviceUDID: 95TAY0VNB4, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 3.0625, platform: LINUX, platformName: Android, platformVersion: 11, statBarHeight: 74, takesScreenshot: true, uiautomator2ServerInstallTimeout: 60000, viewportRect: {height: 1999, left: 0, top: 74, width: 1080}, warnings: {}, webStorageEnabled: false}
-Session ID: 9bbe7488-525d-4305-8477-8adb608b8e74
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+Session ID: 7bec0ac2-ce0c-4253-8abc-7234d579c49f
+*** Element info: {Using=-android uiautomator, value=new UiSelector().descriptionContains(&quot;out of 5 stars&quot;);}
 	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
 	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
 	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
@@ -121,11 +99,24 @@ Session ID: 9bbe7488-525d-4305-8477-8adb608b8e74
 	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:41)
 	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
 	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
-	at io.appium.java_client.DefaultGenericMobileElement.execute(DefaultGenericMobileElement.java:45)
-	at io.appium.java_client.MobileElement.execute(MobileElement.java:1)
-	at io.appium.java_client.android.AndroidElement.execute(AndroidElement.java:1)
-	at org.openqa.selenium.remote.RemoteWebElement.isDisplayed(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:61)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at io.appium.java_client.FindsByAndroidUIAutomator.findElementByAndroidUIAutomator(FindsByAndroidUIAutomator.java:38)
+	at io.appium.java_client.MobileBy$ByAndroidUIAutomator.findElement(MobileBy.java:210)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:57)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	... 25 more
+... Removed 26 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1776922111", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1776922111'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.AndroidUIAutomator: new UiSelector().descriptionContains(&quot;out of 5 stars&quot;); (tried for 10 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
 	at iiitd.nrl.evalapp.AmazonTests.searchProduct(AmazonTests.java:125)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -151,9 +142,44 @@ Session ID: 9bbe7488-525d-4305-8477-8adb608b8e74
 	at org.testng.TestNG.run(TestNG.java:1104)
 	at iiitd.nrl.evalapp.MainAppLauncher$1$1$1.run(MainAppLauncher.java:74)
 	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;DESKTOP-ETN7O10&apos;, ip: &apos;192.168.1.22&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.9&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appActivity: com.amazon.mShop.android.ho..., appPackage: in.amazon.mShop.android.sho..., autoAcceptAlerts: true, autoGrantPermissions: true, databaseEnabled: false, desired: {appActivity: com.amazon.mShop.android.ho..., appPackage: in.amazon.mShop.android.sho..., autoAcceptAlerts: true, autoGrantPermissions: true, fullReset: false, noReset: true, platformName: android, uiautomator2ServerInstallTimeout: 60000}, deviceApiLevel: 30, deviceManufacturer: Google, deviceModel: Pixel 3a, deviceName: 95TAY0VNB4, deviceScreenDensity: 490, deviceScreenSize: 1080x2220, deviceUDID: 95TAY0VNB4, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 3.0625, platform: LINUX, platformName: Android, platformVersion: 11, statBarHeight: 74, takesScreenshot: true, uiautomator2ServerInstallTimeout: 60000, viewportRect: {height: 1999, left: 0, top: 74, width: 1080}, warnings: {}, webStorageEnabled: false}
+Session ID: 7bec0ac2-ce0c-4253-8abc-7234d579c49f
+*** Element info: {Using=-android uiautomator, value=new UiSelector().descriptionContains(&quot;out of 5 stars&quot;);}
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:41)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:61)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at io.appium.java_client.FindsByAndroidUIAutomator.findElementByAndroidUIAutomator(FindsByAndroidUIAutomator.java:38)
+	at io.appium.java_client.MobileBy$ByAndroidUIAutomator.findElement(MobileBy.java:210)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:57)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	... 25 more
 </pre></div></td>
-<td>41</td>
-<td>iiitd.nrl.evalapp.AmazonTests@3f05039f</td></tr>
+<td>42</td>
+<td>iiitd.nrl.evalapp.AmazonTests@10e987ba</td></tr>
 </table><p>
 </body>
 </html>

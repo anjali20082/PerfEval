@@ -2,52 +2,24 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-12-23T17:00:23Z" name="AppSuite" finished-at="2020-12-23T17:01:13Z" duration-ms="50245">
+  <suite started-at="2020-12-23T18:13:58Z" name="AppSuite" finished-at="2020-12-23T18:15:01Z" duration-ms="62685">
     <groups>
     </groups>
-    <test started-at="2020-12-23T17:00:23Z" name="AppiumTests" finished-at="2020-12-23T17:01:13Z" duration-ms="50245">
+    <test started-at="2020-12-23T18:13:58Z" name="AppiumTests" finished-at="2020-12-23T18:15:01Z" duration-ms="62685">
       <class name="iiitd.nrl.evalapp.AmazonTests">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@3f05039f]" started-at="2020-12-23T22:30:23Z" name="launchCap" finished-at="2020-12-23T22:30:31Z" duration-ms="7612" status="PASS">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@10e987ba]" started-at="2020-12-23T23:43:58Z" name="launchCap" finished-at="2020-12-23T23:44:17Z" duration-ms="19220" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchCap -->
-        <test-method signature="searchProduct()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@3f05039f]" started-at="2020-12-23T22:30:31Z" name="searchProduct" finished-at="2020-12-23T22:31:13Z" duration-ms="41911" status="FAIL">
-          <exception class="org.openqa.selenium.StaleElementReferenceException">
+        <test-method signature="searchProduct()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@10e987ba]" started-at="2020-12-23T23:44:17Z" name="searchProduct" finished-at="2020-12-23T23:45:00Z" duration-ms="42583" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[The referenced element is no longer attached to the DOM
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/stale_element_reference.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'prince-Lenovo-Legion', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.4.0-58-generic', java.version: '11.0.9.1'
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appActivity: com.amazon.mShop.android.ho..., appPackage: in.amazon.mShop.android.sho..., autoAcceptAlerts: true, autoGrantPermissions: true, databaseEnabled: false, desired: {appActivity: com.amazon.mShop.android.ho..., appPackage: in.amazon.mShop.android.sho..., autoAcceptAlerts: true, autoGrantPermissions: true, fullReset: false, noReset: true, platformName: android, uiautomator2ServerInstallTimeout: 60000}, deviceApiLevel: 30, deviceManufacturer: Google, deviceModel: Pixel 3a, deviceName: 95TAY0VNB4, deviceScreenDensity: 490, deviceScreenSize: 1080x2220, deviceUDID: 95TAY0VNB4, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 3.0625, platform: LINUX, platformName: Android, platformVersion: 11, statBarHeight: 74, takesScreenshot: true, uiautomator2ServerInstallTimeout: 60000, viewportRect: {height: 1999, left: 0, top: 74, width: 1080}, warnings: {}, webStorageEnabled: false}
-Session ID: 9bbe7488-525d-4305-8477-8adb608b8e74]]>
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.AndroidUIAutomator: new UiSelector().descriptionContains("out of 5 stars"); (tried for 10 second(s) with 500 milliseconds interval)]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.StaleElementReferenceException: The referenced element is no longer attached to the DOM
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/stale_element_reference.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'prince-Lenovo-Legion', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.4.0-58-generic', java.version: '11.0.9.1'
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appActivity: com.amazon.mShop.android.ho..., appPackage: in.amazon.mShop.android.sho..., autoAcceptAlerts: true, autoGrantPermissions: true, databaseEnabled: false, desired: {appActivity: com.amazon.mShop.android.ho..., appPackage: in.amazon.mShop.android.sho..., autoAcceptAlerts: true, autoGrantPermissions: true, fullReset: false, noReset: true, platformName: android, uiautomator2ServerInstallTimeout: 60000}, deviceApiLevel: 30, deviceManufacturer: Google, deviceModel: Pixel 3a, deviceName: 95TAY0VNB4, deviceScreenDensity: 490, deviceScreenSize: 1080x2220, deviceUDID: 95TAY0VNB4, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 3.0625, platform: LINUX, platformName: Android, platformVersion: 11, statBarHeight: 74, takesScreenshot: true, uiautomator2ServerInstallTimeout: 60000, viewportRect: {height: 1999, left: 0, top: 74, width: 1080}, warnings: {}, webStorageEnabled: false}
-Session ID: 9bbe7488-525d-4305-8477-8adb608b8e74
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:41)
-	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
-	at io.appium.java_client.DefaultGenericMobileElement.execute(DefaultGenericMobileElement.java:45)
-	at io.appium.java_client.MobileElement.execute(MobileElement.java:1)
-	at io.appium.java_client.android.AndroidElement.execute(AndroidElement.java:1)
-	at org.openqa.selenium.remote.RemoteWebElement.isDisplayed(RemoteWebElement.java:326)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.AndroidUIAutomator: new UiSelector().descriptionContains("out of 5 stars"); (tried for 10 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
 	at iiitd.nrl.evalapp.AmazonTests.searchProduct(AmazonTests.java:125)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -73,24 +45,59 @@ Session ID: 9bbe7488-525d-4305-8477-8adb608b8e74
 	at org.testng.TestNG.run(TestNG.java:1104)
 	at iiitd.nrl.evalapp.MainAppLauncher$1$1$1.run(MainAppLauncher.java:74)
 	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-ETN7O10', ip: '192.168.1.22', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.9'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appActivity: com.amazon.mShop.android.ho..., appPackage: in.amazon.mShop.android.sho..., autoAcceptAlerts: true, autoGrantPermissions: true, databaseEnabled: false, desired: {appActivity: com.amazon.mShop.android.ho..., appPackage: in.amazon.mShop.android.sho..., autoAcceptAlerts: true, autoGrantPermissions: true, fullReset: false, noReset: true, platformName: android, uiautomator2ServerInstallTimeout: 60000}, deviceApiLevel: 30, deviceManufacturer: Google, deviceModel: Pixel 3a, deviceName: 95TAY0VNB4, deviceScreenDensity: 490, deviceScreenSize: 1080x2220, deviceUDID: 95TAY0VNB4, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 3.0625, platform: LINUX, platformName: Android, platformVersion: 11, statBarHeight: 74, takesScreenshot: true, uiautomator2ServerInstallTimeout: 60000, viewportRect: {height: 1999, left: 0, top: 74, width: 1080}, warnings: {}, webStorageEnabled: false}
+Session ID: 7bec0ac2-ce0c-4253-8abc-7234d579c49f
+*** Element info: {Using=-android uiautomator, value=new UiSelector().descriptionContains("out of 5 stars");}
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:41)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:61)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at io.appium.java_client.FindsByAndroidUIAutomator.findElementByAndroidUIAutomator(FindsByAndroidUIAutomator.java:38)
+	at io.appium.java_client.MobileBy$ByAndroidUIAutomator.findElement(MobileBy.java:210)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:57)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	... 25 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.StaleElementReferenceException -->
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchProduct -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@3f05039f]" started-at="2020-12-23T22:31:13Z" name="restart" finished-at="2020-12-23T22:31:13Z" duration-ms="715" status="PASS">
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@10e987ba]" started-at="2020-12-23T23:45:00Z" name="restart" finished-at="2020-12-23T23:45:01Z" duration-ms="872" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=searchProduct status=FAILURE method=AmazonTests.searchProduct()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@3f05039f] output={null}]]]>
+                <![CDATA[[TestResult name=searchProduct status=FAILURE method=AmazonTests.searchProduct()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@10e987ba] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- restart -->
-        <test-method is-config="true" signature="update()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@3f05039f]" started-at="2020-12-23T22:31:13Z" name="update" finished-at="2020-12-23T22:31:13Z" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="update()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@10e987ba]" started-at="2020-12-23T23:45:01Z" name="update" finished-at="2020-12-23T23:45:01Z" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- update -->
