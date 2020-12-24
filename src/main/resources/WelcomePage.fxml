@@ -49,11 +49,11 @@
             <CheckBox fx:id="hotstar_cb" layoutX="267.0" layoutY="219.0" mnemonicParsing="false" selected="true" text="Hotstar" textFill="#cfda01" />
             <CheckBox fx:id="dailyhunt_cb" layoutX="368.0" layoutY="219.0" mnemonicParsing="false" selected="true" text="DailyHunt" textFill="#cfda01" />
             <Label layoutX="71.0" layoutY="295.0" text="Payment apps:" textFill="#ddd9d9" />
-            <CheckBox fx:id="amazonpay_cb" layoutX="72.0" layoutY="319.0" mnemonicParsing="false" selected="true" text="Amazon Pay UPI" textFill="#cfda01" />
-            <CheckBox fx:id="paytm_cb" layoutX="267.0" layoutY="319.0" mnemonicParsing="false" selected="true" text="Paytm" textFill="#cfda01" />
-            <CheckBox fx:id="mobikwik_cb" layoutX="368.0" layoutY="319.0" mnemonicParsing="false" selected="true" text="Mobikwik" textFill="#cfda01" />
             <CheckBox fx:id="telegram_cb" layoutX="73.0" layoutY="246.0" mnemonicParsing="false" selected="true" text="Telegram" textFill="#cfda01" />
             <CheckBox fx:id="whatsapp_cb" layoutX="166.0" layoutY="246.0" mnemonicParsing="false" selected="true" text="WhatsApp" textFill="#cfda01" />
+            <CheckBox fx:id="googlemaps_cb" layoutX="267.0" layoutY="246.0" mnemonicParsing="false" selected="true" text="Google Maps" textFill="#cfda01" />
+            <CheckBox fx:id="paytm_cb" layoutX="74.0" layoutY="319.0" mnemonicParsing="false" selected="true" text="Paytm" textFill="#cfda01" />
+            <CheckBox fx:id="mobikwik_cb" layoutX="175.0" layoutY="319.0" mnemonicParsing="false" selected="true" text="Mobikwik" textFill="#cfda01" />
 
             </children>
         </Pane>

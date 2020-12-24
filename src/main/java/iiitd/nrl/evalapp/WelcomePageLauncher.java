@@ -35,7 +35,7 @@ public class WelcomePageLauncher extends Application {
     protected Label alert;
 
     @FXML
-    protected CheckBox amazon_cb, flipkart_cb, youtube_cb, hotstar_cb, linkedin_cb, facebook_cb, googlenews_cb, dailyhunt_cb, amazonpay_cb, paytm_cb, mobikwik_cb, telegram_cb, whatsapp_cb;
+    protected CheckBox amazon_cb, flipkart_cb, youtube_cb, hotstar_cb, linkedin_cb, facebook_cb, googlenews_cb, dailyhunt_cb, amazonpay_cb, paytm_cb, mobikwik_cb, telegram_cb, whatsapp_cb, googlemaps_cb;
 
     protected static String studentEmailId, studentLocation;
 
@@ -115,6 +115,11 @@ public class WelcomePageLauncher extends Application {
                 MyDatabase.totalTests += 1;
             }
 
+            if (googlemaps_cb.isSelected()) {
+                classes.add(new XmlClass("iiitd.nrl.evalapp.GoogleMapsTest"));
+                MyDatabase.totalTests += 1;
+            }
+
             if (googlenews_cb.isSelected()) {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.GooglenewsTests"));
                 MyDatabase.totalTests += 1;
@@ -125,10 +130,10 @@ public class WelcomePageLauncher extends Application {
             }
 
             // payment apps
-            if (amazonpay_cb.isSelected()) {
-                classes.add(new XmlClass("iiitd.nrl.evalapp.AmazonPayTest"));
-                MyDatabase.totalTests += 1;
-            }
+//            if (amazonpay_cb.isSelected()) {
+//                classes.add(new XmlClass("iiitd.nrl.evalapp.AmazonPayTest"));
+//                MyDatabase.totalTests += 1;
+//            }
             if (paytm_cb.isSelected()) {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.PaytmTests"));
                 MyDatabase.totalTests += 1;
