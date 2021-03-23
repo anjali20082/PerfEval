@@ -1,5 +1,6 @@
 package iiitd.nrl.evalapp;
 
+import java.util.Random;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -89,25 +90,31 @@ public class TelegramTests  {
         }
 
         MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
-
+        testStatusReason = "NA";
         driver.quit();
     }
 
     @Test
     public void sendMessage() throws Exception {
         testName = "send message";
-        WebDriverWait wait = new WebDriverWait(driver, 300);
+        WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
+        Random rand = new Random();
+        int rand_int = rand.nextInt(1000);
+        String rand_str = Integer.toString(rand_int);
+        String message = "Hi, this is an automated text:" + rand_str;
+        String verifiy_sent = message + "\nSent";
 
         try {
             wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Automation Testing EvalApp");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("EvalApp");
             List<MobileElement> results= (List<MobileElement>) driver.findElementsByClassName("android.view.ViewGroup");
             results.get(0).click();
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Hi, this is an automated text");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys(message);
 
             // calculate time of below 2 commands
-            int before_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Sent\");")).size();
+            int before_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + verifiy_sent + "\");")).size();
+            System.out.println(before_length);
 
             /* sending message time measurement starts */
             wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Send"))).click();
@@ -115,12 +122,16 @@ public class TelegramTests  {
             Calendar calendar = Calendar.getInstance();
             long startTime = calendar.getTimeInMillis();
             long currentTime = startTime;
-            long limitTime = startTime + 300000;
+            long limitTime = startTime + MyDatabase.testTimeLimit * 1000;
 
-            int after_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Sent\");")).size();
+            int after_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + verifiy_sent + "\");")).size();
             while (currentTime < limitTime && after_length <= before_length) {
-                after_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Sent\");")).size();
-
+//                MobileElement element = driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + message + "\");"));
+//                System.out.println(element.getAttribute("content-desc"));
+//                if (element.getAttribute("content-desc").contains("Sent"))
+//                    break;
+                after_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + verifiy_sent + "\");")).size();
+                System.out.println(currentTime + " " + after_length);
                 calendar = Calendar.getInstance();
                 currentTime = calendar.getTimeInMillis();
             }
@@ -137,5 +148,87 @@ public class TelegramTests  {
         }
 
 //        and we meet here as well Sent at 4:59 PM, Seen
+
+//        JSON COMMANDS
     }
+//    {
+//        "commands": [
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1615994217804,
+//                "endTime": 1615994218818
+//        },
+//        {
+//            "cmd": "click",
+//                "startTime": 1615994218839,
+//                "endTime": 1615994219681
+//        },
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1615994219689,
+//                "endTime": 1615994219774
+//        },
+//        {
+//            "cmd": "elementDisplayed",
+//                "startTime": 1615994219777,
+//                "endTime": 1615994219812
+//        },
+//        {
+//            "cmd": "setValue",
+//                "startTime": 1615994219827,
+//                "endTime": 1615994220783
+//        },
+//        {
+//            "cmd": "findElements",
+//                "startTime": 1615994220791,
+//                "endTime": 1615994222005
+//        },
+//        {
+//            "cmd": "click",
+//                "startTime": 1615994222014,
+//                "endTime": 1615994222185
+//        },
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1615994222202,
+//                "endTime": 1615994223334
+//        },
+//        {
+//            "cmd": "elementDisplayed",
+//                "startTime": 1615994223338,
+//                "endTime": 1615994223390
+//        },
+//        {
+//            "cmd": "setValue",
+//                "startTime": 1615994223399,
+//                "endTime": 1615994223483
+//        },
+//        {
+//            "cmd": "findElements",
+//                "startTime": 1615994223492,
+//                "endTime": 1615994224235
+//        },
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1615994224253,
+//                "endTime": 1615994224306
+//        },
+//        {
+//            "cmd": "click",
+//                "startTime": 1615994224313,
+//                "endTime": 1615994224394
+//        },
+//        {
+//            "cmd": "findElements",
+//                "startTime": 1615994224422,
+//                "endTime": 1615994225467
+//        },
+//        {
+//            "cmd": "getLogEvents",
+//                "startTime": 1615994225475,
+//                "endTime": 1615994225475
+//        }
+//  ]
+//    }
 }
+//Hi, this is an automated text:834 Sent at 1:06 PM, Seen

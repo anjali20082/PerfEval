@@ -90,31 +90,31 @@ public class FlipkartTests {
 
 		if (testResult.isSuccess()) {
 			if (testResult.getName() == "getProduct") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, 8, 8) + MyDatabase.getTimeTaken(jsonString, 10, 12);
+				timeTaken = MyDatabase.getTimeTaken(jsonString, 8, 9) + MyDatabase.getTimeTaken(jsonString, 10, 11);
 				main_events.put("searchProduct", timeTaken);
 
 				if (addToCartClicked) {
-					timeTaken = MyDatabase.getTimeTaken(jsonString, 17, 19);
+					timeTaken = MyDatabase.getTimeTaken(jsonString, 17, 18);
 					main_events.put("addToCart", timeTaken);
 				}
 
 				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -7);
 				main_events.put("goToCart", timeTaken);
 
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -6, -2);
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
 				main_events.put("removeFromCart", timeTaken);
 			}
 		}
 
 		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
-
+		testStatusReason = "NA";
 		driver.quit();
 	}
 
 	@Test
 	public void getProduct() throws InterruptedException {
 		testName = "search product";
-		WebDriverWait wait = new WebDriverWait(driver, 300);
+		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 
 		try {
 
@@ -156,9 +156,166 @@ public class FlipkartTests {
 			testStatusReason = e.toString();
 			throw e;
 		}
+//		JSON COMMANDS
 	}
 
-//	@Test
+//	{
+//		"commands": [
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615914637126,
+//				"endTime": 1615914640354
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615914640368,
+//				"endTime": 1615914640408
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615914640421,
+//				"endTime": 1615914640491
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615914640501,
+//				"endTime": 1615914641538
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615914641544,
+//				"endTime": 1615914641563
+//		},
+//		{
+//			"cmd": "setValue",
+//				"startTime": 1615914641570,
+//				"endTime": 1615914642371
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615914642385,
+//				"endTime": 1615914643421
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615914643424,
+//				"endTime": 1615914643436
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615914643451,
+//				"endTime": 1615914643496
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615914643513,
+//				"endTime": 1615914645173
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615914645185,
+//				"endTime": 1615914647824
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615914647836,
+//				"endTime": 1615914648103
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615914648106,
+//				"endTime": 1615914648118
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615914648121,
+//				"endTime": 1615914648136
+//		},
+//		{
+//			"cmd": "findElements",
+//				"startTime": 1615914648151,
+//				"endTime": 1615914648312
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615914648321,
+//				"endTime": 1615914648510
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615914648513,
+//				"endTime": 1615914648560
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615914648571,
+//				"endTime": 1615914650749
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615914650754,
+//				"endTime": 1615914650845
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615914650848,
+//				"endTime": 1615914650899
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615914650912,
+//				"endTime": 1615914652129
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615914652132,
+//				"endTime": 1615914652179
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615914652196,
+//				"endTime": 1615914653764
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615914653781,
+//				"endTime": 1615914653865
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615914653875,
+//				"endTime": 1615914654918
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615914654932,
+//				"endTime": 1615914654995
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615914655011,
+//				"endTime": 1615914655058
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615914655638,
+//				"endTime": 1615914656217
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615914656220,
+//				"endTime": 1615914656263
+//		},
+//		{
+//			"cmd": "getLogEvents",
+//				"startTime": 1615914657294,
+//				"endTime": 1615914657294
+//		}
+//  ]
+//	}
+
+
+	//	@Test
 	public void searchTest() throws InterruptedException {
 
 		testName = "search product";

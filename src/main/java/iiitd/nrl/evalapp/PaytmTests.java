@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 
 @SuppressWarnings("unchecked")
 public class PaytmTests {
@@ -78,68 +79,224 @@ public class PaytmTests {
 
         if (testResult.isSuccess()) {
             if (testResult.getName() == "sendMoneyFromWallet") {
-                timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -2);
+                timeTaken = MyDatabase.getTimeTaken(jsonString, -7, -4);
                 main_events.put(testResult.getName(), timeTaken);
             }
         }
 
         MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
-
+        testStatusReason = "NA";
         driver.quit();
 	}
 	
     @Test
     public void sendMoneyFromWallet() throws InterruptedException {
         testName = "Pay Nikhil Re. 1/-";
-        WebDriverWait wait = new WebDriverWait(driver, 300);
+        WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 
         try {
 
-//            if (!driver.findElements(By.id("net.one97.paytm:id/iv_close")).isEmpty()) {
-//                driver.findElement(By.id("net.one97.paytm:id/iv_close")).click();
-//            }
+            if (!driver.findElements(By.id("net.one97.paytm:id/iv_close")).isEmpty()) {
+                driver.findElement(By.id("net.one97.paytm:id/iv_close")).click();
+            }
 
             if (!driver.findElements(By.id("net.one97.paytm:id/iv_cross_background")).isEmpty()) {
                 driver.findElement(By.id("net.one97.paytm:id/iv_cross_background")).click();
             }
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Scan & Pay\")"))).click();
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/image_container_1"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/image_container_1"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/p2p_cp_search_ll"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Enter Name or Mobile Number\")"))).sendKeys("8076011980");
+            wait.until(ExpectedConditions.or(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/payTv")), ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().textContains(\"918076011980\")"))));
 
-            if (!driver.findElements(By.id("com.android.permissioncontroller:id/permission_allow_button")).isEmpty()) {
-                driver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).click();
-            }
-
-
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/enter_mobile_upi_tv"))).click();
-
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/searchViewEdt1"))).sendKeys("8076011980\n");
-
-            if (driver.findElements(By.id("net.one97.paytm:id/proceed_btn")).isEmpty()) {
-                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"8076011980\")"))).click();
+            if (driver.findElements(By.id("net.one97.paytm:id/payTv")).isEmpty()) {
+                driver.findElement(MobileBy.AndroidUIAutomator("UiSelector().textContains(\"918076011980\")")).click();
             }
             else {
-                driver.findElement(By.id("net.one97.paytm:id/proceed_btn")).click();
-//            driver.findElement(By.id("net.one97.paytm:id/rl_main_row")).click();
+                driver.findElement(By.id("net.one97.paytm:id/payTv")).click();
             }
 
-
-
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/rl_main_row"))).click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).sendKeys("1");
 
-
             /* sending money time measurement starts */
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/ll_uni_pay"))).click();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/iv_close_icon"))).click();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/p2p_success_status_lav"))).isDisplayed();
+            List<MobileElement> elements = driver.findElements(By.id("net.one97.paytm:id/iv_close_icon"));
+            if (!elements.isEmpty())
+                elements.get(0).click();
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/p2p_amount_tv"))).isDisplayed();
             /* sending money time measurement stops */
 
+            if (driver.findElements(By.id("net.one97.paytm:id/p2p_success_status_lav")).isEmpty()) {
+                testStatusReason = "Payment failed";
+            } else {
+                testStatusReason = "Payment successful";
+            }
         } catch (Exception e) {
-            testStatusReason = e.toString();
+            testStatusReason = "Payment Failed\n" + e.toString();
             throw e;
         }
+//        JSON COMMANDS
     }
+//    {
+//        "commands": [
+//        {
+//            "cmd": "findElements",
+//                "startTime": 1616001294682,
+//                "endTime": 1616001295819
+//        },
+//        {
+//            "cmd": "findElements",
+//                "startTime": 1616001295838,
+//                "endTime": 1616001295864
+//        },
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1616001297599,
+//                "endTime": 1616001299370
+//        },
+//        {
+//            "cmd": "elementDisplayed",
+//                "startTime": 1616001299379,
+//                "endTime": 1616001299409
+//        },
+//        {
+//            "cmd": "click",
+//                "startTime": 1616001299419,
+//                "endTime": 1616001299485
+//        },
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1616001301326,
+//                "endTime": 1616001301947
+//        },
+//        {
+//            "cmd": "elementDisplayed",
+//                "startTime": 1616001301951,
+//                "endTime": 1616001301990
+//        },
+//        {
+//            "cmd": "click",
+//                "startTime": 1616001302004,
+//                "endTime": 1616001302073
+//        },
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1616001303271,
+//                "endTime": 1616001304527
+//        },
+//        {
+//            "cmd": "elementDisplayed",
+//                "startTime": 1616001304530,
+//                "endTime": 1616001304605
+//        },
+//        {
+//            "cmd": "setValue",
+//                "startTime": 1616001304613,
+//                "endTime": 1616001305411
+//        },
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1616001306098,
+//                "endTime": 1616001306144
+//        },
+//        {
+//            "cmd": "elementDisplayed",
+//                "startTime": 1616001306147,
+//                "endTime": 1616001306218
+//        },
+//        {
+//            "cmd": "findElements",
+//                "startTime": 1616001306223,
+//                "endTime": 1616001306270
+//        },
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1616001306285,
+//                "endTime": 1616001306327
+//        },
+//        {
+//            "cmd": "click",
+//                "startTime": 1616001306332,
+//                "endTime": 1616001308553
+//        },
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1616001308563,
+//                "endTime": 1616001308648
+//        },
+//        {
+//            "cmd": "elementDisplayed",
+//                "startTime": 1616001308651,
+//                "endTime": 1616001308679
+//        },
+//        {
+//            "cmd": "click",
+//                "startTime": 1616001308686,
+//                "endTime": 1616001309517
+//        },
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1616001309535,
+//                "endTime": 1616001309594
+//        },
+//        {
+//            "cmd": "elementDisplayed",
+//                "startTime": 1616001309597,
+//                "endTime": 1616001309626
+//        },
+//        {
+//            "cmd": "setValue",
+//                "startTime": 1616001309644,
+//                "endTime": 1616001310355
+//        },
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1616001310371,
+//                "endTime": 1616001311797
+//        },
+//        {
+//            "cmd": "elementDisplayed",
+//                "startTime": 1616001311801,
+//                "endTime": 1616001311824
+//        },
+//        {
+//            "cmd": "click",
+//                "startTime": 1616001311832,
+//                "endTime": 1616001311900
+//        },
+//        {
+//            "cmd": "findElements",
+//                "startTime": 1616001311912,
+//                "endTime": 1616001312038
+//        },
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1616001312053,
+//                "endTime": 1616001313844
+//        },
+//        {
+//            "cmd": "elementDisplayed",
+//                "startTime": 1616001313847,
+//                "endTime": 1616001313862
+//        },
+//        {
+//            "cmd": "elementDisplayed",
+//                "startTime": 1616001313865,
+//                "endTime": 1616001313878
+//        },
+//        {
+//            "cmd": "findElements",
+//                "startTime": 1616001313896,
+//                "endTime": 1616001313949
+//        },
+//        {
+//            "cmd": "getLogEvents",
+//                "startTime": 1616001313959,
+//                "endTime": 1616001313959
+//        }
+//  ]
+//    }
 }
 

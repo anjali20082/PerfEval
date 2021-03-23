@@ -1,10 +1,17 @@
 package iiitd.nrl.evalapp;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.gridfs.GridFSBucket;
+import com.mongodb.client.gridfs.GridFSBuckets;
+import com.mongodb.client.gridfs.model.GridFSUploadOptions;
+import com.mongodb.util.JSON;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -17,7 +24,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MyDatabase {
-    protected static float version = 2.8f;
+    public static String packet_sizes_before;
+    public static String packet_sizes_after;
+    protected static float version = 5.0f;
+    protected static int testTimeLimit = 150;
     protected static int count = 0;
     protected static int totalTests = 0;
     public static MongoClient mongoClient;
@@ -26,10 +36,9 @@ public class MyDatabase {
 
     public static void setUpDatabase()
     {
-        String uri = "mongodb+srv://admin17080:Shadow%40ps99@cluster0.ssjoc.gcp.mongodb.net/TestingApps?retryWrites=true&w=majority";
+        String uri = "mongodb+srv://admin17080:prince%40123@cluster0.ssjoc.gcp.mongodb.net/TestingApps?retryWrites=true&w=majority";
         mongoClient = MongoClients.create(uri);
         database = mongoClient.getDatabase("TestingApps");
-//        System.out.println("Database setup done");
     }
 
     public static void testsStarted()
@@ -87,6 +96,7 @@ public class MyDatabase {
         System.out.println("Test: " + testName);
         System.out.println("Status: " + testStatus + "\n");
         System.out.println("Reason: " + testStatusReason + "\n");
+        System.out.println("Time Taken: " + main_events.toString());
 
         Document document = new Document("startedAt", currentTime);
         document.append("app", appName);
@@ -104,6 +114,8 @@ public class MyDatabase {
 //        List<String> ping_files = List.of("www.google.com.log");
         List<String> filenames = List.of("Google", "Amazon", "Mobikwik");
 //        List<String> filenames = List.of("google");
+
+
 
         int i = 0;
         for (String filename:ping_files) {
@@ -151,21 +163,29 @@ public class MyDatabase {
                 }
                 pingLogFile += jsonArray.toJSONString();
 
-//                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-//                LocalDateTime now = LocalDateTime.now();
-//                String currentTime = dtf.format(now);
-
                 System.out.println("Time uploaded: " + System.currentTimeMillis());
                 Document pingDocument = new Document("Time Uploaded", System.currentTimeMillis());
                 pingDocument.append("ping" + filenames.get(i++), pingLogFile);
 
-//                student_collection = database.getCollection("prince17080");
                 student_collection.insertOne(pingDocument);
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                Document pingDocument = new Document("Time Uploaded", System.currentTimeMillis());
+                pingDocument.append("pingFailed", e.toString());
             } catch (IOException e) {
-                e.printStackTrace();
+                Document pingDocument = new Document("Time Uploaded", System.currentTimeMillis());
+                pingDocument.append("pingFailed", e.toString());
             }
         }
+    }
+
+    public static void uploadPacketsData() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String currentTime = dtf.format(now);
+
+        Document document = new Document("uploadedAt", currentTime);
+        document.append("data_before", packet_sizes_before);
+        document.append("data_after", packet_sizes_after);
+        student_collection.insertOne(document);
     }
 }

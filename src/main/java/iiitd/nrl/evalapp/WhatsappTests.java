@@ -3,6 +3,7 @@ package iiitd.nrl.evalapp;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Random;
 
 import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
@@ -76,34 +77,89 @@ public class WhatsappTests {
 
         if (testResult.isSuccess()) {
             if (testResult.getName() == "sendMessage") {
-                timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
-                main_events.put(event_name, timeTaken);
+                timeTaken = MyDatabase.getTimeTaken(jsonString, -3, -2);
+                main_events.put(testResult.getName(), timeTaken);
             }
         }
         MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+        testStatusReason = "NA";
         driver.quit();
     }
 
     @Test
     public void sendMessage() throws InterruptedException {
         testName = "send message";
-        WebDriverWait wait = new WebDriverWait(driver, 300);
+        WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
+
+        Random rand = new Random();
+        int rand_int = rand.nextInt(1000);
+        String rand_str = Integer.toString(rand_int);
+        String message = "Hi, this is an automated text:" + rand_str;
 
         try {
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/menuitem_search"))).click();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/search_input"))).sendKeys("automation testing");
-            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Automation Testing"))).click();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/entry"))).sendKeys("Hi, this is an automated text");
+            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+                    + "new UiSelector().text(\"EvalApp Group\"));"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/entry"))).sendKeys(message);
 
             /* sending message time measurement starts */
             wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Send"))).click();
-            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Sent"))).isDisplayed();
+            wait.until(ExpectedConditions.or(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Sent")), ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Delivered"))));
             /* sending message time measurement stops */
 
         } catch (Exception e) {
             testStatusReason = e.toString();
             throw e;
         }
+//        json commands
     }
+//    {
+//        "commands": [
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1615993897958,
+//                "endTime": 1615993917441
+//        },
+//        {
+//            "cmd": "click",
+//                "startTime": 1615993917454,
+//                "endTime": 1615993918388
+//        },
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1615993918402,
+//                "endTime": 1615993918468
+//        },
+//        {
+//            "cmd": "elementDisplayed",
+//                "startTime": 1615993918472,
+//                "endTime": 1615993918507
+//        },
+//        {
+//            "cmd": "setValue",
+//                "startTime": 1615993918527,
+//                "endTime": 1615993919147
+//        },
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1615993919153,
+//                "endTime": 1615993919829
+//        },
+//        {
+//            "cmd": "click",
+//                "startTime": 1615993919841,
+//                "endTime": 1615993921369
+//        },
+//        {
+//            "cmd": "findElement",
+//                "startTime": 1615993921379,
+//                "endTime": 1615993921451
+//        },
+//        {
+//            "cmd": "getLogEvents",
+//                "startTime": 1615993921471,
+//                "endTime": 1615993921471
+//        }
+//  ]
+//    }
 }

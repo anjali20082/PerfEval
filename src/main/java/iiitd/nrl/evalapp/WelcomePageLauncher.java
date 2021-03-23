@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.testng.TestNG;
@@ -17,10 +14,14 @@ import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @SuppressWarnings("unchecked")
 public class WelcomePageLauncher extends Application {
@@ -48,6 +49,7 @@ public class WelcomePageLauncher extends Application {
         primaryStage.setHeight(700);
         primaryStage.setWidth(570);
 
+        primaryStage.setTitle("EvalApp:" + MyDatabase.version);
         primaryStage.show();
     }
 
@@ -79,14 +81,18 @@ public class WelcomePageLauncher extends Application {
             XmlTest test = new XmlTest(suite);
             test.setName("AppiumTests");
             List<XmlClass> classes = new ArrayList<XmlClass>();
+
+            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
+
             if (youtube_cb.isSelected()) {
-                classes.add(new XmlClass("iiitd.nrl.evalapp.YouTubeTests"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.YouTubeTests_PlayVideo"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.YouTubeTests_SearchChannel"));
                 MyDatabase.totalTests += 2;
             }
 
             if (hotstar_cb.isSelected()) {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.HotstarTests"));
-                MyDatabase.totalTests += 3;
+                MyDatabase.totalTests += 2;
             }
             if (linkedin_cb.isSelected()) {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.LinkedInTests"));
@@ -126,7 +132,7 @@ public class WelcomePageLauncher extends Application {
             }
             if (dailyhunt_cb.isSelected()) {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.DailyhuntTests"));
-                MyDatabase.totalTests += 2;
+                MyDatabase.totalTests += 1;
             }
 
             // payment apps
@@ -142,6 +148,9 @@ public class WelcomePageLauncher extends Application {
                 classes.add(new XmlClass("iiitd.nrl.evalapp.MobikwikTests"));
                 MyDatabase.totalTests += 1;
             }
+
+            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+
             test.setXmlClasses(classes) ;
 
             // Create a list of String
@@ -153,7 +162,6 @@ public class WelcomePageLauncher extends Application {
             // now set xml file for execution
             runner.setXmlSuites(suitefiles);
 
-            System.out.println("test files added");
             controller.setTestNGRunner(runner);
             Stage stage = (Stage) proceed.getScene().getWindow();
             stage.setScene(new Scene(testScreen));
@@ -170,7 +178,7 @@ public class WelcomePageLauncher extends Application {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         MyDatabase.setUpDatabase();
         launch(args);
     }

@@ -1,36 +1,25 @@
 package iiitd.nrl.evalapp;
 
 
-
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
-
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import io.appium.java_client.MobileBy;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
-import io.appium.java_client.service.local.AppiumDriverLocalService;
-import io.appium.java_client.service.local.AppiumServiceBuilder;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
 
 @SuppressWarnings("unchecked")
 public class LinkedInTests {
@@ -57,7 +46,7 @@ public class LinkedInTests {
 		URL url;
 		try {
 			url = new URL("http://127.0.0.1:4723/wd/hub");
-			driver=new AndroidDriver<MobileElement>(url,cap);	
+			driver= new AndroidDriver<MobileElement>(url, cap);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -87,32 +76,32 @@ public class LinkedInTests {
 
 		if (testResult.isSuccess()) {
 			if (testResult.getName() == "viewProfile") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
 				main_events.put(testResult.getName(), timeTaken);
 			} else if (testResult.getName() == "myConnections") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
 				main_events.put(testResult.getName(), timeTaken);
 			}
 			else if (testResult.getName() == "searchPerson") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -6, -2);
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -6, -6) + MyDatabase.getTimeTaken(jsonString, -4, -3);
 				main_events.put(testResult.getName(), timeTaken);
 			}
-			else if (testResult.getName() == "sendMessage") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -9, -3);
-				main_events.put(testResult.getName(), timeTaken);
-			}
+//			else if (testResult.getName() == "sendMessage") {
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, -9, -3);
+//				main_events.put(testResult.getName(), timeTaken);
+//			}
 		}
 
 		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
-
+		testStatusReason = "NA";
 		driver.quit();
 	}
 
 	@Test
-	public void viewProfile() throws InterruptedException{
+	public void viewProfile() throws InterruptedException {
 
 		testName = "view profile";
-		WebDriverWait wait = new WebDriverWait(driver,300);
+		WebDriverWait wait = new WebDriverWait(driver,MyDatabase.testTimeLimit);
 
 		try {
 
@@ -126,19 +115,70 @@ public class LinkedInTests {
 			testStatusReason = e.toString();
 			throw e;
 		}
-
+//	JSON Commands in the below comment
 	}
+//	{
+//		"commands": [
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615907140774,
+//				"endTime": 1615907141861
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615907141871,
+//				"endTime": 1615907144409
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615907144421,
+//				"endTime": 1615907144536
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615907144542,
+//				"endTime": 1615907146126
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615907146130,
+//				"endTime": 1615907146153
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615907146171,
+//				"endTime": 1615907146262
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615907147331,
+//				"endTime": 1615907148413
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615907148416,
+//				"endTime": 1615907148452
+//		},
+//		{
+//			"cmd": "getLogEvents",
+//				"startTime": 1615907148468,
+//				"endTime": 1615907148468
+//		}
+//	  ]
+//	}
+
 
 	@Test
 	public void myConnections() throws InterruptedException{
 
 		testName = "check my connections";
-		WebDriverWait wait = new WebDriverWait(driver,300);
+		WebDriverWait wait = new WebDriverWait(driver,MyDatabase.testTimeLimit);
 
 		try {
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/tab_relationships"))).click();
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().descriptionMatches(\"(?i).*Manage my network.*(?-i)\");"))).click();
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.linkedin.android:id/mynetwork_my_communitities_entry_point_container"))).click();
+//					MobileBy.AndroidUIAutomator("UiSelector().descriptionMatches(\"(?i).*Manage my network.*(?-i)\");"))).click();
 
 			/* my connection time measurement starts*/
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Connections\")"))).click();
@@ -148,14 +188,74 @@ public class LinkedInTests {
 			testStatusReason = e.toString();
 			throw e;
 		}
+//		JSON COMMANDS
 	}
+//	{
+//		"commands": [
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615909015758,
+//				"endTime": 1615909017193
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615909017204,
+//				"endTime": 1615909017245
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615909017253,
+//				"endTime": 1615909017322
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615909017330,
+//				"endTime": 1615909017528
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615909017532,
+//				"endTime": 1615909019075
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615909020458,
+//				"endTime": 1615909020603
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615909020606,
+//				"endTime": 1615909020672
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615909020691,
+//				"endTime": 1615909023335
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615909023347,
+//				"endTime": 1615909023470
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615909023473,
+//				"endTime": 1615909023567
+//		},
+//		{
+//			"cmd": "getLogEvents",
+//				"startTime": 1615909023576,
+//				"endTime": 1615909023576
+//		}
+//  ]
+//	}
+
+
 
 	@Test
 	public void searchPerson() throws InterruptedException{
-
 		testName = "search person";
-		WebDriverWait wait = new WebDriverWait(driver, 300);
-
+		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 		try {
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/search_bar_text"))).click();
@@ -163,13 +263,84 @@ public class LinkedInTests {
 			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
 
 			/* search time measurement starts*/
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/search_kcard_header_name"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/search_results_hero_entity_container"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/profile_view_messob_top_card_profile_picture")));
 			/* search time measurement stops*/
 		} catch (Exception e) {
 			testStatusReason = e.toString();
 			throw e;
+//		JSON Commands in the below comment
 		}
+//		{
+//			"commands": [
+//			{
+//				"cmd": "findElement",
+//					"startTime": 1615906625233,
+//					"endTime": 1615906626211
+//			},
+//			{
+//				"cmd": "elementDisplayed",
+//					"startTime": 1615906626224,
+//					"endTime": 1615906626253
+//			},
+//			{
+//				"cmd": "click",
+//					"startTime": 1615906626259,
+//					"endTime": 1615906626326
+//			},
+//			{
+//				"cmd": "findElement",
+//					"startTime": 1615906627901,
+//					"endTime": 1615906628329
+//			},
+//			{
+//				"cmd": "elementDisplayed",
+//					"startTime": 1615906628333,
+//					"endTime": 1615906628364
+//			},
+//			{
+//				"cmd": "setValue",
+//					"startTime": 1615906628380,
+//					"endTime": 1615906629115
+//			},
+//			{
+//				"cmd": "pressKeyCode",
+//					"startTime": 1615906629138,
+//					"endTime": 1615906630573
+//			},
+//			{
+//				"cmd": "findElement",
+//					"startTime": 1615906630587,
+//					"endTime": 1615906633276
+//			},
+//			{
+//				"cmd": "elementDisplayed",
+//					"startTime": 1615906633279,
+//					"endTime": 1615906633304
+//			},
+//			{
+//				"cmd": "click",
+//					"startTime": 1615906633313,
+//					"endTime": 1615906633397
+//			},
+//			{
+//				"cmd": "findElement",
+//					"startTime": 1615906634210,
+//					"endTime": 1615906635204
+//			},
+//			{
+//				"cmd": "elementDisplayed",
+//					"startTime": 1615906635207,
+//					"endTime": 1615906635226
+//			},
+//			{
+//				"cmd": "getLogEvents",
+//					"startTime": 1615906635237,
+//					"endTime": 1615906635237
+//			}
+//  		]
+//		}
+
 
 	}
 
@@ -177,7 +348,7 @@ public class LinkedInTests {
 	public void sendMessage() throws InterruptedException{
 
 		testName = "send message";
-		WebDriverWait wait = new WebDriverWait(driver,300);
+		WebDriverWait wait = new WebDriverWait(driver,MyDatabase.testTimeLimit);
 
 		try {
 

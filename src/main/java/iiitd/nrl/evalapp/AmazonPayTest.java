@@ -44,22 +44,22 @@ public class AmazonPayTest {
 	public void launchCap() throws IOException {
 		DesiredCapabilities cap=new DesiredCapabilities();
 		cap.setCapability("appPackage", "in.amazon.mShop.android.shopping");
-			cap.setCapability("appActivity", "com.amazon.mShop.android.home.HomeActivity");
-			cap.setCapability("noReset", "true");
-			cap.setCapability("fullReset", "false");
-			cap.setCapability("autoGrantPermissions", true);
-			cap.setCapability("autoAcceptAlerts", true);
-			cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
+		cap.setCapability("appActivity", "com.amazon.mShop.android.home.HomeActivity");
+		cap.setCapability("noReset", "true");
+		cap.setCapability("fullReset", "false");
+		cap.setCapability("autoGrantPermissions", true);
+		cap.setCapability("autoAcceptAlerts", true);
+		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
 
-			URL url;
-			try {
-				url = new URL("http://127.0.0.1:4723/wd/hub");
-				driver=new AndroidDriver<MobileElement>(url,cap);
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (WebDriverException e) {
-				MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
+		URL url;
+		try {
+			url = new URL("http://127.0.0.1:4723/wd/hub");
+			driver=new AndroidDriver<MobileElement>(url,cap);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (WebDriverException e) {
+			MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
 		}
 			
 	}
@@ -78,6 +78,7 @@ public class AmazonPayTest {
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
+//		System.out.println(jsonString);
 		long timeTaken = 0;
 
 		HashMap<String, Long> main_events = new HashMap<>();
@@ -88,7 +89,7 @@ public class AmazonPayTest {
 				main_events.put(testResult.getName(), timeTaken);
 			}
 		}
-
+//		System.out.println("test status reason:" + testStatusReason);
 		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
 		driver.quit();
@@ -119,8 +120,8 @@ public class AmazonPayTest {
 			}
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"To UPI ID\")"))).click();
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"E.g. phonenumber@apl\")"))).sendKeys("sachdevanikhil204@okaxis");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"E.g. phonenumber@apl\")"))).sendKeys("wlccpnas@okaxis");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"E.g. phonenumber@apl\")"))).sendKeys("sachdevanikhil204@okaxis");
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"E.g. phonenumber@apl\")"))).sendKeys("wlccpnas@okaxis");
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Verify and proceed\")"))).click();
 

@@ -88,16 +88,16 @@ public class HotstarTests {
 
 		if (testResult.isSuccess()) {
 			if (testResult.getName() == "searchTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
-//				main_events.put(testResult.getName(), timeTaken);
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
+				main_events.put(testResult.getName(), timeTaken);
 			} else if (testResult.getName() == "trendingTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
-//				main_events.put(testResult.getName(), timeTaken);
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
+				main_events.put(testResult.getName(), timeTaken);
 			}
 		}
 
 		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
-
+		testStatusReason = "NA";
 		driver.quit();
 	}
 
@@ -105,7 +105,7 @@ public class HotstarTests {
 	public void searchTest(){
 
 		testName = "Search Test";
-		WebDriverWait wait = new WebDriverWait(driver, 300);
+		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 		try {
 
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
@@ -118,13 +118,74 @@ public class HotstarTests {
 			testStatusReason = e.toString();
 			throw e;
 		}
+//		JSON COMMANDS
 	}
+
+//	{
+//		"commands": [
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615909158466,
+//				"endTime": 1615909159818
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615909159834,
+//				"endTime": 1615909161401
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615909161409,
+//				"endTime": 1615909162252
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615909162256,
+//				"endTime": 1615909162278
+//		},
+//		{
+//			"cmd": "setValue",
+//				"startTime": 1615909162300,
+//				"endTime": 1615909162870
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615909164075,
+//				"endTime": 1615909164502
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615909164504,
+//				"endTime": 1615909164522
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615909164541,
+//				"endTime": 1615909164630
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615909164649,
+//				"endTime": 1615909166482
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615909166485,
+//				"endTime": 1615909166506
+//		},
+//		{
+//			"cmd": "getLogEvents",
+//				"startTime": 1615909166521,
+//				"endTime": 1615909166521
+//		}
+//  ]
+//	}
 
 	@Test
 	public void trendingTest(){
 
 		testName = "Trending Test";
-		WebDriverWait wait = new WebDriverWait(driver, 300);
+		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 		try {
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Open navigation drawer"))).click();
 			/* load trending videos page time measurement starts*/
@@ -135,6 +196,45 @@ public class HotstarTests {
 			testStatusReason = e.toString();
 			throw e;
 		}
+//		JSON COMMANDS
 	}
-
+//	{
+//		"commands": [
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615909220427,
+//				"endTime": 1615909221646
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615909221655,
+//				"endTime": 1615909222685
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615909222693,
+//				"endTime": 1615909222907
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615909222923,
+//				"endTime": 1615909225549
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615909225567,
+//				"endTime": 1615909226079
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615909226082,
+//				"endTime": 1615909228087
+//		},
+//		{
+//			"cmd": "getLogEvents",
+//				"startTime": 1615909228103,
+//				"endTime": 1615909228103
+//		}
+//  ]
+//	}
 }

@@ -89,51 +89,128 @@ public class DailyhuntTests  {
 
 		if (testResult.isSuccess()) {
 			if (testResult.getName() == "searchNews") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -3); // 8 and 10
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -4);
 				main_events.put(testResult.getName(), timeTaken);
 			} else if (testResult.getName() == "livetvTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2); // 7 and 9
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
 				main_events.put(testResult.getName(), timeTaken);
 			}
 		}
 
 		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
-
+		testStatusReason = "NA";
 		driver.quit();
 	}
 
 	@Test
 	public void searchNews(){
+
 		testName = "search news";
-		WebDriverWait wait = new WebDriverWait(driver, 300);
+		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
+
 		try {
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/global_search"))).click();
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/search_box"))).sendKeys("sports");
-//			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/global_search"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/search_box"))).sendKeys("sports");
+			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"News\")"))).click();
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/news_title"))).click();
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
-					"new UiScrollable(" + "new UiSelector().resourceId(\"com.eterno:id/news_home_view_pager\").scrollable(true)).scrollIntoView("
-							+ "new UiSelector().resourceId(\"com.eterno:id/news_title\"));")))).click();
+
+
 			/* Search news time measurement starts*/
-//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"News\")"))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/icon"))).isDisplayed();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/follow_button"))).isDisplayed();
 			/* Search news time measurement stops*/
 		} catch (Exception e) {
 			testStatusReason = e.toString();
 			throw e;
 		}
+//		JSON COMMMANDS
 	}
-	@Test
+//	{
+//		"commands": [
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615991691553,
+//				"endTime": 1615991692387
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615991692404,
+//				"endTime": 1615991693419
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615991693428,
+//				"endTime": 1615991694589
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615991695256,
+//				"endTime": 1615991695797
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615991695800,
+//				"endTime": 1615991695830
+//		},
+//		{
+//			"cmd": "setValue",
+//				"startTime": 1615991695841,
+//				"endTime": 1615991696648
+//		},
+//		{
+//			"cmd": "pressKeyCode",
+//				"startTime": 1615991696674,
+//				"endTime": 1615991697763
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615991697782,
+//				"endTime": 1615991699835
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615991699853,
+//				"endTime": 1615991702045
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615991702049,
+//				"endTime": 1615991702628
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615991702631,
+//				"endTime": 1615991702650
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615991702653,
+//				"endTime": 1615991702672
+//		},
+//		{
+//			"cmd": "getLogEvents",
+//				"startTime": 1615991702683,
+//				"endTime": 1615991702683
+//		}
+//  ]
+//	}
+
+//	@Test
 	public void livetvTest() throws InterruptedException{
+
 		testName = "live tv";
-		WebDriverWait wait = new WebDriverWait(driver, 300);
+		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
+
 		try {
+
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/scrollable_bottom_container")));
+
 			List<MobileElement> bottomBar = (List<MobileElement>) driver.findElementsById("com.eterno:id/navbar_appsection_icon");
 			bottomBar.get(1).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/root_view")));
 			List<MobileElement> news = (List<MobileElement>) driver.findElementsById("com.eterno:id/root_view");
+
 			/* live tv time measurement starts*/
 			news.get(0).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/constraint_lyt")));

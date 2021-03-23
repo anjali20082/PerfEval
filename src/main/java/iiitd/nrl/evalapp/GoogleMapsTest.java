@@ -14,6 +14,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -63,48 +64,224 @@ public class GoogleMapsTest {
     @AfterMethod
     public void restart(ITestResult testResult) {
         String jsonString = driver.getEvents().getJsonData();
-        System.out.println(jsonString);
+//        System.out.println(jsonString);
         long timeTaken = 0;
 
         HashMap<String, Long> main_events = new HashMap<>();
 
         if (testResult.isSuccess()) {
             if (testResult.getName() == "searchPlace") {
-//
-//                timeTaken = MyDatabase.getTimeTaken(jsonString, 7, 7) + MyDatabase.getTimeTaken(jsonString, 12, 14);
-//                main_events.put(testResult.getName(), timeTaken);
-//
-//                timeTaken = MyDatabase.getTimeTaken(jsonString, 18, 20);
-//                main_events.put("addToCart", timeTaken);
-//
-                timeTaken = MyDatabase.getTimeTaken(jsonString, -3, -2);
+                timeTaken = MyDatabase.getTimeTaken(jsonString, 6, -2);
                 main_events.put("searchPlace", timeTaken);
             }
         }
 
-//		System.out.println("testStatusReason:" + testStatusReason);
-//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
-
+		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+        testStatusReason = "NA";
         driver.quit();
     }
 
     @Test
     public void searchPlace() throws InterruptedException {
         testName = "search place";
-        WebDriverWait wait = new WebDriverWait(driver, 300);
-
+        WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
         try {
-            wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"(?i)Search here(?-i)\");")))).click();
-            wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"(?i)Search here(?-i)\");")))).sendKeys("india gate");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/search_omnibox_text_box"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/search_omnibox_edit_text"))).sendKeys("india gate");
             ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+//            com.google.android.apps.maps:id/search_omnibox_text_box
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/street_view_thumbnail")));
-//            wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"(?i)Directions(?-i)\");"))));
+            while(!driver.findElements(By.id("com.google.android.apps.maps:id/scalebar_widget")).isEmpty());
+
         } catch (Exception e) {
             testStatusReason = e.toString();
             throw e;
         }
+//        JSON COMMANDS
     }
+
+//  "commands": [
+//    {
+//        "cmd": "findElement",
+//            "startTime": 1615915868952,
+//            "endTime": 1615915870188
+//    },
+//    {
+//        "cmd": "elementDisplayed",
+//            "startTime": 1615915870202,
+//            "endTime": 1615915870228
+//    },
+//    {
+//        "cmd": "click",
+//            "startTime": 1615915870243,
+//            "endTime": 1615915870429
+//    },
+//    {
+//        "cmd": "findElement",
+//            "startTime": 1615915870448,
+//            "endTime": 1615915871161
+//    },
+//    {
+//        "cmd": "elementDisplayed",
+//            "startTime": 1615915871167,
+//            "endTime": 1615915872440
+//    },
+//    {
+//        "cmd": "setValue",
+//            "startTime": 1615915872460,
+//            "endTime": 1615915873204
+//    },
+//    {
+//        "cmd": "pressKeyCode",
+//            "startTime": 1615915873228,
+//            "endTime": 1615915874508
+//    },
+//    {
+//        "cmd": "findElement",
+//            "startTime": 1615915875785,
+//            "endTime": 1615915877652
+//    },
+//    {
+//        "cmd": "elementDisplayed",
+//            "startTime": 1615915877656,
+//            "endTime": 1615915877677
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915877686,
+//            "endTime": 1615915877808
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915877826,
+//            "endTime": 1615915877910
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915877920,
+//            "endTime": 1615915877974
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915877980,
+//            "endTime": 1615915878047
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915878060,
+//            "endTime": 1615915878147
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915878154,
+//            "endTime": 1615915878259
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915878278,
+//            "endTime": 1615915878370
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915878388,
+//            "endTime": 1615915878458
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915878466,
+//            "endTime": 1615915878544
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915878560,
+//            "endTime": 1615915878639
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915878655,
+//            "endTime": 1615915878722
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915878733,
+//            "endTime": 1615915878806
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915878825,
+//            "endTime": 1615915878885
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915878901,
+//            "endTime": 1615915878955
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915878965,
+//            "endTime": 1615915879024
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915879042,
+//            "endTime": 1615915879114
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915879118,
+//            "endTime": 1615915879182
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915879195,
+//            "endTime": 1615915879268
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915879287,
+//            "endTime": 1615915879382
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915879395,
+//            "endTime": 1615915879475
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915879489,
+//            "endTime": 1615915879561
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915879581,
+//            "endTime": 1615915879663
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915879677,
+//            "endTime": 1615915879776
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915879784,
+//            "endTime": 1615915879862
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915879878,
+//            "endTime": 1615915879956
+//    },
+//    {
+//        "cmd": "findElements",
+//            "startTime": 1615915879971,
+//            "endTime": 1615915880597
+//    },
+//    {
+//        "cmd": "getLogEvents",
+//            "startTime": 1615915880617,
+//            "endTime": 1615915880617
+//    }
+//  ]
+//}
+
 }
-
-
-

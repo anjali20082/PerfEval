@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import org.testng.TestNG;
 import javafx.application.Platform;
@@ -20,14 +21,14 @@ public class MainAppLauncher {
     @FXML
     protected Button runTest;
 
-
+    @FXML
+    protected Label title;
 
     protected static int tests=0, total=14;
     @FXML
     void clickRun(ActionEvent e) throws InterruptedException {
-//        System.out.println("Tests Started ...");
 
-//        Thread.sleep(1000);
+        title.setText("Tests are running ...");
 
         Thread chkThread=new Thread(
                 new Runnable() {
@@ -63,7 +64,7 @@ public class MainAppLauncher {
                                         }
 
                                     }
-                                    if(good_to_go){
+                                    if(good_to_go) {
                                         // finally execute the runner using run method
                                         runTest.setText("Tests Started ...");
                                         runTest.setStyle("-fx-background-color: yellow; ");
@@ -80,7 +81,7 @@ public class MainAppLauncher {
                                         runTest.setText("Tests Completed");
                                         runTest.setStyle("-fx-background-color: lightgreen; ");
 
-                                        MyDatabase.sendPINGLog();
+//                                        MyDatabase.sendPINGLog();
                                     }
                                     else{
                                         Alert alert = new Alert(AlertType.ERROR);
@@ -99,7 +100,12 @@ public class MainAppLauncher {
                 }
         );
 
+
+
+
         chkThread.start();
+
+
 //        runTest1.setVisible(false);
 
     }

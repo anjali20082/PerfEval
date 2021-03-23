@@ -1,13 +1,9 @@
 package iiitd.nrl.evalapp;
 
 
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -16,17 +12,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import io.appium.java_client.MobileBy;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
-import io.appium.java_client.service.local.AppiumDriverLocalService;
-import io.appium.java_client.service.local.AppiumServiceBuilder;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
 
 @SuppressWarnings("unchecked")
 public class GooglenewsTests {
@@ -84,35 +75,31 @@ public class GooglenewsTests {
 
 		if (testResult.isSuccess()) {
 			if (testResult.getName() == "searchTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+				timeTaken = MyDatabase.getTimeTaken(jsonString, -3, -2);
 				main_events.put("searchNews", timeTaken);
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
-//				main_events.put("fullCoverage", timeTaken);
 			}
 		}
 
-//		System.out.println(testStatusReason);
 		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
-
+		testStatusReason = "NA";
 		driver.quit();
 	}
 
 	@Test
 	public void searchTest() throws InterruptedException{
-
 		testName = "Search News Test";
-		WebDriverWait wait = new WebDriverWait(driver, 300);
-
+		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 		try {
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/title_and_body"))).click();
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/title_and_body"))).click();
-//
 //			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/open_search_view_edit_text"))).sendKeys("delhi");
 
 			/* search news  test measurement starts*/
-//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-//					"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/suggest_text\").scrollable(true)).scrollIntoView("
-//							+ "new UiSelector().textMatches(\"Delhi\"));"))).click();
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/home_fragment_content\").scrollable(true)).scrollIntoView(new UiSelector().resourceId(\"com.google.android.apps.magazines:id/title\"));"))).click();
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.google.android.apps.magazines:id/hero_action_button"))).click();
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.google.android.apps.magazines:id/edition_pager_header_icon_label")));
 //
 //			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/rect_icon")));
 			/* search news  test measurement stops*/
@@ -125,22 +112,60 @@ public class GooglenewsTests {
 //			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
 //							"new UiSelector().text(\"View Full Coverage\");"))).click();
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
-					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView(" +
-							"new UiSelector().text(\"Times of India\"));"))).click();
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
+//					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView(" +
+//							"new UiSelector().resourceId(\"com.google.android.apps.magazines:id/title\"));")));
 
 
 //			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
 //					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
 //							+ "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/card\"));")))).click();
 
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-					"new UiSelector().text(\"TOI\");"))).isDisplayed();
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/primary_action_button")));
+
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+//					"new UiSelector().text(\"TOI\");"))).isDisplayed();
 			/* load news  test measurement stops*/
 		} catch (Exception e) {
 			testStatusReason = e.toString();
 			throw e;
 		}
+//		JSON COMMANDS
 	}
+//	{
+//		"commands": [
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992361258,
+//				"endTime": 1615992363003
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615992363020,
+//				"endTime": 1615992365128
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992365144,
+//				"endTime": 1615992365201
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615992365207,
+//				"endTime": 1615992367675
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992368593,
+//				"endTime": 1615992369167
+//		},
+//		{
+//			"cmd": "getLogEvents",
+//				"startTime": 1615992369176,
+//				"endTime": 1615992369177
+//		}
+//  ]
+//	}
+
 
 }
