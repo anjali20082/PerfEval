@@ -2,6 +2,7 @@ package iiitd.nrl.evalapp;
 
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -25,28 +27,40 @@ public class GoogleMapsTest {
     String appName = "GoogleMaps";
     String testName = "NA";
     String testStatusReason = "NA";
+    Long start_time , end_time;
+    int versionId;
+
+    @BeforeClass
+    public void setUp() throws IOException, InterruptedException {
+        versionId = MyDatabase.getVersionSelected();
+//        versionId = 2;
+        System.out.println("APP: " + appName + " Version ID: " + versionId);
+
+    }
 
     @BeforeMethod
     public void launchCap() throws IOException {
-        DesiredCapabilities cap=new DesiredCapabilities();
-        cap.setCapability("appPackage", "com.google.android.apps.maps");
-        cap.setCapability("appActivity", "com.google.android.maps.MapsActivity");
-        cap.setCapability("noReset", "true");
-        cap.setCapability("fullReset", "false");
-        cap.setCapability("autoGrantPermissions", true);
-        cap.setCapability("autoAcceptAlerts", true);
-        cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
-
-        URL url;
-        try {
-            url = new URL("http://127.0.0.1:4723/wd/hub");
-            driver=new AndroidDriver<MobileElement>(url,cap);
-        } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (WebDriverException e) {
-            MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
-        }
+        driver = MainLauncher.driver;
+        driver.startActivity(new Activity("com.google.android.apps.maps","com.google.android.maps.MapsActivity"));
+//        DesiredCapabilities cap=new DesiredCapabilities();
+//        cap.setCapability("appPackage", "com.google.android.apps.maps");
+//        cap.setCapability("appActivity", "com.google.android.maps.MapsActivity");
+//        cap.setCapability("noReset", "true");
+//        cap.setCapability("fullReset", "false");
+//        cap.setCapability("autoGrantPermissions", true);
+//        cap.setCapability("autoAcceptAlerts", true);
+//        cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
+//
+//        URL url;
+//        try {
+//            url = new URL("http://127.0.0.1:4723/wd/hub");
+//            driver=new AndroidDriver<MobileElement>(url,cap);
+//        } catch (MalformedURLException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (WebDriverException e) {
+//            MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
+//        }
 
     }
 
@@ -63,7 +77,7 @@ public class GoogleMapsTest {
 
     @AfterMethod
     public void restart(ITestResult testResult) {
-        String jsonString = driver.getEvents().getJsonData();
+//        String jsonString = driver.getEvents().getJsonData();
 //        System.out.println(jsonString);
         long timeTaken = 0;
 
@@ -71,14 +85,15 @@ public class GoogleMapsTest {
 
         if (testResult.isSuccess()) {
             if (testResult.getName() == "searchPlace") {
-                timeTaken = MyDatabase.getTimeTaken(jsonString, 6, -2);
-                main_events.put("searchPlace", timeTaken);
+                timeTaken = end_time - start_time;
+                main_events.put("searchPlace",timeTaken);
             }
         }
 
+//		System.out.println("testStatusReason:" + testStatusReason);
 		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
-        testStatusReason = "NA";
-        driver.quit();
+
+//        driver.quit();
     }
 
     @Test
@@ -86,202 +101,72 @@ public class GoogleMapsTest {
         testName = "search place";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/search_omnibox_text_box"))).click();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/search_omnibox_edit_text"))).sendKeys("india gate");
-            ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-//            com.google.android.apps.maps:id/search_omnibox_text_box
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/street_view_thumbnail")));
-            while(!driver.findElements(By.id("com.google.android.apps.maps:id/scalebar_widget")).isEmpty());
+
+            // Version 9.36
+            if (versionId == 1) {
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/tutorial_side_menu_got_it"))).click();
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout[3]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.EditText/android.widget.TextView"))).click();
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/search_omnibox_edit_text"))).sendKeys("india gate");
+
+                start_time =System.currentTimeMillis();
+                ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/expandingscrollview_container")));
+                while(!driver.findElements(By.id("com.google.android.apps.maps:id/scalebar_widget")).isEmpty());
+                end_time = System.currentTimeMillis();
+            }
+
+            // Version 9.67
+            else if (versionId == 2) {
+                //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout[3]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.EditText/android.widget.TextView"))).click();
+                wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"(?i)Search here(?-i)\");"))).click();
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/search_omnibox_edit_text"))).sendKeys("india gate");
+                start_time =System.currentTimeMillis();
+                ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/expandingscrollview_container")));
+                while(!driver.findElements(By.id("com.google.android.apps.maps:id/scalebar_widget")).isEmpty());
+                end_time = System.currentTimeMillis();
+            }
+
+            // Version 10.2
+            else if (versionId == 3) {
+                //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout[4]/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.EditText/android.widget.TextView"))).click();
+                wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"(?i)Search here(?-i)\");"))).click();
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/search_omnibox_edit_text"))).sendKeys("india gate");
+                start_time =System.currentTimeMillis();
+                ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/expandingscrollview_container")));
+                while(!driver.findElements(By.id("com.google.android.apps.maps:id/scalebar_widget")).isEmpty());
+                end_time = System.currentTimeMillis();
+            }
+
+            // Version 10.8
+            else if (versionId == 4) {
+//                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout[3]/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.EditText/android.widget.TextView"))).click();
+                wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"(?i)Search here(?-i)\");"))).click();
+
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/search_omnibox_edit_text"))).sendKeys("india gate");
+                start_time =System.currentTimeMillis();
+                ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/expandingscrollview_container")));
+                while(!driver.findElements(By.id("com.google.android.apps.maps:id/scalebar_widget")).isEmpty());
+                end_time = System.currentTimeMillis();
+            }
+
+            // Version latest
+            else {
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout[3]/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.EditText/android.widget.TextView"))).click();
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/search_omnibox_edit_text"))).sendKeys("india gate");
+                start_time =System.currentTimeMillis();
+                ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/street_view_thumbnail")));
+                while(!driver.findElements(By.id("com.google.android.apps.maps:id/scalebar_widget")).isEmpty());
+                end_time = System.currentTimeMillis();
+            }
 
         } catch (Exception e) {
             testStatusReason = e.toString();
             throw e;
         }
-//        JSON COMMANDS
     }
-
-//  "commands": [
-//    {
-//        "cmd": "findElement",
-//            "startTime": 1615915868952,
-//            "endTime": 1615915870188
-//    },
-//    {
-//        "cmd": "elementDisplayed",
-//            "startTime": 1615915870202,
-//            "endTime": 1615915870228
-//    },
-//    {
-//        "cmd": "click",
-//            "startTime": 1615915870243,
-//            "endTime": 1615915870429
-//    },
-//    {
-//        "cmd": "findElement",
-//            "startTime": 1615915870448,
-//            "endTime": 1615915871161
-//    },
-//    {
-//        "cmd": "elementDisplayed",
-//            "startTime": 1615915871167,
-//            "endTime": 1615915872440
-//    },
-//    {
-//        "cmd": "setValue",
-//            "startTime": 1615915872460,
-//            "endTime": 1615915873204
-//    },
-//    {
-//        "cmd": "pressKeyCode",
-//            "startTime": 1615915873228,
-//            "endTime": 1615915874508
-//    },
-//    {
-//        "cmd": "findElement",
-//            "startTime": 1615915875785,
-//            "endTime": 1615915877652
-//    },
-//    {
-//        "cmd": "elementDisplayed",
-//            "startTime": 1615915877656,
-//            "endTime": 1615915877677
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915877686,
-//            "endTime": 1615915877808
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915877826,
-//            "endTime": 1615915877910
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915877920,
-//            "endTime": 1615915877974
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915877980,
-//            "endTime": 1615915878047
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915878060,
-//            "endTime": 1615915878147
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915878154,
-//            "endTime": 1615915878259
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915878278,
-//            "endTime": 1615915878370
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915878388,
-//            "endTime": 1615915878458
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915878466,
-//            "endTime": 1615915878544
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915878560,
-//            "endTime": 1615915878639
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915878655,
-//            "endTime": 1615915878722
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915878733,
-//            "endTime": 1615915878806
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915878825,
-//            "endTime": 1615915878885
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915878901,
-//            "endTime": 1615915878955
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915878965,
-//            "endTime": 1615915879024
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915879042,
-//            "endTime": 1615915879114
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915879118,
-//            "endTime": 1615915879182
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915879195,
-//            "endTime": 1615915879268
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915879287,
-//            "endTime": 1615915879382
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915879395,
-//            "endTime": 1615915879475
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915879489,
-//            "endTime": 1615915879561
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915879581,
-//            "endTime": 1615915879663
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915879677,
-//            "endTime": 1615915879776
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915879784,
-//            "endTime": 1615915879862
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915879878,
-//            "endTime": 1615915879956
-//    },
-//    {
-//        "cmd": "findElements",
-//            "startTime": 1615915879971,
-//            "endTime": 1615915880597
-//    },
-//    {
-//        "cmd": "getLogEvents",
-//            "startTime": 1615915880617,
-//            "endTime": 1615915880617
-//    }
-//  ]
-//}
 
 }

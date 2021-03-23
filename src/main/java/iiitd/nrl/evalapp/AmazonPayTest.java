@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
+import io.appium.java_client.android.Activity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -42,25 +43,27 @@ public class AmazonPayTest {
 
 	@BeforeMethod
 	public void launchCap() throws IOException {
-		DesiredCapabilities cap=new DesiredCapabilities();
-		cap.setCapability("appPackage", "in.amazon.mShop.android.shopping");
-		cap.setCapability("appActivity", "com.amazon.mShop.android.home.HomeActivity");
-		cap.setCapability("noReset", "true");
-		cap.setCapability("fullReset", "false");
-		cap.setCapability("autoGrantPermissions", true);
-		cap.setCapability("autoAcceptAlerts", true);
-		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
-
-		URL url;
-		try {
-			url = new URL("http://127.0.0.1:4723/wd/hub");
-			driver=new AndroidDriver<MobileElement>(url,cap);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (WebDriverException e) {
-			MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
-		}
+		driver = MainLauncher.driver;
+		driver.startActivity(new Activity("in.amazon.mShop.android.shopping","com.amazon.mShop.android.home.HomeActivity"));
+//		DesiredCapabilities cap=new DesiredCapabilities();
+//		cap.setCapability("appPackage", "in.amazon.mShop.android.shopping");
+//		cap.setCapability("appActivity", "com.amazon.mShop.android.home.HomeActivity");
+//		cap.setCapability("noReset", "true");
+//		cap.setCapability("fullReset", "false");
+//		cap.setCapability("autoGrantPermissions", true);
+//		cap.setCapability("autoAcceptAlerts", true);
+//		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
+//
+//		URL url;
+//		try {
+//			url = new URL("http://127.0.0.1:4723/wd/hub");
+//			driver=new AndroidDriver<MobileElement>(url,cap);
+//		} catch (MalformedURLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (WebDriverException e) {
+//			MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
+//		}
 			
 	}
 	
@@ -92,7 +95,7 @@ public class AmazonPayTest {
 //		System.out.println("test status reason:" + testStatusReason);
 		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
-		driver.quit();
+//		driver.quit();
 	}
 	
 	@Test

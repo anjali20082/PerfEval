@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.Activity;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
@@ -51,25 +52,27 @@ public class FacebookTests {
     
 	@BeforeMethod
 	public void launchCap() {
-		DesiredCapabilities cap=new DesiredCapabilities();
-		cap.setCapability("appPackage", "com.facebook.katana");
-		cap.setCapability("appActivity", "com.facebook.katana.activity.FbMainTabActivity");
-		cap.setCapability("noReset", "true");
-		cap.setCapability("fullReset", "false");
-		cap.setCapability("autoGrantPermissions", true);
-		cap.setCapability("autoAcceptAlerts", true);
-		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
-
-		URL url;
-		try {
-			url = new URL("http://127.0.0.1:4723/wd/hub");
-			driver=new AndroidDriver<MobileElement>(url,cap);	
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (WebDriverException e) {
-	        MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
-		}
+		driver = MainLauncher.driver;
+		driver.startActivity(new Activity("com.facebook.katana","com.facebook.katana.activity.FbMainTabActivity"));
+//		DesiredCapabilities cap=new DesiredCapabilities();
+//		cap.setCapability("appPackage", "com.facebook.katana");
+//		cap.setCapability("appActivity", "com.facebook.katana.activity.FbMainTabActivity");
+//		cap.setCapability("noReset", "true");
+//		cap.setCapability("fullReset", "false");
+//		cap.setCapability("autoGrantPermissions", true);
+//		cap.setCapability("autoAcceptAlerts", true);
+//		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
+//
+//		URL url;
+//		try {
+//			url = new URL("http://127.0.0.1:4723/wd/hub");
+//			driver=new AndroidDriver<MobileElement>(url,cap);
+//		} catch (MalformedURLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (WebDriverException e) {
+//	        MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
+//		}
 			
 	}
 	public String getConnectionType() {
@@ -104,10 +107,36 @@ public class FacebookTests {
 		}
 
 		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
-		testStatusReason = "NA";
-		driver.quit();
+
+//		driver.quit();
 	}
 
+	private void postGroup270(WebDriverWait wait) {
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.LinearLayout[1]/android.widget.FrameLayout[3]"))).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionMatches(\"(?i)Your Groups(?-i)\")"))).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
+						+ "new UiSelector().descriptionMatches(\"(?i)Evaluation of Apps Button(?-i)\"));"))).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+				"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollToBeginning(20);")));
+
+		wait.until(ExpectedConditions.or(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Create a post…")), ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Write something…"))));
+
+		if (!driver.findElements(MobileBy.AccessibilityId("Create a post…")).isEmpty()) {
+			driver.findElement(MobileBy.AccessibilityId("Create a post…")).click();
+		}
+		else {
+			driver.findElement(MobileBy.AccessibilityId("Write something…")).click();
+		}
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Hi, this is an automated post");
+
+		/* post group time measurement starts */
+		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("POST"))).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"(?i)like(?-i)\");")));
+		/* post group time measurement stops */
+	}
 
 
 	@Test
@@ -116,8 +145,10 @@ public class FacebookTests {
 		testName = "post in a group";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 		try {
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionMatches(\".*(?i)Groups(?-i).*\")"))).click();
 
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionMatches(\".*(?i)Groups(?-i).*\")"))).click();
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.LinearLayout[1]/android.widget.FrameLayout[3]"))).click();
+
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionMatches(\"(?i)Your Groups(?-i)\")"))).click();
 
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
@@ -128,21 +159,17 @@ public class FacebookTests {
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
 					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollToBeginning(20);")));
 
-//			wait.until(ExpectedConditions.or(
-//					ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Create a post…")),
-//					ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Write something..."))));
+//			new TouchAction(driver).press(new PointOption().withCoordinates(new Point(500, 350))).waitAction(new WaitOptions().withDuration(Duration.ofSeconds(1))).moveTo(new PointOption().withCoordinates(new Point(500, 750))).release().perform();
 
-			wait.until(ExpectedConditions.or(
-					ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Create a post\");")),
-					ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Write something\");"))));
+			wait.until(ExpectedConditions.or(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Create a post…")), ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Write something…"))));
 
-			if (!driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Create a post\");")).isEmpty()) {
-				driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Create a post\");")).click();
+			if (!driver.findElements(MobileBy.AccessibilityId("Create a post…")).isEmpty()) {
+				driver.findElement(MobileBy.AccessibilityId("Create a post…")).click();
 			}
 			else {
-				driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Write something\");")).click();
+				driver.findElement(MobileBy.AccessibilityId("Write something…")).click();
 			}
-
+			//wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Write something…"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Hi, this is an automated post");
@@ -155,117 +182,7 @@ public class FacebookTests {
 			testStatusReason = e.toString();
 			throw e;
 		}
-//		JSON COMMANDS
 	}
-//	{
-//		"commands": [
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615992974046,
-//				"endTime": 1615992975100
-//		},
-//		{
-//			"cmd": "click",
-//				"startTime": 1615992975115,
-//				"endTime": 1615992977351
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615992977365,
-//				"endTime": 1615992977418
-//		},
-//		{
-//			"cmd": "click",
-//				"startTime": 1615992977429,
-//				"endTime": 1615992979230
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615992979235,
-//				"endTime": 1615992979271
-//		},
-//		{
-//			"cmd": "click",
-//				"startTime": 1615992979283,
-//				"endTime": 1615992981302
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615992981319,
-//				"endTime": 1615992984217
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615992984342,
-//				"endTime": 1615992984387
-//		},
-//		{
-//			"cmd": "findElements",
-//				"startTime": 1615992984405,
-//				"endTime": 1615992984490
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615992984497,
-//				"endTime": 1615992984544
-//		},
-//		{
-//			"cmd": "click",
-//				"startTime": 1615992984561,
-//				"endTime": 1615992985710
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615992985716,
-//				"endTime": 1615992985770
-//		},
-//		{
-//			"cmd": "elementDisplayed",
-//				"startTime": 1615992985775,
-//				"endTime": 1615992985795
-//		},
-//		{
-//			"cmd": "click",
-//				"startTime": 1615992985809,
-//				"endTime": 1615992987656
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615992987664,
-//				"endTime": 1615992987722
-//		},
-//		{
-//			"cmd": "elementDisplayed",
-//				"startTime": 1615992987725,
-//				"endTime": 1615992987751
-//		},
-//		{
-//			"cmd": "setValue",
-//				"startTime": 1615992987774,
-//				"endTime": 1615992988555
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615992988571,
-//				"endTime": 1615992989358
-//		},
-//		{
-//			"cmd": "click",
-//				"startTime": 1615992989364,
-//				"endTime": 1615992989427
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615992989442,
-//				"endTime": 1615992991379
-//		},
-//		{
-//			"cmd": "getLogEvents",
-//				"startTime": 1615992991387,
-//				"endTime": 1615992991388
-//		}
-//  ]
-//	}
 
 	@Test
 	public void searchPerson() throws InterruptedException{
@@ -283,82 +200,12 @@ public class FacebookTests {
 //			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Kangana Ranaut Page · Artist · Actor · KanganaRanaut · 2M like this"))).click();
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]"))).click();
 
-//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"About\")"))).click();
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Profile picture\")")));
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("	new UiSelector().descriptionContains(\"Kangana Ranaut Page\")"))).click();
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"(?i)About(?-i)\")"))).click();
 			/* Search person time measurement stops */
 		} catch (Exception e) {
 			testStatusReason = e.toString();
 			throw e;
 		}
-//		JSON COMMANDS
 	}
-//	{
-//		"commands": [
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615993346046,
-//				"endTime": 1615993347796
-//		},
-//		{
-//			"cmd": "click",
-//				"startTime": 1615993347808,
-//				"endTime": 1615993349953
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615993349965,
-//				"endTime": 1615993350031
-//		},
-//		{
-//			"cmd": "elementDisplayed",
-//				"startTime": 1615993350034,
-//				"endTime": 1615993350051
-//		},
-//		{
-//			"cmd": "click",
-//				"startTime": 1615993350061,
-//				"endTime": 1615993350106
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615993359903,
-//				"endTime": 1615993360781
-//		},
-//		{
-//			"cmd": "elementDisplayed",
-//				"startTime": 1615993360784,
-//				"endTime": 1615993360808
-//		},
-//		{
-//			"cmd": "setValue",
-//				"startTime": 1615993360828,
-//				"endTime": 1615993361512
-//		},
-//		{
-//			"cmd": "pressKeyCode",
-//				"startTime": 1615993361530,
-//				"endTime": 1615993363319
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615993366799,
-//				"endTime": 1615993367478
-//		},
-//		{
-//			"cmd": "click",
-//				"startTime": 1615993367492,
-//				"endTime": 1615993367570
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615993368414,
-//				"endTime": 1615993368885
-//		},
-//		{
-//			"cmd": "getLogEvents",
-//				"startTime": 1615993368901,
-//				"endTime": 1615993368901
-//		}
-//  ]
-//	}
 }

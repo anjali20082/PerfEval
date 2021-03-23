@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.android.Activity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -34,25 +35,27 @@ public class WhatsappTests {
 
     @BeforeMethod
     public void launchCap() {
-        DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability("appPackage", "com.whatsapp");
-        cap.setCapability("appActivity", "com.whatsapp.Main");
-        cap.setCapability("noReset", "true");
-        cap.setCapability("fullReset", "false");
-        cap.setCapability("autoGrantPermissions", true);
-        cap.setCapability("autoAcceptAlerts", true);
-        cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
-
-        URL url;
-        try {
-            url = new URL("http://127.0.0.1:4723/wd/hub");
-            driver = new AndroidDriver<MobileElement>(url, cap);
-        } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (WebDriverException e) {
-            MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
-        }
+        driver = MainLauncher.driver;
+        driver.startActivity(new Activity("com.whatsapp","com.whatsapp.Main"));
+//        DesiredCapabilities cap = new DesiredCapabilities();
+//        cap.setCapability("appPackage", "com.whatsapp");
+//        cap.setCapability("appActivity", "com.whatsapp.Main");
+//        cap.setCapability("noReset", "true");
+//        cap.setCapability("fullReset", "false");
+//        cap.setCapability("autoGrantPermissions", true);
+//        cap.setCapability("autoAcceptAlerts", true);
+//        cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
+//
+//        URL url;
+//        try {
+//            url = new URL("http://127.0.0.1:4723/wd/hub");
+//            driver = new AndroidDriver<MobileElement>(url, cap);
+//        } catch (MalformedURLException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (WebDriverException e) {
+//            MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
+//        }
     }
 
     public String getConnectionType() {
@@ -77,13 +80,12 @@ public class WhatsappTests {
 
         if (testResult.isSuccess()) {
             if (testResult.getName() == "sendMessage") {
-                timeTaken = MyDatabase.getTimeTaken(jsonString, -3, -2);
+                timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
                 main_events.put(testResult.getName(), timeTaken);
             }
         }
         MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
-        testStatusReason = "NA";
-        driver.quit();
+//        driver.quit();
     }
 
     @Test
@@ -98,8 +100,14 @@ public class WhatsappTests {
 
         try {
 
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/menuitem_search"))).click();
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/search_input"))).click();
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/search_input"))).sendKeys("EvalApp");
+
             wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
                     + "new UiSelector().text(\"EvalApp Group\"));"))).click();
+//                    MobileBy.AccessibilityId("EvalApp Group"))).click();
+//            wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.whatsapp:id/message_btn"))).click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/entry"))).sendKeys(message);
 
             /* sending message time measurement starts */
@@ -111,55 +119,5 @@ public class WhatsappTests {
             testStatusReason = e.toString();
             throw e;
         }
-//        json commands
     }
-//    {
-//        "commands": [
-//        {
-//            "cmd": "findElement",
-//                "startTime": 1615993897958,
-//                "endTime": 1615993917441
-//        },
-//        {
-//            "cmd": "click",
-//                "startTime": 1615993917454,
-//                "endTime": 1615993918388
-//        },
-//        {
-//            "cmd": "findElement",
-//                "startTime": 1615993918402,
-//                "endTime": 1615993918468
-//        },
-//        {
-//            "cmd": "elementDisplayed",
-//                "startTime": 1615993918472,
-//                "endTime": 1615993918507
-//        },
-//        {
-//            "cmd": "setValue",
-//                "startTime": 1615993918527,
-//                "endTime": 1615993919147
-//        },
-//        {
-//            "cmd": "findElement",
-//                "startTime": 1615993919153,
-//                "endTime": 1615993919829
-//        },
-//        {
-//            "cmd": "click",
-//                "startTime": 1615993919841,
-//                "endTime": 1615993921369
-//        },
-//        {
-//            "cmd": "findElement",
-//                "startTime": 1615993921379,
-//                "endTime": 1615993921451
-//        },
-//        {
-//            "cmd": "getLogEvents",
-//                "startTime": 1615993921471,
-//                "endTime": 1615993921471
-//        }
-//  ]
-//    }
 }
