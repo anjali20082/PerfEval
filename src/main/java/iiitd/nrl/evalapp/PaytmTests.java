@@ -113,13 +113,13 @@ public class PaytmTests {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/image_container_1"))).click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/p2p_cp_search_ll"))).click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Enter Name or Mobile Number\")"))).sendKeys("8802647803");
-            wait.until(ExpectedConditions.or(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/payTv")), ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().textContains(\"918802647803\")"))));
+            wait.until(ExpectedConditions.or(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Proceed\")")), ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"918802647803\")"))));
 
-            if (driver.findElements(By.id("net.one97.paytm:id/payTv")).isEmpty()) {
-                driver.findElement(MobileBy.AndroidUIAutomator("UiSelector().textContains(\"918802647803\")")).click();
+            if (driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Proceed\")")).isEmpty()) {
+                driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"918802647803\")")).click();
             }
             else {
-                driver.findElement(By.id("net.one97.paytm:id/payTv")).click();
+                driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Proceed\")")).click();
             }
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).click();
