@@ -147,17 +147,31 @@ public class FacebookTests_post {
 			wait.until(ExpectedConditions.or(
 					ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Create a post\");")),
 					ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Write something\");"))));
-
+//
 			if (!driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Create a post\");")).isEmpty()) {
 				driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Create a post\");")).click();
 			}
 			else {
 				driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Write something\");")).click();
 			}
+			wait.until(ExpectedConditions.or(
+					ExpectedConditions.presenceOfElementLocated(By.className("android.widget.AutoCompleteTextView")),
+					ExpectedConditions.presenceOfElementLocated(By.className("android.widget.EditText"))));
+			if (!driver.findElements(By.className("android.widget.AutoCompleteTextView")).isEmpty()) {
+				driver.findElement(By.className("android.widget.AutoCompleteTextView")).click();
+				driver.findElement(By.className("android.widget.AutoCompleteTextView")).sendKeys(message);
+			}
+			else {
+				driver.findElement(By.className("android.widget.EditText")).click();
+				driver.findElement(By.className("android.widget.EditText")).sendKeys(message);
+			}
+			//android.widget.EditText
+//			wait.until(ExpectedConditions.or(
+//					ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.AutoCompleteTextView")),
+//					ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText")))).click().sendKeys(message);
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.AutoCompleteTextView"))).click();
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.AutoCompleteTextView"))).click();
-
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.AutoCompleteTextView"))).sendKeys(message);
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.AutoCompleteTextView"))).sendKeys(message);
 			/* post group time measurement starts */
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("POST"))).click();
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
@@ -279,98 +293,6 @@ public class FacebookTests_post {
 //  ]
 //	}
 
-	@Test
-	public void searchPerson() throws InterruptedException{
 
-		testName = "search person";
-		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 
-		try {
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search Facebook"))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Kangana Ranaut");
-			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-
-			/* Search person time measurement starts */
-//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Kangana Ranaut Page · Artist · Actor · KanganaRanaut · 2M like this"))).click();
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]"))).click();
-
-//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"About\")"))).click();
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Profile picture\")")));
-			/* Search person time measurement stops */
-		} catch (Exception e) {
-			testStatusReason = e.toString();
-			throw e;
-		}
-//		JSON COMMANDS
-	}
-//	{
-//		"commands": [
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615993346046,
-//				"endTime": 1615993347796
-//		},
-//		{
-//			"cmd": "click",
-//				"startTime": 1615993347808,
-//				"endTime": 1615993349953
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615993349965,
-//				"endTime": 1615993350031
-//		},
-//		{
-//			"cmd": "elementDisplayed",
-//				"startTime": 1615993350034,
-//				"endTime": 1615993350051
-//		},
-//		{
-//			"cmd": "click",
-//				"startTime": 1615993350061,
-//				"endTime": 1615993350106
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615993359903,
-//				"endTime": 1615993360781
-//		},
-//		{
-//			"cmd": "elementDisplayed",
-//				"startTime": 1615993360784,
-//				"endTime": 1615993360808
-//		},
-//		{
-//			"cmd": "setValue",
-//				"startTime": 1615993360828,
-//				"endTime": 1615993361512
-//		},
-//		{
-//			"cmd": "pressKeyCode",
-//				"startTime": 1615993361530,
-//				"endTime": 1615993363319
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615993366799,
-//				"endTime": 1615993367478
-//		},
-//		{
-//			"cmd": "click",
-//				"startTime": 1615993367492,
-//				"endTime": 1615993367570
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615993368414,
-//				"endTime": 1615993368885
-//		},
-//		{
-//			"cmd": "getLogEvents",
-//				"startTime": 1615993368901,
-//				"endTime": 1615993368901
-//		}
-//  ]
-//	}
 }
