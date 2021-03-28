@@ -3,8 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -19,57 +17,11 @@
             <Label layoutX="59.0" layoutY="76.0" prefHeight="16.0" prefWidth="235.0" text="3. Click on Run Tests." textFill="WHITE" />
             <Label layoutX="58.0" layoutY="35.0" text="1. Enable Developer Options on your Android and allow USB debugging." textFill="WHITE" />
             <Label layoutX="58.0" layoutY="96.0" prefHeight="16.0" prefWidth="481.0" text="4. While the tests are running you may have to unlock your app in case " textFill="WHITE" />
-
-            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="181.0" layoutY="281.0">
-               <image>
-                  <Image url="@linkedin.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="181.0" layoutY="353.0">
-               <image>
-                  <Image url="@fb.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="53.0" fitWidth="102.0" layoutX="65.0" layoutY="425.0">
-               <image>
-                  <Image url="@paytm.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="55.0" fitWidth="82.0" layoutX="383.0" layoutY="356.0">
-               <image>
-                  <Image url="@gnews.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="384.0" layoutY="278.0">
-               <image>
-                  <Image url="@dailyhunt.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="75.0" layoutY="353.0">
-               <image>
-                  <Image url="@flipkart.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="60.0" fitWidth="96.0" layoutX="275.0" layoutY="353.0">
-               <image>
-                  <Image url="@hotstar.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="74.0" layoutY="281.0">
-               <image>
-                  <Image url="@amazon.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="82.0" fitWidth="96.0" layoutX="277.0" layoutY="268.0">
-               <image>
-                  <Image url="@youtube.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="58.0" layoutY="134.0" prefHeight="16.0" prefWidth="469.0" text="5. In all other cases please refrain from performing any kind of activity" textFill="WHITE" />
-            <Label layoutX="59.0" layoutY="115.0" text="there is an app lock or enter UPI ID in payments app," textFill="WHITE" />
-            <Label layoutX="59.0" layoutY="152.0" text="on your phone." textFill="WHITE" />
-            <Label layoutX="59.0" layoutY="204.0" prefHeight="16.0" prefWidth="490.0" text="Note: For Paytm and Amazon Pay UPI, there will be a transfer of Re. 1/-" textFill="WHITE" />
-            <Label layoutX="60.0" layoutY="222.0" prefHeight="16.0" prefWidth="469.0" text="to Abhivandan's or Prince's account and for Mobikwik, there will be a " textFill="WHITE" />
+            <Label layoutX="58.0" layoutY="134.0" prefHeight="16.0" prefWidth="469.0" text="5. In some applications, it may ask for permissions such as Location in" textFill="WHITE" />
+            <Label layoutX="59.0" layoutY="115.0" text="there is an app lock." textFill="WHITE" />
+            <Label layoutX="59.0" layoutY="152.0" prefHeight="16.0" prefWidth="469.0" text="Google Maps test. Please accept such permissions." textFill="WHITE" />
+            <Label layoutX="59.0" layoutY="204.0" prefHeight="16.0" prefWidth="490.0" text="Note: For PayTM, there will be a transfer of Re. 1/- to our account" textFill="WHITE" />
+            <Label layoutX="60.0" layoutY="222.0" prefHeight="16.0" prefWidth="469.0" text="for Mobikwik, there will be a a transfer of Rs 5/-." textFill="WHITE" />
             <Label layoutX="59.0" layoutY="257.0" prefHeight="16.0" prefWidth="365.0" text="                 THANK YOU FOR YOUR KIND CO-OPERATION" textFill="WHITE" />
             <Label layoutX="59.0" layoutY="169.0" prefHeight="16.0" prefWidth="469.0" text="6. Please install/update the below mentioned apps. If installed" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                <font>
@@ -86,25 +38,9 @@
                   <Font size="19.0" />
                </font>
             </Button>
-            <ImageView fitHeight="60.0" fitWidth="82.0" layoutX="181.0" layoutY="422.0">
-               <image>
-                  <Image url="@mobikwik.jpeg" />
-               </image>
-            </ImageView>
-            <Label layoutX="61.0" layoutY="238.0" prefHeight="16.0" prefWidth="469.0" text="a transfer of Rs 5/-." textFill="WHITE" />
-            <ImageView fitHeight="60.0" fitWidth="62.0" layoutX="294.0" layoutY="422.0">
-               <image>
-                  <Image url="@telegram.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="60.0" fitWidth="62.0" layoutX="394.0" layoutY="422.0">
-               <image>
-                  <Image url="@whatsapp.png" />
-               </image>
-            </ImageView>
          </children>
       </Pane>
-      <Label alignment="CENTER" layoutX="127.0" layoutY="39.0" prefHeight="35.0" prefWidth="272.0" text="Start Testing..." textFill="#ddd9d9">
+      <Label fx:id="title" alignment="CENTER" layoutX="53.0" layoutY="39.0" prefHeight="36.0" prefWidth="469.0" text="Start Testing..." textFill="#ddd9d9">
          <font>
             <Font name="Candara" size="30.0" />
          </font>

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -32,9 +33,9 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
 @SuppressWarnings("unchecked")
-public class HotstarTests {
+public class HotstarTests_search {
 	AndroidDriver<MobileElement> driver;
-	String appName = "Hotstar";
+	String appName = "Hotstar_search";
 	String testName = "NA";
 	String testStatusReason = "NA";
 
@@ -81,22 +82,28 @@ public class HotstarTests {
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
-//		System.out.println(jsonString);
-		long timeTaken = 0;
 
-		HashMap<String, Long> main_events = new HashMap<String, Long>();
-
-		if (testResult.isSuccess()) {
-			if (testResult.getName() == "searchTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-				main_events.put(testResult.getName(), timeTaken);
-			} else if (testResult.getName() == "trendingTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-				main_events.put(testResult.getName(), timeTaken);
-			}
-		}
-
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+		MyDatabase.setCurrentApp(appName);
+		MyDatabase.setAppJsonCommands(jsonString);
+		MyDatabase.setTestStatus(testResult.isSuccess());
+		MyDatabase.setTestStatusReason(testStatusReason);
+		MyDatabase.setConnType(getConnectionType());
+//
+//		long timeTaken = 0;
+//
+//		HashMap<String, Long> main_events = new HashMap<String, Long>();
+//
+//		if (testResult.isSuccess()) {
+//			if (testResult.getName() == "searchTest") {
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
+//				main_events.put(testResult.getName(), timeTaken);
+//			} else if (testResult.getName() == "trendingTest") {
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
+//				main_events.put(testResult.getName(), timeTaken);
+//			}
+//		}
+//
+//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 		testStatusReason = "NA";
 		driver.quit();
 	}
@@ -108,11 +115,17 @@ public class HotstarTests {
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 		try {
 
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/action_search"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/search_text"))).sendKeys("dil bechara");
 			/* search video time measurement starts*/
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.ImageView[2]"))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/metadata_download")));
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.ImageView")));
+			List<MobileElement> elements = driver.findElements(By.className("android.widget.ImageView"));
+
+			elements.get(2).click();
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/top_info")));
 			/* search video time measurement stops*/
 		} catch (Exception e) {
 			testStatusReason = e.toString();
@@ -181,60 +194,4 @@ public class HotstarTests {
 //  ]
 //	}
 
-	@Test
-	public void trendingTest(){
-
-		testName = "Trending Test";
-		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
-		try {
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Open navigation drawer"))).click();
-			/* load trending videos page time measurement starts*/
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Trending\")"))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/frame_player")));
-			/* load trending videos page time measurement stops*/
-		} catch (Exception e) {
-			testStatusReason = e.toString();
-			throw e;
-		}
-//		JSON COMMANDS
-	}
-//	{
-//		"commands": [
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615909220427,
-//				"endTime": 1615909221646
-//		},
-//		{
-//			"cmd": "click",
-//				"startTime": 1615909221655,
-//				"endTime": 1615909222685
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615909222693,
-//				"endTime": 1615909222907
-//		},
-//		{
-//			"cmd": "click",
-//				"startTime": 1615909222923,
-//				"endTime": 1615909225549
-//		},
-//		{
-//			"cmd": "findElement",
-//				"startTime": 1615909225567,
-//				"endTime": 1615909226079
-//		},
-//		{
-//			"cmd": "elementDisplayed",
-//				"startTime": 1615909226082,
-//				"endTime": 1615909228087
-//		},
-//		{
-//			"cmd": "getLogEvents",
-//				"startTime": 1615909228103,
-//				"endTime": 1615909228103
-//		}
-//  ]
-//	}
 }

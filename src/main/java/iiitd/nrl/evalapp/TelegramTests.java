@@ -77,19 +77,25 @@ public class TelegramTests  {
     @AfterMethod
     public void restart(ITestResult testResult) {
         String jsonString = driver.getEvents().getJsonData();
-//        System.out.println(jsonString);
-        long timeTaken = 0;
 
-        HashMap<String, Long> main_events = new HashMap<>();
+        MyDatabase.setCurrentApp(appName);
+        MyDatabase.setAppJsonCommands(jsonString);
+        MyDatabase.setTestStatus(testResult.isSuccess());
+        MyDatabase.setTestStatusReason(testStatusReason);
+        MyDatabase.setConnType(getConnectionType());
 
-        if (testResult.isSuccess()) {
-            if (testResult.getName() == "sendMessage") {
-                timeTaken = MyDatabase.getTimeTaken(jsonString, 12, -2);
-                main_events.put(testResult.getName(), timeTaken);
-            }
-        }
-
-        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+//        long timeTaken = 0;
+//
+//        HashMap<String, Long> main_events = new HashMap<>();
+//
+//        if (testResult.isSuccess()) {
+//            if (testResult.getName() == "sendMessage") {
+//                timeTaken = MyDatabase.getTimeTaken(jsonString, 12, -2);
+//                main_events.put(testResult.getName(), timeTaken);
+//            }
+//        }
+//
+//        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
         testStatusReason = "NA";
         driver.quit();
     }
@@ -113,32 +119,34 @@ public class TelegramTests  {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys(message);
 
             // calculate time of below 2 commands
-            int before_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + verifiy_sent + "\");")).size();
-            System.out.println(before_length);
+//            int before_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + verifiy_sent + "\");")).size();
+//            System.out.println(before_length);
 
             /* sending message time measurement starts */
             wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Send"))).click();
 
-            Calendar calendar = Calendar.getInstance();
-            long startTime = calendar.getTimeInMillis();
-            long currentTime = startTime;
-            long limitTime = startTime + MyDatabase.testTimeLimit * 1000;
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + verifiy_sent + "\");"))).click();
 
-            int after_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + verifiy_sent + "\");")).size();
-            while (currentTime < limitTime && after_length <= before_length) {
-//                MobileElement element = driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + message + "\");"));
-//                System.out.println(element.getAttribute("content-desc"));
-//                if (element.getAttribute("content-desc").contains("Sent"))
-//                    break;
-                after_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + verifiy_sent + "\");")).size();
-                System.out.println(currentTime + " " + after_length);
-                calendar = Calendar.getInstance();
-                currentTime = calendar.getTimeInMillis();
-            }
-
-            if (currentTime >= limitTime) {
-                throw new Exception("Message not sent");
-            }
+//            Calendar calendar = Calendar.getInstance();
+//            long startTime = calendar.getTimeInMillis();
+//            long currentTime = startTime;
+//            long limitTime = startTime + MyDatabase.testTimeLimit * 1000;
+//
+//            int after_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + verifiy_sent + "\");")).size();
+//            while (currentTime < limitTime && after_length <= before_length) {
+////                MobileElement element = driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + message + "\");"));
+////                System.out.println(element.getAttribute("content-desc"));
+////                if (element.getAttribute("content-desc").contains("Sent"))
+////                    break;
+//                after_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + verifiy_sent + "\");")).size();
+//                System.out.println(currentTime + " " + after_length);
+//                calendar = Calendar.getInstance();
+//                currentTime = calendar.getTimeInMillis();
+//            }
+//
+//            if (currentTime >= limitTime) {
+//                throw new Exception("Message not sent");
+//            }
 
             /* sending message time measurement stops */
 

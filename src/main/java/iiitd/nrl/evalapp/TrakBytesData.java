@@ -17,7 +17,7 @@ import java.net.URL;
 
 public class TrakBytesData {
     AndroidDriver<MobileElement> driver;
-    String appName = "Whatsapp";
+    String appName = "Trakbytes";
     String testName = "NA";
     String testStatusReason = "NA";
     String packetData = "NA";
@@ -59,7 +59,7 @@ public class TrakBytesData {
 
     @AfterMethod
     public void restart(ITestResult testResult) {
-        MyDatabase.packet_sizes_before = packetData;
+        MyDatabase.setPacket_sizes_before(packetData);
         driver.quit();
     }
 
@@ -72,7 +72,9 @@ public class TrakBytesData {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.hawk.trakbytes:id/start_button"))).click();
             System.out.println("Start Stats clicked");
             Thread.sleep(3000);
-            packetData = driver.getClipboardText();
+
+            packetData = driver.findElement(By.id("com.hawk.trakbytes:id/stats_text")).getText();
+
         } catch (Exception e) {
             testStatusReason = e.toString();
             throw e;

@@ -82,22 +82,28 @@ public class DailyhuntTests  {
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
-//		System.out.println(jsonString);
-		long timeTaken = 0;
 
-		HashMap<String, Long> main_events = new HashMap<String, Long>();
+		MyDatabase.setCurrentApp(appName);
+		MyDatabase.setAppJsonCommands(jsonString);
+		MyDatabase.setTestStatus(testResult.isSuccess());
+		MyDatabase.setTestStatusReason(testStatusReason);
+		MyDatabase.setConnType(getConnectionType());
 
-		if (testResult.isSuccess()) {
-			if (testResult.getName() == "searchNews") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -4);
-				main_events.put(testResult.getName(), timeTaken);
-			} else if (testResult.getName() == "livetvTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
-				main_events.put(testResult.getName(), timeTaken);
-			}
-		}
-
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+//		long timeTaken = 0;
+//
+//		HashMap<String, Long> main_events = new HashMap<String, Long>();
+//
+//		if (testResult.isSuccess()) {
+//			if (testResult.getName() == "searchNews") {
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -4);
+//				main_events.put(testResult.getName(), timeTaken);
+//			} else if (testResult.getName() == "livetvTest") {
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
+//				main_events.put(testResult.getName(), timeTaken);
+//			}
+//		}
+//
+//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 		testStatusReason = "NA";
 		driver.quit();
 	}

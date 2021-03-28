@@ -69,19 +69,25 @@ public class WhatsappTests {
     @AfterMethod
     public void restart(ITestResult testResult) {
         String jsonString = driver.getEvents().getJsonData();
-//        System.out.println(jsonString);
-        long timeTaken = 0;
 
-        String event_name = "";
-        HashMap<String, Long> main_events = new HashMap<>();
+        MyDatabase.setCurrentApp(appName);
+        MyDatabase.setAppJsonCommands(jsonString);
+        MyDatabase.setTestStatus(testResult.isSuccess());
+        MyDatabase.setTestStatusReason(testStatusReason);
+        MyDatabase.setConnType(getConnectionType());
 
-        if (testResult.isSuccess()) {
-            if (testResult.getName() == "sendMessage") {
-                timeTaken = MyDatabase.getTimeTaken(jsonString, -3, -2);
-                main_events.put(testResult.getName(), timeTaken);
-            }
-        }
-        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+//        long timeTaken = 0;
+//
+//        String event_name = "";
+//        HashMap<String, Long> main_events = new HashMap<>();
+//
+//        if (testResult.isSuccess()) {
+//            if (testResult.getName() == "sendMessage") {
+//                timeTaken = MyDatabase.getTimeTaken(jsonString, -3, -2);
+//                main_events.put(testResult.getName(), timeTaken);
+//            }
+//        }
+//        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
         testStatusReason = "NA";
         driver.quit();
     }

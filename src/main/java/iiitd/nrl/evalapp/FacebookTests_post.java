@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.TouchAction;
@@ -38,9 +39,9 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
 @SuppressWarnings("unchecked")
-public class FacebookTests {
+public class FacebookTests_post {
 	AndroidDriver<MobileElement> driver;
-	String appName = "Facebook";
+	String appName = "Facebook_post";
 	String testName = "NA";
 	String testStatusReason = "NA";
 	
@@ -86,24 +87,29 @@ public class FacebookTests {
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
-//		System.out.println(jsonString);
-		long timeTaken = 0;
 
-		HashMap<String, Long> main_events = new HashMap<String, Long>();
-
-		if (testResult.isSuccess()) {
-			if (testResult.getName() == "postGroup") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -3, -2);
-				main_events.put(testResult.getName(), timeTaken);
-			}
-			else if (testResult.getName() == "searchPerson") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -2);
-				main_events.put(testResult.getName(), timeTaken);
-
-			}
-		}
-
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+		MyDatabase.setCurrentApp(appName);
+		MyDatabase.setAppJsonCommands(jsonString);
+		MyDatabase.setTestStatus(testResult.isSuccess());
+		MyDatabase.setTestStatusReason(testStatusReason);
+		MyDatabase.setConnType(getConnectionType());
+//		long timeTaken = 0;
+//
+//		HashMap<String, Long> main_events = new HashMap<String, Long>();
+//
+//		if (testResult.isSuccess()) {
+//			if (testResult.getName() == "postGroup") {
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, -3, -2);
+//				main_events.put(testResult.getName(), timeTaken);
+//			}
+//			else if (testResult.getName() == "searchPerson") {
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -2);
+//				main_events.put(testResult.getName(), timeTaken);
+//
+//			}
+//		}
+//
+//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 		testStatusReason = "NA";
 		driver.quit();
 	}
@@ -115,6 +121,12 @@ public class FacebookTests {
 
 		testName = "post in a group";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
+
+		Random rand = new Random();
+		int rand_int = rand.nextInt(1000);
+		String rand_str = Integer.toString(rand_int);
+		String message = "Hi, this is an automated post:" + rand_str;
+
 		try {
 
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionMatches(\".*(?i)Groups(?-i).*\")"))).click();
@@ -143,9 +155,9 @@ public class FacebookTests {
 				driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Write something\");")).click();
 			}
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.AutoCompleteTextView"))).click();
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Hi, this is an automated post");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.AutoCompleteTextView"))).sendKeys(message);
 			/* post group time measurement starts */
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("POST"))).click();
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(

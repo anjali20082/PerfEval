@@ -72,29 +72,35 @@ public class AmazonTests {
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
-//		System.out.println(jsonString);
-		long timeTaken = 0;
 
-		HashMap<String, Long> main_events = new HashMap<>();
+		MyDatabase.setCurrentApp(appName);
+		MyDatabase.setAppJsonCommands(jsonString);
+		MyDatabase.setTestStatus(testResult.isSuccess());
+		MyDatabase.setTestStatusReason(testStatusReason);
+		MyDatabase.setConnType(getConnectionType());
 
-		if (testResult.isSuccess()) {
-			if (testResult.getName() == "searchProduct") {
-
-				timeTaken = MyDatabase.getTimeTaken(jsonString, 6, 7) + MyDatabase.getTimeTaken(jsonString, 11, 12);
-				main_events.put(testResult.getName(), timeTaken);
-
-				timeTaken = MyDatabase.getTimeTaken(jsonString, 21, -11);
-				main_events.put("addToCart", timeTaken);
-
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -9, -8);
-				main_events.put("goToCart", timeTaken);
-
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -6, -5);
-				main_events.put("deleteFromCart", timeTaken);
-			}
-		}
-
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+//		long timeTaken = 0;
+//
+//		HashMap<String, Long> main_events = new HashMap<>();
+//
+//		if (testResult.isSuccess()) {
+//			if (testResult.getName() == "searchProduct") {
+//
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, 6, 7) + MyDatabase.getTimeTaken(jsonString, 11, 12);
+//				main_events.put(testResult.getName(), timeTaken);
+//
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, 21, -11);
+//				main_events.put("addToCart", timeTaken);
+//
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, -9, -8);
+//				main_events.put("goToCart", timeTaken);
+//
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, -6, -5);
+//				main_events.put("deleteFromCart", timeTaken);
+//			}
+//		}
+//
+//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 		testStatusReason = "NA";
 		driver.quit();
 	}
@@ -105,18 +111,18 @@ public class AmazonTests {
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 
 		try {
-
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text"))).click();
+
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text"))).sendKeys("laptop");
 
 			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Prime Eligible\");"))).isDisplayed();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Prime Eligible\");")));
 
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-							+ "new UiSelector().className(\"android.widget.TextView\").textContains(\"Sponsored\"));"))).click();
+			String ui = "new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView(" + "new UiSelector().descriptionContains(\"out of 5 stars\"))";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+			driver.findElement(MobileBy.AndroidUIAutomator(ui)).click();
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"out of 5 stars\");"))).isDisplayed();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"out of 5 stars\");")));
 			// Search Product Completed - 14th
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/chrome_action_bar_cart_count")));
@@ -126,9 +132,10 @@ public class AmazonTests {
 
 			/* add product test measurement starts 18th*/
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
-					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-							+ "new UiSelector().resourceId(\"add-to-cart-button\"));"))).click();
+			ui = "new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("	+ "new UiSelector().resourceId(\"add-to-cart-button\"));";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+
+			driver.findElement(MobileBy.AndroidUIAutomator(ui)).click();
 
 			int cartValueAfter = Integer.parseInt(cartValueElement.getText());
 
@@ -138,16 +145,17 @@ public class AmazonTests {
 			System.out.println("cart value after:" + cartValueAfter);
 			/* add product test measurement stops 20th*/
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().description(\"Cart\");"))).click();
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/chrome_action_bar_cart")))).click();
+			ui = "new UiSelector().description(\"Cart\");";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+			driver.findElement(MobileBy.AndroidUIAutomator(ui)).click();
 
 			/* delete product test measurement starts*/
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().text(\"Delete\");"))).click();
-//					"new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView("
-//							+ "new UiSelector().textMatches(\"(?i)Delete(?-i)\"));"))).click();
+			ui = "new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView(" + "new UiSelector().text(\"Delete\"));";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+			driver.findElement(MobileBy.AndroidUIAutomator(ui)).click();
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
-							"new UiSelector().textContains(\"was removed from Shopping Cart\");"))).isDisplayed();
+							"new UiSelector().textContains(\"was removed from Shopping Cart\");")));
 			/* delete product test measurement stops*/
 
 		} catch (Exception e) {
@@ -162,168 +170,178 @@ public class AmazonTests {
 //		"commands": [
 //		{
 //			"cmd": "findElement",
-//				"startTime": 1615913955283,
-//				"endTime": 1615913956006
+//				"startTime": 1616826739150,
+//				"endTime": 1616826740636
 //		},
 //		{
 //			"cmd": "elementDisplayed",
-//				"startTime": 1615913956017,
-//				"endTime": 1615913956786
+//				"startTime": 1616826740705,
+//				"endTime": 1616826743654
 //		},
 //		{
 //			"cmd": "click",
-//				"startTime": 1615913956802,
-//				"endTime": 1615913959664
+//				"startTime": 1616826743687,
+//				"endTime": 1616826743908
 //		},
 //		{
 //			"cmd": "findElement",
-//				"startTime": 1615913959683,
-//				"endTime": 1615913961670
+//				"startTime": 1616826743931,
+//				"endTime": 1616826744945
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1616826747095,
+//				"endTime": 1616826747196
 //		},
 //		{
 //			"cmd": "elementDisplayed",
-//				"startTime": 1615913961674,
-//				"endTime": 1615913961704
+//				"startTime": 1616826747214,
+//				"endTime": 1616826747252
 //		},
 //		{
 //			"cmd": "setValue",
-//				"startTime": 1615913961714,
-//				"endTime": 1615913962424
+//				"startTime": 1616826747286,
+//				"endTime": 1616826748216
 //		},
 //		{
 //			"cmd": "pressKeyCode",
-//				"startTime": 1615913962447,
-//				"endTime": 1615913963407
+//				"startTime": 1616826748235,
+//				"endTime": 1616826749741
 //		},
 //		{
 //			"cmd": "findElement",
-//				"startTime": 1615913963420,
-//				"endTime": 1615913964685
+//				"startTime": 1616826752825,
+//				"endTime": 1616826753214
 //		},
 //		{
 //			"cmd": "elementDisplayed",
-//				"startTime": 1615913964688,
-//				"endTime": 1615913965221
-//		},
-//		{
-//			"cmd": "elementDisplayed",
-//				"startTime": 1615913965223,
-//				"endTime": 1615913965289
+//				"startTime": 1616826753243,
+//				"endTime": 1616826753365
 //		},
 //		{
 //			"cmd": "findElement",
-//				"startTime": 1615913965294,
-//				"endTime": 1615913967918
+//				"startTime": 1616826753384,
+//				"endTime": 1616826761146
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1616826761159,
+//				"endTime": 1616826761297
 //		},
 //		{
 //			"cmd": "click",
-//				"startTime": 1615913967929,
-//				"endTime": 1615913969155
+//				"startTime": 1616826761306,
+//				"endTime": 1616826762722
 //		},
 //		{
 //			"cmd": "findElement",
-//				"startTime": 1615913969749,
-//				"endTime": 1615913971425
+//				"startTime": 1616826764368,
+//				"endTime": 1616826764663
 //		},
 //		{
 //			"cmd": "elementDisplayed",
-//				"startTime": 1615913971428,
-//				"endTime": 1615913972474
-//		},
-//		{
-//			"cmd": "elementDisplayed",
-//				"startTime": 1615913972476,
-//				"endTime": 1615913972541
+//				"startTime": 1616826764675,
+//				"endTime": 1616826764778
 //		},
 //		{
 //			"cmd": "findElement",
-//				"startTime": 1615913972545,
-//				"endTime": 1615913972576
+//				"startTime": 1616826764789,
+//				"endTime": 1616826764847
 //		},
 //		{
 //			"cmd": "elementDisplayed",
-//				"startTime": 1615913972579,
-//				"endTime": 1615913972590
+//				"startTime": 1616826764857,
+//				"endTime": 1616826765428
 //		},
 //		{
 //			"cmd": "findElement",
-//				"startTime": 1615913972609,
-//				"endTime": 1615913972636
+//				"startTime": 1616826765444,
+//				"endTime": 1616826765501
 //		},
 //		{
 //			"cmd": "proxyReqRes",
-//				"startTime": 1615913972639,
-//				"endTime": 1615913972658
+//				"startTime": 1616826765519,
+//				"endTime": 1616826765604
 //		},
 //		{
 //			"cmd": "findElement",
-//				"startTime": 1615913972670,
-//				"endTime": 1615913980372
+//				"startTime": 1616826765632,
+//				"endTime": 1616826797339
 //		},
 //		{
 //			"cmd": "elementDisplayed",
-//				"startTime": 1615913980376,
-//				"endTime": 1615913980436
+//				"startTime": 1616826797355,
+//				"endTime": 1616826827987
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1616826827998,
+//				"endTime": 1616826858520
 //		},
 //		{
 //			"cmd": "click",
-//				"startTime": 1615913980447,
-//				"endTime": 1615913982213
+//				"startTime": 1616826858538,
+//				"endTime": 1616826882022
 //		},
 //		{
 //			"cmd": "proxyReqRes",
-//				"startTime": 1615913982215,
-//				"endTime": 1615913982244
+//				"startTime": 1616826882039,
+//				"endTime": 1616826882084
 //		},
 //		{
 //			"cmd": "findElement",
-//				"startTime": 1615913982261,
-//				"endTime": 1615913982320
+//				"startTime": 1616826882095,
+//				"endTime": 1616826882161
 //		},
 //		{
 //			"cmd": "elementDisplayed",
-//				"startTime": 1615913982323,
-//				"endTime": 1615913982370
+//				"startTime": 1616826882175,
+//				"endTime": 1616826882641
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1616826882666,
+//				"endTime": 1616826902915
 //		},
 //		{
 //			"cmd": "click",
-//				"startTime": 1615913982387,
-//				"endTime": 1615913984291
+//				"startTime": 1616826902933,
+//				"endTime": 1616826924876
 //		},
 //		{
 //			"cmd": "findElement",
-//				"startTime": 1615913984304,
-//				"endTime": 1615913984366
+//				"startTime": 1616826924894,
+//				"endTime": 1616826926142
 //		},
 //		{
 //			"cmd": "elementDisplayed",
-//				"startTime": 1615913984369,
-//				"endTime": 1615913985194
+//				"startTime": 1616826926149,
+//				"endTime": 1616826926755
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1616826926770,
+//				"endTime": 1616826926909
 //		},
 //		{
 //			"cmd": "click",
-//				"startTime": 1615913985197,
-//				"endTime": 1615913987088
+//				"startTime": 1616826926931,
+//				"endTime": 1616826928058
 //		},
 //		{
 //			"cmd": "findElement",
-//				"startTime": 1615913987106,
-//				"endTime": 1615913987161
+//				"startTime": 1616826928074,
+//				"endTime": 1616826928787
 //		},
 //		{
 //			"cmd": "elementDisplayed",
-//				"startTime": 1615913987164,
-//				"endTime": 1615913987209
-//		},
-//		{
-//			"cmd": "elementDisplayed",
-//				"startTime": 1615913987212,
-//				"endTime": 1615913987251
+//				"startTime": 1616826928804,
+//				"endTime": 1616826928896
 //		},
 //		{
 //			"cmd": "getLogEvents",
-//				"startTime": 1615913987260,
-//				"endTime": 1615913987260
+//				"startTime": 1616826928933,
+//				"endTime": 1616826928934
 //		}
 //  ]
 //	}

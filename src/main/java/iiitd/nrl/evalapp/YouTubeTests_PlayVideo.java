@@ -91,29 +91,36 @@ public class YouTubeTests_PlayVideo {
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
+
+		MyDatabase.setCurrentApp(appName);
+		MyDatabase.setAppJsonCommands(jsonString);
+		MyDatabase.setTestStatus(testResult.isSuccess());
+		MyDatabase.setTestStatusReason(testStatusReason);
+		MyDatabase.setConnType(getConnectionType());
+
 //		System.out.println(jsonString);
-		long timeTaken = 0;
-
-		HashMap<String, Long> main_events = new HashMap<>();
-
-		if (testResult.isSuccess()) {
-			if (testResult.getName() == "playTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, 6, 7);
-				main_events.put("searchVideo", timeTaken);
-
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-				main_events.put("playVideo", timeTaken);
-
-			} else if (testResult.getName() == "channelTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, 6, 7);
-				main_events.put("searchChannel", timeTaken);
-
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-				main_events.put("openChannelPage", timeTaken);
-			}
-		}
-
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+//		long timeTaken = 0;
+//
+//		HashMap<String, Long> main_events = new HashMap<>();
+//
+//		if (testResult.isSuccess()) {
+//			if (testResult.getName() == "playTest") {
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, 6, 7);
+//				main_events.put("searchVideo", timeTaken);
+//
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
+//				main_events.put("playVideo", timeTaken);
+//
+//			} else if (testResult.getName() == "channelTest") {
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, 6, 7);
+//				main_events.put("searchChannel", timeTaken);
+//
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
+//				main_events.put("openChannelPage", timeTaken);
+//			}
+//		}
+//
+//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 		testStatusReason = "NA";
 		driver.quit();
 	}
@@ -139,7 +146,10 @@ public class YouTubeTests_PlayVideo {
 			/* searching video time measurement starts */
 
 
-			driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Official Trailer\")")).click();
+			String ui = "new UiSelector().descriptionContains(\"Official Trailer\")";
+			driver.findElement(MobileBy.AndroidUIAutomator(ui));
+			driver.findElement(MobileBy.AndroidUIAutomator(ui)).click();
+
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Video player"))).isDisplayed();
 
 		} catch (Exception e) {

@@ -64,19 +64,24 @@ public class GoogleMapsTest {
     @AfterMethod
     public void restart(ITestResult testResult) {
         String jsonString = driver.getEvents().getJsonData();
-//        System.out.println(jsonString);
-        long timeTaken = 0;
 
-        HashMap<String, Long> main_events = new HashMap<>();
-
-        if (testResult.isSuccess()) {
-            if (testResult.getName() == "searchPlace") {
-                timeTaken = MyDatabase.getTimeTaken(jsonString, 6, -2);
-                main_events.put("searchPlace", timeTaken);
-            }
-        }
-
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+        MyDatabase.setCurrentApp(appName);
+        MyDatabase.setAppJsonCommands(jsonString);
+        MyDatabase.setTestStatus(testResult.isSuccess());
+        MyDatabase.setTestStatusReason(testStatusReason);
+        MyDatabase.setConnType(getConnectionType());
+//        long timeTaken = 0;
+//
+//        HashMap<String, Long> main_events = new HashMap<>();
+//
+//        if (testResult.isSuccess()) {
+//            if (testResult.getName() == "searchPlace") {
+//                timeTaken = MyDatabase.getTimeTaken(jsonString, 6, -2);
+//                main_events.put("searchPlace", timeTaken);
+//            }
+//        }
+//
+//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
         testStatusReason = "NA";
         driver.quit();
     }

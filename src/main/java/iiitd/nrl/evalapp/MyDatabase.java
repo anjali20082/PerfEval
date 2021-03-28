@@ -34,6 +34,41 @@ public class MyDatabase {
     public static MongoDatabase database;
     public static MongoCollection<Document> student_collection;
 
+    public static String appJsonCommands;
+    public static String currentApp;
+    public static String testStatusReason;
+    public static boolean testStatus;
+    public static String connType;
+
+
+    public static void setAppJsonCommands(String appJsonCommands) {
+        MyDatabase.appJsonCommands = appJsonCommands;
+    }
+
+    public static void setCurrentApp(String currentApp) {
+        MyDatabase.currentApp = currentApp;
+    }
+
+    public static void setTestStatus(boolean testStatus) {
+        MyDatabase.testStatus = testStatus;
+    }
+
+    public static void setTestStatusReason(String testStatusReason) {
+        MyDatabase.testStatusReason = testStatusReason;
+    }
+
+    public static void setConnType(String connType) {
+        MyDatabase.connType = connType;
+    }
+
+    public static void setPacket_sizes_before(String packet_sizes_before) {
+        MyDatabase.packet_sizes_before = packet_sizes_before;
+    }
+
+    public static void setPacket_sizes_after(String packet_sizes_after) {
+        MyDatabase.packet_sizes_after = packet_sizes_after;
+    }
+
     public static void setUpDatabase()
     {
         String uri = "mongodb+srv://admin17080:prince%40123@cluster0.ssjoc.gcp.mongodb.net/TestingApps?retryWrites=true&w=majority";
@@ -105,6 +140,32 @@ public class MyDatabase {
         document.append("connType", connType);
         document.append("status", testStatus);
         document.append("reason", testStatusReason);
+
+        student_collection.insertOne(document);
+    }
+
+    public static void addTestResult() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String currentTime = dtf.format(now);
+
+        count++;
+        System.out.println("Test No. " + count + "/" + totalTests + " Completed");
+        System.out.println("App: " + MyDatabase.currentApp);
+        System.out.println("Status: " + MyDatabase.testStatus + "\n");
+        System.out.println("Reason: " + MyDatabase.testStatusReason + "\n");
+        System.out.println("JSON: " + MyDatabase.appJsonCommands);
+
+        Document document = new Document("startedAt", currentTime);
+        document.append("app", MyDatabase.currentApp);
+        document.append("json", MyDatabase.appJsonCommands);
+        document.append("connType", MyDatabase.connType);
+        document.append("status", MyDatabase.testStatus);
+        document.append("reason", MyDatabase.testStatusReason);
+        document.append("data_before", packet_sizes_before);
+        document.append("data_after", packet_sizes_after);
+
+        MyDatabase.setPacket_sizes_before(MyDatabase.packet_sizes_after);
 
         student_collection.insertOne(document);
     }

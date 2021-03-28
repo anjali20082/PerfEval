@@ -17,7 +17,7 @@ import java.net.URL;
 
 public class TrakBytesUpload {
     AndroidDriver<MobileElement> driver;
-    String appName = "Whatsapp";
+    String appName = "Trakbytes";
     String testName = "NA";
     String testStatusReason = "NA";
     String packetData = "NA";
@@ -60,9 +60,8 @@ public class TrakBytesUpload {
 
     @AfterMethod
     public void restart(ITestResult testResult) {
-        MyDatabase.packet_sizes_after = packetData;
-        MyDatabase.uploadPacketsData();
-        MyDatabase.sendPINGLog();
+        MyDatabase.setPacket_sizes_after(packetData);
+        MyDatabase.addTestResult();
         driver.quit();
     }
 
@@ -72,12 +71,10 @@ public class TrakBytesUpload {
         WebDriverWait wait = new WebDriverWait(driver, 15);
 
         try {
-
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.android.packageinstaller:id/permission_allow_button"))).click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.hawk.trakbytes:id/upload_stats"))).click();
-            System.out.println("Upload Stats clicked");
             Thread.sleep(3000);
-            packetData = driver.getClipboardText();
+            System.out.println("Upload Stats clicked");
+            packetData = driver.findElement(By.id("com.hawk.trakbytes:id/stats_text")).getText();
 
         } catch (Exception e) {
             testStatusReason = e.toString();

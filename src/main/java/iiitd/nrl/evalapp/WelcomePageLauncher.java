@@ -61,6 +61,18 @@ public class WelcomePageLauncher extends Application {
         stage.show();
     }
 
+    private void addTestsToSuite(List<XmlSuite> suiteFiles, List<XmlClass> classes, String app) {
+        XmlSuite suite = new XmlSuite();
+        suite.setName(app + "Suite");
+
+        XmlTest test = new XmlTest(suite);
+        test.setName(app + "Test");
+
+        test.setClasses(classes);
+
+        suiteFiles.add(suite);
+    }
+
     @FXML
     void clickProceed(ActionEvent e) throws IOException {
         if( (email.getText()==null || email.getText().trim().isEmpty() ) || (locn.getText()==null || locn.getText().trim().isEmpty() ) )
@@ -75,92 +87,152 @@ public class WelcomePageLauncher extends Application {
             MainAppLauncher controller = loader.getController();
 
             TestNG runner = new TestNG();
-            XmlSuite suite = new XmlSuite();
-            suite.setName("AppSuite");
 
-            XmlTest test = new XmlTest(suite);
-            test.setName("AppiumTests");
-            List<XmlClass> classes = new ArrayList<XmlClass>();
+            // Create a list of String
+            List<XmlSuite> suiteFiles = new ArrayList<XmlSuite>();
 
-            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
+            List<XmlClass> tb_classes = new ArrayList<XmlClass>();
+            tb_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
+            addTestsToSuite(suiteFiles, tb_classes, "Yts");
+
 
             if (youtube_cb.isSelected()) {
-                classes.add(new XmlClass("iiitd.nrl.evalapp.YouTubeTests_PlayVideo"));
-                classes.add(new XmlClass("iiitd.nrl.evalapp.YouTubeTests_SearchChannel"));
+                List<XmlClass> yts_classes = new ArrayList<XmlClass>();
+                yts_classes.add(new XmlClass("iiitd.nrl.evalapp.YouTubeTests_SearchChannel"));
+                yts_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, yts_classes, "Yts");
+
+                List<XmlClass> ytp_classes = new ArrayList<XmlClass>();
+                ytp_classes.add(new XmlClass("iiitd.nrl.evalapp.YouTubeTests_PlayVideo"));
+                ytp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, ytp_classes, "Ytp");
+
+
                 MyDatabase.totalTests += 2;
             }
 
             if (hotstar_cb.isSelected()) {
-                classes.add(new XmlClass("iiitd.nrl.evalapp.HotstarTests"));
+                List<XmlClass> hs_classes = new ArrayList<XmlClass>();
+                hs_classes.add(new XmlClass("iiitd.nrl.evalapp.HotstarTests_search"));
+                hs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, hs_classes, "Hs");
+
+
+                List<XmlClass> classes = new ArrayList<XmlClass>();
+                classes.add(new XmlClass("iiitd.nrl.evalapp.HotstarTests_trending"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, classes, "Ht");
+
+
                 MyDatabase.totalTests += 2;
             }
+
             if (linkedin_cb.isSelected()) {
-                classes.add(new XmlClass("iiitd.nrl.evalapp.LinkedInTests"));
+                List<XmlClass> lp_classes = new ArrayList<XmlClass>();
+                lp_classes.add(new XmlClass("iiitd.nrl.evalapp.LinkedInTests_profile"));
+                lp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, lp_classes, "Lp");
+
+                List<XmlClass> lc_classes = new ArrayList<XmlClass>();
+                lc_classes.add(new XmlClass("iiitd.nrl.evalapp.LinkedInTests_myConnections"));
+                lc_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, lc_classes, "Lc");
+
+                List<XmlClass> ls_classes = new ArrayList<XmlClass>();
+                ls_classes.add(new XmlClass("iiitd.nrl.evalapp.LinkedInTests_search"));
+                ls_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, ls_classes, "Ls");
+
                 MyDatabase.totalTests += 3;
             }
+
             if (facebook_cb.isSelected()) {
-                classes.add(new XmlClass("iiitd.nrl.evalapp.FacebookTests"));
+                List<XmlClass> fp_classes = new ArrayList<XmlClass>();
+                fp_classes.add(new XmlClass("iiitd.nrl.evalapp.FacebookTests_post"));
+                fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, fp_classes, "Fp");
+
+                List<XmlClass> fs_classes = new ArrayList<XmlClass>();
+                fs_classes.add(new XmlClass("iiitd.nrl.evalapp.FacebookTests_search"));
+                fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, fs_classes, "Fs");
+
                 MyDatabase.totalTests += 2;
             }
+
             if (flipkart_cb.isSelected()) {
+                List<XmlClass> classes = new ArrayList<XmlClass>();
                 classes.add(new XmlClass("iiitd.nrl.evalapp.FlipkartTests"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, classes, "Fl");
                 MyDatabase.totalTests += 1;
             }
+
             if (amazon_cb.isSelected()) {
+                List<XmlClass> classes = new ArrayList<XmlClass>();
                 classes.add(new XmlClass("iiitd.nrl.evalapp.AmazonTests"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, classes, "Am");
                 MyDatabase.totalTests += 1;
             }
 
             if (telegram_cb.isSelected()) {
+                List<XmlClass> classes = new ArrayList<XmlClass>();
                 classes.add(new XmlClass("iiitd.nrl.evalapp.TelegramTests"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, classes, "Tg");
                 MyDatabase.totalTests += 1;
             }
 
             if (whatsapp_cb.isSelected()) {
+                List<XmlClass> classes = new ArrayList<XmlClass>();
                 classes.add(new XmlClass("iiitd.nrl.evalapp.WhatsappTests"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, classes, "Wh");
                 MyDatabase.totalTests += 1;
             }
 
             if (googlemaps_cb.isSelected()) {
+                List<XmlClass> classes = new ArrayList<XmlClass>();
                 classes.add(new XmlClass("iiitd.nrl.evalapp.GoogleMapsTest"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, classes, "Gm");
                 MyDatabase.totalTests += 1;
             }
 
             if (googlenews_cb.isSelected()) {
+                List<XmlClass> classes = new ArrayList<XmlClass>();
                 classes.add(new XmlClass("iiitd.nrl.evalapp.GooglenewsTests"));
-                MyDatabase.totalTests += 1;
-            }
-            if (dailyhunt_cb.isSelected()) {
-                classes.add(new XmlClass("iiitd.nrl.evalapp.DailyhuntTests"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, classes, "Gn");
                 MyDatabase.totalTests += 1;
             }
 
-            // payment apps
-//            if (amazonpay_cb.isSelected()) {
-//                classes.add(new XmlClass("iiitd.nrl.evalapp.AmazonPayTest"));
-//                MyDatabase.totalTests += 1;
-//            }
+            if (dailyhunt_cb.isSelected()) {
+                List<XmlClass> classes = new ArrayList<XmlClass>();
+                classes.add(new XmlClass("iiitd.nrl.evalapp.DailyhuntTests"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, classes, "Dh");
+                MyDatabase.totalTests += 1;
+            }
+
             if (paytm_cb.isSelected()) {
+                List<XmlClass> classes = new ArrayList<XmlClass>();
                 classes.add(new XmlClass("iiitd.nrl.evalapp.PaytmTests"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, classes, "Pt");
                 MyDatabase.totalTests += 1;
             }
             if (mobikwik_cb.isSelected()) {
+                List<XmlClass> classes = new ArrayList<XmlClass>();
                 classes.add(new XmlClass("iiitd.nrl.evalapp.MobikwikTests"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, classes, "Mk");
                 MyDatabase.totalTests += 1;
             }
 
-            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
-
-            test.setXmlClasses(classes) ;
-
-            // Create a list of String
-            List<XmlSuite> suitefiles=new ArrayList<XmlSuite>();
-
-            // Add xml file which you have to execute
-            suitefiles.add(suite);
-
             // now set xml file for execution
-            runner.setXmlSuites(suitefiles);
+            runner.setXmlSuites(suiteFiles);
 
             controller.setTestNGRunner(runner);
             Stage stage = (Stage) proceed.getScene().getWindow();

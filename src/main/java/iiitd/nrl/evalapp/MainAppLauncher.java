@@ -81,7 +81,7 @@ public class MainAppLauncher {
                                         runTest.setText("Tests Completed");
                                         runTest.setStyle("-fx-background-color: lightgreen; ");
 
-//                                        MyDatabase.sendPINGLog();
+                                        MyDatabase.sendPINGLog();
                                     }
                                     else{
                                         Alert alert = new Alert(AlertType.ERROR);

@@ -68,19 +68,25 @@ public class GooglenewsTests {
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
-//		System.out.println(jsonString);
-		long timeTaken = 0;
 
-		HashMap<String, Long> main_events = new HashMap<String, Long>();
+		MyDatabase.setCurrentApp(appName);
+		MyDatabase.setAppJsonCommands(jsonString);
+		MyDatabase.setTestStatus(testResult.isSuccess());
+		MyDatabase.setTestStatusReason(testStatusReason);
+		MyDatabase.setConnType(getConnectionType());
 
-		if (testResult.isSuccess()) {
-			if (testResult.getName() == "searchTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -3, -2);
-				main_events.put("searchNews", timeTaken);
-			}
-		}
-
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+//		long timeTaken = 0;
+//
+//		HashMap<String, Long> main_events = new HashMap<String, Long>();
+//
+//		if (testResult.isSuccess()) {
+//			if (testResult.getName() == "searchTest") {
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, -3, -2);
+//				main_events.put("searchNews", timeTaken);
+//			}
+//		}
+//
+//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 		testStatusReason = "NA";
 		driver.quit();
 	}
