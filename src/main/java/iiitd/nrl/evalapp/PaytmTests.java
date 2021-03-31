@@ -113,14 +113,22 @@ public class PaytmTests {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/image_container_1"))).click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/p2p_cp_search_ll"))).click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Enter Name or Mobile Number\")"))).sendKeys("8802647803");
-            wait.until(ExpectedConditions.or(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Proceed\")")), ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"918802647803\")"))));
+//            wait.until(ExpectedConditions.or(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Proceed\")")), ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"918802647803\")"))));
+//
+//            if (driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Proceed\")")).isEmpty()) {
+//                driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"918802647803\")")).click();
+//            }
+//            else {
+//                driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Proceed\")")).click();
+//            }
 
-            if (driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Proceed\")")).isEmpty()) {
-                driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"918802647803\")")).click();
+            List<MobileElement> contacts = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"8802647803\")"));
+            while (contacts.size() < 2) {
+                System.out.println(contacts.size() + Boolean.toString(contacts.size() > 1));
+                contacts = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"8802647803\")"));
             }
-            else {
-                driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Proceed\")")).click();
-            }
+
+            contacts.get(1).click();
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).sendKeys("1");
