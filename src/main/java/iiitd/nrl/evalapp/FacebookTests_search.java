@@ -114,10 +114,13 @@ public class FacebookTests_search {
             ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
             commandsCompleted += "pressEnter:";
 
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Posts\")"))).click();
+            commandsCompleted += "clickPosts:";
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Profile picture\")"))).click();
+            commandsCompleted += "clickProfilePicture:";
             /* Search person time measurement starts */
-            // description contains "Kangana Ranaut"
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Kangana Ranaut\")"))).click();
-            commandsCompleted += "clickKR:";
+
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Profile picture\")")));
             commandsCompleted += "searchPersonProfile:";
             /* Search person time measurement stops */
