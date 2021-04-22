@@ -27,12 +27,8 @@ public class PaytmTests {
     String appName = "Paytm";
     String testName = "NA";
     String testStatusReason = "NA";
+    String commandsCompleted = "";
 
-    @AfterClass
-    public void update() {
-
-    }
-    
     @BeforeMethod
     public void launchCap() {
         DesiredCapabilities cap=new DesiredCapabilities();
@@ -74,23 +70,12 @@ public class PaytmTests {
         String jsonString = driver.getEvents().getJsonData();
 
         MyDatabase.setCurrentApp(appName);
+        MyDatabase.setCommands(commandsCompleted);
         MyDatabase.setAppJsonCommands(jsonString);
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
 
-//        long timeTaken = 0;
-//
-//        HashMap<String, Long> main_events = new HashMap<>();
-//
-//        if (testResult.isSuccess()) {
-//            if (testResult.getName() == "sendMoneyFromWallet") {
-//                timeTaken = MyDatabase.getTimeTaken(jsonString, -7, -4);
-//                main_events.put(testResult.getName(), timeTaken);
-//            }
-//        }
-//
-//        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
         testStatusReason = "NA";
         driver.quit();
 	}
@@ -99,54 +84,54 @@ public class PaytmTests {
     public void sendMoneyFromWallet() throws InterruptedException {
         testName = "Pay Nikhil Re. 1/-";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
-
+        String phoneno = "8076011980";
+        String ui;
         try {
-
-            if (!driver.findElements(By.id("net.one97.paytm:id/iv_close")).isEmpty()) {
-                driver.findElement(By.id("net.one97.paytm:id/iv_close")).click();
-            }
-
-            if (!driver.findElements(By.id("net.one97.paytm:id/iv_cross_background")).isEmpty()) {
-                driver.findElement(By.id("net.one97.paytm:id/iv_cross_background")).click();
-            }
-
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/image_container_1"))).click();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/p2p_cp_search_ll"))).click();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Enter Name or Mobile Number\")"))).sendKeys("8802647803");
-//            wait.until(ExpectedConditions.or(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Proceed\")")), ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"918802647803\")"))));
-//
-//            if (driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Proceed\")")).isEmpty()) {
-//                driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"918802647803\")")).click();
-//            }
-//            else {
-//                driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Proceed\")")).click();
-//            }
+            commandsCompleted += "scan&Pay:";
 
-            List<MobileElement> contacts = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"8802647803\")"));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/p2p_cp_search_ll"))).click();
+            commandsCompleted += "clickSearch:";
+
+            ui = "UiSelector().text(\"Enter Name or Mobile Number\")";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).sendKeys(phoneno);
+            commandsCompleted += "enterNumber:";
+
+            ui = "new UiSelector().textContains(\"" + phoneno + "\")";
+            List<MobileElement> contacts = driver.findElements(MobileBy.AndroidUIAutomator(ui));
             while (contacts.size() < 2) {
-                System.out.println(contacts.size() + Boolean.toString(contacts.size() > 1));
-                contacts = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"8802647803\")"));
+//                System.out.println(contacts.size() + Boolean.toString(contacts.size() > 1));
+                contacts = driver.findElements(MobileBy.AndroidUIAutomator(ui));
             }
 
             contacts.get(1).click();
+            commandsCompleted += "clickNumber:";
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).click();
+            commandsCompleted += "clickMoneyField:";
+
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).sendKeys("1");
+            commandsCompleted += "enterAmount:";
 
             /* sending money time measurement starts */
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/ll_uni_pay"))).click();
-            List<MobileElement> elements = driver.findElements(By.id("net.one97.paytm:id/iv_close_icon"));
-            if (!elements.isEmpty())
-                elements.get(0).click();
+            commandsCompleted += "clickPay:";
 
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/p2p_amount_tv"))).isDisplayed();
+//            List<MobileElement> elements = driver.findElements(By.id("net.one97.paytm:id/iv_close_icon"));
+//            if (!elements.isEmpty()) {
+//                elements.get(0).click();
+//            }
+
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Transaction ID\");"))).isDisplayed();
+            commandsCompleted += "clickPay:";
             /* sending money time measurement stops */
 
             if (driver.findElements(By.id("net.one97.paytm:id/p2p_success_status_lav")).isEmpty()) {
                 testStatusReason = "Payment failed";
+                commandsCompleted += "F";
             } else {
                 testStatusReason = "Payment successful";
+                commandsCompleted += "P";
             }
         } catch (Exception e) {
             testStatusReason = "Payment Failed\n" + e.toString();
