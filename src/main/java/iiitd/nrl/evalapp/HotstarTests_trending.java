@@ -37,11 +37,7 @@ public class HotstarTests_trending {
     String appName = "Hotstar_trending";
     String testName = "NA";
     String testStatusReason = "NA";
-
-    @AfterClass
-    public void update() {
-
-    }
+    String commandsCompleted = "";
 
     @BeforeMethod
     public void launchCap() {
@@ -83,26 +79,12 @@ public class HotstarTests_trending {
         String jsonString = driver.getEvents().getJsonData();
 
         MyDatabase.setCurrentApp(appName);
+        MyDatabase.setCommands(commandsCompleted);
         MyDatabase.setAppJsonCommands(jsonString);
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
 
-//        long timeTaken = 0;
-//
-//        HashMap<String, Long> main_events = new HashMap<String, Long>();
-//
-//        if (testResult.isSuccess()) {
-//            if (testResult.getName() == "searchTest") {
-//                timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-//                main_events.put(testResult.getName(), timeTaken);
-//            } else if (testResult.getName() == "trendingTest") {
-//                timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-//                main_events.put(testResult.getName(), timeTaken);
-//            }
-//        }
-//
-//        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
         testStatusReason = "NA";
         driver.quit();
     }
@@ -114,10 +96,16 @@ public class HotstarTests_trending {
         testName = "Trending Test";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
         try {
+
             wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Open navigation drawer"))).click();
+            commandsCompleted += "openDrawer:";
             /* load trending videos page time measurement starts*/
             wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Trending\")"))).click();
+            commandsCompleted += "clickTrending:";
+
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/frame_player")));
+            commandsCompleted += "checkVideoPlayer:";
+            commandsCompleted += "P";
             /* load trending videos page time measurement stops*/
         } catch (Exception e) {
             testStatusReason = e.toString();

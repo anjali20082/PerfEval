@@ -28,6 +28,7 @@ public class YouTubeTests_SearchChannel {
 	String appName = "Youtube_searchChannel";
 	String testName = "NA";
 	String testStatusReason = "NA";
+	String commandsCompleted = "";
 
 	@BeforeMethod
 	public void launchCap() {
@@ -69,32 +70,12 @@ public class YouTubeTests_SearchChannel {
 		String jsonString = driver.getEvents().getJsonData();
 
 		MyDatabase.setCurrentApp(appName);
+		MyDatabase.setCommands(commandsCompleted);
 		MyDatabase.setAppJsonCommands(jsonString);
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
-//		long timeTaken = 0;
-//
-//		HashMap<String, Long> main_events = new HashMap<>();
-//
-//		if (testResult.isSuccess()) {
-//			if (testResult.getName() == "playTest") {
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, 6, 7);
-//				main_events.put("searchVideo", timeTaken);
-//
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-//				main_events.put("playVideo", timeTaken);
-//
-//			} else if (testResult.getName() == "channelTest") {
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, 6, 7);
-//				main_events.put("searchChannel", timeTaken);
-//
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-//				main_events.put("openChannelPage", timeTaken);
-//			}
-//		}
-//
-//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+
 		testStatusReason = "NA";
         driver.quit();
 	}
@@ -106,18 +87,26 @@ public class YouTubeTests_SearchChannel {
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/menu_item_1")));
-			driver.findElement(By.id("com.google.android.youtube:id/menu_item_1")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/menu_item_1"))).click();
+			commandsCompleted += "clickSearch:";
 
 			driver.findElement(By.id("com.google.android.youtube:id/search_edit_text")).sendKeys("unacademy upsc");
-			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+			commandsCompleted += "enterName:";
 
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-							+ "new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\"));"))).isDisplayed();
+			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+			commandsCompleted += "pressEnter:";
+
+			String ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\"));";
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(ui))).isDisplayed();
+			commandsCompleted += "searchResult:";
 
 			driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\")")).click();
+			commandsCompleted += "clickSeachResult:";
+
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Subscribe to Unacademy UPSC."))).isDisplayed();
+			commandsCompleted += "checkChannel:";
+			commandsCompleted += "P";
+
 		} catch (Exception e) {
 			testStatusReason = e.toString();
 			throw e;

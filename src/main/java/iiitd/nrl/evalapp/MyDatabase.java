@@ -27,7 +27,7 @@ public class MyDatabase {
     public static String packet_sizes_before;
     public static String packet_sizes_after;
     protected static float version = 5.0f;
-    protected static int testTimeLimit = 150;
+    protected static int testTimeLimit = 15;
     protected static int count = 0;
     protected static int totalTests = 0;
     public static MongoClient mongoClient;
@@ -35,11 +35,16 @@ public class MyDatabase {
     public static MongoCollection<Document> student_collection;
 
     public static String appJsonCommands;
+    public static String commands;
     public static String currentApp;
     public static String testStatusReason;
     public static boolean testStatus;
     public static String connType;
 
+
+    public static void setCommands(String commands) {
+        MyDatabase.commands = commands;
+    }
 
     public static void setAppJsonCommands(String appJsonCommands) {
         MyDatabase.appJsonCommands = appJsonCommands;
@@ -159,6 +164,7 @@ public class MyDatabase {
         Document document = new Document("startedAt", currentTime);
         document.append("app", MyDatabase.currentApp);
         document.append("json", MyDatabase.appJsonCommands);
+        document.append("commands", MyDatabase.commands);
         document.append("connType", MyDatabase.connType);
         document.append("status", MyDatabase.testStatus);
         document.append("reason", MyDatabase.testStatusReason);
@@ -168,6 +174,12 @@ public class MyDatabase {
         MyDatabase.setPacket_sizes_before(MyDatabase.packet_sizes_after);
 
         student_collection.insertOne(document);
+
+        MyDatabase.setCurrentApp("");
+        MyDatabase.setAppJsonCommands("");
+        MyDatabase.setTestStatus(false);
+        MyDatabase.setTestStatusReason("");
+        MyDatabase.setConnType("");
     }
 
     public static void sendPINGLog() {

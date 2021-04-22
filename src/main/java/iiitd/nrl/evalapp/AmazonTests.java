@@ -28,6 +28,7 @@ public class AmazonTests {
 	String appName = "Amazon";
 	String testName = "NA";
 	String testStatusReason = "NA";
+	String commandsCompleted = "";
 
     @AfterClass
     public void update() {
@@ -75,6 +76,7 @@ public class AmazonTests {
 
 		MyDatabase.setCurrentApp(appName);
 		MyDatabase.setAppJsonCommands(jsonString);
+		MyDatabase.setCommands(commandsCompleted);
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
@@ -101,7 +103,6 @@ public class AmazonTests {
 //		}
 //
 //		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
-		testStatusReason = "NA";
 		driver.quit();
 	}
 
@@ -109,36 +110,52 @@ public class AmazonTests {
 	public void searchProduct() throws InterruptedException {
 		testName = "search product";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
+		String ui = "";
 
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text"))).click();
+			ui = "in.amazon.mShop.android.shopping:id/rs_search_src_text";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).click();
+			commandsCompleted += "searchBox:";
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/rs_search_src_text"))).sendKeys("laptop");
+			ui = "in.amazon.mShop.android.shopping:id/rs_search_src_text";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).sendKeys("lays");
+			commandsCompleted += "enterProductName:";
 
 			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Prime Eligible\");")));
+			commandsCompleted += "pressEnter:";
 
-			String ui = "new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView(" + "new UiSelector().descriptionContains(\"out of 5 stars\"))";
+			ui = "new UiSelector().textContains(\"Prime Eligible\");";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
-			driver.findElement(MobileBy.AndroidUIAutomator(ui)).click();
+			commandsCompleted += "searchResult:";
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"out of 5 stars\");")));
+			ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().descriptionContains(\"out of 5 stars\"))";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+			commandsCompleted += "clickProduct:";
+
+
+//			ui = "new UiSelector().descriptionContains(\"out of 5 stars\");";
+			ui = "new UiSelector().descriptionContains(\"Amazon Fresh\");";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+			commandsCompleted += "productPage:";
 			// Search Product Completed - 14th
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/chrome_action_bar_cart_count")));
+			ui = "in.amazon.mShop.android.shopping:id/chrome_action_bar_cart_count";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui)));
 			MobileElement cartValueElement = driver.findElement(By.id("in.amazon.mShop.android.shopping:id/chrome_action_bar_cart_count"));
+
+
 			int cartValueBefore = Integer.parseInt(cartValueElement.getText());
 			System.out.println("cart value before:" + cartValueBefore);
+			commandsCompleted += "checkCart:";
 
 			/* add product test measurement starts 18th*/
 
-			ui = "new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("	+ "new UiSelector().resourceId(\"add-to-cart-button\"));";
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
-
-			driver.findElement(MobileBy.AndroidUIAutomator(ui)).click();
+//			ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().resourceId(\"add-to-cart-button\"));";
+			ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().textContains(\"Add to Cart\"));";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+			commandsCompleted += "addToCart:";
 
 			int cartValueAfter = Integer.parseInt(cartValueElement.getText());
-
 			while (cartValueAfter == cartValueBefore)
 				cartValueAfter = Integer.parseInt(cartValueElement.getText());
 
@@ -146,17 +163,24 @@ public class AmazonTests {
 			/* add product test measurement stops 20th*/
 
 			ui = "new UiSelector().description(\"Cart\");";
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
-			driver.findElement(MobileBy.AndroidUIAutomator(ui)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+			commandsCompleted += "goToCart";
+
+			ui = "new UiSelector().textContains(\"Lays American\");";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+			commandsCompleted += "amazonFresh:";
 
 			/* delete product test measurement starts*/
-			ui = "new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView(" + "new UiSelector().text(\"Delete\"));";
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
-			driver.findElement(MobileBy.AndroidUIAutomator(ui)).click();
+			ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"Delete\"));";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+			commandsCompleted += "removeProduct:";
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
-							"new UiSelector().textContains(\"was removed from Shopping Cart\");")));
+			ui = "new UiSelector().textContains(\"was removed from Shopping Cart\");";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+			commandsCompleted += "productRemoved:";
 			/* delete product test measurement stops*/
+
+			commandsCompleted += "P";
 
 		} catch (Exception e) {
 			testStatusReason = e.toString();

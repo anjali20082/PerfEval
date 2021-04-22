@@ -25,6 +25,7 @@ public class GooglenewsTests {
 	String appName = "GoogleNews";
 	String testName = "NA";
 	String testStatusReason = "NA";
+	String commandsCompleted = "";
 
     @AfterClass
     public void update() {
@@ -70,23 +71,12 @@ public class GooglenewsTests {
 		String jsonString = driver.getEvents().getJsonData();
 
 		MyDatabase.setCurrentApp(appName);
+		MyDatabase.setCommands(commandsCompleted);
 		MyDatabase.setAppJsonCommands(jsonString);
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
 
-//		long timeTaken = 0;
-//
-//		HashMap<String, Long> main_events = new HashMap<String, Long>();
-//
-//		if (testResult.isSuccess()) {
-//			if (testResult.getName() == "searchTest") {
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -3, -2);
-//				main_events.put("searchNews", timeTaken);
-//			}
-//		}
-//
-//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 		testStatusReason = "NA";
 		driver.quit();
 	}
@@ -95,43 +85,21 @@ public class GooglenewsTests {
 	public void searchTest() throws InterruptedException{
 		testName = "Search News Test";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
+
 		try {
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/title_and_body"))).click();
-
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/open_search_view_edit_text"))).sendKeys("delhi");
-
 			/* search news  test measurement starts*/
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-					"new UiScrollable(new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/home_fragment_content\").scrollable(true)).scrollIntoView(new UiSelector().resourceId(\"com.google.android.apps.magazines:id/title\"));"))).click();
+			String ui = "new UiScrollable(new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/home_fragment_content\").scrollable(true)).scrollIntoView(new UiSelector().resourceId(\"com.google.android.apps.magazines:id/title\"));";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+			commandsCompleted += "clickNews:";
 
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.google.android.apps.magazines:id/hero_action_button"))).click();
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.google.android.apps.magazines:id/edition_pager_header_icon_label")));
-//
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/rect_icon")));
-			/* search news  test measurement stops*/
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/hero_action_button"))).click();
+			commandsCompleted += "viewFullNews:";
 
-			/* load news  test measurement starts*/
-//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-//					"new UiScrollable(" + "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/recycler_view\").scrollable(true)).scrollIntoView("
-//							+ "new UiSelector().textContains(\"View Full coverage\"));"))).click();
-
-//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-//							"new UiSelector().text(\"View Full Coverage\");"))).click();
-
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
-//					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView(" +
-//							"new UiSelector().resourceId(\"com.google.android.apps.magazines:id/title\"));")));
-
-
-//			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
-//					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-//							+ "new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/card\"));")))).click();
-
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/primary_action_button")));
-
-//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-//					"new UiSelector().text(\"TOI\");"))).isDisplayed();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/edition_pager_header_icon_label")));
+			commandsCompleted += "checkNewsTitle:";
 			/* load news  test measurement stops*/
+
+			commandsCompleted += "P";
 		} catch (Exception e) {
 			testStatusReason = e.toString();
 			throw e;

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -38,13 +39,9 @@ public class FlipkartTests {
 	String appName = "Flipkart";
 	String testName = "NA";
 	String testStatusReason = "NA";
+	String commandsCompleted = "";
 	boolean addToCartClicked = false;
 
-	@AfterClass
-    public void update() {
-
-    }
-    
 	@BeforeMethod
 	public void launchCap() {
 		DesiredCapabilities cap=new DesiredCapabilities();
@@ -72,12 +69,12 @@ public class FlipkartTests {
 	public String getConnectionType() {
         Long connType = driver.getConnection().getBitMask();
         if (connType == 2)
-            return "Wifi";
+            return "Wifi 2";
         else if (connType == 4)
-            return "MobileData";
+            return "MobileData 4";
         else if (connType == 6)
-        	return "Wifi & MobileData";
-        return "Wifi";
+        	return "Wifi & MobileData 6";
+        return "Wifi " + connType;
     }
 	
 	@AfterMethod
@@ -86,33 +83,10 @@ public class FlipkartTests {
 
 		MyDatabase.setCurrentApp(appName);
 		MyDatabase.setAppJsonCommands(jsonString);
+		MyDatabase.setCommands(commandsCompleted);
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
-
-//		long timeTaken = 0;
-
-//		HashMap<String, Long> main_events = new HashMap<>();
-
-//		if (testResult.isSuccess()) {
-//			if (testResult.getName() == "getProduct") {
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, 9, 9) + MyDatabase.getTimeTaken(jsonString, 10, 11);
-//				main_events.put("searchProduct", timeTaken);
-//
-//				if (addToCartClicked) {
-//					timeTaken = MyDatabase.getTimeTaken(jsonString, 17, 18);
-//					main_events.put("addToCart", timeTaken);
-//				}
-//
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -8, -7);
-//				main_events.put("goToCart", timeTaken);
-//
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-//				main_events.put("removeFromCart", timeTaken);
-//			}
-//		}
-//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
-		testStatusReason = "NA";
 		driver.quit();
 	}
 
@@ -120,51 +94,71 @@ public class FlipkartTests {
 	public void getProduct() throws InterruptedException {
 		testName = "search product";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
-
+		String ui = "";
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.flipkart.android:id/search_widget_textbox"))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.flipkart.android:id/search_autoCompleteTextView"))).sendKeys("phone");
+//			ui = "com.flipkart.android:id/search_widget_textbox";
+			ui = "new UiSelector().textContains(\"Search for\");";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+			commandsCompleted += "searchBox:";
+
+			ui = "com.flipkart.android:id/search_autoCompleteTextView";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).sendKeys("phone");
+			commandsCompleted += "enterProductName:";
 
 			/* search product test measurement starts */
-			String ui = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.RelativeLayout[1]";
+			ui = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.RelativeLayout[1]";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ui))).click();
+			commandsCompleted += "clickProduct:";
 
-			ui = "new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView(" + "new UiSelector().textContains(\"★\"));";
+			ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().textContains(\"★\"));";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+			commandsCompleted += "clickProduct:";
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup")));
+//			ui = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup";
+			ui = "new UiSelector().textContains(\"TO CART\");";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+			commandsCompleted += "productPage:";
+
 			/* search product test measurement stops */
 
 			if (driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().text(\"GO TO CART\");")).isEmpty()) {
 				addToCartClicked = true;
 				testStatusReason = "add to cart clicked";
-				ui = "new UiSelector().text(\"ADD TO CART\");";
-				wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+
 				/* add to cart test measurement starts */
-				driver.findElement(MobileBy.AndroidUIAutomator(ui)).click();
+				ui = "new UiSelector().text(\"ADD TO CART\");";
+				wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+				commandsCompleted += "addToCart:";
 				/* add to cart test measurement stops */
 
-				wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Back Button"))).click();
+				ui = "Back Button";
+				wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId(ui))).click();
+				commandsCompleted += "backButton:";
 			} else {
 				testStatusReason = "add to cart not clicked";
+				commandsCompleted += "addToCartNotClicked:";
 			}
 
 			ui = "new UiSelector().text(\"GO TO CART\");";
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
-			driver.findElement(MobileBy.AndroidUIAutomator(ui)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+			commandsCompleted += "goToCart:";
 
 			/* remove from cart test measurement starts */
-			ui = "new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("	+ "new UiSelector().textContains(\"Remove\"));";
+			ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().textContains(\"Remove\"));";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+			commandsCompleted += "removeProduct:";
 
 			ui = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]";
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ui)));
+//			ui = "new UiSelector().textContains(\"Remove\");";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ui))).click();
+			commandsCompleted += "removeProduct:";
 
-			driver.findElement(By.xpath(ui)).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
-					"new UiSelector().text(\"My Cart\");")));
+			ui = "new UiSelector().text(\"Flipkart\");";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+			commandsCompleted += "myCart:";
 			/* remove from cart test measurement stop */
 
+			commandsCompleted += "P";
 
 			Thread.sleep(1000);
 		} catch (Exception e) {

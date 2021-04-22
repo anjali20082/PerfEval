@@ -26,11 +26,8 @@ public class LinkedInTests_myConnections {
     String appName = "LinkedIn_myConnections";
     String testName = "NA";
     String testStatusReason = "NA";
+    String commandsCompleted = "";
 
-    @AfterClass
-    public void update() {
-
-    }
     @BeforeMethod
     public void launchCap() {
         DesiredCapabilities cap=new DesiredCapabilities();
@@ -70,33 +67,12 @@ public class LinkedInTests_myConnections {
         String jsonString = driver.getEvents().getJsonData();
 
         MyDatabase.setCurrentApp(appName);
+        MyDatabase.setCommands(commandsCompleted);
         MyDatabase.setAppJsonCommands(jsonString);
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
-//        long timeTaken = 0;
-//
-//        HashMap<String, Long> main_events = new HashMap<String, Long>();
-//
-//        if (testResult.isSuccess()) {
-//            if (testResult.getName() == "viewProfile") {
-//                timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-//                main_events.put(testResult.getName(), timeTaken);
-//            } else if (testResult.getName() == "myConnections") {
-//                timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-//                main_events.put(testResult.getName(), timeTaken);
-//            }
-//            else if (testResult.getName() == "searchPerson") {
-//                timeTaken = MyDatabase.getTimeTaken(jsonString, -6, -6) + MyDatabase.getTimeTaken(jsonString, -4, -3);
-//                main_events.put(testResult.getName(), timeTaken);
-//            }
-////			else if (testResult.getName() == "sendMessage") {
-////				timeTaken = MyDatabase.getTimeTaken(jsonString, -9, -3);
-////				main_events.put(testResult.getName(), timeTaken);
-////			}
-//        }
-//
-//        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+
         testStatusReason = "NA";
         driver.quit();
     }
@@ -107,12 +83,21 @@ public class LinkedInTests_myConnections {
         WebDriverWait wait = new WebDriverWait(driver,MyDatabase.testTimeLimit);
 
         try {
+
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/tab_relationships"))).click();
+            commandsCompleted += "clickRelationships:";
+
             wait.until(ExpectedConditions.presenceOfElementLocated(By.id("com.linkedin.android:id/mynetwork_my_communitities_entry_point_container"))).click();
+            commandsCompleted += "myCommunity:";
 
             /* my connection time measurement starts*/
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"Connections\")"))).click();
+            commandsCompleted += "connections:";
+
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/search_entity_result_universal_template_container")));
+            commandsCompleted += "checkConnections:";
+
+            commandsCompleted += "P";
             /* my connection time measurement stops*/
         } catch (Exception e) {
             testStatusReason = e.toString();

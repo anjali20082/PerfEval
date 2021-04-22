@@ -51,6 +51,7 @@ public class YouTubeTests_PlayVideo {
 	String appName = "Youtube_playVideo";
 	String testName = "NA";
 	String testStatusReason = "NA";
+	String commandsCompleted = "";
 
 
 	@BeforeMethod
@@ -93,34 +94,12 @@ public class YouTubeTests_PlayVideo {
 		String jsonString = driver.getEvents().getJsonData();
 
 		MyDatabase.setCurrentApp(appName);
+		MyDatabase.setCommands(commandsCompleted);
 		MyDatabase.setAppJsonCommands(jsonString);
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
 
-//		System.out.println(jsonString);
-//		long timeTaken = 0;
-//
-//		HashMap<String, Long> main_events = new HashMap<>();
-//
-//		if (testResult.isSuccess()) {
-//			if (testResult.getName() == "playTest") {
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, 6, 7);
-//				main_events.put("searchVideo", timeTaken);
-//
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-//				main_events.put("playVideo", timeTaken);
-//
-//			} else if (testResult.getName() == "channelTest") {
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, 6, 7);
-//				main_events.put("searchChannel", timeTaken);
-//
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-//				main_events.put("openChannelPage", timeTaken);
-//			}
-//		}
-//
-//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 		testStatusReason = "NA";
 		driver.quit();
 	}
@@ -133,24 +112,29 @@ public class YouTubeTests_PlayVideo {
 
 		try {
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/menu_item_1")));
-			driver.findElement(By.id("com.google.android.youtube:id/menu_item_1")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/menu_item_1"))).click();
+			commandsCompleted += "clickSearch:";
+
 			driver.findElement(By.id("com.google.android.youtube:id/search_edit_text")).sendKeys("manikarnika");
+			commandsCompleted += "enterName:";
 
 			/* searching video time measurement starts */
 			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+			commandsCompleted += "pressEnter:";
 
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-							+ "new UiSelector().descriptionContains(\"Official Trailer\"));"))).isDisplayed();
+			String ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().descriptionContains(\"Official Trailer\"));";
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(ui))).isDisplayed();
+			commandsCompleted += "searchResult:";
 			/* searching video time measurement starts */
 
-
-			String ui = "new UiSelector().descriptionContains(\"Official Trailer\")";
-			driver.findElement(MobileBy.AndroidUIAutomator(ui));
+			ui = "new UiSelector().descriptionContains(\"Official Trailer\")";
 			driver.findElement(MobileBy.AndroidUIAutomator(ui)).click();
+			commandsCompleted += "clickSearchResult:";
 
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Video player"))).isDisplayed();
+			commandsCompleted += "checkVideoPlayer:";
+
+			commandsCompleted += "P";
 
 		} catch (Exception e) {
 			testStatusReason = e.toString();

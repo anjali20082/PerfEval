@@ -44,6 +44,7 @@ public class FacebookTests_post {
 	String appName = "Facebook_post";
 	String testName = "NA";
 	String testStatusReason = "NA";
+	String commandsCompleted = "";
 	
 	@AfterClass
     public void update() {
@@ -92,27 +93,11 @@ public class FacebookTests_post {
 
 		MyDatabase.setCurrentApp(appName);
 		MyDatabase.setAppJsonCommands(jsonString);
+		MyDatabase.setCommands(commandsCompleted);
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
-//		long timeTaken = 0;
-//
-//		HashMap<String, Long> main_events = new HashMap<String, Long>();
-//
-//		if (testResult.isSuccess()) {
-//			if (testResult.getName() == "postGroup") {
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -3, -2);
-//				main_events.put(testResult.getName(), timeTaken);
-//			}
-//			else if (testResult.getName() == "searchPerson") {
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -2);
-//				main_events.put(testResult.getName(), timeTaken);
-//
-//			}
-//		}
-//
-//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
-		testStatusReason = "NA";
+
 		driver.quit();
 	}
 
@@ -128,69 +113,60 @@ public class FacebookTests_post {
 		int rand_int = rand.nextInt(1000);
 		String rand_str = Integer.toString(rand_int);
 		String message = "Hi, this is an automated post:" + rand_str;
-
+		String ui = "";
 		try {
+			ui = "new UiSelector().descriptionMatches(\".*(?i)Groups(?-i).*\")";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+			commandsCompleted += "groups:";
 
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionMatches(\".*(?i)Groups(?-i).*\")"))).click();
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionMatches(\"(?i)Your Groups(?-i)\")"))).click();
+			ui = "new UiSelector().descriptionMatches(\"(?i)Your Groups(?-i)\")";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+			commandsCompleted += "yourGroups:";
 
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-							+ "new UiSelector().descriptionMatches(\"(?i)Evaluation of Apps Button(?-i)\"));"))).click();
+			ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().descriptionMatches(\"(?i)Evaluation of Apps Button(?-i)\"));";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+			commandsCompleted += "evalApp:";
 
+			ui = "new UiScrollable(" + "new UiSelector().scrollable(true)).scrollToBeginning(20);";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+			commandsCompleted += "scrollingAbove:";
 
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollToBeginning(20);")));
+			ui = "new UiSelector().descriptionContains(\"Create a post\");";
+			String ui1 = "new UiSelector().descriptionContains(\"Write something\");";
+			wait.until(ExpectedConditions.or(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)),
+					ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui1))));
 
-//			wait.until(ExpectedConditions.or(
-//					ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Create a post…")),
-//					ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Write something..."))));
-
-			wait.until(ExpectedConditions.or(
-					ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Create a post\");")),
-					ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Write something\");"))));
-//
-			if (!driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Create a post\");")).isEmpty()) {
-				driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Create a post\");")).click();
+			if (!driver.findElements(MobileBy.AndroidUIAutomator(ui)).isEmpty()) {
+				driver.findElement(MobileBy.AndroidUIAutomator(ui)).click();
 			}
 			else {
-				driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Write something\");")).click();
+				driver.findElement(MobileBy.AndroidUIAutomator(ui1)).click();
 			}
+			commandsCompleted += "writePost:";
+
+			ui = "android.widget.AutoCompleteTextView";
+			ui1 = "android.widget.EditText";
 			wait.until(ExpectedConditions.or(
-					ExpectedConditions.presenceOfElementLocated(By.className("android.widget.AutoCompleteTextView")),
-					ExpectedConditions.presenceOfElementLocated(By.className("android.widget.EditText"))));
-			if (!driver.findElements(By.className("android.widget.AutoCompleteTextView")).isEmpty()) {
-				driver.findElement(By.className("android.widget.AutoCompleteTextView")).click();
-				driver.findElement(By.className("android.widget.AutoCompleteTextView")).sendKeys(message);
+					ExpectedConditions.visibilityOfElementLocated(By.className(ui)),
+					ExpectedConditions.visibilityOfElementLocated(By.className(ui1))));
+			if (!driver.findElements(By.className(ui)).isEmpty()) {
+				driver.findElement(By.className(ui)).click();
+				driver.findElement(By.className(ui)).sendKeys(message);
 			}
 			else {
-				driver.findElement(By.className("android.widget.EditText")).click();
-				driver.findElement(By.className("android.widget.EditText")).sendKeys(message);
+				driver.findElement(By.className(ui1)).click();
+				driver.findElement(By.className(ui1)).sendKeys(message);
 			}
-			//android.widget.EditText
-//			wait.until(ExpectedConditions.or(
-//					ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.AutoCompleteTextView")),
-//					ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText")))).click().sendKeys(message);
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.AutoCompleteTextView"))).click();
+			commandsCompleted += "writeMsg:";
 
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.AutoCompleteTextView"))).sendKeys(message);
-			/* post group time measurement starts */
-//			File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-//			FileUtils.copyFile(scrFile1, new File("C:/temp/Screenshot1.jpg"));
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("POST"))).click();
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionMatches(\"(?i)profile picture(?-i)\");")));
-//			File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-//			FileUtils.copyFile(scrFile2, new File("C:/temp/Screenshot2.jpg"));
-//
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("POST"))).click();
+			commandsCompleted += "clickPost:";
 
-//			BasicFileAttributes attr1 = Files.readAttributes(scrFile1.toPath(), BasicFileAttributes.class);
-//			BasicFileAttributes attr2 = Files.readAttributes(scrFile2.toPath(), BasicFileAttributes.class);
-//			System.out.println("time1: " + attr1.creationTime());
-//			System.out.println("time2: " + attr2.creationTime());
+			ui = "new UiSelector().descriptionMatches(\"(?i)profile picture(?-i)\");";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+			commandsCompleted += "profilePicture:";
 
-
-//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-//					"new UiSelector().textMatches(\"(?i)like(?-i)\");")));
+			commandsCompleted += "P";
 			/* post group time measurement stops */
 		} catch (Exception e) {
 			testStatusReason = e.toString();

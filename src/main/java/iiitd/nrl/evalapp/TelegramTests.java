@@ -33,11 +33,7 @@ public class TelegramTests  {
     String appName = "Telegram";
     String testName = "NA";
     String testStatusReason = "NA";
-
-    @AfterClass
-    public void update() {
-
-    }
+    String commandsCompleted = "";
 
     @BeforeMethod
     public void launchCap() {
@@ -79,23 +75,12 @@ public class TelegramTests  {
         String jsonString = driver.getEvents().getJsonData();
 
         MyDatabase.setCurrentApp(appName);
+        MyDatabase.setCommands(commandsCompleted);
         MyDatabase.setAppJsonCommands(jsonString);
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
 
-//        long timeTaken = 0;
-//
-//        HashMap<String, Long> main_events = new HashMap<>();
-//
-//        if (testResult.isSuccess()) {
-//            if (testResult.getName() == "sendMessage") {
-//                timeTaken = MyDatabase.getTimeTaken(jsonString, 12, -2);
-//                main_events.put(testResult.getName(), timeTaken);
-//            }
-//        }
-//
-//        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
         testStatusReason = "NA";
         driver.quit();
     }
@@ -111,43 +96,28 @@ public class TelegramTests  {
         String verifiy_sent = message + "\nSent";
 
         try {
+
             wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
+            commandsCompleted += "searchGrp:";
+
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("EvalApp");
+            commandsCompleted += "enterName:";
+
             List<MobileElement> results= (List<MobileElement>) driver.findElementsByClassName("android.view.ViewGroup");
             results.get(0).click();
+            commandsCompleted += "clickSearchResult:";
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys(message);
+            commandsCompleted += "enterMsg:";
 
             // calculate time of below 2 commands
-//            int before_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + verifiy_sent + "\");")).size();
-//            System.out.println(before_length);
-
             /* sending message time measurement starts */
             wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Send"))).click();
+            commandsCompleted += "send:";
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + verifiy_sent + "\");"))).click();
-
-//            Calendar calendar = Calendar.getInstance();
-//            long startTime = calendar.getTimeInMillis();
-//            long currentTime = startTime;
-//            long limitTime = startTime + MyDatabase.testTimeLimit * 1000;
-//
-//            int after_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + verifiy_sent + "\");")).size();
-//            while (currentTime < limitTime && after_length <= before_length) {
-////                MobileElement element = driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + message + "\");"));
-////                System.out.println(element.getAttribute("content-desc"));
-////                if (element.getAttribute("content-desc").contains("Sent"))
-////                    break;
-//                after_length = driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"" + verifiy_sent + "\");")).size();
-//                System.out.println(currentTime + " " + after_length);
-//                calendar = Calendar.getInstance();
-//                currentTime = calendar.getTimeInMillis();
-//            }
-//
-//            if (currentTime >= limitTime) {
-//                throw new Exception("Message not sent");
-//            }
-
+            commandsCompleted += "checkIfMessageSent:";
+            commandsCompleted += "P";
             /* sending message time measurement stops */
 
         } catch (Exception e) {

@@ -38,11 +38,8 @@ public class HotstarTests_search {
 	String appName = "Hotstar_search";
 	String testName = "NA";
 	String testStatusReason = "NA";
+	String commandsCompleted = "";
 
-	@AfterClass
-    public void update() {
-
-    }
     
 	@BeforeMethod
 	public void launchCap() {
@@ -84,26 +81,12 @@ public class HotstarTests_search {
 		String jsonString = driver.getEvents().getJsonData();
 
 		MyDatabase.setCurrentApp(appName);
+		MyDatabase.setCommands(commandsCompleted);
 		MyDatabase.setAppJsonCommands(jsonString);
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
-//
-//		long timeTaken = 0;
-//
-//		HashMap<String, Long> main_events = new HashMap<String, Long>();
-//
-//		if (testResult.isSuccess()) {
-//			if (testResult.getName() == "searchTest") {
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-//				main_events.put(testResult.getName(), timeTaken);
-//			} else if (testResult.getName() == "trendingTest") {
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-//				main_events.put(testResult.getName(), timeTaken);
-//			}
-//		}
-//
-//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+
 		testStatusReason = "NA";
 		driver.quit();
 	}
@@ -114,18 +97,24 @@ public class HotstarTests_search {
 		testName = "Search Test";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 		try {
-
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/action_search"))).click();
+			commandsCompleted += "clickSearch:";
+
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/search_text"))).sendKeys("dil bechara");
+			commandsCompleted += "enterText:";
 			/* search video time measurement starts*/
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.ImageView")));
+			commandsCompleted += "findImage:";
+
 			List<MobileElement> elements = driver.findElements(By.className("android.widget.ImageView"));
 
 			elements.get(2).click();
+			commandsCompleted += "click1stImage:";
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/top_info")));
+			commandsCompleted += "checkMovieInfo:";
+			commandsCompleted += "P";
 			/* search video time measurement stops*/
 		} catch (Exception e) {
 			testStatusReason = e.toString();

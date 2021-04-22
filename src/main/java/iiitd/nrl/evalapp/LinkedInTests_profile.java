@@ -27,6 +27,7 @@ public class LinkedInTests_profile {
 	String appName = "LinkedIn_profile";
 	String testName = "NA";
 	String testStatusReason = "NA";
+	String commandsCompleted = "";
 
 	@BeforeMethod
 	public void launchCap() {
@@ -67,33 +68,12 @@ public class LinkedInTests_profile {
 		String jsonString = driver.getEvents().getJsonData();
 
 		MyDatabase.setCurrentApp(appName);
+		MyDatabase.setCommands(commandsCompleted);
 		MyDatabase.setAppJsonCommands(jsonString);
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
-//		long timeTaken = 0;
-//
-//		HashMap<String, Long> main_events = new HashMap<String, Long>();
-//
-//		if (testResult.isSuccess()) {
-//			if (testResult.getName() == "viewProfile") {
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-//				main_events.put(testResult.getName(), timeTaken);
-//			} else if (testResult.getName() == "myConnections") {
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-//				main_events.put(testResult.getName(), timeTaken);
-//			}
-//			else if (testResult.getName() == "searchPerson") {
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -6, -6) + MyDatabase.getTimeTaken(jsonString, -4, -3);
-//				main_events.put(testResult.getName(), timeTaken);
-//			}
-////			else if (testResult.getName() == "sendMessage") {
-////				timeTaken = MyDatabase.getTimeTaken(jsonString, -9, -3);
-////				main_events.put(testResult.getName(), timeTaken);
-////			}
-//		}
-//
-//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+
 		testStatusReason = "NA";
 		driver.quit();
 	}
@@ -105,12 +85,16 @@ public class LinkedInTests_profile {
 		WebDriverWait wait = new WebDriverWait(driver,MyDatabase.testTimeLimit);
 
 		try {
-
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/me_launcher"))).click();
+			commandsCompleted += "myLauncher:";
 
 			/* view profile time measurement starts*/
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/interests_panel_view_profile"))).click();
+			commandsCompleted += "myProfile:";
+
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/profile_view_messob_top_card_profile_picture")));
+			commandsCompleted += "myProfilePicture:";
+			commandsCompleted += "P";
 			/* view profile time measurement stops*/
 		} catch (Exception e) {
 			testStatusReason = e.toString();

@@ -27,10 +27,7 @@ public class WhatsappTests {
     String appName = "Whatsapp";
     String testName = "NA";
     String testStatusReason = "NA";
-
-    @AfterClass
-    public void update() {
-    }
+    String commandsCompleted = "";
 
     @BeforeMethod
     public void launchCap() {
@@ -71,23 +68,12 @@ public class WhatsappTests {
         String jsonString = driver.getEvents().getJsonData();
 
         MyDatabase.setCurrentApp(appName);
+        MyDatabase.setCommands(commandsCompleted);
         MyDatabase.setAppJsonCommands(jsonString);
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
 
-//        long timeTaken = 0;
-//
-//        String event_name = "";
-//        HashMap<String, Long> main_events = new HashMap<>();
-//
-//        if (testResult.isSuccess()) {
-//            if (testResult.getName() == "sendMessage") {
-//                timeTaken = MyDatabase.getTimeTaken(jsonString, -3, -2);
-//                main_events.put(testResult.getName(), timeTaken);
-//            }
-//        }
-//        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
         testStatusReason = "NA";
         driver.quit();
     }
@@ -101,16 +87,24 @@ public class WhatsappTests {
         int rand_int = rand.nextInt(1000);
         String rand_str = Integer.toString(rand_int);
         String message = "Hi, this is an automated text:" + rand_str;
-
+        String ui;
         try {
 
-            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-                    + "new UiSelector().text(\"EvalApp Group\"));"))).click();
+            ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"EvalApp Group\"));";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+            commandsCompleted += "openGroup:";
+
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.whatsapp:id/entry"))).sendKeys(message);
+            commandsCompleted += "enterMsg:";
 
             /* sending message time measurement starts */
-            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Send"))).click();
-            wait.until(ExpectedConditions.or(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Sent")), ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Delivered"))));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Send"))).click();
+            commandsCompleted += "send:";
+
+            wait.until(ExpectedConditions.or(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Sent")), ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Delivered"))));
+            commandsCompleted += "checkIfMessageSent:";
+            commandsCompleted += "P";
+
             /* sending message time measurement stops */
 
         } catch (Exception e) {

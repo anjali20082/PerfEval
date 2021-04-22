@@ -26,11 +26,8 @@ public class LinkedInTests_search {
     String appName = "LinkedIn_search";
     String testName = "NA";
     String testStatusReason = "NA";
+    String commandsCompeleted = "";
 
-    @AfterClass
-    public void update() {
-
-    }
     @BeforeMethod
     public void launchCap() {
         DesiredCapabilities cap=new DesiredCapabilities();
@@ -70,33 +67,12 @@ public class LinkedInTests_search {
         String jsonString = driver.getEvents().getJsonData();
 
         MyDatabase.setCurrentApp(appName);
+        MyDatabase.setCommands(commandsCompeleted);
         MyDatabase.setAppJsonCommands(jsonString);
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
-//        long timeTaken = 0;
-//
-//        HashMap<String, Long> main_events = new HashMap<String, Long>();
-//
-//        if (testResult.isSuccess()) {
-//            if (testResult.getName() == "viewProfile") {
-//                timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-//                main_events.put(testResult.getName(), timeTaken);
-//            } else if (testResult.getName() == "myConnections") {
-//                timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -3);
-//                main_events.put(testResult.getName(), timeTaken);
-//            }
-//            else if (testResult.getName() == "searchPerson") {
-//                timeTaken = MyDatabase.getTimeTaken(jsonString, -6, -6) + MyDatabase.getTimeTaken(jsonString, -4, -3);
-//                main_events.put(testResult.getName(), timeTaken);
-//            }
-////			else if (testResult.getName() == "sendMessage") {
-////				timeTaken = MyDatabase.getTimeTaken(jsonString, -9, -3);
-////				main_events.put(testResult.getName(), timeTaken);
-////			}
-//        }
-//
-//        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+
         testStatusReason = "NA";
         driver.quit();
     }
@@ -109,12 +85,22 @@ public class LinkedInTests_search {
         try {
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/search_bar_text"))).click();
+            commandsCompeleted += "clickSearch:";
+
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/search_bar_edit_text"))).sendKeys("Bill Gates");
+            commandsCompeleted += "enterName:";
+
             ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+            commandsCompeleted += "pressEnter:";
 
             /* search time measurement starts*/
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/search_results_hero_entity_container"))).click();
+            commandsCompeleted += "searchResult:";
+
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/profile_view_messob_top_card_profile_picture")));
+            commandsCompeleted += "checkProfilePicture:";
+
+            commandsCompeleted += "P";
             /* search time measurement stops*/
         } catch (Exception e) {
             testStatusReason = e.toString();

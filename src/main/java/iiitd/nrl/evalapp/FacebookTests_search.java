@@ -43,11 +43,7 @@ public class FacebookTests_search {
     String appName = "Facebook_search";
     String testName = "NA";
     String testStatusReason = "NA";
-
-    @AfterClass
-    public void update() {
-
-    }
+    String commandsCompleted = "";
 
     @BeforeMethod
     public void launchCap() {
@@ -88,27 +84,12 @@ public class FacebookTests_search {
         String jsonString = driver.getEvents().getJsonData();
 
         MyDatabase.setCurrentApp(appName);
+        MyDatabase.setCommands(commandsCompleted);
         MyDatabase.setAppJsonCommands(jsonString);
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
-//        long timeTaken = 0;
-//
-//        HashMap<String, Long> main_events = new HashMap<String, Long>();
-//
-//        if (testResult.isSuccess()) {
-//            if (testResult.getName() == "postGroup") {
-//                timeTaken = MyDatabase.getTimeTaken(jsonString, -3, -2);
-//                main_events.put(testResult.getName(), timeTaken);
-//            }
-//            else if (testResult.getName() == "searchPerson") {
-//                timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -2);
-//                main_events.put(testResult.getName(), timeTaken);
-//
-//            }
-//        }
-//
-//        MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+
         testStatusReason = "NA";
         driver.quit();
     }
@@ -122,17 +103,26 @@ public class FacebookTests_search {
 
         try {
             wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search Facebook"))).click();
+            commandsCompleted += "clickSearch:";
+
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
+            commandsCompleted += "searchPerson:";
+
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Kangana Ranaut");
+            commandsCompleted += "enterName:";
+
             ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+            commandsCompleted += "pressEnter:";
 
             /* Search person time measurement starts */
-//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Kangana Ranaut Page · Artist · Actor · KanganaRanaut · 2M like this"))).click();
-//            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]"))).click();
             // description contains "Kangana Ranaut"
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Kangana Ranaut\")"))).click();
-            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Profile picture\")")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Kangana Ranaut\")"))).click();
+            commandsCompleted += "clickKR:";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Profile picture\")")));
+            commandsCompleted += "searchPersonProfile:";
             /* Search person time measurement stops */
+
+            commandsCompleted += "P";
         } catch (Exception e) {
             testStatusReason = e.toString();
             throw e;
