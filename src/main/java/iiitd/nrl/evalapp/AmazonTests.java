@@ -128,15 +128,14 @@ public class AmazonTests {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
 			commandsCompleted += "searchResult:";
 
+			ui = "new UiSelector().descriptionContains(\"Amazon Fresh\");";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+			commandsCompleted += "productPage:";
+
 			ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().descriptionContains(\"out of 5 stars\"))";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
 			commandsCompleted += "clickProduct:";
 
-
-//			ui = "new UiSelector().descriptionContains(\"out of 5 stars\");";
-			ui = "new UiSelector().descriptionContains(\"Amazon Fresh\");";
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
-			commandsCompleted += "productPage:";
 			// Search Product Completed - 14th
 
 			ui = "in.amazon.mShop.android.shopping:id/chrome_action_bar_cart_count";
