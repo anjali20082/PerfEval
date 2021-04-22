@@ -38,12 +38,8 @@ public class DailyhuntTests  {
 	String appName = "Dailyhunt";
 	String testName = "NA";
 	String testStatusReason = "NA";
-	
-	@AfterClass
-    public void update() {
+	String commandsCompleted = "";
 
-    }
-    
 	@BeforeMethod
 	public void launchCap() {
 		DesiredCapabilities cap=new DesiredCapabilities();
@@ -84,26 +80,12 @@ public class DailyhuntTests  {
 		String jsonString = driver.getEvents().getJsonData();
 
 		MyDatabase.setCurrentApp(appName);
+		MyDatabase.setCommands(commandsCompleted);
 		MyDatabase.setAppJsonCommands(jsonString);
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
 
-//		long timeTaken = 0;
-//
-//		HashMap<String, Long> main_events = new HashMap<String, Long>();
-//
-//		if (testResult.isSuccess()) {
-//			if (testResult.getName() == "searchNews") {
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -4);
-//				main_events.put(testResult.getName(), timeTaken);
-//			} else if (testResult.getName() == "livetvTest") {
-//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2);
-//				main_events.put(testResult.getName(), timeTaken);
-//			}
-//		}
-//
-//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 		testStatusReason = "NA";
 		driver.quit();
 	}
@@ -117,15 +99,23 @@ public class DailyhuntTests  {
 		try {
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/global_search"))).click();
+			commandsCompleted += "clickSearch:";
+
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/search_box"))).sendKeys("sports");
+			commandsCompleted += "enterName:";
+
 			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+			commandsCompleted += "pressEnter:";
 
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("UiSelector().text(\"News\")"))).click();
+			commandsCompleted += "clickNews:";
 
 
 			/* Search news time measurement starts*/
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/follow_button"))).isDisplayed();
+			commandsCompleted += "checkNews:";
 			/* Search news time measurement stops*/
+			commandsCompleted += "P";
 		} catch (Exception e) {
 			testStatusReason = e.toString();
 			throw e;
