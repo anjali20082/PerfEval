@@ -36,7 +36,7 @@ public class WelcomePageLauncher extends Application {
     protected Label alert;
 
     @FXML
-    protected CheckBox amazon_cb, flipkart_cb, youtube_cb, hotstar_cb, linkedin_cb, facebook_cb, googlenews_cb, dailyhunt_cb, amazonpay_cb, paytm_cb, mobikwik_cb, telegram_cb, whatsapp_cb, googlemaps_cb;
+    protected CheckBox amazon_cb, flipkart_cb, youtube_cb, hotstar_cb, linkedin_cb, facebook_cb, googlenews_cb, dailyhunt_cb, paytm_cb, telegram_cb, whatsapp_cb, googlemaps_cb;
 
     protected static String studentEmailId, studentLocation;
 
@@ -223,13 +223,13 @@ public class WelcomePageLauncher extends Application {
                 addTestsToSuite(suiteFiles, classes, "Pt");
                 MyDatabase.totalTests += 1;
             }
-            if (mobikwik_cb.isSelected()) {
-                List<XmlClass> classes = new ArrayList<XmlClass>();
-                classes.add(new XmlClass("iiitd.nrl.evalapp.MobikwikTests"));
-                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
-                addTestsToSuite(suiteFiles, classes, "Mk");
-                MyDatabase.totalTests += 1;
-            }
+//            if (mobikwik_cb.isSelected()) {
+//                List<XmlClass> classes = new ArrayList<XmlClass>();
+//                classes.add(new XmlClass("iiitd.nrl.evalapp.MobikwikTests"));
+//                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//                addTestsToSuite(suiteFiles, classes, "Mk");
+//                MyDatabase.totalTests += 1;
+//            }
 
             // now set xml file for execution
             runner.setXmlSuites(suiteFiles);
