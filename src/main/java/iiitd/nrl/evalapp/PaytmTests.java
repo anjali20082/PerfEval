@@ -84,7 +84,7 @@ public class PaytmTests {
     public void sendMoneyFromWallet() throws InterruptedException {
         testName = "Pay Nikhil Re. 1/-";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
-        String phoneno = "8076011980";
+        String phoneno = "8076011981";
         String ui;
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/image_container_1"))).click();
@@ -97,42 +97,52 @@ public class PaytmTests {
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).sendKeys(phoneno);
             commandsCompleted += "enterNumber:";
 
+
             ui = "new UiSelector().textContains(\"" + phoneno + "\")";
             List<MobileElement> contacts = driver.findElements(MobileBy.AndroidUIAutomator(ui));
-            while (contacts.size() < 2) {
+            String ui2 = "new UiSelector().textContains(\"Proceed\")";
+            List<MobileElement> proceed = driver.findElements(MobileBy.AndroidUIAutomator(ui2));
+
+            while (contacts.size() < 2 && proceed.isEmpty()) {
 //                System.out.println(contacts.size() + Boolean.toString(contacts.size() > 1));
+
                 contacts = driver.findElements(MobileBy.AndroidUIAutomator(ui));
+                proceed = driver.findElements(MobileBy.AndroidUIAutomator(ui2));
             }
 
-            contacts.get(1).click();
+            if (proceed.isEmpty())
+                contacts.get(1).click();
+            else
+                proceed.get(0).click();
+
             commandsCompleted += "clickNumber:";
-
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).click();
-            commandsCompleted += "clickMoneyField:";
-
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).sendKeys("1");
-            commandsCompleted += "enterAmount:";
-
-            /* sending money time measurement starts */
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/ll_uni_pay"))).click();
-            commandsCompleted += "clickPay:";
-
-//            List<MobileElement> elements = driver.findElements(By.id("net.one97.paytm:id/iv_close_icon"));
-//            if (!elements.isEmpty()) {
-//                elements.get(0).click();
+            return;
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).click();
+//            commandsCompleted += "clickMoneyField:";
+//
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).sendKeys("1");
+//            commandsCompleted += "enterAmount:";
+//
+//            /* sending money time measurement starts */
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/ll_uni_pay"))).click();
+//            commandsCompleted += "clickPay:";
+//
+////            List<MobileElement> elements = driver.findElements(By.id("net.one97.paytm:id/iv_close_icon"));
+////            if (!elements.isEmpty()) {
+////                elements.get(0).click();
+////            }
+//
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Transaction ID\");"))).isDisplayed();
+//            commandsCompleted += "clickPay:";
+//            /* sending money time measurement stops */
+//
+//            if (driver.findElements(By.id("net.one97.paytm:id/p2p_success_status_lav")).isEmpty()) {
+//                testStatusReason = "Payment failed";
+//                commandsCompleted += "F";
+//            } else {
+//                testStatusReason = "Payment successful";
+//                commandsCompleted += "P";
 //            }
-
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Transaction ID\");"))).isDisplayed();
-            commandsCompleted += "clickPay:";
-            /* sending money time measurement stops */
-
-            if (driver.findElements(By.id("net.one97.paytm:id/p2p_success_status_lav")).isEmpty()) {
-                testStatusReason = "Payment failed";
-                commandsCompleted += "F";
-            } else {
-                testStatusReason = "Payment successful";
-                commandsCompleted += "P";
-            }
         } catch (Exception e) {
             testStatusReason = "Payment Failed\n" + e.toString();
             throw e;
