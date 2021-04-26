@@ -54,17 +54,17 @@ public class GooglenewsTests {
 			MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
 		}
 	}
-	
+
 	public String getConnectionType() {
-        Long connType = driver.getConnection().getBitMask();
-        if (connType == 2)
-            return "Wifi";
-        else if (connType == 4)
-            return "MobileData";
-        else if (connType == 6)
-        	return "Wifi & MobileData";
-        return "Wifi";
-    }
+		Long connType = driver.getConnection().getBitMask();
+		if (connType == 2)
+			return "Wifi 2";
+		else if (connType == 4)
+			return "MobileData 4";
+		else if (connType == 6)
+			return "Wifi & MobileData 6";
+		return "Wifi " + connType;
+	}
 
 	@AfterMethod
 	public void restart(ITestResult testResult) {

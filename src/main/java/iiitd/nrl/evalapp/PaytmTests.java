@@ -57,12 +57,12 @@ public class PaytmTests {
     public String getConnectionType() {
         Long connType = driver.getConnection().getBitMask();
         if (connType == 2)
-            return "Wifi";
+            return "Wifi 2";
         else if (connType == 4)
-            return "MobileData";
+            return "MobileData 4";
         else if (connType == 6)
-            return "Wifi & MobileData";
-        return "Wifi";
+            return "Wifi & MobileData 6";
+        return "Wifi " + connType;
     }
 
 	@AfterMethod
@@ -116,33 +116,32 @@ public class PaytmTests {
                 proceed.get(0).click();
 
             commandsCompleted += "clickNumber:";
-            return;
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).click();
-//            commandsCompleted += "clickMoneyField:";
-//
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).sendKeys("1");
-//            commandsCompleted += "enterAmount:";
-//
-//            /* sending money time measurement starts */
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/ll_uni_pay"))).click();
-//            commandsCompleted += "clickPay:";
-//
-////            List<MobileElement> elements = driver.findElements(By.id("net.one97.paytm:id/iv_close_icon"));
-////            if (!elements.isEmpty()) {
-////                elements.get(0).click();
-////            }
-//
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Transaction ID\");"))).isDisplayed();
-//            commandsCompleted += "clickPay:";
-//            /* sending money time measurement stops */
-//
-//            if (driver.findElements(By.id("net.one97.paytm:id/p2p_success_status_lav")).isEmpty()) {
-//                testStatusReason = "Payment failed";
-//                commandsCompleted += "F";
-//            } else {
-//                testStatusReason = "Payment successful";
-//                commandsCompleted += "P";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).click();
+            commandsCompleted += "clickMoneyField:";
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).sendKeys("1");
+            commandsCompleted += "enterAmount:";
+
+            /* sending money time measurement starts */
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/ll_uni_pay"))).click();
+            commandsCompleted += "clickPay:";
+
+//            List<MobileElement> elements = driver.findElements(By.id("net.one97.paytm:id/iv_close_icon"));
+//            if (!elements.isEmpty()) {
+//                elements.get(0).click();
 //            }
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Transaction ID\");"))).isDisplayed();
+            commandsCompleted += "clickPay:";
+            /* sending money time measurement stops */
+
+            if (driver.findElements(By.id("net.one97.paytm:id/p2p_success_status_lav")).isEmpty()) {
+                testStatusReason = "Payment failed";
+                commandsCompleted += "F";
+            } else {
+                testStatusReason = "Payment successful";
+                commandsCompleted += "P";
+            }
         } catch (Exception e) {
             testStatusReason = "Payment Failed\n" + e.toString();
             throw e;

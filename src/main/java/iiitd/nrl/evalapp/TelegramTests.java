@@ -62,12 +62,12 @@ public class TelegramTests  {
     public String getConnectionType() {
         Long connType = driver.getConnection().getBitMask();
         if (connType == 2)
-            return "Wifi";
+            return "Wifi 2";
         else if (connType == 4)
-            return "MobileData";
+            return "MobileData 4";
         else if (connType == 6)
-            return "Wifi & MobileData";
-        return "Wifi";
+            return "Wifi & MobileData 6";
+        return "Wifi " + connType;
     }
 
     @AfterMethod
