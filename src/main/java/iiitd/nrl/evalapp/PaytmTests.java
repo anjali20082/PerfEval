@@ -84,7 +84,7 @@ public class PaytmTests {
     public void sendMoneyFromWallet() throws InterruptedException {
         testName = "Pay Nikhil Re. 1/-";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
-        String phoneno = "8076011981";
+        String phoneno = "8076011980";
         String ui;
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/image_container_1"))).click();
@@ -93,7 +93,11 @@ public class PaytmTests {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/p2p_cp_search_ll"))).click();
             commandsCompleted += "clickSearch:";
 
-            ui = "UiSelector().text(\"Enter Name or Mobile Number\")";
+            ui = "net.one97.paytm:id/iv_contact";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).click();
+            commandsCompleted += "clickContacts:";
+
+            ui = "new UiSelector().text(\"Search Name or Mobile Number\")";
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).sendKeys(phoneno);
             commandsCompleted += "enterNumber:";
 
@@ -131,11 +135,13 @@ public class PaytmTests {
 //                elements.get(0).click();
 //            }
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Transaction ID\");"))).isDisplayed();
+            ui = "new UiSelector().textContains(\"Transaction ID\");";
+            ui = "net.one97.paytm:id/tvRefNum";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).isDisplayed();
             commandsCompleted += "clickPay:";
             /* sending money time measurement stops */
 
-            if (driver.findElements(By.id("net.one97.paytm:id/p2p_success_status_lav")).isEmpty()) {
+            if (driver.findElements(By.id("net.one97.paytm:id/lavSuccess")).isEmpty()) {
                 testStatusReason = "Payment failed";
                 commandsCompleted += "F";
             } else {
