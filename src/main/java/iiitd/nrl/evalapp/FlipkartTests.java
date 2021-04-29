@@ -143,6 +143,14 @@ public class FlipkartTests {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
 			commandsCompleted += "goToCart:";
 
+//			ui = "new UiSelector().textContains(\"Flipkart (\");";
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+//
+//			MobileElement element = driver.findElement(MobileBy.AndroidUIAutomator(ui));
+//			String cartValue = element.getText();
+//			cartValue = cartValue.split("(")[1].split(")")[0];
+//			System.out.println("Cart value:" + cartValue);
+
 			/* remove from cart test measurement starts */
 			ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().textContains(\"Remove\"));";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
@@ -153,7 +161,7 @@ public class FlipkartTests {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ui))).click();
 			commandsCompleted += "removeProduct:";
 
-			ui = "new UiSelector().text(\"Flipkart\");";
+			ui = "new UiSelector().textContains(\"Flipkart\");";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
 			commandsCompleted += "myCart:";
 			/* remove from cart test measurement stop */
