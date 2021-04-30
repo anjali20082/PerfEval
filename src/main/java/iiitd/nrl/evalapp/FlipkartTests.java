@@ -161,8 +161,11 @@ public class FlipkartTests {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ui))).click();
 			commandsCompleted += "removeProduct:";
 
-			ui = "new UiSelector().textContains(\"Flipkart\");";
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+			ui = "new UiSelector().text(\"Flipkart\");";
+			String ui2 = "new UiSelector().text(\"My Cart\");";
+			wait.until(ExpectedConditions.or(
+					ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)),
+					ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui2))));
 			commandsCompleted += "myCart:";
 			/* remove from cart test measurement stop */
 

@@ -95,7 +95,8 @@ public class GooglenewsTests {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/hero_action_button"))).click();
 			commandsCompleted += "viewFullNews:";
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/edition_pager_header_icon_label")));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/edition_pager_header_icon_label")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/title")));
 			commandsCompleted += "checkNewsTitle:";
 			/* load news  test measurement stops*/
 
