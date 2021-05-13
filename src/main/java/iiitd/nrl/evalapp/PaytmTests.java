@@ -136,7 +136,7 @@ public class PaytmTests {
 //            }
 
             ui = "new UiSelector().textContains(\"Transaction ID\");";
-            ui = "net.one97.paytm:id/tvRefNum";
+            ui = "net.one97.paytm:id/tvRefNumtvRefNum";
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).isDisplayed();
             commandsCompleted += "clickPay:";
             /* sending money time measurement stops */

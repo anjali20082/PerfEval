@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.TouchAction;
@@ -90,6 +91,13 @@ public class FacebookTests_search {
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
+
+//        List<List<Object>> performanceData = driver.getPerformanceData("com.facebook.katana", "memoryinfo", 5);
+        List<List<Object>> performanceData1 = driver.getPerformanceData("com.facebook.katana", "batteryinfo", 5);
+        List<List<Object>> performanceData2 = driver.getPerformanceData("com.facebook.katana", "networkinfo", 5);
+//        System.out.println("memory info: " + performanceData.toString());
+        System.out.println("battery info: " + performanceData1.toString());
+        System.out.println("network info: " + performanceData2.toString());
 
         testStatusReason = "NA";
         driver.quit();

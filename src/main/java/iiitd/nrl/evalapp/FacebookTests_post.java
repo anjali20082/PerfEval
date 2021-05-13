@@ -115,17 +115,33 @@ public class FacebookTests_post {
 		String message = "Hi, this is an automated post:" + rand_str;
 		String ui = "";
 		try {
-			ui = "new UiSelector().descriptionMatches(\".*(?i)Groups(?-i).*\")";
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
-			commandsCompleted += "groups:";
+//			ui = "new UiSelector().descriptionMatches(\".*(?i)Groups(?-i).*\")";
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+//			commandsCompleted += "groups:";
+//
+//			ui = "new UiSelector().descriptionMatches(\"(?i)Your Groups(?-i)\")";
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+//			commandsCompleted += "yourGroups:";
+//
+//			ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().descriptionMatches(\"(?i)Evaluation of Apps Button(?-i)\"));";
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+//			commandsCompleted += "evalApp:";
 
-			ui = "new UiSelector().descriptionMatches(\"(?i)Your Groups(?-i)\")";
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
-			commandsCompleted += "yourGroups:";
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search Facebook"))).click();
+			commandsCompleted += "clickSearch:";
 
-			ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().descriptionMatches(\"(?i)Evaluation of Apps Button(?-i)\"));";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
+			commandsCompleted += "searchPerson:";
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Evaluation of Apps");
+			commandsCompleted += "enterName:";
+
+			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+			commandsCompleted += "pressEnter:";
+
+			ui = "new UiSelector().description(\"Visit\");";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
-			commandsCompleted += "evalApp:";
+			commandsCompleted += "evalapp:";
 
 			ui = "new UiScrollable(" + "new UiSelector().scrollable(true)).scrollToBeginning(20);";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
