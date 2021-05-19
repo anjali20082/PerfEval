@@ -26,7 +26,7 @@ import java.util.List;
 public class MyDatabase {
     public static String packet_sizes_before;
     public static String packet_sizes_after;
-    protected static float version = 7.5f;
+    protected static float version = 7.6f;
     protected static int testTimeLimit = 15;
     protected static int count = 0;
     protected static int totalTests = 0;
