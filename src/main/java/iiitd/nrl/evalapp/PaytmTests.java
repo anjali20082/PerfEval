@@ -114,10 +114,17 @@ public class PaytmTests {
                 proceed = driver.findElements(MobileBy.AndroidUIAutomator(ui2));
             }
 
-            if (proceed.isEmpty())
+            if (proceed.isEmpty()) {
                 contacts.get(1).click();
-            else
+            }
+            else {
                 proceed.get(0).click();
+            }
+
+            ui = "new UiSelector().textContains(\"Pay\")";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+            commandsCompleted += "clickPay:";
+
 
             commandsCompleted += "clickNumber:";
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).click();
