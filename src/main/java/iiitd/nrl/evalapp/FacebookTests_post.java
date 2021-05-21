@@ -97,6 +97,7 @@ public class FacebookTests_post {
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
+		MyDatabase.addTestResult();
 
 		driver.quit();
 	}

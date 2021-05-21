@@ -82,6 +82,7 @@ public class TelegramTests  {
         MyDatabase.setConnType(getConnectionType());
 
         testStatusReason = "NA";
+        MyDatabase.addTestResult();
         driver.quit();
     }
 

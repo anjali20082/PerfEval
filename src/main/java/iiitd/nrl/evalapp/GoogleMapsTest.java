@@ -71,6 +71,7 @@ public class GoogleMapsTest {
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
         testStatusReason = "NA";
+        MyDatabase.addTestResult();
         driver.quit();
     }
 

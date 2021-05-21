@@ -88,6 +88,8 @@ public class HotstarTests_search {
 		MyDatabase.setConnType(getConnectionType());
 
 		testStatusReason = "NA";
+		MyDatabase.addTestResult();
+
 		driver.quit();
 	}
 

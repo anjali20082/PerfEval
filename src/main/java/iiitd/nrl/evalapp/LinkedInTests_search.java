@@ -74,6 +74,9 @@ public class LinkedInTests_search {
         MyDatabase.setConnType(getConnectionType());
 
         testStatusReason = "NA";
+        MyDatabase.addTestResult();
+        MyDatabase.addTestResult();
+
         driver.quit();
     }
 

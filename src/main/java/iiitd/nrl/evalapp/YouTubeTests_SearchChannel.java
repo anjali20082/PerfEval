@@ -77,7 +77,8 @@ public class YouTubeTests_SearchChannel {
 		MyDatabase.setConnType(getConnectionType());
 
 		testStatusReason = "NA";
-        driver.quit();
+		MyDatabase.addTestResult();
+		driver.quit();
 	}
 
 

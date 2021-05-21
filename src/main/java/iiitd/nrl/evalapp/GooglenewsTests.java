@@ -78,6 +78,7 @@ public class GooglenewsTests {
 		MyDatabase.setConnType(getConnectionType());
 
 		testStatusReason = "NA";
+		MyDatabase.addTestResult();
 		driver.quit();
 	}
 

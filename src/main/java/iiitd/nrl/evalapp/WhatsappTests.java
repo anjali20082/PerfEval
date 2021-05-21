@@ -75,6 +75,7 @@ public class WhatsappTests {
         MyDatabase.setConnType(getConnectionType());
 
         testStatusReason = "NA";
+        MyDatabase.addTestResult();
         driver.quit();
     }
 

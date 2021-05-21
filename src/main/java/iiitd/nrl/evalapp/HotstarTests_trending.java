@@ -86,6 +86,7 @@ public class HotstarTests_trending {
         MyDatabase.setConnType(getConnectionType());
 
         testStatusReason = "NA";
+        MyDatabase.addTestResult();
         driver.quit();
     }
 
