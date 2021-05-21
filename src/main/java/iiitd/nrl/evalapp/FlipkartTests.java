@@ -102,7 +102,7 @@ public class FlipkartTests {
 			commandsCompleted += "searchBox:";
 
 			ui = "com.flipkart.android:id/search_autoCompleteTextView";
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).sendKeys("phone");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).sendKeys("laptop");
 			commandsCompleted += "enterProductName:";
 
 			/* search product test measurement starts */
