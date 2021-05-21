@@ -84,7 +84,7 @@ public class PaytmTests {
     public void sendMoneyFromWallet() throws InterruptedException {
         testName = "Pay Nikhil Re. 1/-";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
-        String phoneno = "8076011980";
+        String phoneno = "7836924102";
         String ui;
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/image_container_1"))).click();
@@ -133,9 +133,27 @@ public class PaytmTests {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).sendKeys("1");
             commandsCompleted += "enterAmount:";
 
+
+            if (!driver.findElements(By.id("net.one97.paytm:id/bankImageCollapsedView")).isEmpty()) {
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/selectedBankDownArrowTV"))).click();
+                commandsCompleted += "clickChangeModeDropdown:";
+
+                ui = "new UiSelector().text(\"Paytm Wallet\")";
+                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+                commandsCompleted += "changeModeToWallet:";
+
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/proceed"))).click();
+                commandsCompleted += "clickProceed:";
+            }
+            else {
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/ll_uni_pay"))).click();
+                commandsCompleted += "clickPay:";
+            }
+
+
+
+
             /* sending money time measurement starts */
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/ll_uni_pay"))).click();
-            commandsCompleted += "clickPay:";
 
 //            List<MobileElement> elements = driver.findElements(By.id("net.one97.paytm:id/iv_close_icon"));
 //            if (!elements.isEmpty()) {
@@ -143,9 +161,9 @@ public class PaytmTests {
 //            }
 
             ui = "new UiSelector().textContains(\"Transaction ID\");";
-            ui = "net.one97.paytm:id/tvRefNumtvRefNum";
+            ui = "net.one97.paytm:id/tvRefNum";
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).isDisplayed();
-            commandsCompleted += "clickPay:";
+            commandsCompleted += "checkTransactionId:";
             /* sending money time measurement stops */
 
             if (driver.findElements(By.id("net.one97.paytm:id/lavSuccess")).isEmpty()) {
@@ -161,6 +179,19 @@ public class PaytmTests {
         }
 //        JSON COMMANDS
     }
+
+
+//    net.one97.paytm:id/bankImageCollapsedView
+//    net.one97.paytm:id/selectedBankDownArrowTV
+//
+//    Paytm Wallet - text
+//
+//
+//    net.one97.paytm:id/proceed
+
+
+//    net.one97.paytm:id/button_cross
+
 //    {
 //        "commands": [
 //        {
