@@ -160,8 +160,19 @@ public class PaytmTests {
 //                elements.get(0).click();
 //            }
 
-            ui = "new UiSelector().textContains(\"Transaction ID\");";
+            ui2 = "net.one97.paytm:id/button_cross";
             ui = "net.one97.paytm:id/tvRefNum";
+
+            wait.until(ExpectedConditions.or(
+                    ExpectedConditions.visibilityOfElementLocated(By.id(ui)),
+                    ExpectedConditions.visibilityOfElementLocated(By.id(ui2))));
+            commandsCompleted += "checkingTransactionIdOrButtonCross";
+
+            if (!driver.findElements(By.id(ui2)).isEmpty()) {
+                driver.findElement(By.id(ui2)).click();
+                commandsCompleted += "clickButtonCross";
+            }
+
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).isDisplayed();
             commandsCompleted += "checkTransactionId:";
             /* sending money time measurement stops */
