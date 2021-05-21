@@ -97,7 +97,8 @@ public class LinkedInTests_search {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/search_results_hero_entity_container"))).click();
             commandsCompeleted += "searchResult:";
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/profile_view_messob_top_card_profile_picture")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/profile_top_card_profile_picture")));
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/profile_view_messob_top_card_profile_picture")));
             commandsCompeleted += "checkProfilePicture:";
 
             commandsCompeleted += "P";
