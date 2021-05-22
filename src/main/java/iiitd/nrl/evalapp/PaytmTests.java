@@ -84,7 +84,7 @@ public class PaytmTests {
     public void sendMoneyFromWallet() throws InterruptedException {
         testName = "Pay Nikhil Re. 1/-";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
-        String phoneno = "7836924102";
+        String phoneno = "8076011980";
         String ui;
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/image_container_1"))).click();
