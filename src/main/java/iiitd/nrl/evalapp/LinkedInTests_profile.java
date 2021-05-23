@@ -93,7 +93,8 @@ public class LinkedInTests_profile {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/interests_panel_view_profile"))).click();
 			commandsCompleted += "myProfile:";
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/profile_view_messob_top_card_profile_picture")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/profile_top_card_profile_picture")));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/profile_view_messob_top_card_profile_picture")));
 			commandsCompleted += "myProfilePicture:";
 			commandsCompleted += "P";
 			/* view profile time measurement stops*/
@@ -102,8 +103,7 @@ public class LinkedInTests_profile {
 			throw e;
 		}
 //	JSON Commands in the below comment
-	}
-//	{
+	}//	{
 //		"commands": [
 //		{
 //			"cmd": "findElement",

@@ -81,8 +81,7 @@ public class LinkedInTests_search {
     }
 
 
-    @Test
-    public void searchPerson() throws InterruptedException{
+    public void searchPerson() throws InterruptedException {
         testName = "search person";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
         try {
@@ -100,7 +99,8 @@ public class LinkedInTests_search {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/search_results_hero_entity_container"))).click();
             commandsCompeleted += "searchResult:";
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/profile_view_messob_top_card_profile_picture")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/profile_top_card_profile_picture")));
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.linkedin.android:id/profile_view_messob_top_card_profile_picture")));
             commandsCompeleted += "checkProfilePicture:";
 
             commandsCompeleted += "P";
@@ -110,76 +110,5 @@ public class LinkedInTests_search {
             throw e;
 //		JSON Commands in the below comment
         }
-//		{
-//			"commands": [
-//			{
-//				"cmd": "findElement",
-//					"startTime": 1615906625233,
-//					"endTime": 1615906626211
-//			},
-//			{
-//				"cmd": "elementDisplayed",
-//					"startTime": 1615906626224,
-//					"endTime": 1615906626253
-//			},
-//			{
-//				"cmd": "click",
-//					"startTime": 1615906626259,
-//					"endTime": 1615906626326
-//			},
-//			{
-//				"cmd": "findElement",
-//					"startTime": 1615906627901,
-//					"endTime": 1615906628329
-//			},
-//			{
-//				"cmd": "elementDisplayed",
-//					"startTime": 1615906628333,
-//					"endTime": 1615906628364
-//			},
-//			{
-//				"cmd": "setValue",
-//					"startTime": 1615906628380,
-//					"endTime": 1615906629115
-//			},
-//			{
-//				"cmd": "pressKeyCode",
-//					"startTime": 1615906629138,
-//					"endTime": 1615906630573
-//			},
-//			{
-//				"cmd": "findElement",
-//					"startTime": 1615906630587,
-//					"endTime": 1615906633276
-//			},
-//			{
-//				"cmd": "elementDisplayed",
-//					"startTime": 1615906633279,
-//					"endTime": 1615906633304
-//			},
-//			{
-//				"cmd": "click",
-//					"startTime": 1615906633313,
-//					"endTime": 1615906633397
-//			},
-//			{
-//				"cmd": "findElement",
-//					"startTime": 1615906634210,
-//					"endTime": 1615906635204
-//			},
-//			{
-//				"cmd": "elementDisplayed",
-//					"startTime": 1615906635207,
-//					"endTime": 1615906635226
-//			},
-//			{
-//				"cmd": "getLogEvents",
-//					"startTime": 1615906635237,
-//					"endTime": 1615906635237
-//			}
-//  		]
-//		}
-
-
     }
 }

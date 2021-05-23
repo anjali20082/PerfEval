@@ -122,31 +122,58 @@ public class PaytmTests {
                 proceed.get(0).click();
             }
 
-            ui = "new UiSelector().textContains(\"Pay\")";
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+//            ui = "new UiSelector().textContains(\"Pay\")";
+            ui = "net.one97.paytm:id/buttonText";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).click();
             commandsCompleted += "clickPay:";
 
-
-            commandsCompleted += "clickNumber:";
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).click();
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
             commandsCompleted += "clickMoneyField:";
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).sendKeys("1");
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/amount_et"))).sendKeys("1");
+            driver.findElement(By.className("android.widget.EditText")).sendKeys("1");
             commandsCompleted += "enterAmount:";
 
+
+            if (!driver.findElements(By.id("net.one97.paytm:id/bankImageCollapsedView")).isEmpty()) {
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/selectedBankDownArrowTV"))).click();
+                commandsCompleted += "clickChangeModeDropdown:";
+
+                ui = "new UiSelector().text(\"Paytm Wallet\")";
+                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+                commandsCompleted += "changeModeToWallet:";
+
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/proceed"))).click();
+                commandsCompleted += "clickProceed:";
+            }
+            else {
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/ll_uni_pay"))).click();
+                commandsCompleted += "clickPay:";
+            }
+
             /* sending money time measurement starts */
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/ll_uni_pay"))).click();
-            commandsCompleted += "clickPay:";
 
 //            List<MobileElement> elements = driver.findElements(By.id("net.one97.paytm:id/iv_close_icon"));
 //            if (!elements.isEmpty()) {
 //                elements.get(0).click();
 //            }
 
-            ui = "new UiSelector().textContains(\"Transaction ID\");";
-            ui = "net.one97.paytm:id/tvRefNumtvRefNum";
+            ui2 = "net.one97.paytm:id/button_cross";
+            ui = "net.one97.paytm:id/tvRefNum";
+
+            wait.until(ExpectedConditions.or(
+                    ExpectedConditions.visibilityOfElementLocated(By.id(ui)),
+                    ExpectedConditions.visibilityOfElementLocated(By.id(ui2))));
+            commandsCompleted += "checkingTransactionIdOrButtonCross";
+
+            if (!driver.findElements(By.id(ui2)).isEmpty()) {
+                driver.findElement(By.id(ui2)).click();
+                commandsCompleted += "clickButtonCross";
+            }
+
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).isDisplayed();
-            commandsCompleted += "clickPay:";
+            commandsCompleted += "checkTransactionId:";
             /* sending money time measurement stops */
 
             if (driver.findElements(By.id("net.one97.paytm:id/lavSuccess")).isEmpty()) {
