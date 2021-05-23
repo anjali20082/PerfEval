@@ -99,10 +99,12 @@ public class WelcomePageLauncher extends Application {
             if (youtube_cb.isSelected()) {
                 List<XmlClass> yts_classes = new ArrayList<XmlClass>();
                 yts_classes.add(new XmlClass("iiitd.nrl.evalapp.YouTubeTests_SearchChannel"));
+                yts_classes.add(new XmlClass("iiitd.nrl.evalapp.YouTubeTests_SearchChannel"));
 //                yts_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, yts_classes, "Yts");
 
                 List<XmlClass> ytp_classes = new ArrayList<XmlClass>();
+                ytp_classes.add(new XmlClass("iiitd.nrl.evalapp.YouTubeTests_PlayVideo"));
                 ytp_classes.add(new XmlClass("iiitd.nrl.evalapp.YouTubeTests_PlayVideo"));
 //                ytp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, ytp_classes, "Ytp");
@@ -114,11 +116,13 @@ public class WelcomePageLauncher extends Application {
             if (hotstar_cb.isSelected()) {
                 List<XmlClass> hs_classes = new ArrayList<XmlClass>();
                 hs_classes.add(new XmlClass("iiitd.nrl.evalapp.HotstarTests_search"));
+                hs_classes.add(new XmlClass("iiitd.nrl.evalapp.HotstarTests_search"));
 //                hs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, hs_classes, "Hs");
 
 
                 List<XmlClass> classes = new ArrayList<XmlClass>();
+                classes.add(new XmlClass("iiitd.nrl.evalapp.HotstarTests_trending"));
                 classes.add(new XmlClass("iiitd.nrl.evalapp.HotstarTests_trending"));
 //                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, classes, "Ht");
@@ -130,15 +134,18 @@ public class WelcomePageLauncher extends Application {
             if (linkedin_cb.isSelected()) {
                 List<XmlClass> lp_classes = new ArrayList<XmlClass>();
                 lp_classes.add(new XmlClass("iiitd.nrl.evalapp.LinkedInTests_profile"));
+                lp_classes.add(new XmlClass("iiitd.nrl.evalapp.LinkedInTests_profile"));
 //                lp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, lp_classes, "Lp");
 
                 List<XmlClass> lc_classes = new ArrayList<XmlClass>();
                 lc_classes.add(new XmlClass("iiitd.nrl.evalapp.LinkedInTests_myConnections"));
+                lc_classes.add(new XmlClass("iiitd.nrl.evalapp.LinkedInTests_myConnections"));
 //                lc_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, lc_classes, "Lc");
 
                 List<XmlClass> ls_classes = new ArrayList<XmlClass>();
+                ls_classes.add(new XmlClass("iiitd.nrl.evalapp.LinkedInTests_search"));
                 ls_classes.add(new XmlClass("iiitd.nrl.evalapp.LinkedInTests_search"));
 //                ls_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, ls_classes, "Ls");
@@ -149,10 +156,12 @@ public class WelcomePageLauncher extends Application {
             if (facebook_cb.isSelected()) {
                 List<XmlClass> fp_classes = new ArrayList<XmlClass>();
                 fp_classes.add(new XmlClass("iiitd.nrl.evalapp.FacebookTests_post"));
+                fp_classes.add(new XmlClass("iiitd.nrl.evalapp.FacebookTests_post"));
 //                fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, fp_classes, "Fp");
 
                 List<XmlClass> fs_classes = new ArrayList<XmlClass>();
+                fs_classes.add(new XmlClass("iiitd.nrl.evalapp.FacebookTests_search"));
                 fs_classes.add(new XmlClass("iiitd.nrl.evalapp.FacebookTests_search"));
 //                fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, fs_classes, "Fs");
@@ -163,6 +172,7 @@ public class WelcomePageLauncher extends Application {
             if (flipkart_cb.isSelected()) {
                 List<XmlClass> classes = new ArrayList<XmlClass>();
                 classes.add(new XmlClass("iiitd.nrl.evalapp.FlipkartTests"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.FlipkartTests"));
 //                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, classes, "Fl");
                 MyDatabase.totalTests += 1;
@@ -170,6 +180,7 @@ public class WelcomePageLauncher extends Application {
 
             if (amazon_cb.isSelected()) {
                 List<XmlClass> classes = new ArrayList<XmlClass>();
+                classes.add(new XmlClass("iiitd.nrl.evalapp.AmazonTests"));
                 classes.add(new XmlClass("iiitd.nrl.evalapp.AmazonTests"));
 //                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, classes, "Am");
@@ -179,6 +190,7 @@ public class WelcomePageLauncher extends Application {
             if (telegram_cb.isSelected()) {
                 List<XmlClass> classes = new ArrayList<XmlClass>();
                 classes.add(new XmlClass("iiitd.nrl.evalapp.TelegramTests"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.TelegramTests"));
 //                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, classes, "Tg");
                 MyDatabase.totalTests += 1;
@@ -186,6 +198,7 @@ public class WelcomePageLauncher extends Application {
 
             if (whatsapp_cb.isSelected()) {
                 List<XmlClass> classes = new ArrayList<XmlClass>();
+                classes.add(new XmlClass("iiitd.nrl.evalapp.WhatsappTests"));
                 classes.add(new XmlClass("iiitd.nrl.evalapp.WhatsappTests"));
 //                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, classes, "Wh");
@@ -195,6 +208,7 @@ public class WelcomePageLauncher extends Application {
             if (googlemaps_cb.isSelected()) {
                 List<XmlClass> classes = new ArrayList<XmlClass>();
                 classes.add(new XmlClass("iiitd.nrl.evalapp.GoogleMapsTest"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.GoogleMapsTest"));
 //                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, classes, "Gm");
                 MyDatabase.totalTests += 1;
@@ -202,6 +216,7 @@ public class WelcomePageLauncher extends Application {
 
             if (googlenews_cb.isSelected()) {
                 List<XmlClass> classes = new ArrayList<XmlClass>();
+                classes.add(new XmlClass("iiitd.nrl.evalapp.GooglenewsTests"));
                 classes.add(new XmlClass("iiitd.nrl.evalapp.GooglenewsTests"));
 //                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, classes, "Gn");
@@ -211,6 +226,7 @@ public class WelcomePageLauncher extends Application {
             if (dailyhunt_cb.isSelected()) {
                 List<XmlClass> classes = new ArrayList<XmlClass>();
                 classes.add(new XmlClass("iiitd.nrl.evalapp.DailyhuntTests"));
+                classes.add(new XmlClass("iiitd.nrl.evalapp.DailyhuntTests"));
 //                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, classes, "Dh");
                 MyDatabase.totalTests += 1;
@@ -218,6 +234,7 @@ public class WelcomePageLauncher extends Application {
 
             if (paytm_cb.isSelected()) {
                 List<XmlClass> classes = new ArrayList<XmlClass>();
+                classes.add(new XmlClass("iiitd.nrl.evalapp.PaytmTests"));
                 classes.add(new XmlClass("iiitd.nrl.evalapp.PaytmTests"));
 //                classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
                 addTestsToSuite(suiteFiles, classes, "Pt");
