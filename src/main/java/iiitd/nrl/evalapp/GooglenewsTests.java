@@ -41,7 +41,6 @@ public class GooglenewsTests {
 		cap.setCapability("fullReset", "false");
 		cap.setCapability("autoGrantPermissions", true);
 		cap.setCapability("autoAcceptAlerts", true);
-		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
 
 		URL url;
 		try {
@@ -77,6 +76,8 @@ public class GooglenewsTests {
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
 
+		MyDatabase.addTestResult();
+
 		testStatusReason = "NA";
 		driver.quit();
 	}
@@ -101,6 +102,8 @@ public class GooglenewsTests {
 			/* load news  test measurement stops*/
 
 			commandsCompleted += "P";
+
+
 		} catch (Exception e) {
 			testStatusReason = e.toString();
 			throw e;

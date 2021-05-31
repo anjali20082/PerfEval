@@ -86,9 +86,9 @@ public class MyDatabase {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String currentTime = dtf.format(now);
-        student_collection = database.getCollection(WelcomePageLauncher.studentEmailId);
+        student_collection = database.getCollection(MainLauncher.studentEmailId);
 
-        Document document = new Document("Location", WelcomePageLauncher.studentLocation);
+        Document document = new Document("Location", MainLauncher.studentLocation);
         document.append("Tests Started at", currentTime);
         document.append("App Tests Version", version);
 

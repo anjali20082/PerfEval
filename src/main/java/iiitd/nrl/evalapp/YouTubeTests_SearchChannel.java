@@ -39,7 +39,6 @@ public class YouTubeTests_SearchChannel {
 		cap.setCapability("fullReset", "false");
 		cap.setCapability("autoGrantPermissions", true);
 		cap.setCapability("autoAcceptAlerts", true);
-		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
 
 		URL url;
 		try {
@@ -76,6 +75,8 @@ public class YouTubeTests_SearchChannel {
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
 
+		MyDatabase.addTestResult();
+
 		testStatusReason = "NA";
         driver.quit();
 	}
@@ -106,6 +107,7 @@ public class YouTubeTests_SearchChannel {
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Subscribe to Unacademy UPSC."))).isDisplayed();
 			commandsCompleted += "checkChannel:";
 			commandsCompleted += "P";
+			System.out.println(commandsCompleted);
 
 		} catch (Exception e) {
 			testStatusReason = e.toString();

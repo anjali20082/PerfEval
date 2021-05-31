@@ -35,7 +35,6 @@ public class GoogleMapsTest {
         cap.setCapability("fullReset", "false");
         cap.setCapability("autoGrantPermissions", true);
         cap.setCapability("autoAcceptAlerts", true);
-        cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
 
         URL url;
         try {
@@ -70,6 +69,9 @@ public class GoogleMapsTest {
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
+
+        MyDatabase.addTestResult();
+
         testStatusReason = "NA";
         driver.quit();
     }

@@ -48,7 +48,6 @@ public class HotstarTests_trending {
         cap.setCapability("fullReset", "false");
         cap.setCapability("autoGrantPermissions", true);
         cap.setCapability("autoAcceptAlerts", true);
-        cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
 
         URL url;
         try {
@@ -85,6 +84,8 @@ public class HotstarTests_trending {
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
 
+        MyDatabase.addTestResult();
+
         testStatusReason = "NA";
         driver.quit();
     }
@@ -106,6 +107,8 @@ public class HotstarTests_trending {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/frame_player")));
             commandsCompleted += "checkVideoPlayer:";
             commandsCompleted += "P";
+
+
             /* load trending videos page time measurement stops*/
         } catch (Exception e) {
             testStatusReason = e.toString();

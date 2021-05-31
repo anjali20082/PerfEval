@@ -63,7 +63,6 @@ public class YouTubeTests_PlayVideo {
 		cap.setCapability("fullReset", "false");
 		cap.setCapability("autoGrantPermissions", true);
 		cap.setCapability("autoAcceptAlerts", true);
-		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
 
 		URL url;
 		try {
@@ -100,6 +99,8 @@ public class YouTubeTests_PlayVideo {
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
 
+		MyDatabase.addTestResult();
+
 		testStatusReason = "NA";
 		driver.quit();
 	}
@@ -135,6 +136,7 @@ public class YouTubeTests_PlayVideo {
 			commandsCompleted += "checkVideoPlayer:";
 
 			commandsCompleted += "P";
+			System.out.println(commandsCompleted);
 
 		} catch (Exception e) {
 			testStatusReason = e.toString();

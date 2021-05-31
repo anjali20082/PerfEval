@@ -32,7 +32,6 @@ public class TrakBytesUpload {
         cap.setCapability("fullReset", "false");
         cap.setCapability("autoGrantPermissions", true);
         cap.setCapability("autoAcceptAlerts", true);
-        cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
 
 
         URL url;
