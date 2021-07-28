@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [FlSuite]">
+  <test name="FlTest(failed)">
+    <classes>
+      <class name="iiitd.nrl.evalapp.FlipkartTests">
+        <methods>
+          <include name="setUp"/>
+          <include name="launchCap"/>
+          <include name="getProduct"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.FlipkartTests -->
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <methods>
+          <include name="copyTrakBytes"/>
+          <include name="launchCap"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+    </classes>
+  </test> <!-- FlTest(failed) -->
+</suite> <!-- Failed suite [FlSuite] -->

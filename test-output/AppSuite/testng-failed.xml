@@ -3,14 +3,41 @@
 <suite name="Failed suite [AppSuite]">
   <test name="AppiumTests(failed)">
     <classes>
-      <class name="iiitd.nrl.evalapp.AmazonTests">
+      <class name="iiitd.nrl.evalapp.DailyhuntTests">
         <methods>
           <include name="restart"/>
-          <include name="searchProduct"/>
+          <include name="setUp"/>
           <include name="launchCap"/>
-          <include name="update"/>
         </methods>
-      </class> <!-- iiitd.nrl.evalapp.AmazonTests -->
+      </class> <!-- iiitd.nrl.evalapp.DailyhuntTests -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <methods>
+          <include name="update"/>
+          <include name="launchCap"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <methods>
+          <include name="launchCap"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+      <class name="iiitd.nrl.evalapp.YouTubeTest_PlayVideo">
+        <methods>
+          <include name="launchCap"/>
+          <include name="setUp"/>
+          <include name="playTest"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.YouTubeTest_PlayVideo -->
+      <class name="iiitd.nrl.evalapp.GoogleMapsTest">
+        <methods>
+          <include name="restart"/>
+          <include name="setUp"/>
+          <include name="launchCap"/>
+          <include name="searchPlace"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.GoogleMapsTest -->
     </classes>
   </test> <!-- AppiumTests(failed) -->
 </suite> <!-- Failed suite [AppSuite] -->

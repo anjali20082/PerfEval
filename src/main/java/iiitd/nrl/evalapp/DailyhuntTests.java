@@ -63,39 +63,39 @@ public class DailyhuntTests  {
     
 	@BeforeMethod
 	public void launchCap() {
-		driver = MainLauncher.driver;
-		if (versionId <= 3) {
-			driver.startActivity(new Activity("com.eterno","com.newshunt.newshome.view.activity.NewsHomeActivity"));
-
-		} else if (versionId >= 4) {
-			driver.startActivity(new Activity("com.eterno","com.newshunt.appview.common.ui.activity.HomeActivity"));
-
-		}
-
-//		DesiredCapabilities cap=new DesiredCapabilities();
-//		cap.setCapability("appPackage", "com.eterno");
-//		// version 13 && 14
+//		driver = MainLauncher.driver;
 //		if (versionId <= 3) {
-//			cap.setCapability("appActivity", "com.newshunt.newshome.view.activity.NewsHomeActivity");
-//		} else if (versionId >= 4) {
-//			cap.setCapability("appActivity", "com.newshunt.appview.common.ui.activity.HomeActivity");
-//		}
-//		cap.setCapability("noReset", "true");
-//		cap.setCapability("fullReset", "false");
-//		cap.setCapability("autoGrantPermissions", true);
-//		cap.setCapability("autoAcceptAlerts", true);
-//		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
+//			driver.startActivity(new Activity("com.eterno","com.newshunt.newshome.view.activity.NewsHomeActivity"));
 //
-//		URL url;
-//		try {
-//			url = new URL("http://127.0.0.1:4723/wd/hub");
-//			driver=new AndroidDriver<MobileElement>(url,cap);
-//		} catch (MalformedURLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (WebDriverException e) {
-//			MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
+//		} else if (versionId >= 4) {
+//			driver.startActivity(new Activity("com.eterno","com.newshunt.appview.common.ui.activity.HomeActivity"));
+//
 //		}
+
+		DesiredCapabilities cap=new DesiredCapabilities();
+		cap.setCapability("appPackage", "com.eterno");
+		// version 13 && 14
+		if (versionId <= 3) {
+			cap.setCapability("appActivity", "com.newshunt.newshome.view.activity.NewsHomeActivity");
+		} else if (versionId >= 4) {
+			cap.setCapability("appActivity", "com.newshunt.appview.common.ui.activity.HomeActivity");
+		}
+		cap.setCapability("noReset", "true");
+		cap.setCapability("fullReset", "false");
+		cap.setCapability("autoGrantPermissions", true);
+		cap.setCapability("autoAcceptAlerts", true);
+		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
+
+		URL url;
+		try {
+			url = new URL("http://127.0.0.1:4723/wd/hub");
+			driver=new AndroidDriver<MobileElement>(url,cap);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (WebDriverException e) {
+			MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
+		}
 			
 	}
 	
@@ -114,21 +114,27 @@ public class DailyhuntTests  {
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
 		System.out.println(jsonString);
-		long timeTaken = 0;
 
-		HashMap<String, Long> main_events = new HashMap<String, Long>();
-
-		if (testResult.isSuccess()) {
-			if (testResult.getName() == "searchNews") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -3); // 8 and 10
-				main_events.put(testResult.getName(), timeTaken);
-			} else if (testResult.getName() == "livetvTest") {
-				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2); // 7 and 9
-				main_events.put(testResult.getName(), timeTaken);
-			}
-		}
-
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
+		MyDatabase.setCurrentApp(appName);
+		MyDatabase.setAppJsonCommands(jsonString);
+		MyDatabase.setTestStatus(testResult.isSuccess());
+		MyDatabase.setTestStatusReason(testStatusReason);
+		MyDatabase.setConnType(getConnectionType());
+//		long timeTaken = 0;
+//
+//		HashMap<String, Long> main_events = new HashMap<String, Long>();
+//
+//		if (testResult.isSuccess()) {
+//			if (testResult.getName() == "searchNews") {
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, -5, -3); // 8 and 10
+//				main_events.put(testResult.getName(), timeTaken);
+//			} else if (testResult.getName() == "livetvTest") {
+//				timeTaken = MyDatabase.getTimeTaken(jsonString, -4, -2); // 7 and 9
+//				main_events.put(testResult.getName(), timeTaken);
+//			}
+//		}
+//
+//		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
 
 //		driver.quit();
 	}
@@ -142,7 +148,6 @@ public class DailyhuntTests  {
 		try {
 
 			if (versionId == 1) {
-//          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.view.ViewGroup[6]/android.widget.TextView"))).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().text(\"English\");"))).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/global_search"))).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/search_box"))).sendKeys("india gate");
@@ -151,17 +156,14 @@ public class DailyhuntTests  {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/toggle_button"))).isDisplayed();
 			}
 			else if (versionId == 2) {
-//          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[6]/android.widget.TextView"))).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().text(\"English\");"))).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/global_search"))).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/search_box"))).sendKeys("india gate");
 				((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-//          ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.BACK));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.HorizontalScrollView[@content-desc=\"Tabs to select news headlines, topics and sources.\"]/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.TextView"))).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/toggle_button"))).isDisplayed();
 			}
 			else if (versionId == 3) {
-//          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[6]/android.widget.TextView"))).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().text(\"English\");"))).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/tv_later"))).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/global_search"))).click();
@@ -172,7 +174,6 @@ public class DailyhuntTests  {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/toggle_button"))).isDisplayed();
 			}
 			else if (versionId == 4) {
-//          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[6]/android.widget.TextView"))).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().text(\"English\");"))).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/global_search"))).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/search_box"))).sendKeys("india gate");
@@ -181,16 +182,6 @@ public class DailyhuntTests  {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.HorizontalScrollView[@content-desc=\"Tabs to select news headlines, topics and sources.\"]/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.TextView"))).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/follow_button"))).isDisplayed();
 			}
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/global_search"))).click();
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/search_box"))).sendKeys("india gate");
-//			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-//			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.BACK));
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.HorizontalScrollView[@content-desc=\"Tabs to select news headlines, topics and sources.\"]/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.TextView"))).click();
-//			if (versionId <= 3) {
-//				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/toggle_button"))).isDisplayed();
-//			} else {
-//				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/follow_button"))).isDisplayed();
-//			}
 		} catch (Exception e) {
 			testStatusReason = e.toString();
 			throw e;

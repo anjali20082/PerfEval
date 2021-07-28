@@ -54,39 +54,39 @@ public class YouTubeTest_SearchChannel {
 	String testStatusReason = "NA";
 	int versionId;
 	Long start_time_1, start_time_2 , end_time_1, end_time_2;
+	String commands = "";
 
 	@BeforeClass
 	public void setUp() throws IOException, InterruptedException {
-//		versionId = MyDatabase.getVersionSelected();
-		versionId = 3;
+		versionId = MyDatabase.getVersionSelected();
 		System.out.println("APP: " + appName + " Version ID: " + versionId);
 	}
 
 	@BeforeMethod
 	public void launchCap() {
-		driver = MainLauncher.driver;
-		Activity activity = new Activity("com.google.android.youtube","com.google.android.youtube.HomeActivity");
-		activity.setAppWaitActivity("com.google.android.apps.youtube.app.WatchWhileActivity");
-		driver.startActivity(activity);
-//		DesiredCapabilities cap=new DesiredCapabilities();
-//		cap.setCapability("appPackage", "com.google.android.youtube");
-//		cap.setCapability("appActivity", "com.google.android.youtube.HomeActivity");
-//		cap.setCapability("noReset", "true");
-//		cap.setCapability("fullReset", "false");
-//		cap.setCapability("autoGrantPermissions", true);
-//		cap.setCapability("autoAcceptAlerts", true);
-//		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
-//
-//		URL url;
-//		try {
-//			url = new URL("http://127.0.0.1:4723/wd/hub");
-//			driver=new AndroidDriver<MobileElement>(url,cap);
-//		} catch (MalformedURLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (WebDriverException e) {
-//			MyDatabase.addTestResult(appName, testName, null, "NA", false, "App Not Installed");
-//		}
+//		driver = MainLauncher.driver;
+//		Activity activity = new Activity("com.google.android.youtube","com.google.android.youtube.HomeActivity");
+//		activity.setAppWaitActivity("com.google.android.apps.youtube.app.WatchWhileActivity");
+//		driver.startActivity(activity);
+		DesiredCapabilities cap=new DesiredCapabilities();
+		cap.setCapability("appPackage", "com.google.android.youtube");
+		cap.setCapability("appActivity", "com.google.android.youtube.HomeActivity");
+		cap.setCapability("noReset", "true");
+		cap.setCapability("fullReset", "false");
+		cap.setCapability("autoGrantPermissions", true);
+		cap.setCapability("autoAcceptAlerts", true);
+		cap.setCapability("uiautomator2ServerInstallTimeout", 60000);
+
+		URL url;
+		try {
+			url = new URL("http://127.0.0.1:4723/wd/hub");
+			driver=new AndroidDriver<MobileElement>(url,cap);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (WebDriverException e) {
+			MyDatabase.addTestResult(appName, testName, null, "NA", false, "App Not Installed");
+		}
 	}
 	
 	public String getConnectionType() {
@@ -102,49 +102,55 @@ public class YouTubeTest_SearchChannel {
 	
 	@AfterMethod
 	public void restart(ITestResult testResult) {
-//		String jsonString = driver.getEvents().getJsonData();
-//		System.out.println(jsonString);
-		long timeTaken_1 = 0, timeTaken_2 = 0;
+		String jsonString = driver.getEvents().getJsonData();
+		System.out.println(commands);
 
-		HashMap<String, Long> main_events = new HashMap<>();
+		MyDatabase.setCurrentApp(appName);
+		MyDatabase.setCommands(commands);
+		MyDatabase.setAppJsonCommands(jsonString);
+		MyDatabase.setTestStatus(testResult.isSuccess());
+		MyDatabase.setTestStatusReason(testStatusReason);
+		MyDatabase.setConnType(getConnectionType());
 
-		if (testResult.isSuccess()) {
-			if (testResult.getName() == "channelTest") {
-				timeTaken_1 = end_time_1 - start_time_1;
-				main_events.put("searchChannel", timeTaken_1);
-
-				timeTaken_2 = end_time_2 - start_time_2;
-				main_events.put("openChannel", timeTaken_2);
-			}
-
-		}
-
-		MyDatabase.addTestResult(appName, testName, main_events, getConnectionType(), testResult.isSuccess(), testStatusReason);
-
-//        driver.quit();
+//		driver.quit();
 	}
 
 	
 	@Test
-	public void channelTest() throws InterruptedException{
+	public void channelTest() throws InterruptedException, IOException {
 		testName = "find channel";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
+		Process process = null;
 		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/search_edit_text"))).sendKeys("unacademy upsc");;
-//			driver.findElement(By.id("com.google.android.youtube:id/search_edit_text")).sendKeys("unacademy upsc");
+			commands += "search:";
 
-			start_time_1 =System.currentTimeMillis();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/search_edit_text"))).sendKeys("unacademy upsc");;
+			commands += "enterName:";
+
+//			process = Runtime.getRuntime().exec(String.format("adb shell screenrecord --bugreport sdcard/yt_channel.mp4"));
+//			start_time_1 =System.currentTimeMillis();
+
 			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+			commands += "pressEnter:";
+
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
 					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
 							+ "new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\"));"))).isDisplayed();
-			end_time_1 = System.currentTimeMillis();
+			commands += "checkChannel:";
+//			end_time_1 = System.currentTimeMillis();
 
-			start_time_2 = System.currentTimeMillis();
+//			start_time_2 = System.currentTimeMillis();
+
 			driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\")")).click();
+			commands += "clickChannel:";
+
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Subscribe to Unacademy UPSC."))).isDisplayed();
-			end_time_2 = System.currentTimeMillis();
+			commands += "openChannelPage:";
+			commands += "P";
+
+//			end_time_2 = System.currentTimeMillis();
+//			process.destroy();
 		} catch (Exception e) {
 			testStatusReason = e.toString();
 			throw e;

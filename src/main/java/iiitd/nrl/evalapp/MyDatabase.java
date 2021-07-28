@@ -25,18 +25,56 @@ import java.util.List;
 
 public class MyDatabase {
     protected static float version = 4.9f;
-    protected static int versionSelected = 5;
+    protected static int versionSelected = 2;
 
     protected static boolean installAppCond = false;
-    protected static int testTimeLimit = 50;
+    protected static int testTimeLimit = 120;
     protected static int count = 0;
     protected static int totalTests = 0;
     public static MongoClient mongoClient;
     public static MongoDatabase database;
     public static MongoCollection<Document> student_collection;
 
+    public static String appJsonCommands;
+    public static String commands;
+    public static String currentApp;
+    public static String testStatusReason;
+    public static boolean testStatus;
+    public static String connType;
     public static String packet_sizes_before = "";
     public static String packet_sizes_after = "";
+
+    public static void setAppJsonCommands(String appJsonCommands) {
+        MyDatabase.appJsonCommands = appJsonCommands;
+    }
+
+    public static void setCommands(String commands) {
+        MyDatabase.commands = commands;
+    }
+
+    public static void setCurrentApp(String currentApp) {
+        MyDatabase.currentApp = currentApp;
+    }
+
+    public static void setTestStatus(boolean testStatus) {
+        MyDatabase.testStatus = testStatus;
+    }
+
+    public static void setTestStatusReason(String testStatusReason) {
+        MyDatabase.testStatusReason = testStatusReason;
+    }
+
+    public static void setConnType(String connType) {
+        MyDatabase.connType = connType;
+    }
+
+    public static void setPacket_sizes_before(String packet_sizes_before) {
+        MyDatabase.packet_sizes_before = packet_sizes_before;
+    }
+
+    public static void setPacket_sizes_after(String packet_sizes_after) {
+        MyDatabase.packet_sizes_after = packet_sizes_after;
+    }
 
     public static void setVersionSelected(int version) {
         versionSelected = version;
@@ -55,19 +93,6 @@ public class MyDatabase {
 
     }
 
-    public static void testsStarted()
-    {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        String currentTime = dtf.format(now);
-//        student_collection = database.getCollection(WelcomePageLauncher.studentEmailId);
-
-//        Document document = new Document("Location", WelcomePageLauncher.studentLocation);
-//        document.append("Tests Started at", currentTime);
-//        document.append("App Tests Version", version);
-
-//        student_collection.insertOne(document);
-    }
 
     public static long getTimeTaken(String jsonString, int startIndex, int endIndex) {
 
@@ -124,21 +149,42 @@ public class MyDatabase {
         student_collection.insertOne(document);
     }
 
-    public static void uploadPacketsData() {
+    public static void addTestResult() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String currentTime = dtf.format(now);
 
-        Document document = new Document("uploadedAt", currentTime);
+        count++;
+        System.out.println("Test No. " + count + "/" + totalTests + " Completed");
+        System.out.println("App: " + MyDatabase.currentApp);
+        System.out.println("Status: " + MyDatabase.testStatus + "\n");
+        System.out.println("Reason: " + MyDatabase.testStatusReason + "\n");
+        System.out.println("JSON: " + MyDatabase.appJsonCommands);
+
+        Document document = new Document("startedAt", currentTime);
+        document.append("app", MyDatabase.currentApp);
+        document.append("json", MyDatabase.appJsonCommands);
+        document.append("connType", MyDatabase.connType);
+        document.append("status", MyDatabase.testStatus);
+        document.append("reason", MyDatabase.testStatusReason);
         document.append("data_before", packet_sizes_before);
         document.append("data_after", packet_sizes_after);
+
+        MyDatabase.setPacket_sizes_before(MyDatabase.packet_sizes_after);
+
         student_collection.insertOne(document);
+
+        MyDatabase.setCurrentApp("");
+        MyDatabase.setAppJsonCommands("");
+        MyDatabase.setTestStatus(false);
+        MyDatabase.setTestStatusReason("");
+        MyDatabase.setConnType("");
+        MyDatabase.setCommands("");
     }
 
     public static void sendPINGLog() {
         List<String> ping_files = List.of("www.google.com.log", "www.amazon.com.log", "www.mobikwik.com.log");
         List<String> filenames = List.of("Google", "Amazon", "Mobikwik");
-
 
         int i = 0;
         for (String filename:ping_files) {
@@ -199,5 +245,16 @@ public class MyDatabase {
                 pingDocument.append("pingFailed", e.toString());
             }
         }
+    }
+
+    public static void uploadPacketsData() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String currentTime = dtf.format(now);
+
+        Document document = new Document("uploadedAt", currentTime);
+        document.append("data_before", packet_sizes_before);
+        document.append("data_after", packet_sizes_after);
+        student_collection.insertOne(document);
     }
 }
