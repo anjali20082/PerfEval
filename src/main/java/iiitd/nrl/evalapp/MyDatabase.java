@@ -76,7 +76,8 @@ public class MyDatabase {
 
     public static void setUpDatabase()
     {
-        String uri = "mongodb+srv://admin17080:prince%40123@cluster0.ssjoc.gcp.mongodb.net/TestingApps?retryWrites=true&w=majority";
+//        String uri = "mongodb+srv://admin17080:prince%40123@cluster0.ssjoc.gcp.mongodb.net/TestingApps?retryWrites=true&w=majority";
+        String uri = "mongodb+srv://admin17080:test123@cluster0.ssjoc.gcp.mongodb.net/TestingApps?retryWrites=true&w=majority";
         mongoClient = MongoClients.create(uri);
         database = mongoClient.getDatabase("TestingApps");
     }
@@ -86,9 +87,9 @@ public class MyDatabase {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String currentTime = dtf.format(now);
-        student_collection = database.getCollection(WelcomePageLauncher.studentEmailId);
+        student_collection = database.getCollection(MainLauncher.studentEmailId);
 
-        Document document = new Document("Location", WelcomePageLauncher.studentLocation);
+        Document document = new Document("Location", MainLauncher.studentLocation);
         document.append("Tests Started at", currentTime);
         document.append("App Tests Version", version);
 
