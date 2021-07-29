@@ -11,7 +11,7 @@ start /min ping_cmd.bat www.mobikwik.com
 
 set app=gm
 
-FOR /l %%I IN (0, 1, 20) DO (
+FOR /l %%I IN (0, 1, 1) DO (
   echo Iteration:%%I
   echo %app% %version%
 
