@@ -17,7 +17,7 @@ import java.util.List;
 public class MainLauncher {
     static AndroidDriver<MobileElement> driver;
     static int defaultVersionId = 1, osId;
-    static String studentEmailId = "controlled-for-automation";
+    static String studentEmailId = "arani-sir-automation";
     static String studentLocation = "110020";
     static ArrayList<String> appsToRun = new ArrayList<>(Arrays.asList("ytp","yts","ytt","amz","dht","gmp",
             "gnw","lnc", "lnp","lns","ptm","tgm","wht"));

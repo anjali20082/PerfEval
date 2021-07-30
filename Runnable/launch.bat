@@ -11,7 +11,7 @@ start /min ping_cmd.bat www.mobikwik.com
 
 set app=gm
 
-FOR /l %%I IN (0, 1, 1) DO (
+FOR /l %%I IN (0, 1, 19) DO (
   echo Iteration:%%I
   echo %app% %version%
 
@@ -78,7 +78,7 @@ FOR /l %%I IN (0, 1, 1) DO (
   @REM )
 
   java -jar EvalApp.jar 8 3 "%app%"
-  timeout 60
+  timeout 20
 )
 
 
