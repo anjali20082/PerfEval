@@ -45,6 +45,7 @@ public class HotstarTests_search {
 	public void launchCap() {
 		DesiredCapabilities cap=new DesiredCapabilities();
 		cap.setCapability("appPackage", "in.startv.hotstar");
+//		cap.setCapability("appPackage", "in.startv.hotstaronly");
 		cap.setCapability("appActivity", "in.startv.hotstar.rocky.launch.splash.SplashActivity");
 		cap.setCapability("noReset", "true");
 		cap.setCapability("fullReset", "false");
