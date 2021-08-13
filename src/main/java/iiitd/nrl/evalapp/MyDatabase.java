@@ -27,7 +27,7 @@ public class MyDatabase {
     public static String packet_sizes_before;
     public static String packet_sizes_after;
     protected static float version = 8.0f;
-    protected static int testTimeLimit = 15;
+    protected static int testTimeLimit = 45;
     protected static int count = 0;
     protected static int totalTests = 0;
     public static MongoClient mongoClient;

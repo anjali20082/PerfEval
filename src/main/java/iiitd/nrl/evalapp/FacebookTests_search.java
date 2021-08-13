@@ -111,7 +111,7 @@ public class FacebookTests_search {
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 
         try {
-            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search Facebook"))).click();
+            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
             commandsCompleted += "clickSearch:";
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();

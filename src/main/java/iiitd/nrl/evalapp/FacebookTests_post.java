@@ -115,6 +115,8 @@ public class FacebookTests_post {
 		String message = "Hi, this is an automated post:" + rand_str;
 		String ui = "";
 		try {
+
+
 //			ui = "new UiSelector().descriptionMatches(\".*(?i)Groups(?-i).*\")";
 //			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
 //			commandsCompleted += "groups:";
@@ -127,7 +129,18 @@ public class FacebookTests_post {
 //			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
 //			commandsCompleted += "evalApp:";
 
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search Facebook"))).click();
+
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Username"))).sendKeys("iiitdevalapp@gmail.com");
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Password"))).sendKeys("nrl_evalapp");
+//
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Log In"))).click();
+//
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"(?i)Not Now(?-i)\")"))).click();
+
+
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.EditText"))).click();
 			commandsCompleted += "clickSearch:";
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
