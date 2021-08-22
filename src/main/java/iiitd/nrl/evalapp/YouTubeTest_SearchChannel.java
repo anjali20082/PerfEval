@@ -1,48 +1,24 @@
 package iiitd.nrl.evalapp;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import io.appium.java_client.android.Activity;
-import io.appium.java_client.clipboard.ClipboardContentType;
-import io.appium.java_client.serverevents.TimedEvent;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
-import io.appium.java_client.service.local.AppiumServiceBuilder;
-import io.appium.java_client.service.local.flags.GeneralServerFlag;
-import io.appium.java_client.touch.TapOptions;
-import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
 
 @SuppressWarnings("unchecked")
 public class YouTubeTest_SearchChannel {
@@ -52,22 +28,10 @@ public class YouTubeTest_SearchChannel {
 	String appName = "Youtube_searchChannel";
 	String testName = "NA";
 	String testStatusReason = "NA";
-	int versionId;
-	Long start_time_1, start_time_2 , end_time_1, end_time_2;
-	String commands = "";
-
-	@BeforeClass
-	public void setUp() throws IOException, InterruptedException {
-		versionId = MyDatabase.getVersionSelected();
-		System.out.println("APP: " + appName + " Version ID: " + versionId);
-	}
+	String commandsCompleted = "";
 
 	@BeforeMethod
 	public void launchCap() {
-//		driver = MainLauncher.driver;
-//		Activity activity = new Activity("com.google.android.youtube","com.google.android.youtube.HomeActivity");
-//		activity.setAppWaitActivity("com.google.android.apps.youtube.app.WatchWhileActivity");
-//		driver.startActivity(activity);
 		DesiredCapabilities cap=new DesiredCapabilities();
 		cap.setCapability("appPackage", "com.google.android.youtube");
 		cap.setCapability("appActivity", "com.google.android.youtube.HomeActivity");
@@ -85,75 +49,142 @@ public class YouTubeTest_SearchChannel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (WebDriverException e) {
-			MyDatabase.addTestResult(appName, testName, null, "NA", false, "App Not Installed");
+			MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
 		}
+
 	}
-	
+
 	public String getConnectionType() {
-        Long connType = driver.getConnection().getBitMask();
-        if (connType == 2)
-            return "Wifi";
-        else if (connType == 4)
-            return "MobileData";
-        else if (connType == 6)
-        	return "Wifi & MobileData";
-        return "Wifi";
-    }
-	
+		Long connType = driver.getConnection().getBitMask();
+		if (connType == 2)
+			return "Wifi 2";
+		else if (connType == 4)
+			return "MobileData 4";
+		else if (connType == 6)
+			return "Wifi & MobileData 6";
+		return "Wifi " + connType;
+	}
+
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
-		System.out.println(commands);
 
 		MyDatabase.setCurrentApp(appName);
-		MyDatabase.setCommands(commands);
+		MyDatabase.setCommands(commandsCompleted);
 		MyDatabase.setAppJsonCommands(jsonString);
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
 
+		testStatusReason = "NA";
 //		driver.quit();
 	}
 
-	
+
 	@Test
-	public void channelTest() throws InterruptedException, IOException {
+	public void channelTest() throws InterruptedException{
 		testName = "find channel";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
-		Process process = null;
+
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
-			commands += "search:";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/menu_item_1"))).click();
+			commandsCompleted += "clickSearch:";
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.youtube:id/search_edit_text"))).sendKeys("unacademy upsc");;
-			commands += "enterName:";
-
-//			process = Runtime.getRuntime().exec(String.format("adb shell screenrecord --bugreport sdcard/yt_channel.mp4"));
-//			start_time_1 =System.currentTimeMillis();
+			driver.findElement(By.id("com.google.android.youtube:id/search_edit_text")).sendKeys("unacademy upsc");
+			commandsCompleted += "enterName:";
 
 			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-			commands += "pressEnter:";
+			commandsCompleted += "pressEnter:";
 
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-					"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView("
-							+ "new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\"));"))).isDisplayed();
-			commands += "checkChannel:";
-//			end_time_1 = System.currentTimeMillis();
-
-//			start_time_2 = System.currentTimeMillis();
+			String ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\"));";
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(ui))).isDisplayed();
+			commandsCompleted += "searchResult:";
 
 			driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().resourceId(\"com.google.android.youtube:id/channel_item\")")).click();
-			commands += "clickChannel:";
+			commandsCompleted += "clickSeachResult:";
 
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Subscribe to Unacademy UPSC."))).isDisplayed();
-			commands += "openChannelPage:";
-			commands += "P";
+			commandsCompleted += "checkChannel:";
+			commandsCompleted += "P";
 
-//			end_time_2 = System.currentTimeMillis();
-//			process.destroy();
 		} catch (Exception e) {
 			testStatusReason = e.toString();
 			throw e;
 		}
 	}
+//	JSON COMMANDS
 }
+//{
+//		"commands": [
+//		{
+//		"cmd": "findElement",
+//		"startTime": 1615913151118,
+//		"endTime": 1615913152226
+//		},
+//		{
+//		"cmd": "elementDisplayed",
+//		"startTime": 1615913152244,
+//		"endTime": 1615913152678
+//		},
+//		{
+//		"cmd": "findElement",
+//		"startTime": 1615913152694,
+//		"endTime": 1615913154228
+//		},
+//		{
+//		"cmd": "click",
+//		"startTime": 1615913154244,
+//		"endTime": 1615913154308
+//		},
+//		{
+//		"cmd": "findElement",
+//		"startTime": 1615913154322,
+//		"endTime": 1615913154495
+//		},
+//		{
+//		"cmd": "setValue",
+//		"startTime": 1615913154508,
+//		"endTime": 1615913156201
+//		},
+//		{
+//		"cmd": "pressKeyCode",
+//		"startTime": 1615913156217,
+//		"endTime": 1615913157099
+//		},
+//		{
+//		"cmd": "findElement",
+//		"startTime": 1615913157109,
+//		"endTime": 1615913159925
+//		},
+//		{
+//		"cmd": "elementDisplayed",
+//		"startTime": 1615913159928,
+//		"endTime": 1615913159979
+//		},
+//		{
+//		"cmd": "findElement",
+//		"startTime": 1615913159985,
+//		"endTime": 1615913160032
+//		},
+//		{
+//		"cmd": "click",
+//		"startTime": 1615913160048,
+//		"endTime": 1615913161586
+//		},
+//		{
+//		"cmd": "findElement",
+//		"startTime": 1615913161593,
+//		"endTime": 1615913161692
+//		},
+//		{
+//		"cmd": "elementDisplayed",
+//		"startTime": 1615913161696,
+//		"endTime": 1615913161724
+//		},
+//		{
+//		"cmd": "getLogEvents",
+//		"startTime": 1615913161733,
+//		"endTime": 1615913161734
+//		}
+//		]
+//		}

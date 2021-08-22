@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Youtube_PlayVideoSuite]">
+  <test name="Youtube_PlayVideoTest(failed)">
+    <classes>
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <methods>
+          <include name="launchCap"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+      <class name="iiitd.nrl.evalapp.YouTubeTests_PlayVideo">
+        <methods>
+          <include name="restart"/>
+          <include name="playTest"/>
+          <include name="launchCap"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.YouTubeTests_PlayVideo -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <methods>
+          <include name="launchCap"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+    </classes>
+  </test> <!-- Youtube_PlayVideoTest(failed) -->
+</suite> <!-- Failed suite [Youtube_PlayVideoSuite] -->

@@ -1,11 +1,8 @@
 package iiitd.nrl.evalapp;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.lang.*;
+
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
@@ -13,9 +10,11 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -26,22 +25,15 @@ public class GooglenewsTests {
 	String appName = "GoogleNews";
 	String testName = "NA";
 	String testStatusReason = "NA";
-	Long start_time , end_time;
-	int versionId;
-	String commands = "";
+	String commandsCompleted = "";
 
-	@BeforeClass
-	public void setUp() throws IOException, InterruptedException {
-		versionId = MyDatabase.getVersionSelected();
-		System.out.println("APP: " + appName + " Version ID: " + versionId);
+	@AfterClass
+	public void update() {
+
 	}
-	
+
 	@BeforeMethod
 	public void launchCap() {
-//		driver = MainLauncher.driver;
-//		Activity activity = new Activity("com.google.android.apps.magazines","com.google.apps.dots.android.app.activity.CurrentsStartActivity");
-//		activity.setAppWaitActivity("com.google.apps.dots.android.newsstand.home.HomeActivity");
-//		driver.startActivity(activity);
 		DesiredCapabilities cap=new DesiredCapabilities();
 		cap.setCapability("appPackage", "com.google.android.apps.magazines");
 		cap.setCapability("appActivity", "com.google.apps.dots.android.app.activity.CurrentsStartActivity");
@@ -62,86 +54,93 @@ public class GooglenewsTests {
 			MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
 		}
 	}
-	
+
 	public String getConnectionType() {
-        Long connType = driver.getConnection().getBitMask();
-        if (connType == 2)
-            return "Wifi";
-        else if (connType == 4)
-            return "MobileData";
-        else if (connType == 6)
-        	return "Wifi & MobileData";
-        return "Wifi";
-    }
+		Long connType = driver.getConnection().getBitMask();
+		if (connType == 2)
+			return "Wifi 2";
+		else if (connType == 4)
+			return "MobileData 4";
+		else if (connType == 6)
+			return "Wifi & MobileData 6";
+		return "Wifi " + connType;
+	}
 
 	@AfterMethod
 	public void restart(ITestResult testResult) {
 		String jsonString = driver.getEvents().getJsonData();
-		System.out.println(commands);
 
 		MyDatabase.setCurrentApp(appName);
-		MyDatabase.setCommands(commands);
+		MyDatabase.setCommands(commandsCompleted);
 		MyDatabase.setAppJsonCommands(jsonString);
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
 
+		testStatusReason = "NA";
 //		driver.quit();
 	}
 
 	@Test
-	public void searchTest() throws InterruptedException, IOException {
+	public void searchTest() throws InterruptedException{
 		testName = "Search News Test";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
-		Process process = null;
 
 		try {
-			// Version 5.12 & 5.16 & 5.19 & 5.23
+			/* search news  test measurement starts*/
+			String ui = "new UiScrollable(new UiSelector().resourceIdMatches(\"com.google.android.apps.magazines:id/home_fragment_content\").scrollable(true)).scrollIntoView(new UiSelector().resourceId(\"com.google.android.apps.magazines:id/title\"));";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+			commandsCompleted += "clickNews:";
 
-			if (versionId == 1) {
-				wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
-						"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().descriptionMatches(\"(?i)View full coverage(?-i).*\"));"))).click();
-				commands += "viewFullCoverage:";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/hero_action_button"))).click();
+			commandsCompleted += "viewFullNews:";
 
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/title")));
-				commands += "checkTitle:";
-			}
-
-			else if (versionId == 2) {
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/story_metadata_icon"))).click();
-				commands += "viewFullCoverage:";
-
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/title")));
-				commands += "checkTitle:";
-			}
-
-			else if (versionId == 3) {
-
-				wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(
-						"new UiScrollable(" + "new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().descriptionMatches(\"(?i)View Full coverage(?-i).*\"));"))).click();
-				commands += "viewFullCoverage:";
-
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/title")));
-				commands += "checkTitle:";
-			}
-
-			// Version 5.27 : add scroll below feature
-			else {
-				wait.until(ExpectedConditions.visibilityOfElementLocated((By.id("com.google.android.apps.magazines:id/story_metadata_icon")))).click();
-				commands += "viewFullCoverage:";
-
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/title")));
-				commands += "checkTitle:";
-			}
-
-			commands += "P";
-
-
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/edition_pager_header_icon_label")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/title")));
+			commandsCompleted += "checkNewsTitle:";
 			/* load news  test measurement stops*/
+
+			commandsCompleted += "P";
 		} catch (Exception e) {
 			testStatusReason = e.toString();
 			throw e;
 		}
+//		JSON COMMANDS
 	}
+//	{
+//		"commands": [
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992361258,
+//				"endTime": 1615992363003
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615992363020,
+//				"endTime": 1615992365128
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992365144,
+//				"endTime": 1615992365201
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615992365207,
+//				"endTime": 1615992367675
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992368593,
+//				"endTime": 1615992369167
+//		},
+//		{
+//			"cmd": "getLogEvents",
+//				"startTime": 1615992369176,
+//				"endTime": 1615992369177
+//		}
+//  ]
+//	}
+
 
 }

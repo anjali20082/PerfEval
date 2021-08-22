@@ -6,18 +6,18 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.Activity;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -41,25 +41,18 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 @SuppressWarnings("unchecked")
 public class FacebookTestsP {
     AndroidDriver<MobileElement> driver;
-    String appName = "Facebook";
+    String appName = "Facebook_post";
     String testName = "NA";
     String testStatusReason = "NA";
-    int versionId;
-    String commands = "";
+    String commandsCompleted = "";
 
-    @BeforeClass
-    public void setUp() throws IOException, InterruptedException {
-		versionId = MyDatabase.getVersionSelected();
-        System.out.println("APP: " + appName + " Version ID: " + versionId);
+    @AfterClass
+    public void update() {
+
     }
 
     @BeforeMethod
     public void launchCap() {
-//		driver = MainLauncher.driver;
-//		driver.startActivity(new Activity("com.facebook.katana","com.facebook.katana.activity.FbMainTabActivity"));
-//        Activity activity = new Activity("com.facebook.katana","com.facebook.katana.activity.FbMainTabActivity");
-//        activity.setAppWaitActivity("com.facebook.katana.activity.FbMainTabActivity");
-//        driver.startActivity(activity);
         DesiredCapabilities cap=new DesiredCapabilities();
         cap.setCapability("appPackage", "com.facebook.katana");
         cap.setCapability("appActivity", "com.facebook.katana.activity.FbMainTabActivity");
@@ -77,29 +70,30 @@ public class FacebookTestsP {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (WebDriverException e) {
-            //MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
+            MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
         }
 
     }
     public String getConnectionType() {
         Long connType = driver.getConnection().getBitMask();
         if (connType == 2)
-            return "Wifi";
+            return "Wifi 2";
         else if (connType == 4)
-            return "MobileData";
+            return "MobileData 4";
         else if (connType == 6)
-            return "Wifi & MobileData";
-        return "Wifi";
+            return "Wifi & MobileData 6";
+        return "Wifi " + connType;
     }
 
     @AfterMethod
     public void restart(ITestResult testResult) {
         String jsonString = driver.getEvents().getJsonData();
-        System.out.println(commands);
+
+        System.out.println(jsonString);
 
         MyDatabase.setCurrentApp(appName);
-        MyDatabase.setCommands(commands);
         MyDatabase.setAppJsonCommands(jsonString);
+        MyDatabase.setCommands(commandsCompleted);
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
@@ -107,115 +101,218 @@ public class FacebookTestsP {
 //        driver.quit();
     }
 
+
+
     @Test
-    public void postGroup() throws InterruptedException{
+    public void postGroup() throws InterruptedException, IOException {
 
         testName = "post in a group";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
+
+        Random rand = new Random();
+        int rand_int = rand.nextInt(1000);
+        String rand_str = Integer.toString(rand_int);
+        String message = "Hi, this is an automated post:" + rand_str;
+        String ui = "";
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Username"))).sendKeys("iiitdevalapp@gmail.com");
-            commands += "enterEmail:";
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Password"))).sendKeys("nrl_evalapp");
-            commands += "enterPassword:";
-            if(versionId == 1) {
-                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Login"))).click();
-                commands += "login:";
-            }
-            else {
-                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Log In"))).click();
-                commands += "login:";
-            }
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"(?i)Not Now(?-i)\")"))).click();
-            commands += "notNow:";
 
-            if(versionId == 1) {
-                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"(?i)DENY(?-i)\")"))).click();
-                commands += "deny:";
-            }
-            else {
-                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Deny"))).click();
-                commands += "deny:";
-            }
+//			ui = "new UiSelector().descriptionMatches(\".*(?i)Groups(?-i).*\")";
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+//			commandsCompleted += "groups:";
+//
+//			ui = "new UiSelector().descriptionMatches(\"(?i)Your Groups(?-i)\")";
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+//			commandsCompleted += "yourGroups:";
+//
+//			ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().descriptionMatches(\"(?i)Evaluation of Apps Button(?-i)\"));";
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+//			commandsCompleted += "evalApp:";
 
-//            if (versionId == 1)
-//                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("new UiSelector().textContains(\"(?i)Search(?-i)\")"))).click();
-//            else
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Search Facebook"))).click();
-            commands += "search:";
+
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Username"))).sendKeys("iiitdevalapp@gmail.com");
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Password"))).sendKeys("nrl_evalapp");
+//
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Log In"))).click();
+//
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"(?i)Not Now(?-i)\")"))).click();
+
+
+
+            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.EditText"))).click();
+            commandsCompleted += "clickSearch:";
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
-            commands += "clickTextField:";
+            commandsCompleted += "searchPerson:";
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Evaluation of Apps");
-            commands += "enterName:";
+            commandsCompleted += "enterName:";
 
             ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-            commands += "pressEnter:";
+            commandsCompleted += "pressEnter:";
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Evaluation of Apps\");"))).click();
-            commands += "openGroupPage:";
+            ui = "new UiSelector().description(\"Visit\");";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+            commandsCompleted += "evalapp:";
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiScrollable(" + "new UiSelector().scrollable(true)).scrollToBeginning(20);")));
-            commands += "scrollAbove:";
+            ui = "new UiScrollable(" + "new UiSelector().scrollable(true)).scrollToBeginning(20);";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+            commandsCompleted += "scrollingAbove:";
 
-            if(versionId == 1) {
-                TouchAction touchAction = new TouchAction(driver);
-                touchAction.tap(PointOption.point(270, 859)).perform();
-                commands += "clickTextField:";
+            ui = "new UiSelector().descriptionContains(\"Create a post\");";
+            String ui1 = "new UiSelector().descriptionContains(\"Write something\");";
+            wait.until(ExpectedConditions.or(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)),
+                    ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui1))));
+
+            if (!driver.findElements(MobileBy.AndroidUIAutomator(ui)).isEmpty()) {
+                driver.findElement(MobileBy.AndroidUIAutomator(ui)).click();
             }
             else {
-                wait.until(ExpectedConditions.or(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Create a post…")), ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Write something…"))));
-                commands += "clickTextField:";
-
-                if (!driver.findElements(MobileBy.AccessibilityId("Create a post…")).isEmpty()) {
-                    driver.findElement(MobileBy.AccessibilityId("Create a post…")).click();
-                    commands += "clickCreateAPost:";
-                } else {
-                    driver.findElement(MobileBy.AccessibilityId("Write something…")).click();
-                    commands += "clickWriteSomething:";
-                }
+                driver.findElement(MobileBy.AndroidUIAutomator(ui1)).click();
             }
+            commandsCompleted += "writePost:";
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
-            commands += "clickEditText:";
+            ui = "android.widget.AutoCompleteTextView";
+            ui1 = "android.widget.EditText";
+            wait.until(ExpectedConditions.or(
+                    ExpectedConditions.visibilityOfElementLocated(By.className(ui)),
+                    ExpectedConditions.visibilityOfElementLocated(By.className(ui1))));
+            if (!driver.findElements(By.className(ui)).isEmpty()) {
+                driver.findElement(By.className(ui)).click();
+                driver.findElement(By.className(ui)).sendKeys(message);
+            }
+            else {
+                driver.findElement(By.className(ui1)).click();
+                driver.findElement(By.className(ui1)).sendKeys(message);
+            }
+            commandsCompleted += "writeMsg:";
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Hi, this is an automated post");
-            commands += "enterMessage:";
-            /* post group time measurement starts */
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("POST"))).click();
-            commands += "post:";
+            commandsCompleted += "clickPost:";
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Post Menu")));
-            commands += "postMenu:";
-            commands += "P";
+            ui = "new UiSelector().descriptionMatches(\"(?i)profile picture(?-i)\");";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+            commandsCompleted += "profilePicture:";
 
+            commandsCompleted += "P";
             /* post group time measurement stops */
         } catch (Exception e) {
             testStatusReason = e.toString();
             throw e;
         }
+//		JSON COMMANDS
     }
+//	{
+//		"commands": [
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992974046,
+//				"endTime": 1615992975100
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615992975115,
+//				"endTime": 1615992977351
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992977365,
+//				"endTime": 1615992977418
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615992977429,
+//				"endTime": 1615992979230
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992979235,
+//				"endTime": 1615992979271
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615992979283,
+//				"endTime": 1615992981302
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992981319,
+//				"endTime": 1615992984217
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992984342,
+//				"endTime": 1615992984387
+//		},
+//		{
+//			"cmd": "findElements",
+//				"startTime": 1615992984405,
+//				"endTime": 1615992984490
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992984497,
+//				"endTime": 1615992984544
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615992984561,
+//				"endTime": 1615992985710
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992985716,
+//				"endTime": 1615992985770
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615992985775,
+//				"endTime": 1615992985795
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615992985809,
+//				"endTime": 1615992987656
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992987664,
+//				"endTime": 1615992987722
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615992987725,
+//				"endTime": 1615992987751
+//		},
+//		{
+//			"cmd": "setValue",
+//				"startTime": 1615992987774,
+//				"endTime": 1615992988555
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992988571,
+//				"endTime": 1615992989358
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615992989364,
+//				"endTime": 1615992989427
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615992989442,
+//				"endTime": 1615992991379
+//		},
+//		{
+//			"cmd": "getLogEvents",
+//				"startTime": 1615992991387,
+//				"endTime": 1615992991388
+//		}
+//  ]
+//	}
+
+
+
 }
-//V240
-//--group--
-//acc-id:= Menu, Tab 4 of 4
-//acc-id Groups
-//acc-id Your Groups
-//acc-id Evaluation of Apps Button
-//coords  270,859
-//text  What's on your mind?
-//acc-id POST
-//acc-id Post Menu
-//
-//--search profile--
-//acc-id Search Facebook
-//text Search  send text
-//acc-id People
-//acc-id Kangana Ranaut Page
-//acc-id Profile picture
-
-
-//acc-id  Username
-//accid   Password
-//acc-id  Login

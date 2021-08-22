@@ -8,10 +8,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.Activity;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
@@ -41,26 +41,13 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 @SuppressWarnings("unchecked")
 public class FacebookTestsP_Search {
     AndroidDriver<MobileElement> driver;
-    String appName = "Facebook_Search";
+    String appName = "Facebook_search";
     String testName = "NA";
     String testStatusReason = "NA";
-    int versionId;
-    String commands = "";
-
-    @BeforeClass
-    public void setUp() throws IOException, InterruptedException {
-        versionId = MyDatabase.getVersionSelected();
-        System.out.println("APP: " + appName + " Version ID: " + versionId);
-    }
+    String commandsCompleted = "";
 
     @BeforeMethod
     public void launchCap() {
-//		driver = MainLauncher.driver;
-//		Package package = new Package("com.facebook.katana");
-//        Activity activity = new Activity("com.facebook.katana","com.facebook.katana.activity.FbMainTabActivity");
-//        activity.setAppWaitActivity("com.facebook.katana.activity.FbMainTabActivity");
-//        driver.startActivity(activity);
-
         DesiredCapabilities cap=new DesiredCapabilities();
         cap.setCapability("appPackage", "com.facebook.katana");
         cap.setCapability("appActivity", "com.facebook.katana.activity.FbMainTabActivity");
@@ -78,35 +65,44 @@ public class FacebookTestsP_Search {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (WebDriverException e) {
-            //MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
+            MyDatabase.addTestResult(appName, testName, null, "NA" , false, "App Not Installed");
         }
 
     }
+
     public String getConnectionType() {
         Long connType = driver.getConnection().getBitMask();
         if (connType == 2)
-            return "Wifi";
+            return "Wifi 2";
         else if (connType == 4)
-            return "MobileData";
+            return "MobileData 4";
         else if (connType == 6)
-            return "Wifi & MobileData";
-        return "Wifi";
+            return "Wifi & MobileData 6";
+        return "Wifi " + connType;
     }
 
     @AfterMethod
     public void restart(ITestResult testResult) {
         String jsonString = driver.getEvents().getJsonData();
-        System.out.println(commands);
 
         MyDatabase.setCurrentApp(appName);
-        MyDatabase.setCommands(commands);
+        MyDatabase.setCommands(commandsCompleted);
         MyDatabase.setAppJsonCommands(jsonString);
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
 
+//        List<List<Object>> performanceData = driver.getPerformanceData("com.facebook.katana", "memoryinfo", 5);
+//        List<List<Object>> performanceData1 = driver.getPerformanceData("com.facebook.katana", "batteryinfo", 5);
+//        List<List<Object>> performanceData2 = driver.getPerformanceData("com.facebook.katana", "networkinfo", 5);
+////        System.out.println("memory info: " + performanceData.toString());
+//        System.out.println("battery info: " + performanceData1.toString());
+//        System.out.println("network info: " + performanceData2.toString());
+
+        testStatusReason = "NA";
 //        driver.quit();
     }
+
 
     @Test
     public void searchPerson() throws InterruptedException{
@@ -115,104 +111,104 @@ public class FacebookTestsP_Search {
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 
         try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Username"))).sendKeys("iiitdevalapp@gmail.com");
-			commands += "enterEmail:";
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Password"))).sendKeys("nrl_evalapp");
-            commands += "enterPassword:";
-            if(versionId == 1) {
-                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Login"))).click();
-                commands += "login:";
-            }
-			else {
-                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Log In"))).click();
-                commands += "login:";
-            }
+            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
+            commandsCompleted += "clickSearch:";
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"(?i)Not Now(?-i)\")"))).click();
-            commands += "notNow:";
-
-            if(versionId == 1) {
-                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"(?i)DENY(?-i)\")"))).click();
-                commands += "deny:";
-            }
-            else {
-                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Deny"))).click();
-                commands += "deny:";
-            }
-
-//            if (versionId == 1)
-//                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("new UiSelector().descriptionContains(\"(?i)Search(?-i)\")"))).click();
-//            else
-                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Search Facebook"))).click();
-            commands += "search:";
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
-            commands += "clickTextField:";
+            commandsCompleted += "searchPerson:";
+
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Kangana Ranaut");
-            commands += "enterName:";
+            commandsCompleted += "enterName:";
+
             ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
-            commands += "pressEnter:";
+            commandsCompleted += "pressEnter:";
 
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Posts\")"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().description(\"Posts search results\")"))).click();
+            commandsCompleted += "clickPosts:";
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Profile Picture\")"))).click();
+            commandsCompleted += "clickProfilePicture:";
             /* Search person time measurement starts */
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Kangana Ranaut Page · Artist · Actor · KanganaRanaut · 2M like this"))).click();
-            if(versionId == 1){
-                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("People"))).click();
-                commands += "clickPeople:";
-                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Kangana Ranaut Page"))).click();
-                commands += "openPersonPage:";
-                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Profile picture")));
-                commands += "profilePicture:";
 
-            }
-            else if (versionId <= 3) {
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[3]/android.view.ViewGroup"))).click();
-
-//                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup"))).click();
-                commands += "openPersonPage:";
-
-                if (versionId == 2) {
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Profile photo")));
-                }
-                else {
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("Profile picture")));
-                }
-                commands += "profilePicture:";
-            }
-
-            commands += "P";
-
-//            else {
-//                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]"))).click();
-//                commands += "openPersonPage:";
-//            }
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("	new UiSelector().descriptionContains(\"Kangana Ranaut Page\")"))).click();
-            //wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textMatches(\"(?i)About(?-i)\")"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Profile Picture\")")));
+            commandsCompleted += "searchPersonProfile:";
             /* Search person time measurement stops */
 
+            commandsCompleted += "P";
         } catch (Exception e) {
             testStatusReason = e.toString();
             throw e;
         }
+//		JSON COMMANDS
     }
+//	{
+//		"commands": [
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615993346046,
+//				"endTime": 1615993347796
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615993347808,
+//				"endTime": 1615993349953
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615993349965,
+//				"endTime": 1615993350031
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615993350034,
+//				"endTime": 1615993350051
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615993350061,
+//				"endTime": 1615993350106
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615993359903,
+//				"endTime": 1615993360781
+//		},
+//		{
+//			"cmd": "elementDisplayed",
+//				"startTime": 1615993360784,
+//				"endTime": 1615993360808
+//		},
+//		{
+//			"cmd": "setValue",
+//				"startTime": 1615993360828,
+//				"endTime": 1615993361512
+//		},
+//		{
+//			"cmd": "pressKeyCode",
+//				"startTime": 1615993361530,
+//				"endTime": 1615993363319
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615993366799,
+//				"endTime": 1615993367478
+//		},
+//		{
+//			"cmd": "click",
+//				"startTime": 1615993367492,
+//				"endTime": 1615993367570
+//		},
+//		{
+//			"cmd": "findElement",
+//				"startTime": 1615993368414,
+//				"endTime": 1615993368885
+//		},
+//		{
+//			"cmd": "getLogEvents",
+//				"startTime": 1615993368901,
+//				"endTime": 1615993368901
+//		}
+//  ]
+//	}
 }
-//V240
-//--group--
-//acc-id:= Menu, Tab 4 of 4
-//acc-id Groups
-//acc-id Your Groups
-//acc-id Evaluation of Apps Button
-//coords  270,859
-//text  What's on your mind?
-//acc-id POST
-//acc-id Post Menu
-//
-//--search profile--
-//acc-id Search Facebook
-//text Search  send text
-//acc-id People
-//acc-id Kangana Ranaut Page
-//acc-id Profile picture
-
-
-//acc-id  Username
-//accid   Password
-//acc-id  Login
