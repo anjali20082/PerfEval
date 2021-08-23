@@ -73,24 +73,7 @@ public class MainLauncher {
         // Create a list of String
         List<XmlSuite> suiteFiles = new ArrayList<XmlSuite>();
 
-        if (appsToRun.contains("fbp")) {
-            List<XmlClass> fs_classes = new ArrayList<XmlClass>();
-            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
-            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.FacebookTestsP"));
-            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
-            addTestsToSuite(suiteFiles, fs_classes, "FacebookTests_post");
 
-            MyDatabase.totalTests += 1;
-        }
-        if (appsToRun.contains("fbs")) {
-            List<XmlClass> fs_classes = new ArrayList<XmlClass>();
-            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
-            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.FacebookTestsP_Search"));
-            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
-            addTestsToSuite(suiteFiles, fs_classes, "FacebookTests_search");
-
-            MyDatabase.totalTests += 1;
-        }
 //        if (appsToRun.contains("amz")) {
 //            List<XmlClass> fp_classes = new ArrayList<XmlClass>();
 //            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
@@ -220,6 +203,25 @@ public class MainLauncher {
             ytp_classes.add(new XmlClass("iiitd.nrl.evalapp.YouTubeTests_PlayVideo"));
             ytp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
             addTestsToSuite(suiteFiles, ytp_classes, "Youtube_PlayVideo");
+
+            MyDatabase.totalTests += 1;
+        }
+
+        if (appsToRun.contains("fbp")) {
+            List<XmlClass> fs_classes = new ArrayList<XmlClass>();
+            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
+            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.FacebookTestsP"));
+            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+            addTestsToSuite(suiteFiles, fs_classes, "FacebookTests_post");
+
+            MyDatabase.totalTests += 1;
+        }
+        if (appsToRun.contains("fbs")) {
+            List<XmlClass> fs_classes = new ArrayList<XmlClass>();
+            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
+            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.FacebookTestsP_Search"));
+            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+            addTestsToSuite(suiteFiles, fs_classes, "FacebookTests_search");
 
             MyDatabase.totalTests += 1;
         }
