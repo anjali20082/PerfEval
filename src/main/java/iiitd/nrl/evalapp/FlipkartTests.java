@@ -87,6 +87,7 @@ public class FlipkartTests {
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
+
 //		driver.quit();
 	}
 

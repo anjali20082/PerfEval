@@ -87,6 +87,7 @@ public class DailyhuntTests  {
 		MyDatabase.setConnType(getConnectionType());
 
 		testStatusReason = "NA";
+
 //		driver.quit();
 	}
 

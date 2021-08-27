@@ -66,6 +66,7 @@ public class TrakBytesUpload {
     public void restart(ITestResult testResult) {
         MyDatabase.setPacket_sizes_after(packetData);
         MyDatabase.addTestResult();
+
         driver.quit();
     }
 
