@@ -110,7 +110,7 @@ public class Amazon_Add {
 
     @Test
     public void searchProduct() throws InterruptedException {
-        testName = "search product";
+        testName = "add to cart";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
         String ui = "";
 

@@ -110,7 +110,7 @@ public class Amazon_Remove {
 
     @Test
     public void searchProduct() throws InterruptedException {
-        testName = "search product";
+        testName = "remove from cart";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
         String ui = "";
 
