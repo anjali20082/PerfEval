@@ -35,9 +35,9 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
 @SuppressWarnings("unchecked")
-public class Flipkart_action2 {
+public class Flipkart_action5 {
     AndroidDriver<MobileElement> driver;
-    String appName = "Flipkart_Profile";
+    String appName = "Flipkart_Remove";
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";
@@ -110,7 +110,7 @@ public class Flipkart_action2 {
         MyDatabase.setTestStatus(testResult.isSuccess());
         upload_stats();
 
-		driver.quit();
+        driver.quit();
     }
 
     @Test
@@ -142,61 +142,59 @@ public class Flipkart_action2 {
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
             commandsCompleted += "productPage:";
 
-//            /* search product test measurement stops */
+            /* search product test measurement stops */
+
+            if (driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().text(\"GO TO CART\");")).isEmpty()) {
+                addToCartClicked = true;
+                testStatusReason = "add to cart clicked";
+
+                /* add to cart test measurement starts */
+                ui = "new UiSelector().text(\"ADD TO CART\");";
+                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+                commandsCompleted += "addToCart:";
+                /* add to cart test measurement stops */
+
+                ui = "Back Button";
+                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId(ui))).click();
+                commandsCompleted += "backButton:";
+            } else {
+                testStatusReason = "add to cart not clicked";
+                commandsCompleted += "addToCartNotClicked:";
+            }
+
+            ui = "new UiSelector().text(\"GO TO CART\");";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+            commandsCompleted += "goToCart:";
+
+//			ui = "new UiSelector().textContains(\"Flipkart (\");";
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
 //
-//            if (driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().text(\"GO TO CART\");")).isEmpty()) {
-//                addToCartClicked = true;
-//                testStatusReason = "add to cart clicked";
+//			MobileElement element = driver.findElement(MobileBy.AndroidUIAutomator(ui));
+//			String cartValue = element.getText();
+//			cartValue = cartValue.split("(")[1].split(")")[0];
+//			System.out.println("Cart value:" + cartValue);
 //
-//                /* add to cart test measurement starts */
-//                ui = "new UiSelector().text(\"ADD TO CART\");";
-//                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
-//                commandsCompleted += "addToCart:";
-//                /* add to cart test measurement stops */
-//
-//                ui = "Back Button";
-//                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId(ui))).click();
-//                commandsCompleted += "backButton:";
-//            } else {
-//                testStatusReason = "add to cart not clicked";
-//                commandsCompleted += "addToCartNotClicked:";
-//            }
-//
-//            ui = "new UiSelector().text(\"GO TO CART\");";
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
-//            commandsCompleted += "goToCart:";
-//
-////			ui = "new UiSelector().textContains(\"Flipkart (\");";
-////			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
-////
-////			MobileElement element = driver.findElement(MobileBy.AndroidUIAutomator(ui));
-////			String cartValue = element.getText();
-////			cartValue = cartValue.split("(")[1].split(")")[0];
-////			System.out.println("Cart value:" + cartValue);
-//
-//            /* remove from cart test measurement starts */
-//            ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().textContains(\"Remove\"));";
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
-//            commandsCompleted += "removeProduct:";
-//
-//            ui = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]";
-////			ui = "new UiSelector().textContains(\"Remove\");";
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ui))).click();
-//            commandsCompleted += "removeProduct:";
-//
-//            ui = "new UiSelector().text(\"Flipkart\");";
-//            String ui2 = "new UiSelector().text(\"My Cart\");";
-//            wait.until(ExpectedConditions.or(
-//                    ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)),
-//                    ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui2))));
-//            commandsCompleted += "myCart:";
-//            /* remove from cart test measurement stop */
-//
-//            commandsCompleted += "P";
+            /* remove from cart test measurement starts */
+            ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().textContains(\"Remove\"));";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+            commandsCompleted += "removeProduct:";
+
+            ui = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]";
+//			ui = "new UiSelector().textContains(\"Remove\");";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ui))).click();
+            commandsCompleted += "removeProduct:";
+
+            ui = "new UiSelector().text(\"Flipkart\");";
+            String ui2 = "new UiSelector().text(\"My Cart\");";
+            wait.until(ExpectedConditions.or(
+                    ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)),
+                    ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui2))));
+            commandsCompleted += "myCart:";
+            /* remove from cart test measurement stop */
+
+            commandsCompleted += "P";
 
             Thread.sleep(1000);
-
-
 
         } catch (Exception e) {
             testStatusReason = e.toString();

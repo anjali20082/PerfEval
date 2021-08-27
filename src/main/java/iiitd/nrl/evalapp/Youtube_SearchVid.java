@@ -30,7 +30,7 @@ public class Youtube_SearchVid {
     AndroidDriver<MobileElement> driver;
 
     AppiumDriverLocalService service;
-    String appName = "Youtube_playVideo";
+    String appName = "Youtube_SearchVid";
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";

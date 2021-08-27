@@ -30,7 +30,7 @@ public class Youtube_PlayVid {
     AndroidDriver<MobileElement> driver;
 
     AppiumDriverLocalService service;
-    String appName = "Youtube_playVideo";
+    String appName = "Youtube_PlayVid";
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";

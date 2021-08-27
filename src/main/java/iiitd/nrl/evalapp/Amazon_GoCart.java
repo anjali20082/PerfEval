@@ -27,7 +27,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 @SuppressWarnings("unchecked")
 public class Amazon_GoCart {
     AndroidDriver<MobileElement> driver;
-    String appName = "Amazon";
+    String appName = "Amazon_GoCart";
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";

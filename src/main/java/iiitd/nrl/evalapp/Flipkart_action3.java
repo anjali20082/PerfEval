@@ -37,7 +37,7 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 @SuppressWarnings("unchecked")
 public class Flipkart_action3 {
     AndroidDriver<MobileElement> driver;
-    String appName = "Flipkart";
+    String appName = "Flipkart_Add";
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";

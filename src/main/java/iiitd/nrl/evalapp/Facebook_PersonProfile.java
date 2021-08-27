@@ -42,7 +42,7 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 @SuppressWarnings("unchecked")
 public class Facebook_PersonProfile {
     AndroidDriver<MobileElement> driver;
-    String appName = "Facebook_search";
+    String appName = "Facebook_PersonProfile";
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";

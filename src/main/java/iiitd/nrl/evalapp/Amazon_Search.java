@@ -27,7 +27,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 @SuppressWarnings("unchecked")
 public class Amazon_Search {
     AndroidDriver<MobileElement> driver;
-    String appName = "Amazon";
+    String appName = "Amazon_Search";
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";

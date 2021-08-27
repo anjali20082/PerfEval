@@ -36,7 +36,7 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 @SuppressWarnings("unchecked")
 public class Hotstar_PlayVid {
     AndroidDriver<MobileElement> driver;
-    String appName = "Hotstar_search";
+    String appName = "Hotstar_PlayVid";
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";

@@ -6,25 +6,17 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.Activity;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.IClass;
-import org.testng.ITestContext;
-import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -43,17 +35,17 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
 @SuppressWarnings("unchecked")
-public class Flipkart_test2 {
+public class Flipkart_action4 {
     AndroidDriver<MobileElement> driver;
-    String appName = "Flipkart";
+    String appName = "Flipkart_GoCart";
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";
     boolean addToCartClicked = false;
-    DesiredCapabilities cap=new DesiredCapabilities();
+
     @BeforeMethod
     public void launchCap() {
-        cap=new DesiredCapabilities();
+        DesiredCapabilities cap=new DesiredCapabilities();
         cap.setCapability("appPackage", "com.flipkart.android");
         cap.setCapability("appActivity", "com.flipkart.android.activity.HomeFragmentHolderActivity");
         cap.setCapability("noReset", "true");
@@ -75,18 +67,16 @@ public class Flipkart_test2 {
 
     }
 
-    public void enter_data(){
-
-        String jsonString = driver.getEvents().getJsonData();
-        MyDatabase.setCurrentApp(appName);
-        MyDatabase.setAppJsonCommands(jsonString);
-        MyDatabase.setCommands(commandsCompleted);
-        MyDatabase.setTestStatusReason(testStatusReason);
-        MyDatabase.setConnType(getConnectionType());
-//        MyDatabase.setTestStatus(testResult.isSuccess());
-
+    public String getConnectionType() {
+        Long connType = driver.getConnection().getBitMask();
+        if (connType == 2)
+            return "Wifi 2";
+        else if (connType == 4)
+            return "MobileData 4";
+        else if (connType == 6)
+            return "Wifi & MobileData 6";
+        return "Wifi " + connType;
     }
-
     public void upload_stats()throws Exception{
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
         Activity activity = new Activity("com.hawk.trakbytes", "com.hawk.trakbytes.MainActivity");
@@ -105,42 +95,27 @@ public class Flipkart_test2 {
         }
         MyDatabase.setPacket_sizes_after(packetData);
         MyDatabase.addTestResult();
-    }
-    public String getConnectionType() {
-        Long connType = driver.getConnection().getBitMask();
-        if (connType == 2)
-            return "Wifi 2";
-        else if (connType == 4)
-            return "MobileData 4";
-        else if (connType == 6)
-            return "Wifi & MobileData 6";
-        return "Wifi " + connType;
-    }
 
+    }
     @AfterMethod
-    public void restart(ITestResult testResult) {
+    public void restart(ITestResult testResult) throws Exception {
+        String jsonString = driver.getEvents().getJsonData();
+
+        MyDatabase.setCurrentApp(appName);
+        MyDatabase.setAppJsonCommands(jsonString);
+        MyDatabase.setCommands(commandsCompleted);
+        MyDatabase.setTestStatusReason(testStatusReason);
+        MyDatabase.setConnType(getConnectionType());
+
         MyDatabase.setTestStatus(testResult.isSuccess());
-//        driver.quit();
+        upload_stats();
+
+        driver.quit();
     }
 
-    public void reopenApp() throws InterruptedException {
-        driver.pressKey(new KeyEvent(AndroidKey.APP_SWITCH));
-        Thread.sleep(1000) ;
-        System.out.println("APP_SWITCH clicked");
-        int  y = driver.manage().window().getSize().height / 2;
-        int start_x = (int) (driver.manage().window().getSize().width * 0.2);
-        int end_x = (int) (driver.manage().window().getSize().width * 0.8);
-        TouchAction dragNDrop = new TouchAction(driver)
-                .press(PointOption.point(start_x, y)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
-                .moveTo(PointOption.point(end_x, y))
-                .release();
-        dragNDrop.perform();
-        driver.findElement(MobileBy.AccessibilityId("Flipkart")).click();
-    }
-
-    @Test(priority=0)
-    public void getProduct() throws Exception {
-        testName = "search product";
+    @Test
+    public void getProduct() throws InterruptedException {
+        testName = "search product action2";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
         String ui = "";
         try {
@@ -158,22 +133,14 @@ public class Flipkart_test2 {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ui))).click();
             commandsCompleted += "clickProduct:";
 
-            enter_data();
-            upload_stats();
-            reopenApp();
-
-
-
             ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().textContains(\"★\"));";
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
             commandsCompleted += "clickProduct:";
-
 
 //			ui = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup";
             ui = "new UiSelector().textContains(\"TO CART\");";
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
             commandsCompleted += "productPage:";
-
 
             /* search product test measurement stops */
 
@@ -206,49 +173,36 @@ public class Flipkart_test2 {
 //			String cartValue = element.getText();
 //			cartValue = cartValue.split("(")[1].split(")")[0];
 //			System.out.println("Cart value:" + cartValue);
-
-            /* remove from cart test measurement starts */
-            ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().textContains(\"Remove\"));";
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
-            commandsCompleted += "removeProduct:";
-
-            ui = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]";
-//			ui = "new UiSelector().textContains(\"Remove\");";
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ui))).click();
-            commandsCompleted += "removeProduct:";
-
-            ui = "new UiSelector().text(\"Flipkart\");";
-            String ui2 = "new UiSelector().text(\"My Cart\");";
-            wait.until(ExpectedConditions.or(
-                    ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)),
-                    ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui2))));
-            commandsCompleted += "myCart:";
-            /* remove from cart test measurement stop */
-
-            commandsCompleted += "P";
+//
+//            /* remove from cart test measurement starts */
+//            ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().textContains(\"Remove\"));";
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+//            commandsCompleted += "removeProduct:";
+//
+//            ui = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]";
+////			ui = "new UiSelector().textContains(\"Remove\");";
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ui))).click();
+//            commandsCompleted += "removeProduct:";
+//
+//            ui = "new UiSelector().text(\"Flipkart\");";
+//            String ui2 = "new UiSelector().text(\"My Cart\");";
+//            wait.until(ExpectedConditions.or(
+//                    ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)),
+//                    ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui2))));
+//            commandsCompleted += "myCart:";
+//            /* remove from cart test measurement stop */
+//
+//            commandsCompleted += "P";
 
             Thread.sleep(1000);
-            enter_data();
-
-
 
         } catch (Exception e) {
             testStatusReason = e.toString();
             throw e;
         }
-
-        driver.quit();
 //		JSON COMMANDS
     }
 
-//    @Test(priority=1)
-    public void getProduct1() throws InterruptedException {
-        testName = "search product";
-        WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
-        String ui = "";
-
-//		JSON COMMANDS
-    }
 //	{
 //		"commands": [
 //		{
