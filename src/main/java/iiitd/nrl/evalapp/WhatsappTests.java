@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.android.Activity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -62,9 +63,27 @@ public class WhatsappTests {
             return "Wifi & MobileData 6";
         return "Wifi " + connType;
     }
+    public void upload_stats()throws Exception{
+        WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
+        Activity activity = new Activity("com.hawk.trakbytes", "com.hawk.trakbytes.MainActivity");
+        driver.startActivity(activity);
+        String packetData = "NA";
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.hawk.trakbytes:id/upload_stats"))).click();
+            Thread.sleep(3000);
+            System.out.println("Upload Stats clicked");
+            packetData = driver.findElement(By.id("com.hawk.trakbytes:id/stats_text")).getText();
 
+            System.out.println(packetData);
+        } catch (Exception e) {
+            testStatusReason = e.toString();
+            throw e;
+        }
+        MyDatabase.setPacket_sizes_after(packetData);
+        MyDatabase.addTestResult();
+    }
     @AfterMethod
-    public void restart(ITestResult testResult) {
+    public void restart(ITestResult testResult) throws Exception {
         String jsonString = driver.getEvents().getJsonData();
 
         MyDatabase.setCurrentApp(appName);
@@ -75,7 +94,8 @@ public class WhatsappTests {
         MyDatabase.setConnType(getConnectionType());
 
         testStatusReason = "NA";
-//        driver.quit();
+        upload_stats();
+        driver.quit();
     }
 
     @Test

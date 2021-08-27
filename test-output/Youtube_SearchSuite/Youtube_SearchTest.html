@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Youtube_SearchTest</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>3/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>2/0/1</td>
 </tr><tr>
-<td>Started on:</td><td>Fri Aug 20 16:08:30 IST 2021</td>
+<td>Started on:</td><td>Fri Aug 27 17:51:11 IST 2021</td>
 </tr>
-<tr><td>Total time:</td><td>75 seconds (75617 ms)</td>
+<tr><td>Total time:</td><td>85 seconds (85181 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,6 +67,64 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED CONFIGURATIONS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='iiitd.nrl.evalapp.TrakBytesData.launchCap()'><b>launchCap</b><br>Test class: iiitd.nrl.evalapp.TrakBytesData</td>
+<td><div><pre>java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:138)
+	at iiitd.nrl.evalapp.TrakBytesData.launchCap(TrakBytesData.java:55)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:324)
+... Removed 23 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace196196466", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace196196466'><pre>java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:138)
+	at iiitd.nrl.evalapp.TrakBytesData.launchCap(TrakBytesData.java:55)
+	at jdk.internal.reflect.GeneratedMethodAccessor2.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:217)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:324)
+</pre></div></td>
+<td>0</td>
+<td>iiitd.nrl.evalapp.TrakBytesData@6f46426d</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED CONFIGURATIONS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='iiitd.nrl.evalapp.TrakBytesData.restart()'><b>restart</b><br>Test class: iiitd.nrl.evalapp.TrakBytesData</td>
+<td></td>
+<td>0</td>
+<td>iiitd.nrl.evalapp.TrakBytesData@6f46426d</td></tr>
+</table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
@@ -77,18 +135,58 @@ function toggleAllBoxes() {
 <tr>
 <td title='iiitd.nrl.evalapp.YouTubeTest_SearchChannel.channelTest()'><b>channelTest</b><br>Test class: iiitd.nrl.evalapp.YouTubeTest_SearchChannel</td>
 <td></td>
-<td>20</td>
-<td>iiitd.nrl.evalapp.YouTubeTest_SearchChannel@31e5415e</td></tr>
-<tr>
-<td title='iiitd.nrl.evalapp.TrakBytesData.copyTrakBytes()'><b>copyTrakBytes</b><br>Test class: iiitd.nrl.evalapp.TrakBytesData</td>
-<td></td>
-<td>3</td>
-<td>iiitd.nrl.evalapp.TrakBytesData@34f5090e</td></tr>
+<td>14</td>
+<td>iiitd.nrl.evalapp.YouTubeTest_SearchChannel@73700b80</td></tr>
 <tr>
 <td title='iiitd.nrl.evalapp.TrakBytesUpload.copyTrakBytes()'><b>copyTrakBytes</b><br>Test class: iiitd.nrl.evalapp.TrakBytesUpload</td>
 <td></td>
 <td>3</td>
-<td>iiitd.nrl.evalapp.TrakBytesUpload@a2431d0</td></tr>
+<td>iiitd.nrl.evalapp.TrakBytesUpload@49c7b90e</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='iiitd.nrl.evalapp.TrakBytesData.copyTrakBytes()'><b>copyTrakBytes</b><br>Test class: iiitd.nrl.evalapp.TrakBytesData</td>
+<td><div><pre>java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:138)
+	at iiitd.nrl.evalapp.TrakBytesData.launchCap(TrakBytesData.java:55)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:324)
+... Removed 23 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1680104617", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1680104617'><pre>java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:138)
+	at iiitd.nrl.evalapp.TrakBytesData.launchCap(TrakBytesData.java:55)
+	at jdk.internal.reflect.GeneratedMethodAccessor2.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:217)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:324)
+</pre></div></td>
+<td>0</td>
+<td>iiitd.nrl.evalapp.TrakBytesData@6f46426d</td></tr>
 </table><p>
 </body>
 </html>

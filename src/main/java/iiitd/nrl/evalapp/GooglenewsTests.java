@@ -3,6 +3,7 @@ package iiitd.nrl.evalapp;
 
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
@@ -65,9 +66,27 @@ public class GooglenewsTests {
 			return "Wifi & MobileData 6";
 		return "Wifi " + connType;
 	}
+	public void upload_stats()throws Exception{
+		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
+		Activity activity = new Activity("com.hawk.trakbytes", "com.hawk.trakbytes.MainActivity");
+		driver.startActivity(activity);
+		String packetData = "NA";
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.hawk.trakbytes:id/upload_stats"))).click();
+			Thread.sleep(3000);
+			System.out.println("Upload Stats clicked");
+			packetData = driver.findElement(By.id("com.hawk.trakbytes:id/stats_text")).getText();
 
+			System.out.println(packetData);
+		} catch (Exception e) {
+			testStatusReason = e.toString();
+			throw e;
+		}
+		MyDatabase.setPacket_sizes_after(packetData);
+		MyDatabase.addTestResult();
+	}
 	@AfterMethod
-	public void restart(ITestResult testResult) {
+	public void restart(ITestResult testResult) throws Exception {
 		String jsonString = driver.getEvents().getJsonData();
 
 		MyDatabase.setCurrentApp(appName);
@@ -78,7 +97,8 @@ public class GooglenewsTests {
 		MyDatabase.setConnType(getConnectionType());
 
 		testStatusReason = "NA";
-//		driver.quit();
+		upload_stats();
+		driver.quit();
 	}
 
 	@Test

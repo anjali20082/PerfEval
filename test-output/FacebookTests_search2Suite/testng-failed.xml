@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [FacebookTests_search2Suite]">
+  <test name="FacebookTests_search2Test(failed)">
+    <classes>
+      <class name="iiitd.nrl.evalapp.Facebook_PersonProfile">
+        <methods>
+          <include name="restart"/>
+          <include name="searchPerson"/>
+          <include name="launchCap"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.Facebook_PersonProfile -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <methods>
+          <include name="launchCap"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+    </classes>
+  </test> <!-- FacebookTests_search2Test(failed) -->
+</suite> <!-- Failed suite [FacebookTests_search2Suite] -->

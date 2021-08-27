@@ -175,9 +175,9 @@ public class Flipkart_action4 {
 //			System.out.println("Cart value:" + cartValue);
 //
 //            /* remove from cart test measurement starts */
-//            ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().textContains(\"Remove\"));";
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
-//            commandsCompleted += "removeProduct:";
+            ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().textContains(\"Remove\"));";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+            commandsCompleted += "goToCartSuceeded:";
 //
 //            ui = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]";
 ////			ui = "new UiSelector().textContains(\"Remove\");";

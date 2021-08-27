@@ -82,6 +82,8 @@ public class Facebook_PersonProfile {
         return "Wifi " + connType;
     }
 
+
+
     @AfterMethod
     public void restart(ITestResult testResult) throws Exception {
         String jsonString = driver.getEvents().getJsonData();

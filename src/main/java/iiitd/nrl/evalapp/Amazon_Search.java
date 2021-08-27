@@ -131,8 +131,8 @@ public class Amazon_Search {
 
 ////			ui = "new UiSelector().textContains(\"Prime Eligible\");";
 ////			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
-//            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Prime Eligible"))).click();
-//            commandsCompleted += "searchResult:";
+            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Prime Eligible")));
+            commandsCompleted += "searchResult:";
 //            System.out.println(commandsCompleted);
 //
 //

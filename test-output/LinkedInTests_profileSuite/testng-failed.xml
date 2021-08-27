@@ -3,12 +3,6 @@
 <suite name="Failed suite [LinkedInTests_profileSuite]">
   <test name="LinkedInTests_profileTest(failed)">
     <classes>
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <methods>
-          <include name="launchCap"/>
-          <include name="restart"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
       <class name="iiitd.nrl.evalapp.LinkedInTests_profile">
         <methods>
           <include name="viewProfile"/>
@@ -16,6 +10,12 @@
           <include name="restart"/>
         </methods>
       </class> <!-- iiitd.nrl.evalapp.LinkedInTests_profile -->
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <methods>
+          <include name="launchCap"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
       <class name="iiitd.nrl.evalapp.TrakBytesData">
         <methods>
           <include name="launchCap"/>

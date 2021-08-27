@@ -143,9 +143,10 @@ public class Facebook_Search {
             ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
             commandsCompleted += "pressEnter:";
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().description(\"Posts search results\")")));
-            commandsCompleted += "searchSuccess:";
+
 ////            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Posts\")"))).click();
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().description(\"Posts search results\")"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().description(\"Posts search results\")")));
+            commandsCompleted += "searchSuccess:";
 //            commandsCompleted += "clickPosts:";
 //
 //            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Profile Picture\")"))).click();

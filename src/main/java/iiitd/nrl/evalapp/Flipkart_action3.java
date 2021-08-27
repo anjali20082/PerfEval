@@ -154,9 +154,9 @@ public class Flipkart_action3 {
                 commandsCompleted += "addToCart:";
                 /* add to cart test measurement stops */
 //
-//                ui = "Back Button";
-//                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId(ui))).click();
-//                commandsCompleted += "backButton:";
+                ui = "Back Button";
+                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId(ui)));
+                commandsCompleted += "addedToCart:";
             } else {
                 testStatusReason = "add to cart not clicked";
                 commandsCompleted += "addToCartNotClicked:";

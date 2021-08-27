@@ -17,7 +17,7 @@ import java.util.List;
 public class MainLauncher {
     static AndroidDriver<MobileElement> driver;
     static int defaultVersionId = 1, osId;
-    static String studentEmailId = "test";
+    static String studentEmailId = "controlled-os8-v12";
     static ArrayList<String> appsToRun = new ArrayList<>(Arrays.asList("amz1","amz2","amz3","amz4","amz5","dht",
             "fbp","fbs1","fbs2","flp1","flp2","flp3","flp4","flp5","gmp",
             "gnw","hts1","hts2","htt","lnc","lnp","lns","tgm","wht","ytp1","ytp2","yts"));
@@ -63,7 +63,7 @@ public class MainLauncher {
         if (appsToRun.contains("amz1")) {
             List<XmlClass> fp_classes = new ArrayList<XmlClass>();
             fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
-            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.Amazon_search"));
+            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.Amazon_Search"));
 //            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
             addTestsToSuite(suiteFiles, fp_classes, "Amazon_Test1");
 
@@ -78,38 +78,38 @@ public class MainLauncher {
 
             MyDatabase.totalTests += 1;
         }
-        if (appsToRun.contains("amz3")) {
-            List<XmlClass> fp_classes = new ArrayList<XmlClass>();
-            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
-            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.Amazon_Add"));
-//            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
-            addTestsToSuite(suiteFiles, fp_classes, "Amazon_Test3");
-
-            MyDatabase.totalTests += 1;
-        }
-        if (appsToRun.contains("amz4")) {
-            List<XmlClass> fp_classes = new ArrayList<XmlClass>();
-            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
-            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.Amazon_GoCart"));
-//            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
-            addTestsToSuite(suiteFiles, fp_classes, "Amazon_Test4");
-
-            MyDatabase.totalTests += 1;
-        }
-        if (appsToRun.contains("amz5")) {
-            List<XmlClass> fp_classes = new ArrayList<XmlClass>();
-            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
-            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.Amazon_Remove"));
-//            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
-            addTestsToSuite(suiteFiles, fp_classes, "Amazon_Test5");
-
-            MyDatabase.totalTests += 1;
-        }
+//        if (appsToRun.contains("amz3")) {
+//            List<XmlClass> fp_classes = new ArrayList<XmlClass>();
+//            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
+//            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.Amazon_Add"));
+////            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//            addTestsToSuite(suiteFiles, fp_classes, "Amazon_Test3");
+//
+//            MyDatabase.totalTests += 1;
+//        }
+//        if (appsToRun.contains("amz4")) {
+//            List<XmlClass> fp_classes = new ArrayList<XmlClass>();
+//            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
+//            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.Amazon_GoCart"));
+////            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//            addTestsToSuite(suiteFiles, fp_classes, "Amazon_Test4");
+//
+//            MyDatabase.totalTests += 1;
+//        }
+//        if (appsToRun.contains("amz5")) {
+//            List<XmlClass> fp_classes = new ArrayList<XmlClass>();
+//            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
+//            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.Amazon_Remove"));
+////            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//            addTestsToSuite(suiteFiles, fp_classes, "Amazon_Test5");
+//
+//            MyDatabase.totalTests += 1;
+//        }
         if (appsToRun.contains("dht")) {
             List<XmlClass> fs_classes = new ArrayList<XmlClass>();
             fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
             fs_classes.add(new XmlClass("iiitd.nrl.evalapp.DailyhuntTests"));
-            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
             addTestsToSuite(suiteFiles, fs_classes, "Dailyhunt_Test");
 
             MyDatabase.totalTests += 1;
@@ -164,7 +164,7 @@ public class MainLauncher {
             List<XmlClass> classes = new ArrayList<XmlClass>();
             classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
             classes.add(new XmlClass("iiitd.nrl.evalapp.GoogleMapsTest"));
-            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
             addTestsToSuite(suiteFiles, classes, "GoogleMaps");
             MyDatabase.totalTests += 1;
         }
@@ -172,7 +172,7 @@ public class MainLauncher {
             List<XmlClass> classes = new ArrayList<XmlClass>();
             classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
             classes.add(new XmlClass("iiitd.nrl.evalapp.GooglenewsTests"));
-            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
             addTestsToSuite(suiteFiles, classes, "GooglenewsTests");
             MyDatabase.totalTests += 1;
         }
@@ -197,7 +197,7 @@ public class MainLauncher {
             List<XmlClass> classes = new ArrayList<XmlClass>();
             classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
             classes.add(new XmlClass("iiitd.nrl.evalapp.HotstarTests_trending"));
-            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
             addTestsToSuite(suiteFiles, classes, "HotstarTests_trending");
             MyDatabase.totalTests += 1;
         }
@@ -205,7 +205,7 @@ public class MainLauncher {
             List<XmlClass> classes = new ArrayList<XmlClass>();
             classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
             classes.add(new XmlClass("iiitd.nrl.evalapp.LinkedInTests_myConnections"));
-            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
             addTestsToSuite(suiteFiles, classes, "LinkedInTests_myConnections");
             MyDatabase.totalTests += 1;
         }
@@ -214,7 +214,7 @@ public class MainLauncher {
             List<XmlClass> classes = new ArrayList<XmlClass>();
             classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
             classes.add(new XmlClass("iiitd.nrl.evalapp.LinkedInTests_profile"));
-            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
             addTestsToSuite(suiteFiles, classes, "LinkedInTests_profile");
             MyDatabase.totalTests += 1;
         }
@@ -223,7 +223,7 @@ public class MainLauncher {
             List<XmlClass> classes = new ArrayList<XmlClass>();
             classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
             classes.add(new XmlClass("iiitd.nrl.evalapp.LinkedInTests_search"));
-            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
             addTestsToSuite(suiteFiles, classes, "LinkedInTests_search");
             MyDatabase.totalTests += 1;
         }
@@ -241,7 +241,7 @@ public class MainLauncher {
             List<XmlClass> classes = new ArrayList<XmlClass>();
             classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
             classes.add(new XmlClass("iiitd.nrl.evalapp.TelegramTests"));
-            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
             addTestsToSuite(suiteFiles, classes, "TelegramTests");
             MyDatabase.totalTests += 1;
         }
@@ -250,7 +250,7 @@ public class MainLauncher {
             List<XmlClass> classes = new ArrayList<XmlClass>();
             classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
             classes.add(new XmlClass("iiitd.nrl.evalapp.WhatsappTests"));
-            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//            classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
             addTestsToSuite(suiteFiles, classes, "WhatsappTests");
             MyDatabase.totalTests += 1;
         }
@@ -258,7 +258,7 @@ public class MainLauncher {
             List<XmlClass> yts_classes = new ArrayList<XmlClass>();
             yts_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
             yts_classes.add(new XmlClass("iiitd.nrl.evalapp.YouTubeTest_SearchChannel"));
-            yts_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//            yts_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
             addTestsToSuite(suiteFiles, yts_classes, "Youtube_Search");
 
             MyDatabase.totalTests += 1;
@@ -288,7 +288,7 @@ public class MainLauncher {
             List<XmlClass> fs_classes = new ArrayList<XmlClass>();
             fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
             fs_classes.add(new XmlClass("iiitd.nrl.evalapp.FacebookTestsP"));
-            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
             addTestsToSuite(suiteFiles, fs_classes, "FacebookTests_post");
 
             MyDatabase.totalTests += 1;
