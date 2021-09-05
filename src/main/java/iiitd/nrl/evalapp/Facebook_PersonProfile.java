@@ -2,17 +2,21 @@ package iiitd.nrl.evalapp;
 
 
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.Activity;
+
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
@@ -46,9 +50,17 @@ public class Facebook_PersonProfile {
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";
+    ArrayList<Integer> txrx1;
 
     @BeforeMethod
-    public void launchCap() {
+    public void launchCap() throws IOException {
+
+
+        txrx1 = NetStats.getstats("10346");
+        Integer rx_initial = txrx1.get(0);
+        Integer tx_initial = txrx1.get(1);
+        System.out.println(rx_initial + "  "+ tx_initial);
+
         DesiredCapabilities cap=new DesiredCapabilities();
         cap.setCapability("appPackage", "com.facebook.katana");
         cap.setCapability("appActivity", "com.facebook.katana.activity.FbMainTabActivity");
@@ -103,7 +115,7 @@ public class Facebook_PersonProfile {
 //        System.out.println("network info: " + performanceData2.toString());
 
         testStatusReason = "NA";
-        upload_stats();
+//        upload_stats();
         driver.quit();
     }
     public void upload_stats()throws Exception{
@@ -127,7 +139,7 @@ public class Facebook_PersonProfile {
     }
 
     @Test
-    public void searchPerson() throws InterruptedException{
+    public void searchPerson() throws InterruptedException, IOException {
 
         testName = "search person";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
@@ -139,13 +151,23 @@ public class Facebook_PersonProfile {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
             commandsCompleted += "searchPerson:";
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Kangana Ranaut");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("IIIT Delhi");
             commandsCompleted += "enterName:";
 
             ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
             commandsCompleted += "pressEnter:";
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().description(\"Posts search results\")")));
             commandsCompleted += "searchSuccess:";
+
+
+            txrx1 = NetStats.getstats("10346");
+            Integer rx_1 = txrx1.get(0);
+            Integer tx_1 = txrx1.get(1);
+            System.out.println(rx_1 + "  "+ tx_1);
+
+
+
+
 //            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Posts\")"))).click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().description(\"Posts search results\")"))).click();
             commandsCompleted += "clickPosts:";
@@ -154,11 +176,18 @@ public class Facebook_PersonProfile {
             commandsCompleted += "clickProfilePicture:";
             /* Search person time measurement starts */
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Profile Picture\")")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Profile photo\")")));
             commandsCompleted += "searchPersonProfile:";
             /* Search person time measurement stops */
 
             commandsCompleted += "P";
+
+            txrx1 = NetStats.getstats("10346");
+            Integer rx_2 = txrx1.get(0);
+            Integer tx_2 = txrx1.get(1);
+            System.out.println(rx_2 + "  "+ tx_2);
+
+
         } catch (Exception e) {
             testStatusReason = e.toString();
             throw e;

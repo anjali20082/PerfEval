@@ -90,7 +90,7 @@ public class Hotstar_SearchVid {
         MyDatabase.setConnType(getConnectionType());
 
         testStatusReason = "NA";
-        upload_stats();
+//        upload_stats();
         driver.quit();
     }
     public void upload_stats()throws Exception{

@@ -93,7 +93,6 @@ public class MyDatabase {
 
     }
 
-
     public static long getTimeTaken(String jsonString, int startIndex, int endIndex) {
 
         JSONParser parser = new JSONParser();

@@ -108,7 +108,7 @@ public class Flipkart_action4 {
         MyDatabase.setConnType(getConnectionType());
 
         MyDatabase.setTestStatus(testResult.isSuccess());
-        upload_stats();
+//        upload_stats();
 
         driver.quit();
     }

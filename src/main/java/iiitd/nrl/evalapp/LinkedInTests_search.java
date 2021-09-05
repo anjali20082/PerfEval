@@ -93,7 +93,7 @@ public class LinkedInTests_search {
         MyDatabase.setConnType(getConnectionType());
 
         testStatusReason = "NA";
-        upload_stats();
+//        upload_stats();
         driver.quit();
     }
 

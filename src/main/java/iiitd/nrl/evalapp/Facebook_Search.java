@@ -101,7 +101,7 @@ public class Facebook_Search {
 //        System.out.println("network info: " + performanceData2.toString());
 
         testStatusReason = "NA";
-        upload_stats();
+//        upload_stats();
         driver.quit();
     }
     public void upload_stats()throws Exception{

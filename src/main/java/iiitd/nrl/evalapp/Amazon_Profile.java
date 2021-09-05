@@ -104,7 +104,7 @@ public class Amazon_Profile {
         MyDatabase.setConnType(getConnectionType());
 
         testStatusReason = "NA";
-        upload_stats();
+//        upload_stats();
         driver.quit();
     }
 

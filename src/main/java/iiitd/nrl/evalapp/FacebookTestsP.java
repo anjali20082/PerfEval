@@ -116,7 +116,7 @@ public class FacebookTestsP {
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
-        upload_stats();
+//        upload_stats();
 
         driver.quit();
     }
@@ -216,6 +216,8 @@ public class FacebookTestsP {
             commandsCompleted += "profilePicture:";
 
             commandsCompleted += "P";
+
+
             /* post group time measurement stops */
         } catch (Exception e) {
             testStatusReason = e.toString();

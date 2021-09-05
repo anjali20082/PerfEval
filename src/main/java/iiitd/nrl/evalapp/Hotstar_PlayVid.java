@@ -90,7 +90,7 @@ public class Hotstar_PlayVid {
         MyDatabase.setConnType(getConnectionType());
 
         testStatusReason = "NA";
-        upload_stats();
+//        upload_stats();
         driver.quit();
     }
     public void upload_stats()throws Exception{

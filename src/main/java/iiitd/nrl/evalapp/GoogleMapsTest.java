@@ -90,7 +90,7 @@ public class GoogleMapsTest {
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
         testStatusReason = "NA";
-        upload_stats();
+//        upload_stats();
         driver.quit();
     }
 

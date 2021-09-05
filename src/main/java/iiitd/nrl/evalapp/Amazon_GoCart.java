@@ -104,7 +104,7 @@ public class Amazon_GoCart {
         MyDatabase.setConnType(getConnectionType());
 
         testStatusReason = "NA";
-        upload_stats();
+//        upload_stats();
         driver.quit();
     }
 
