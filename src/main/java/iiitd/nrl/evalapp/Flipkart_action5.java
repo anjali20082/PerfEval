@@ -46,18 +46,20 @@ public class Flipkart_action5 {
     ArrayList<Integer> txrx;
     String tx_bytes = "";
     String rx_bytes = "";
+    Integer rx_initial ;
+    Integer tx_initial ;
 
 
     @BeforeMethod
     public void launchCap() throws IOException {
 
         txrx = NetStats.getstats("10381");
-        Integer rx_initial = txrx.get(0);
-        Integer tx_initial = txrx.get(1);
-        System.out.println(rx_initial + "  "+ tx_initial);
-
-        tx_bytes += tx_initial+":";
-        rx_bytes += rx_initial+":";
+         rx_initial = txrx.get(0);
+         tx_initial = txrx.get(1);
+//        System.out.println(rx_initial + "  "+ tx_initial);
+//
+//        tx_bytes += tx_initial+":";
+//        rx_bytes += rx_initial+":";
 
         DesiredCapabilities cap=new DesiredCapabilities();
         cap.setCapability("appPackage", "com.flipkart.android");
@@ -129,9 +131,9 @@ public class Flipkart_action5 {
             txrx = NetStats.getstats("10381");
             Integer rx_1 = txrx.get(0);
             Integer tx_1 = txrx.get(1);
-            System.out.println(rx_1 + "  "+ tx_1);
-            tx_bytes += tx_1+":";
-            rx_bytes += rx_1+":";
+//            System.out.println(rx_1 + "  "+ tx_1);
+            tx_bytes += tx_1 - tx_initial+":";
+            rx_bytes += rx_1 -rx_initial +":";
 
             /* search product test measurement starts */
             ui = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.RelativeLayout[1]";
@@ -150,10 +152,10 @@ public class Flipkart_action5 {
             txrx = NetStats.getstats("10381");
             Integer rx_2 = txrx.get(0);
             Integer tx_2 = txrx.get(1);
-            System.out.println(rx_2 + "  "+ tx_2);
+//            System.out.println(rx_2 + "  "+ tx_2);
 
-            tx_bytes += tx_2+":";
-            rx_bytes += rx_2+":";
+            tx_bytes += tx_2 - tx_1 +":";
+            rx_bytes += rx_2 - rx_1 +":";
 
             /* search product test measurement stops */
 
@@ -170,10 +172,10 @@ public class Flipkart_action5 {
             txrx = NetStats.getstats("10381");
             Integer rx_3 = txrx.get(0);
             Integer tx_3 = txrx.get(1);
-            System.out.println(rx_3 + "  "+ tx_3);
+//            System.out.println(rx_3 + "  "+ tx_3);
 
-            tx_bytes += tx_3+":";
-            rx_bytes += rx_3+":";
+            tx_bytes += tx_3 - tx_2+":";
+            rx_bytes += rx_3 - rx_2+":";
 //                /* add to cart test measurement stops */
 
 
@@ -218,10 +220,10 @@ public class Flipkart_action5 {
             txrx = NetStats.getstats("10381");
             Integer rx_4 = txrx.get(0);
             Integer tx_4 = txrx.get(1);
-            System.out.println(rx_4 + "  "+ tx_4);
+//            System.out.println(rx_4 + "  "+ tx_4);
 
-            tx_bytes += tx_4+":";
-            rx_bytes += rx_4+":";
+            tx_bytes += tx_4 - tx_3 +":";
+            rx_bytes += rx_4 - rx_3 +":";
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
             commandsCompleted += "removeProduct:";
@@ -244,10 +246,10 @@ public class Flipkart_action5 {
             txrx = NetStats.getstats("10381");
             Integer rx_5 = txrx.get(0);
             Integer tx_5 = txrx.get(1);
-            System.out.println(rx_5 + "  "+ tx_5);
+//            System.out.println(rx_5 + "  "+ tx_5);
 
-            tx_bytes += tx_5;
-            rx_bytes += rx_5;
+            tx_bytes += tx_5 - tx_4;
+            rx_bytes += rx_5 - rx_4;
 
             System.out.println("TX: "+tx_bytes);
             System.out.println("RX: "+rx_bytes);
