@@ -152,8 +152,8 @@ public class Flipkart_action5 {
             Integer tx_2 = txrx.get(1);
             System.out.println(rx_2 + "  "+ tx_2);
 
-            tx_bytes += tx_2;
-            rx_bytes += rx_2;
+            tx_bytes += tx_2+":";
+            rx_bytes += rx_2+":";
 
             /* search product test measurement stops */
 
@@ -172,8 +172,8 @@ public class Flipkart_action5 {
             Integer tx_3 = txrx.get(1);
             System.out.println(rx_3 + "  "+ tx_3);
 
-            tx_bytes += tx_3;
-            rx_bytes += rx_3;
+            tx_bytes += tx_3+":";
+            rx_bytes += rx_3+":";
 //                /* add to cart test measurement stops */
 
 
@@ -220,8 +220,8 @@ public class Flipkart_action5 {
             Integer tx_4 = txrx.get(1);
             System.out.println(rx_4 + "  "+ tx_4);
 
-            tx_bytes += tx_4;
-            rx_bytes += rx_4;
+            tx_bytes += tx_4+":";
+            rx_bytes += rx_4+":";
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
             commandsCompleted += "removeProduct:";

@@ -27,7 +27,7 @@ public class NetStats {
         StringBuilder st= new StringBuilder() ;
         while ((s = stdInput.readLine()) != null) {
             st.append(s);
-            System.out.println(s.trim());
+//            System.out.println(s.trim());
         }
         String st1 = (st.toString());
         String rx_bg = (st1.split(" ")[5]);

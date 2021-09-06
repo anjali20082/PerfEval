@@ -3,9 +3,15 @@
 <suite name="Failed suite [Flipkart_Test5Suite]">
   <test name="Flipkart_Test5Test(failed)">
     <classes>
+      <class name="iiitd.nrl.evalapp.Flipkart_action5">
+        <methods>
+          <include name="restart"/>
+          <include name="getProduct"/>
+          <include name="launchCap"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.Flipkart_action5 -->
       <class name="iiitd.nrl.evalapp.TrakBytesUpload">
         <methods>
-          <include name="copyTrakBytes"/>
           <include name="launchCap"/>
           <include name="restart"/>
         </methods>
@@ -16,12 +22,6 @@
           <include name="restart"/>
         </methods>
       </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
-      <class name="iiitd.nrl.evalapp.Flipkart_action5">
-        <methods>
-          <include name="restart"/>
-          <include name="launchCap"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.Flipkart_action5 -->
     </classes>
   </test> <!-- Flipkart_Test5Test(failed) -->
 </suite> <!-- Failed suite [Flipkart_Test5Suite] -->

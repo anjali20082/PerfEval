@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [HotstarTests_trendingSuite]">
-  <test name="HotstarTests_trendingTest(failed)">
+<suite name="Failed suite [Youtube_SearchSuite]">
+  <test name="Youtube_SearchTest(failed)">
     <classes>
-      <class name="iiitd.nrl.evalapp.HotstarTests_trending">
+      <class name="iiitd.nrl.evalapp.YouTubeTest_SearchChannel">
         <methods>
-          <include name="restart"/>
-          <include name="trendingTest"/>
           <include name="launchCap"/>
+          <include name="restart"/>
+          <include name="channelTest"/>
         </methods>
-      </class> <!-- iiitd.nrl.evalapp.HotstarTests_trending -->
+      </class> <!-- iiitd.nrl.evalapp.YouTubeTest_SearchChannel -->
       <class name="iiitd.nrl.evalapp.TrakBytesUpload">
         <methods>
           <include name="launchCap"/>
@@ -23,5 +23,5 @@
         </methods>
       </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
     </classes>
-  </test> <!-- HotstarTests_trendingTest(failed) -->
-</suite> <!-- Failed suite [HotstarTests_trendingSuite] -->
+  </test> <!-- Youtube_SearchTest(failed) -->
+</suite> <!-- Failed suite [Youtube_SearchSuite] -->

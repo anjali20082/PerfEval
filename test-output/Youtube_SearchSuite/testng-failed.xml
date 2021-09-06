@@ -7,6 +7,7 @@
         <methods>
           <include name="launchCap"/>
           <include name="restart"/>
+          <include name="channelTest"/>
         </methods>
       </class> <!-- iiitd.nrl.evalapp.YouTubeTest_SearchChannel -->
       <class name="iiitd.nrl.evalapp.TrakBytesUpload">
@@ -18,7 +19,7 @@
       <class name="iiitd.nrl.evalapp.TrakBytesData">
         <methods>
           <include name="launchCap"/>
-          <include name="copyTrakBytes"/>
+          <include name="restart"/>
         </methods>
       </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
     </classes>
