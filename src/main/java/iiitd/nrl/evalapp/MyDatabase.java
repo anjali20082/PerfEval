@@ -43,6 +43,8 @@ public class MyDatabase {
     public static String connType;
     public static String packet_sizes_before = "";
     public static String packet_sizes_after = "";
+    public static String tx_bytes = "";
+    public static String rx_bytes = "";
 
     public static void setAppJsonCommands(String appJsonCommands) {
         MyDatabase.appJsonCommands = appJsonCommands;
@@ -74,6 +76,11 @@ public class MyDatabase {
 
     public static void setPacket_sizes_after(String packet_sizes_after) {
         MyDatabase.packet_sizes_after = packet_sizes_after;
+    }
+
+    public static void set_TX_RX_Bytes(String tx_bytes, String rx_bytes) {
+        MyDatabase.tx_bytes = tx_bytes;
+        MyDatabase.rx_bytes = rx_bytes;
     }
 
     public static void setVersionSelected(int version) {
@@ -135,6 +142,8 @@ public class MyDatabase {
         System.out.println("Status: " + testStatus + "\n");
         System.out.println("Reason: " + testStatusReason + "\n");
         System.out.println("Time Taken: " + main_events.toString());
+        System.out.println("tx_bytes: "+ tx_bytes);
+        System.out.println("rx_bytes: "+ rx_bytes);
 
         Document document = new Document("startedAt", currentTime);
         document.append("app", appName);
@@ -143,7 +152,8 @@ public class MyDatabase {
         document.append("connType", connType);
         document.append("status", testStatus);
         document.append("reason", testStatusReason);
-
+        document.append("tx_bytes", tx_bytes);
+        document.append("rx_bytes", rx_bytes);
 
         student_collection.insertOne(document);
     }
@@ -168,6 +178,8 @@ public class MyDatabase {
         document.append("reason", MyDatabase.testStatusReason);
         document.append("data_before", packet_sizes_before);
         document.append("data_after", packet_sizes_after);
+        document.append("tx_bytes", tx_bytes);
+        document.append("rx_bytes", rx_bytes);
 
         MyDatabase.setPacket_sizes_before(MyDatabase.packet_sizes_after);
 

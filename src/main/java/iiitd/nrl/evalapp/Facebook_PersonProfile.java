@@ -50,15 +50,17 @@ public class Facebook_PersonProfile {
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";
-    ArrayList<Integer> txrx1;
+    ArrayList<Integer> txrx;
+    String tx_bytes = "";
+    String rx_bytes = "";
 
     @BeforeMethod
     public void launchCap() throws IOException {
 
 
-        txrx1 = NetStats.getstats("10346");
-        Integer rx_initial = txrx1.get(0);
-        Integer tx_initial = txrx1.get(1);
+        txrx = NetStats.getstats("10346");
+        Integer rx_initial = txrx.get(0);
+        Integer tx_initial = txrx.get(1);
         System.out.println(rx_initial + "  "+ tx_initial);
 
         DesiredCapabilities cap=new DesiredCapabilities();
@@ -106,7 +108,7 @@ public class Facebook_PersonProfile {
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
-
+        MyDatabase.set_TX_RX_Bytes(tx_bytes, rx_bytes);
 //        List<List<Object>> performanceData = driver.getPerformanceData("com.facebook.katana", "memoryinfo", 5);
 //        List<List<Object>> performanceData1 = driver.getPerformanceData("com.facebook.katana", "batteryinfo", 5);
 //        List<List<Object>> performanceData2 = driver.getPerformanceData("com.facebook.katana", "networkinfo", 5);
@@ -117,25 +119,6 @@ public class Facebook_PersonProfile {
         testStatusReason = "NA";
 //        upload_stats();
         driver.quit();
-    }
-    public void upload_stats()throws Exception{
-        WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
-        Activity activity = new Activity("com.hawk.trakbytes", "com.hawk.trakbytes.MainActivity");
-        driver.startActivity(activity);
-        String packetData = "NA";
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.hawk.trakbytes:id/upload_stats"))).click();
-            Thread.sleep(3000);
-            System.out.println("Upload Stats clicked");
-            packetData = driver.findElement(By.id("com.hawk.trakbytes:id/stats_text")).getText();
-
-            System.out.println(packetData);
-        } catch (Exception e) {
-            testStatusReason = e.toString();
-            throw e;
-        }
-        MyDatabase.setPacket_sizes_after(packetData);
-        MyDatabase.addTestResult();
     }
 
     @Test
@@ -160,11 +143,12 @@ public class Facebook_PersonProfile {
             commandsCompleted += "searchSuccess:";
 
 
-            txrx1 = NetStats.getstats("10346");
-            Integer rx_1 = txrx1.get(0);
-            Integer tx_1 = txrx1.get(1);
+            txrx = NetStats.getstats("10346");
+            Integer rx_1 = txrx.get(0);
+            Integer tx_1 = txrx.get(1);
             System.out.println(rx_1 + "  "+ tx_1);
-
+            tx_bytes += tx_1+":";
+            rx_bytes += rx_1+":";
 
 
 
@@ -182,11 +166,16 @@ public class Facebook_PersonProfile {
 
             commandsCompleted += "P";
 
-            txrx1 = NetStats.getstats("10346");
-            Integer rx_2 = txrx1.get(0);
-            Integer tx_2 = txrx1.get(1);
+            txrx = NetStats.getstats("10346");
+            Integer rx_2 = txrx.get(0);
+            Integer tx_2 = txrx.get(1);
             System.out.println(rx_2 + "  "+ tx_2);
 
+            tx_bytes += tx_1;
+            rx_bytes += rx_1;
+
+            System.out.println("TX: "+tx_bytes);
+            System.out.println("RX: "+rx_bytes);
 
         } catch (Exception e) {
             testStatusReason = e.toString();
