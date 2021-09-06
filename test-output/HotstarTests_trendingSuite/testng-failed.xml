@@ -3,18 +3,19 @@
 <suite name="Failed suite [HotstarTests_trendingSuite]">
   <test name="HotstarTests_trendingTest(failed)">
     <classes>
+      <class name="iiitd.nrl.evalapp.HotstarTests_trending">
+        <methods>
+          <include name="restart"/>
+          <include name="trendingTest"/>
+          <include name="launchCap"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.HotstarTests_trending -->
       <class name="iiitd.nrl.evalapp.TrakBytesUpload">
         <methods>
           <include name="launchCap"/>
           <include name="restart"/>
         </methods>
       </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.HotstarTests_trending">
-        <methods>
-          <include name="trendingTest"/>
-          <include name="launchCap"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.HotstarTests_trending -->
       <class name="iiitd.nrl.evalapp.TrakBytesData">
         <methods>
           <include name="launchCap"/>

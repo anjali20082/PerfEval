@@ -9,6 +9,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -46,6 +47,9 @@ public class FacebookTestsP {
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";
+    ArrayList<Integer> txrx;
+    String tx_bytes = "";
+    String rx_bytes = "";
 
     @AfterClass
     public void update() {
@@ -85,25 +89,7 @@ public class FacebookTestsP {
             return "Wifi & MobileData 6";
         return "Wifi " + connType;
     }
-    public void upload_stats()throws Exception{
-        WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
-        Activity activity = new Activity("com.hawk.trakbytes", "com.hawk.trakbytes.MainActivity");
-        driver.startActivity(activity);
-        String packetData = "NA";
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.hawk.trakbytes:id/upload_stats"))).click();
-            Thread.sleep(3000);
-            System.out.println("Upload Stats clicked");
-            packetData = driver.findElement(By.id("com.hawk.trakbytes:id/stats_text")).getText();
 
-            System.out.println(packetData);
-        } catch (Exception e) {
-            testStatusReason = e.toString();
-            throw e;
-        }
-        MyDatabase.setPacket_sizes_after(packetData);
-        MyDatabase.addTestResult();
-    }
     @AfterMethod
     public void restart(ITestResult testResult) throws Exception {
         String jsonString = driver.getEvents().getJsonData();
@@ -116,8 +102,6 @@ public class FacebookTestsP {
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
-//        upload_stats();
-
         driver.quit();
     }
 

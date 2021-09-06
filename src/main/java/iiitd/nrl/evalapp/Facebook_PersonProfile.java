@@ -63,6 +63,9 @@ public class Facebook_PersonProfile {
         Integer tx_initial = txrx.get(1);
         System.out.println(rx_initial + "  "+ tx_initial);
 
+        tx_bytes += tx_initial+":";
+        rx_bytes += rx_initial+":";
+
         DesiredCapabilities cap=new DesiredCapabilities();
         cap.setCapability("appPackage", "com.facebook.katana");
         cap.setCapability("appActivity", "com.facebook.katana.activity.FbMainTabActivity");
@@ -117,7 +120,6 @@ public class Facebook_PersonProfile {
 //        System.out.println("network info: " + performanceData2.toString());
 
         testStatusReason = "NA";
-//        upload_stats();
         driver.quit();
     }
 
@@ -171,8 +173,8 @@ public class Facebook_PersonProfile {
             Integer tx_2 = txrx.get(1);
             System.out.println(rx_2 + "  "+ tx_2);
 
-            tx_bytes += tx_1;
-            rx_bytes += rx_1;
+            tx_bytes += tx_2;
+            rx_bytes += rx_2;
 
             System.out.println("TX: "+tx_bytes);
             System.out.println("RX: "+rx_bytes);

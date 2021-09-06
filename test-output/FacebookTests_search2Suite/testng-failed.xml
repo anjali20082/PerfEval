@@ -5,8 +5,8 @@
     <classes>
       <class name="iiitd.nrl.evalapp.TrakBytesUpload">
         <methods>
+          <include name="copyTrakBytes"/>
           <include name="launchCap"/>
-          <include name="restart"/>
         </methods>
       </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
       <class name="iiitd.nrl.evalapp.TrakBytesData">
@@ -18,7 +18,6 @@
       <class name="iiitd.nrl.evalapp.Facebook_PersonProfile">
         <methods>
           <include name="restart"/>
-          <include name="searchPerson"/>
           <include name="launchCap"/>
         </methods>
       </class> <!-- iiitd.nrl.evalapp.Facebook_PersonProfile -->

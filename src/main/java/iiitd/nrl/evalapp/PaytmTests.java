@@ -77,7 +77,7 @@ public class PaytmTests {
         MyDatabase.setConnType(getConnectionType());
 
         testStatusReason = "NA";
-//        driver.quit();
+        driver.quit();
     }
 
     @Test

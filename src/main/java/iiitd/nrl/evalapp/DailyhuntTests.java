@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -40,9 +41,20 @@ public class DailyhuntTests  {
 	String testName = "NA";
 	String testStatusReason = "NA";
 	String commandsCompleted = "";
+	ArrayList<Integer> txrx;
+	String tx_bytes = "";
+	String rx_bytes = "";
 
 	@BeforeMethod
-	public void launchCap() {
+	public void launchCap() throws IOException {
+		txrx = NetStats.getstats("10346");
+		Integer rx_initial = txrx.get(0);
+		Integer tx_initial = txrx.get(1);
+		System.out.println(rx_initial + "  "+ tx_initial);
+
+		tx_bytes += tx_initial+":";
+		rx_bytes += rx_initial+":";
+
 		DesiredCapabilities cap=new DesiredCapabilities();
 		cap.setCapability("appPackage", "com.eterno");
 		cap.setCapability("appActivity", "com.newshunt.appview.common.ui.activity.HomeActivity");
@@ -75,25 +87,7 @@ public class DailyhuntTests  {
 			return "Wifi & MobileData 6";
 		return "Wifi " + connType;
 	}
-	public void upload_stats()throws Exception{
-		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
-		Activity activity = new Activity("com.hawk.trakbytes", "com.hawk.trakbytes.MainActivity");
-		driver.startActivity(activity);
-		String packetData = "NA";
-		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.hawk.trakbytes:id/upload_stats"))).click();
-			Thread.sleep(3000);
-			System.out.println("Upload Stats clicked");
-			packetData = driver.findElement(By.id("com.hawk.trakbytes:id/stats_text")).getText();
 
-			System.out.println(packetData);
-		} catch (Exception e) {
-			testStatusReason = e.toString();
-			throw e;
-		}
-		MyDatabase.setPacket_sizes_after(packetData);
-		MyDatabase.addTestResult();
-	}
 	@AfterMethod
 	public void restart(ITestResult testResult) throws Exception {
 		String jsonString = driver.getEvents().getJsonData();
@@ -104,14 +98,14 @@ public class DailyhuntTests  {
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
+		MyDatabase.set_TX_RX_Bytes(tx_bytes, rx_bytes);
 
 		testStatusReason = "NA";
-//		upload_stats();
 		driver.quit();
 	}
 
 	@Test
-	public void searchNews(){
+	public void searchNews() throws IOException {
 
 		testName = "search news";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
@@ -136,6 +130,18 @@ public class DailyhuntTests  {
 			commandsCompleted += "checkNews:";
 			/* Search news time measurement stops*/
 			commandsCompleted += "P";
+
+			txrx = NetStats.getstats("10346");
+			Integer rx_1 = txrx.get(0);
+			Integer tx_1 = txrx.get(1);
+			System.out.println(rx_1 + "  "+ tx_1);
+
+			tx_bytes += tx_1;
+			rx_bytes += rx_1;
+
+			System.out.println("TX: "+tx_bytes);
+			System.out.println("RX: "+rx_bytes);
+
 		} catch (Exception e) {
 			testStatusReason = e.toString();
 			throw e;

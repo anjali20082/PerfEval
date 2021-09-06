@@ -70,7 +70,7 @@ public class TrakBytesData {
     @AfterMethod
     public void restart(ITestResult testResult) {
         MyDatabase.setPacket_sizes_before(packetData);
-//        driver.quit();
+        driver.quit();
     }
 
     @Test
