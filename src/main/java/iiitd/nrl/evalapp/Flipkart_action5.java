@@ -143,24 +143,33 @@ public class Flipkart_action5 {
             commandsCompleted += "productPage:";
 
             /* search product test measurement stops */
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+            commandsCompleted += "addToCart:";
 
-            if (driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().text(\"GO TO CART\");")).isEmpty()) {
-                addToCartClicked = true;
-                testStatusReason = "add to cart clicked";
+            ui = "new UiSelector().text(\"GO TO CART\");";
+                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
+                commandsCompleted += "addedToCart:";
+//                /* add to cart test measurement stops */
 
-                /* add to cart test measurement starts */
-                ui = "new UiSelector().text(\"ADD TO CART\");";
-                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
-                commandsCompleted += "addToCart:";
-                /* add to cart test measurement stops */
 
-                ui = "Back Button";
-                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId(ui))).click();
-                commandsCompleted += "backButton:";
-            } else {
-                testStatusReason = "add to cart not clicked";
-                commandsCompleted += "addToCartNotClicked:";
-            }
+//            if (driver.findElements(MobileBy.AndroidUIAutomator("new UiSelector().text(\"GO TO CART\");")).isEmpty()) {
+//
+//                addToCartClicked = true;
+//                testStatusReason = "add to cart clicked";
+//
+//                /* add to cart test measurement starts */
+//                ui = "new UiSelector().text(\"ADD TO CART\");";
+//                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+//                commandsCompleted += "addToCart:";
+//                /* add to cart test measurement stops */
+//
+//                ui = "Back Button";
+//                wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId(ui))).click();
+//                commandsCompleted += "backButton:";
+//            } else {
+//                testStatusReason = "add to cart not clicked";
+//                commandsCompleted += "addToCartNotClicked:";
+//            }
 
             ui = "new UiSelector().text(\"GO TO CART\");";
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();

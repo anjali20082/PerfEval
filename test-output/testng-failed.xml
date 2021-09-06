@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [FacebookTests_search2Suite]">
-  <test name="FacebookTests_search2Test(failed)">
+<suite name="Failed suite [Flipkart_Test5Suite]">
+  <test name="Flipkart_Test5Test(failed)">
     <classes>
       <class name="iiitd.nrl.evalapp.TrakBytesUpload">
         <methods>
+          <include name="copyTrakBytes"/>
           <include name="launchCap"/>
           <include name="restart"/>
         </methods>
@@ -15,13 +16,12 @@
           <include name="restart"/>
         </methods>
       </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
-      <class name="iiitd.nrl.evalapp.Facebook_PersonProfile">
+      <class name="iiitd.nrl.evalapp.Flipkart_action5">
         <methods>
           <include name="restart"/>
-          <include name="searchPerson"/>
           <include name="launchCap"/>
         </methods>
-      </class> <!-- iiitd.nrl.evalapp.Facebook_PersonProfile -->
+      </class> <!-- iiitd.nrl.evalapp.Flipkart_action5 -->
     </classes>
-  </test> <!-- FacebookTests_search2Test(failed) -->
-</suite> <!-- Failed suite [FacebookTests_search2Suite] -->
+  </test> <!-- Flipkart_Test5Test(failed) -->
+</suite> <!-- Failed suite [Flipkart_Test5Suite] -->
