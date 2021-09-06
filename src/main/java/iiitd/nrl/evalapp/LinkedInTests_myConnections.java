@@ -18,8 +18,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LinkedInTests_myConnections {
@@ -28,9 +30,18 @@ public class LinkedInTests_myConnections {
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";
+    ArrayList<Integer> txrx;
+    String tx_bytes = "";
+    String rx_bytes = "";
 
     @BeforeMethod
-    public void launchCap() {
+    public void launchCap() throws IOException {
+        txrx = NetStats.getstats("10346");
+        Integer rx_initial = txrx.get(0);
+        Integer tx_initial = txrx.get(1);
+        System.out.println(rx_initial + "  "+ tx_initial);
+        tx_bytes += tx_initial+":";
+        rx_bytes += rx_initial+":";
         DesiredCapabilities cap=new DesiredCapabilities();
         cap.setCapability("appPackage", "com.linkedin.android");
         cap.setCapability("appActivity", "com.linkedin.android.authenticator.LaunchActivity");
@@ -74,13 +85,14 @@ public class LinkedInTests_myConnections {
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
+        MyDatabase.set_TX_RX_Bytes(tx_bytes, rx_bytes);
 
         testStatusReason = "NA";
         driver.quit();
     }
 
     @Test
-    public void myConnections() throws InterruptedException{
+    public void myConnections() throws InterruptedException, IOException {
         testName = "check my connections";
         WebDriverWait wait = new WebDriverWait(driver,MyDatabase.testTimeLimit);
 
@@ -101,6 +113,12 @@ public class LinkedInTests_myConnections {
 
             commandsCompleted += "P";
             /* my connection time measurement stops*/
+            txrx = NetStats.getstats("10346");
+            Integer rx_1 = txrx.get(0);
+            Integer tx_1 = txrx.get(1);
+            System.out.println(rx_1 + "  "+ tx_1);
+            tx_bytes += tx_1;
+            rx_bytes += rx_1;
         } catch (Exception e) {
             testStatusReason = e.toString();
             throw e;

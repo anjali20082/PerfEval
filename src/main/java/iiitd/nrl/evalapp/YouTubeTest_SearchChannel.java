@@ -17,8 +17,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 @SuppressWarnings("unchecked")
@@ -30,9 +32,20 @@ public class YouTubeTest_SearchChannel {
 	String testName = "NA";
 	String testStatusReason = "NA";
 	String commandsCompleted = "";
+	ArrayList<Integer> txrx;
+	String tx_bytes = "";
+	String rx_bytes = "";
 
 	@BeforeMethod
-	public void launchCap() {
+	public void launchCap() throws IOException {
+		txrx = NetStats.getstats("10346");
+		Integer rx_initial = txrx.get(0);
+		Integer tx_initial = txrx.get(1);
+		System.out.println(rx_initial + "  "+ tx_initial);
+
+		tx_bytes += tx_initial+":";
+		rx_bytes += rx_initial+":";
+
 		DesiredCapabilities cap=new DesiredCapabilities();
 		cap.setCapability("appPackage", "com.google.android.youtube");
 		cap.setCapability("appActivity", "com.google.android.youtube.HomeActivity");
@@ -76,6 +89,7 @@ public class YouTubeTest_SearchChannel {
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
+		MyDatabase.set_TX_RX_Bytes(tx_bytes, rx_bytes);
 
 		testStatusReason = "NA";
 		driver.quit();
@@ -83,7 +97,7 @@ public class YouTubeTest_SearchChannel {
 
 
 	@Test
-	public void channelTest() throws InterruptedException{
+	public void channelTest() throws InterruptedException, IOException {
 		testName = "find channel";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 
@@ -107,6 +121,13 @@ public class YouTubeTest_SearchChannel {
 			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Subscribe to Unacademy UPSC."))).isDisplayed();
 			commandsCompleted += "checkChannel:";
 			commandsCompleted += "P";
+
+			txrx = NetStats.getstats("10346");
+			Integer rx_1 = txrx.get(0);
+			Integer tx_1 = txrx.get(1);
+			System.out.println(rx_1 + "  "+ tx_1);
+			tx_bytes += tx_1;
+			rx_bytes += rx_1;
 
 		} catch (Exception e) {
 			testStatusReason = e.toString();
