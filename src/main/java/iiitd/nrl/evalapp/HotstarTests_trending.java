@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -39,9 +40,20 @@ public class HotstarTests_trending {
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";
+    ArrayList<Integer> txrx;
+    String tx_bytes = "";
+    String rx_bytes = "";
+    Integer rx_initial ;
+    Integer tx_initial ;
 
     @BeforeMethod
-    public void launchCap() {
+    public void launchCap() throws IOException {
+        txrx = NetStats.getstats("10352");
+        rx_initial = txrx.get(0);
+        tx_initial = txrx.get(1);
+//        System.out.println(rx_initial + "  "+ tx_initial);
+//        tx_bytes += tx_initial+":";
+//        rx_bytes += rx_initial+":";
         DesiredCapabilities cap=new DesiredCapabilities();
         cap.setCapability("appPackage", "in.startv.hotstar");
 //        cap.setCapability("appPackage", "in.startv.hotstaronly");
@@ -93,7 +105,7 @@ public class HotstarTests_trending {
 
 
     @Test
-    public void trendingTest(){
+    public void trendingTest() throws IOException {
 
         testName = "Trending Test";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
@@ -109,6 +121,15 @@ public class HotstarTests_trending {
             commandsCompleted += "checkVideoPlayer:";
             commandsCompleted += "P";
             /* load trending videos page time measurement stops*/
+            txrx = NetStats.getstats("10352");
+            Integer rx_1 = txrx.get(0);
+            Integer tx_1 = txrx.get(1);
+//            System.out.println(rx_1 + "  "+ tx_1);
+            tx_bytes += tx_1 - tx_initial;
+            rx_bytes += rx_1 - rx_initial;
+
+            System.out.println("TX: "+tx_bytes);
+            System.out.println("RX: "+rx_bytes);
         } catch (Exception e) {
             testStatusReason = e.toString();
             throw e;

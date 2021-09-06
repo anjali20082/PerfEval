@@ -33,15 +33,18 @@ public class LinkedInTests_search {
     ArrayList<Integer> txrx;
     String tx_bytes = "";
     String rx_bytes = "";
+    Integer rx_initial ;
+    Integer tx_initial ;
 
     @BeforeMethod
     public void launchCap() throws IOException {
         txrx = NetStats.getstats("10352");
-        Integer rx_initial = txrx.get(0);
-        Integer tx_initial = txrx.get(1);
-        System.out.println(rx_initial + "  "+ tx_initial);
-        tx_bytes += tx_initial+":";
-        rx_bytes += rx_initial+":";
+        rx_initial = txrx.get(0);
+        tx_initial = txrx.get(1);
+//        System.out.println(rx_initial + "  "+ tx_initial);
+
+//        tx_bytes += tx_initial+":";
+//        rx_bytes += rx_initial+":";
         DesiredCapabilities cap=new DesiredCapabilities();
         cap.setCapability("appPackage", "com.linkedin.android");
         cap.setCapability("appActivity", "com.linkedin.android.authenticator.LaunchActivity");
@@ -119,9 +122,12 @@ public class LinkedInTests_search {
             txrx = NetStats.getstats("10352");
             Integer rx_1 = txrx.get(0);
             Integer tx_1 = txrx.get(1);
-            System.out.println(rx_1 + "  "+ tx_1);
-            tx_bytes += tx_1;
-            rx_bytes += rx_1;
+//            System.out.println(rx_1 + "  "+ tx_1);
+            tx_bytes += tx_1 - tx_initial;
+            rx_bytes += rx_1 - rx_initial;
+
+            System.out.println("TX: "+tx_bytes);
+            System.out.println("RX: "+rx_bytes);
         } catch (Exception e) {
             testStatusReason = e.toString();
             throw e;
