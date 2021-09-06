@@ -3,6 +3,7 @@ package iiitd.nrl.evalapp;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,10 +35,21 @@ public class Youtube_PlayVid {
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";
+    ArrayList<Integer> txrx;
+    String tx_bytes = "";
+    String rx_bytes = "";
 
 
     @BeforeMethod
-    public void launchCap() {
+    public void launchCap() throws IOException {
+        txrx = NetStats.getstats("10346");
+        Integer rx_initial = txrx.get(0);
+        Integer tx_initial = txrx.get(1);
+        System.out.println(rx_initial + "  "+ tx_initial);
+
+        tx_bytes += tx_initial+":";
+        rx_bytes += rx_initial+":";
+
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability("appPackage", "com.google.android.youtube");
         cap.setCapability("appActivity", "com.google.android.youtube.HomeActivity");
@@ -81,13 +93,14 @@ public class Youtube_PlayVid {
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
+        MyDatabase.set_TX_RX_Bytes(tx_bytes, rx_bytes);
 
         testStatusReason = "NA";
         driver.quit();
     }
 
     @Test
-    public void playTest() throws InterruptedException {
+    public void playTest() throws InterruptedException, IOException {
         testName = "play video";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 
@@ -107,6 +120,12 @@ public class Youtube_PlayVid {
             wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(ui))).isDisplayed();
             commandsCompleted += "searchResult:";
             /* searching video time measurement starts */
+            txrx = NetStats.getstats("10346");
+            Integer rx_1 = txrx.get(0);
+            Integer tx_1 = txrx.get(1);
+            System.out.println(rx_1 + "  "+ tx_1);
+            tx_bytes += tx_1+":";
+            rx_bytes += rx_1+":";
 
             ui = "new UiSelector().descriptionContains(\"Official Trailer\")";
             driver.findElement(MobileBy.AndroidUIAutomator(ui)).click();
@@ -116,6 +135,13 @@ public class Youtube_PlayVid {
             commandsCompleted += "checkVideoPlayer:";
 
             commandsCompleted += "P";
+
+            txrx = NetStats.getstats("10346");
+            Integer rx_2 = txrx.get(0);
+            Integer tx_2 = txrx.get(1);
+            System.out.println(rx_2 + "  "+ tx_2);
+            tx_bytes += tx_2;
+            rx_bytes += rx_2;
 
         } catch (Exception e) {
             testStatusReason = e.toString();
