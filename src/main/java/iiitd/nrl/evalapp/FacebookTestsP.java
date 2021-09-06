@@ -57,7 +57,16 @@ public class FacebookTestsP {
     }
 
     @BeforeMethod
-    public void launchCap() {
+    public void launchCap() throws IOException {
+
+        txrx = NetStats.getstats("10346");
+        Integer rx_initial = txrx.get(0);
+        Integer tx_initial = txrx.get(1);
+        System.out.println(rx_initial + "  "+ tx_initial);
+
+        tx_bytes += tx_initial+":";
+        rx_bytes += rx_initial+":";
+
         DesiredCapabilities cap=new DesiredCapabilities();
         cap.setCapability("appPackage", "com.facebook.katana");
         cap.setCapability("appActivity", "com.facebook.katana.activity.FbMainTabActivity");
@@ -102,6 +111,7 @@ public class FacebookTestsP {
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
+        MyDatabase.set_TX_RX_Bytes(tx_bytes, rx_bytes);
         driver.quit();
     }
 
@@ -200,6 +210,17 @@ public class FacebookTestsP {
             commandsCompleted += "profilePicture:";
 
             commandsCompleted += "P";
+
+            txrx = NetStats.getstats("10346");
+            Integer rx_1 = txrx.get(0);
+            Integer tx_1 = txrx.get(1);
+            System.out.println(rx_1 + "  "+ tx_1);
+
+            tx_bytes += tx_1;
+            rx_bytes += rx_1;
+
+            System.out.println("TX: "+tx_bytes);
+            System.out.println("RX: "+rx_bytes);
 
 
             /* post group time measurement stops */

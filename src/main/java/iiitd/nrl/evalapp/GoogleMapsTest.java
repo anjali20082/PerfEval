@@ -19,6 +19,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GoogleMapsTest {
@@ -26,9 +27,21 @@ public class GoogleMapsTest {
     String appName = "GoogleMaps";
     String testName = "NA";
     String testStatusReason = "NA";
+    ArrayList<Integer> txrx;
+    String tx_bytes = "";
+    String rx_bytes = "";
 
     @BeforeMethod
     public void launchCap() throws IOException {
+
+        txrx = NetStats.getstats("10356");
+        Integer rx_initial = txrx.get(0);
+        Integer tx_initial = txrx.get(1);
+        System.out.println(rx_initial + "  "+ tx_initial);
+
+        tx_bytes += tx_initial+":";
+        rx_bytes += rx_initial+":";
+
         DesiredCapabilities cap=new DesiredCapabilities();
         cap.setCapability("appPackage", "com.google.android.apps.maps");
         cap.setCapability("appActivity", "com.google.android.maps.MapsActivity");
@@ -71,12 +84,13 @@ public class GoogleMapsTest {
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
+        MyDatabase.set_TX_RX_Bytes(tx_bytes, rx_bytes);
         testStatusReason = "NA";
         driver.quit();
     }
 
     @Test
-    public void searchPlace() throws InterruptedException {
+    public void searchPlace() throws InterruptedException, IOException {
         testName = "search place";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
         try {
@@ -86,6 +100,17 @@ public class GoogleMapsTest {
 //            com.google.android.apps.maps:id/search_omnibox_text_box
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.maps:id/street_view_thumbnail")));
             while(!driver.findElements(By.id("com.google.android.apps.maps:id/scalebar_widget")).isEmpty());
+
+            txrx = NetStats.getstats("10356");
+            Integer rx_1 = txrx.get(0);
+            Integer tx_1 = txrx.get(1);
+            System.out.println(rx_1 + "  "+ tx_1);
+
+            tx_bytes += tx_1;
+            rx_bytes += rx_1;
+
+            System.out.println("TX: "+tx_bytes);
+            System.out.println("RX: "+rx_bytes);
 
         } catch (Exception e) {
             testStatusReason = e.toString();

@@ -16,8 +16,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 @SuppressWarnings("unchecked")
@@ -27,6 +29,9 @@ public class GooglenewsTests {
 	String testName = "NA";
 	String testStatusReason = "NA";
 	String commandsCompleted = "";
+	ArrayList<Integer> txrx;
+	String tx_bytes = "";
+	String rx_bytes = "";
 
 	@AfterClass
 	public void update() {
@@ -34,7 +39,16 @@ public class GooglenewsTests {
 	}
 
 	@BeforeMethod
-	public void launchCap() {
+	public void launchCap() throws IOException {
+
+		txrx = NetStats.getstats("10336");
+		Integer rx_initial = txrx.get(0);
+		Integer tx_initial = txrx.get(1);
+		System.out.println(rx_initial + "  "+ tx_initial);
+
+		tx_bytes += tx_initial+":";
+		rx_bytes += rx_initial+":";
+
 		DesiredCapabilities cap=new DesiredCapabilities();
 		cap.setCapability("appPackage", "com.google.android.apps.magazines");
 		cap.setCapability("appActivity", "com.google.apps.dots.android.app.activity.CurrentsStartActivity");
@@ -77,13 +91,13 @@ public class GooglenewsTests {
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
-
+		MyDatabase.set_TX_RX_Bytes(tx_bytes, rx_bytes);
 		testStatusReason = "NA";
 		driver.quit();
 	}
 
 	@Test
-	public void searchTest() throws InterruptedException{
+	public void searchTest() throws InterruptedException, IOException {
 		testName = "Search News Test";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 
@@ -100,6 +114,17 @@ public class GooglenewsTests {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.google.android.apps.magazines:id/title")));
 			commandsCompleted += "checkNewsTitle:";
 			/* load news  test measurement stops*/
+
+			txrx = NetStats.getstats("10336");
+			Integer rx_1 = txrx.get(0);
+			Integer tx_1 = txrx.get(1);
+			System.out.println(rx_1 + "  "+ tx_1);
+
+			tx_bytes += tx_1;
+			rx_bytes += rx_1;
+
+			System.out.println("TX: "+tx_bytes);
+			System.out.println("RX: "+rx_bytes);
 
 			commandsCompleted += "P";
 		} catch (Exception e) {

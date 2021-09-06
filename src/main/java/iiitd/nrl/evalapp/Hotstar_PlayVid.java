@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -40,10 +41,22 @@ public class Hotstar_PlayVid {
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";
+    ArrayList<Integer> txrx;
+    String tx_bytes = "";
+    String rx_bytes = "";
 
 
     @BeforeMethod
-    public void launchCap() {
+    public void launchCap() throws IOException {
+
+        txrx = NetStats.getstats("10369");
+        Integer rx_initial = txrx.get(0);
+        Integer tx_initial = txrx.get(1);
+        System.out.println(rx_initial + "  "+ tx_initial);
+
+        tx_bytes += tx_initial+":";
+        rx_bytes += rx_initial+":";
+
         DesiredCapabilities cap=new DesiredCapabilities();
         cap.setCapability("appPackage", "in.startv.hotstar");
 //		cap.setCapability("appPackage", "in.startv.hotstaronly");
@@ -88,14 +101,14 @@ public class Hotstar_PlayVid {
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
-
+        MyDatabase.set_TX_RX_Bytes(tx_bytes, rx_bytes);
         testStatusReason = "NA";
         driver.quit();
     }
 
 
     @Test
-    public void playTest(){
+    public void playTest() throws IOException {
 
         testName = "Play Video";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
@@ -110,6 +123,14 @@ public class Hotstar_PlayVid {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.ImageView")));
             commandsCompleted += "findImage:";
 
+            txrx = NetStats.getstats("10369");
+            Integer rx_1 = txrx.get(0);
+            Integer tx_1 = txrx.get(1);
+            System.out.println(rx_1 + "  "+ tx_1);
+            tx_bytes += tx_1+":";
+            rx_bytes += rx_1+":";
+
+
             List<MobileElement> elements = driver.findElements(By.className("android.widget.ImageView"));
 
             elements.get(2).click();
@@ -118,6 +139,17 @@ public class Hotstar_PlayVid {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.startv.hotstar:id/top_info")));
             commandsCompleted += "checkMovieInfo:";
             commandsCompleted += "P";
+
+            txrx = NetStats.getstats("10369");
+            Integer rx_2 = txrx.get(0);
+            Integer tx_2 = txrx.get(1);
+            System.out.println(rx_2 + "  "+ tx_2);
+
+            tx_bytes += tx_2;
+            rx_bytes += rx_2;
+
+            System.out.println("TX: "+tx_bytes);
+            System.out.println("RX: "+rx_bytes);
             /* search video time measurement stops*/
         } catch (Exception e) {
             testStatusReason = e.toString();
