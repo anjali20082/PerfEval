@@ -37,7 +37,7 @@ public class WhatsappTests {
 
     @BeforeMethod
     public void launchCap() throws IOException {
-        txrx = NetStats.getstats("10346");
+        txrx = NetStats.getstats("10371");
         Integer rx_initial = txrx.get(0);
         Integer tx_initial = txrx.get(1);
         System.out.println(rx_initial + "  "+ tx_initial);
@@ -119,7 +119,7 @@ public class WhatsappTests {
             commandsCompleted += "checkIfMessageSent:";
             commandsCompleted += "P";
 
-            txrx = NetStats.getstats("10346");
+            txrx = NetStats.getstats("10371");
             Integer rx_1 = txrx.get(0);
             Integer tx_1 = txrx.get(1);
             System.out.println(rx_1 + "  "+ tx_1);

@@ -38,7 +38,7 @@ public class YouTubeTest_SearchChannel {
 
 	@BeforeMethod
 	public void launchCap() throws IOException {
-		txrx = NetStats.getstats("10346");
+		txrx = NetStats.getstats("10378");
 		Integer rx_initial = txrx.get(0);
 		Integer tx_initial = txrx.get(1);
 		System.out.println(rx_initial + "  "+ tx_initial);
@@ -122,7 +122,7 @@ public class YouTubeTest_SearchChannel {
 			commandsCompleted += "checkChannel:";
 			commandsCompleted += "P";
 
-			txrx = NetStats.getstats("10346");
+			txrx = NetStats.getstats("10378");
 			Integer rx_1 = txrx.get(0);
 			Integer tx_1 = txrx.get(1);
 			System.out.println(rx_1 + "  "+ tx_1);

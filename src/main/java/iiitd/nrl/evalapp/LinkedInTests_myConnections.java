@@ -36,7 +36,7 @@ public class LinkedInTests_myConnections {
 
     @BeforeMethod
     public void launchCap() throws IOException {
-        txrx = NetStats.getstats("10346");
+        txrx = NetStats.getstats("10352");
         Integer rx_initial = txrx.get(0);
         Integer tx_initial = txrx.get(1);
         System.out.println(rx_initial + "  "+ tx_initial);
@@ -113,7 +113,7 @@ public class LinkedInTests_myConnections {
 
             commandsCompleted += "P";
             /* my connection time measurement stops*/
-            txrx = NetStats.getstats("10346");
+            txrx = NetStats.getstats("10352");
             Integer rx_1 = txrx.get(0);
             Integer tx_1 = txrx.get(1);
             System.out.println(rx_1 + "  "+ tx_1);

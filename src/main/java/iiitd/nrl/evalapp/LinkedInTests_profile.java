@@ -37,7 +37,7 @@ public class LinkedInTests_profile {
 
     @BeforeMethod
     public void launchCap() throws IOException {
-        txrx = NetStats.getstats("10346");
+        txrx = NetStats.getstats("10352");
         Integer rx_initial = txrx.get(0);
         Integer tx_initial = txrx.get(1);
         System.out.println(rx_initial + "  "+ tx_initial);
@@ -110,7 +110,7 @@ public class LinkedInTests_profile {
             commandsCompleted += "myProfilePicture:";
             commandsCompleted += "P";
             /* view profile time measurement stops*/
-            txrx = NetStats.getstats("10346");
+            txrx = NetStats.getstats("10352");
             Integer rx_1 = txrx.get(0);
             Integer tx_1 = txrx.get(1);
             System.out.println(rx_1 + "  "+ tx_1);

@@ -42,7 +42,7 @@ public class Youtube_PlayVid {
 
     @BeforeMethod
     public void launchCap() throws IOException {
-        txrx = NetStats.getstats("10346");
+        txrx = NetStats.getstats("10378");
         Integer rx_initial = txrx.get(0);
         Integer tx_initial = txrx.get(1);
         System.out.println(rx_initial + "  "+ tx_initial);
@@ -120,7 +120,7 @@ public class Youtube_PlayVid {
             wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(ui))).isDisplayed();
             commandsCompleted += "searchResult:";
             /* searching video time measurement starts */
-            txrx = NetStats.getstats("10346");
+            txrx = NetStats.getstats("10378");
             Integer rx_1 = txrx.get(0);
             Integer tx_1 = txrx.get(1);
             System.out.println(rx_1 + "  "+ tx_1);
@@ -136,7 +136,7 @@ public class Youtube_PlayVid {
 
             commandsCompleted += "P";
 
-            txrx = NetStats.getstats("10346");
+            txrx = NetStats.getstats("10378");
             Integer rx_2 = txrx.get(0);
             Integer tx_2 = txrx.get(1);
             System.out.println(rx_2 + "  "+ tx_2);
