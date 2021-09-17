@@ -76,7 +76,7 @@ public class MyDatabase {
 
     public static void setUpDatabase()
     {
-        String uri = "mongodb+srv://admin17080:prince%40123@cluster0.ssjoc.gcp.mongodb.net/TestingApps?retryWrites=true&w=majority";
+        String uri = "mongodb+srv://admin17080:test123@cluster0.ssjoc.gcp.mongodb.net/TestingApps?retryWrites=true&w=majority";
         mongoClient = MongoClients.create(uri);
         database = mongoClient.getDatabase("TestingApps");
     }
