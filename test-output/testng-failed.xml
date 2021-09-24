@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [PtSuite]">
-  <test name="PtTest(failed)">
+<suite name="Failed suite [DhSuite]">
+  <test name="DhTest(failed)">
     <classes>
+      <class name="iiitd.nrl.evalapp.DailyhuntTests">
+        <methods>
+          <include name="launchCap"/>
+          <include name="searchNews"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.DailyhuntTests -->
       <class name="iiitd.nrl.evalapp.TrakBytesUpload">
         <methods>
+          <include name="copyTrakBytes"/>
           <include name="launchCap"/>
-          <include name="restart"/>
         </methods>
       </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.PaytmTests">
-        <methods>
-          <include name="sendMoneyFromWallet"/>
-          <include name="launchCap"/>
-          <include name="restart"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.PaytmTests -->
     </classes>
-  </test> <!-- PtTest(failed) -->
-</suite> <!-- Failed suite [PtSuite] -->
+  </test> <!-- DhTest(failed) -->
+</suite> <!-- Failed suite [DhSuite] -->
