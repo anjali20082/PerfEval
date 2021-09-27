@@ -79,21 +79,22 @@ public class MyDatabase {
         String uri = "mongodb+srv://admin17080:test123@cluster0.ssjoc.gcp.mongodb.net/TestingApps?retryWrites=true&w=majority";
         mongoClient = MongoClients.create(uri);
         database = mongoClient.getDatabase("TestingApps");
+        student_collection = database.getCollection(MainLauncher.studentEmailId);
     }
 
-    public static void testsStarted()
-    {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        String currentTime = dtf.format(now);
-        student_collection = database.getCollection(WelcomePageLauncher.studentEmailId);
-
-        Document document = new Document("Location", WelcomePageLauncher.studentLocation);
-        document.append("Tests Started at", currentTime);
-        document.append("App Tests Version", version);
-
-        student_collection.insertOne(document);
-    }
+//    public static void testsStarted()
+//    {
+//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+//        LocalDateTime now = LocalDateTime.now();
+//        String currentTime = dtf.format(now);
+//        student_collection = database.getCollection(WelcomePageLauncher.studentEmailId);
+//
+//        Document document = new Document("Location", WelcomePageLauncher.studentLocation);
+//        document.append("Tests Started at", currentTime);
+//        document.append("App Tests Version", version);
+//
+//        student_collection.insertOne(document);
+//    }
 
     public static long getTimeTaken(String jsonString, int startIndex, int endIndex) {
 

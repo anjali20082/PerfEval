@@ -1,52 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="35" passed="33" failed="2" skipped="0">
+<testng-results ignored="0" total="46" passed="37" failed="3" skipped="6">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-04-27T18:28:51Z" name="YtsSuite" finished-at="2021-04-27T18:29:06Z" duration-ms="15020">
+  <suite started-at="2021-09-27T16:42:05Z" name="Youtube_PlayVideo1Suite" finished-at="2021-09-27T16:42:59Z" duration-ms="54304">
     <groups>
     </groups>
-    <test started-at="2021-04-27T18:28:51Z" name="YtsTest" finished-at="2021-04-27T18:29:06Z" duration-ms="15020">
-      <class name="iiitd.nrl.evalapp.TrakBytesData">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@1ba0e66e]" started-at="2021-04-27T23:58:51Z" name="launchCap" finished-at="2021-04-27T23:59:01Z" duration-ms="10413" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@1ba0e66e]" started-at="2021-04-27T23:59:01Z" name="copyTrakBytes" finished-at="2021-04-27T23:59:05Z" duration-ms="4046" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@1ba0e66e]" started-at="2021-04-27T23:59:05Z" name="restart" finished-at="2021-04-27T23:59:06Z" duration-ms="548" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@1ba0e66e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
-    </test> <!-- YtsTest -->
-  </suite> <!-- YtsSuite -->
-  <suite started-at="2021-04-27T18:29:39Z" name="YtpSuite" finished-at="2021-04-27T18:30:10Z" duration-ms="31480">
-    <groups>
-    </groups>
-    <test started-at="2021-04-27T18:29:39Z" name="YtpTest" finished-at="2021-04-27T18:30:10Z" duration-ms="31480">
+    <test started-at="2021-09-27T16:42:05Z" name="Youtube_PlayVideo1Test" finished-at="2021-09-27T16:42:59Z" duration-ms="54304">
       <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@2ea26c52]" started-at="2021-04-27T23:59:57Z" name="launchCap" finished-at="2021-04-28T00:00:06Z" duration-ms="8442" status="PASS">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@79da8dc5]" started-at="2021-09-27T22:12:45Z" name="launchCap" finished-at="2021-09-27T22:12:55Z" duration-ms="9865" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@2ea26c52]" started-at="2021-04-28T00:00:06Z" name="copyTrakBytes" finished-at="2021-04-28T00:00:10Z" duration-ms="3907" status="PASS">
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@79da8dc5]" started-at="2021-09-27T22:12:55Z" name="copyTrakBytes" finished-at="2021-09-27T22:12:59Z" duration-ms="3713" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@2ea26c52]" started-at="2021-04-28T00:00:10Z" name="restart" finished-at="2021-04-28T00:00:10Z" duration-ms="666" status="PASS">
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@79da8dc5]" started-at="2021-09-27T22:12:59Z" name="restart" finished-at="2021-09-27T22:12:59Z" duration-ms="536" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@2ea26c52] output={null}]]]>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@79da8dc5] output={null}]]]>
               </value>
             </param>
           </params>
@@ -55,19 +28,19 @@
         </test-method> <!-- restart -->
       </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
       <class name="iiitd.nrl.evalapp.YouTubeTests_PlayVideo">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_PlayVideo@3d0109bb]" started-at="2021-04-27T23:59:39Z" name="launchCap" finished-at="2021-04-27T23:59:48Z" duration-ms="9455" status="PASS">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_PlayVideo@c333c60]" started-at="2021-09-27T22:12:20Z" name="launchCap" finished-at="2021-09-27T22:12:31Z" duration-ms="11058" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchCap -->
-        <test-method signature="playTest()[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_PlayVideo@3d0109bb]" started-at="2021-04-27T23:59:48Z" name="playTest" finished-at="2021-04-27T23:59:56Z" duration-ms="8052" status="PASS">
+        <test-method signature="playTest()[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_PlayVideo@c333c60]" started-at="2021-09-27T22:12:31Z" name="playTest" finished-at="2021-09-27T22:12:44Z" duration-ms="13262" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- playTest -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_PlayVideo@3d0109bb]" started-at="2021-04-27T23:59:56Z" name="restart" finished-at="2021-04-27T23:59:57Z" duration-ms="953" status="PASS">
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_PlayVideo@c333c60]" started-at="2021-09-27T22:12:44Z" name="restart" finished-at="2021-09-27T22:12:45Z" duration-ms="1293" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=playTest status=SUCCESS method=YouTubeTests_PlayVideo.playTest()[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_PlayVideo@3d0109bb] output={null}]]]>
+                <![CDATA[[TestResult name=playTest status=SUCCESS method=YouTubeTests_PlayVideo.playTest()[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_PlayVideo@c333c60] output={null}]]]>
               </value>
             </param>
           </params>
@@ -75,26 +48,47 @@
           </reporter-output>
         </test-method> <!-- restart -->
       </class> <!-- iiitd.nrl.evalapp.YouTubeTests_PlayVideo -->
-    </test> <!-- YtpTest -->
-  </suite> <!-- YtpSuite -->
-  <suite started-at="2021-04-27T18:37:49Z" name="GnSuite" finished-at="2021-04-27T18:38:22Z" duration-ms="33564">
-    <groups>
-    </groups>
-    <test started-at="2021-04-27T18:37:49Z" name="GnTest" finished-at="2021-04-27T18:38:22Z" duration-ms="33564">
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@34de7d85]" started-at="2021-04-28T00:08:09Z" name="launchCap" finished-at="2021-04-28T00:08:18Z" duration-ms="8664" status="PASS">
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@11bd0f3b]" started-at="2021-09-27T22:12:05Z" name="launchCap" finished-at="2021-09-27T22:12:15Z" duration-ms="9809" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@34de7d85]" started-at="2021-04-28T00:08:18Z" name="copyTrakBytes" finished-at="2021-04-28T00:08:22Z" duration-ms="3881" status="PASS">
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@11bd0f3b]" started-at="2021-09-27T22:12:15Z" name="copyTrakBytes" finished-at="2021-09-27T22:12:19Z" duration-ms="4280" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@34de7d85]" started-at="2021-04-28T00:08:22Z" name="restart" finished-at="2021-04-28T00:08:22Z" duration-ms="555" status="PASS">
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@11bd0f3b]" started-at="2021-09-27T22:12:19Z" name="restart" finished-at="2021-09-27T22:12:20Z" duration-ms="471" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@34de7d85] output={null}]]]>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@11bd0f3b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+    </test> <!-- Youtube_PlayVideo1Test -->
+  </suite> <!-- Youtube_PlayVideo1Suite -->
+  <suite started-at="2021-09-27T16:36:28Z" name="LinkedInTests_myConnectionsSuite" finished-at="2021-09-27T16:37:24Z" duration-ms="55587">
+    <groups>
+    </groups>
+    <test started-at="2021-09-27T16:36:28Z" name="LinkedInTests_myConnectionsTest" finished-at="2021-09-27T16:37:24Z" duration-ms="55587">
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@2beee7ff]" started-at="2021-09-27T22:07:07Z" name="launchCap" finished-at="2021-09-27T22:07:19Z" duration-ms="11903" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@2beee7ff]" started-at="2021-09-27T22:07:19Z" name="copyTrakBytes" finished-at="2021-09-27T22:07:23Z" duration-ms="3733" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@2beee7ff]" started-at="2021-09-27T22:07:23Z" name="restart" finished-at="2021-09-27T22:07:24Z" duration-ms="468" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@2beee7ff] output={null}]]]>
               </value>
             </param>
           </params>
@@ -102,51 +96,68 @@
           </reporter-output>
         </test-method> <!-- restart -->
       </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.GooglenewsTests">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.GooglenewsTests@5aeaa10d]" started-at="2021-04-28T00:07:49Z" name="launchCap" finished-at="2021-04-28T00:07:58Z" duration-ms="9071" status="PASS">
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@1bb266b3]" started-at="2021-09-27T22:06:28Z" name="launchCap" finished-at="2021-09-27T22:06:38Z" duration-ms="10103" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchCap -->
-        <test-method signature="searchTest()[pri:0, instance:iiitd.nrl.evalapp.GooglenewsTests@5aeaa10d]" started-at="2021-04-28T00:07:58Z" name="searchTest" finished-at="2021-04-28T00:08:08Z" duration-ms="10396" status="PASS">
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@1bb266b3]" started-at="2021-09-27T22:06:38Z" name="copyTrakBytes" finished-at="2021-09-27T22:06:43Z" duration-ms="4634" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- searchTest -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.GooglenewsTests@5aeaa10d]" started-at="2021-04-28T00:08:08Z" name="restart" finished-at="2021-04-28T00:08:09Z" duration-ms="995" status="PASS">
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@1bb266b3]" started-at="2021-09-27T22:06:43Z" name="restart" finished-at="2021-09-27T22:06:43Z" duration-ms="558" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=searchTest status=SUCCESS method=GooglenewsTests.searchTest()[pri:0, instance:iiitd.nrl.evalapp.GooglenewsTests@5aeaa10d] output={null}]]]>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@1bb266b3] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- restart -->
-        <test-method is-config="true" signature="update()[pri:0, instance:iiitd.nrl.evalapp.GooglenewsTests@5aeaa10d]" started-at="2021-04-28T00:08:09Z" name="update" finished-at="2021-04-28T00:08:09Z" duration-ms="1" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- update -->
-      </class> <!-- iiitd.nrl.evalapp.GooglenewsTests -->
-    </test> <!-- GnTest -->
-  </suite> <!-- GnSuite -->
-  <suite started-at="2021-04-27T18:30:10Z" name="HsSuite" finished-at="2021-04-27T18:30:41Z" duration-ms="30579">
-    <groups>
-    </groups>
-    <test started-at="2021-04-27T18:30:10Z" name="HsTest" finished-at="2021-04-27T18:30:41Z" duration-ms="30579">
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3bcd24a1]" started-at="2021-04-28T00:00:28Z" name="launchCap" finished-at="2021-04-28T00:00:37Z" duration-ms="8698" status="PASS">
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+      <class name="iiitd.nrl.evalapp.LinkedInTests_myConnections">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_myConnections@306cf3ea]" started-at="2021-09-27T22:06:43Z" name="launchCap" finished-at="2021-09-27T22:06:55Z" duration-ms="12157" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3bcd24a1]" started-at="2021-04-28T00:00:37Z" name="copyTrakBytes" finished-at="2021-04-28T00:00:40Z" duration-ms="3956" status="PASS">
+        <test-method signature="myConnections()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_myConnections@306cf3ea]" started-at="2021-09-27T22:06:55Z" name="myConnections" finished-at="2021-09-27T22:07:06Z" duration-ms="11041" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3bcd24a1]" started-at="2021-04-28T00:00:40Z" name="restart" finished-at="2021-04-28T00:00:41Z" duration-ms="576" status="PASS">
+        </test-method> <!-- myConnections -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_myConnections@306cf3ea]" started-at="2021-09-27T22:07:06Z" name="restart" finished-at="2021-09-27T22:07:07Z" duration-ms="989" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3bcd24a1] output={null}]]]>
+                <![CDATA[[TestResult name=myConnections status=SUCCESS method=LinkedInTests_myConnections.myConnections()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_myConnections@306cf3ea] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.LinkedInTests_myConnections -->
+    </test> <!-- LinkedInTests_myConnectionsTest -->
+  </suite> <!-- LinkedInTests_myConnectionsSuite -->
+  <suite started-at="2021-09-27T16:33:57Z" name="GoogleMapsSuite" finished-at="2021-09-27T16:34:50Z" duration-ms="52798">
+    <groups>
+    </groups>
+    <test started-at="2021-09-27T16:33:57Z" name="GoogleMapsTest" finished-at="2021-09-27T16:34:50Z" duration-ms="52798">
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@36b4fe2a]" started-at="2021-09-27T22:04:36Z" name="launchCap" finished-at="2021-09-27T22:04:45Z" duration-ms="9924" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@36b4fe2a]" started-at="2021-09-27T22:04:45Z" name="copyTrakBytes" finished-at="2021-09-27T22:04:49Z" duration-ms="3581" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@36b4fe2a]" started-at="2021-09-27T22:04:49Z" name="restart" finished-at="2021-09-27T22:04:50Z" duration-ms="468" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@36b4fe2a] output={null}]]]>
               </value>
             </param>
           </params>
@@ -154,32 +165,101 @@
           </reporter-output>
         </test-method> <!-- restart -->
       </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.HotstarTests_search">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.HotstarTests_search@22ab8c76]" started-at="2021-04-28T00:00:10Z" name="launchCap" finished-at="2021-04-28T00:00:19Z" duration-ms="8901" status="PASS">
+      <class name="iiitd.nrl.evalapp.GoogleMapsTest">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.GoogleMapsTest@757acd7b]" started-at="2021-09-27T22:04:11Z" name="launchCap" finished-at="2021-09-27T22:04:21Z" duration-ms="10480" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchCap -->
-        <test-method signature="searchTest()[pri:0, instance:iiitd.nrl.evalapp.HotstarTests_search@22ab8c76]" started-at="2021-04-28T00:00:19Z" name="searchTest" finished-at="2021-04-28T00:00:27Z" duration-ms="7400" status="FAIL">
-          <exception class="org.openqa.selenium.StaleElementReferenceException">
+        <test-method signature="searchPlace()[pri:0, instance:iiitd.nrl.evalapp.GoogleMapsTest@757acd7b]" started-at="2021-09-27T22:04:21Z" name="searchPlace" finished-at="2021-09-27T22:04:35Z" duration-ms="13312" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchPlace -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.GoogleMapsTest@757acd7b]" started-at="2021-09-27T22:04:35Z" name="restart" finished-at="2021-09-27T22:04:36Z" duration-ms="871" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=searchPlace status=SUCCESS method=GoogleMapsTest.searchPlace()[pri:0, instance:iiitd.nrl.evalapp.GoogleMapsTest@757acd7b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.GoogleMapsTest -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@11c9af63]" started-at="2021-09-27T22:03:57Z" name="launchCap" finished-at="2021-09-27T22:04:07Z" duration-ms="9921" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@11c9af63]" started-at="2021-09-27T22:04:07Z" name="copyTrakBytes" finished-at="2021-09-27T22:04:10Z" duration-ms="3733" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@11c9af63]" started-at="2021-09-27T22:04:10Z" name="restart" finished-at="2021-09-27T22:04:11Z" duration-ms="507" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@11c9af63] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+    </test> <!-- GoogleMapsTest -->
+  </suite> <!-- GoogleMapsSuite -->
+  <suite started-at="2021-09-27T16:39:05Z" name="TelegramTestsSuite" finished-at="2021-09-27T16:40:01Z" duration-ms="55777">
+    <groups>
+    </groups>
+    <test started-at="2021-09-27T16:39:05Z" name="TelegramTestsTest" finished-at="2021-09-27T16:40:01Z" duration-ms="55777">
+      <class name="iiitd.nrl.evalapp.TelegramTests">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TelegramTests@140c9f39]" started-at="2021-09-27T22:09:19Z" name="launchCap" finished-at="2021-09-27T22:09:29Z" duration-ms="9876" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="sendMessage()[pri:0, instance:iiitd.nrl.evalapp.TelegramTests@140c9f39]" started-at="2021-09-27T22:09:29Z" name="sendMessage" finished-at="2021-09-27T22:09:45Z" duration-ms="16271" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[Cached elements 'By.clazz: android.widget.ImageView' do not exist in DOM anymore
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/stale_element_reference.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'DESKTOP-L1GP92O', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.10'
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appActivity: in.startv.hotstar.rocky.lau..., appPackage: in.startv.hotstar, autoAcceptAlerts: true, autoGrantPermissions: true, databaseEnabled: false, desired: {appActivity: in.startv.hotstar.rocky.lau..., appPackage: in.startv.hotstar, autoAcceptAlerts: true, autoGrantPermissions: true, fullReset: false, noReset: true, platformName: android, uiautomator2ServerInstallTimeout: 60000}, deviceApiLevel: 30, deviceManufacturer: Google, deviceModel: Pixel 3a, deviceName: 95TAY0VNB4, deviceScreenDensity: 440, deviceScreenSize: 1080x2220, deviceUDID: 95TAY0VNB4, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 2.75, platform: LINUX, platformName: Android, platformVersion: 11, statBarHeight: 66, takesScreenshot: true, uiautomator2ServerInstallTimeout: 60000, viewportRect: {height: 2022, left: 0, top: 66, width: 1080}, warnings: {}, webStorageEnabled: false}
-Session ID: 3409b79f-4cfe-445b-9e7b-46d4ed042de0]]>
+              <![CDATA[Expected condition failed: waiting for presence of element located by: By.AccessibilityId: Search (tried for 15 second(s) with 500 milliseconds interval)]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.StaleElementReferenceException: Cached elements 'By.clazz: android.widget.ImageView' do not exist in DOM anymore
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/stale_element_reference.html
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.AccessibilityId: Search (tried for 15 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at iiitd.nrl.evalapp.TelegramTests.sendMessage(TelegramTests.java:100)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
+Caused by: org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'DESKTOP-L1GP92O', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.10'
+System info: host: 'DESKTOP-FU6EMRP', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.12'
 Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appActivity: in.startv.hotstar.rocky.lau..., appPackage: in.startv.hotstar, autoAcceptAlerts: true, autoGrantPermissions: true, databaseEnabled: false, desired: {appActivity: in.startv.hotstar.rocky.lau..., appPackage: in.startv.hotstar, autoAcceptAlerts: true, autoGrantPermissions: true, fullReset: false, noReset: true, platformName: android, uiautomator2ServerInstallTimeout: 60000}, deviceApiLevel: 30, deviceManufacturer: Google, deviceModel: Pixel 3a, deviceName: 95TAY0VNB4, deviceScreenDensity: 440, deviceScreenSize: 1080x2220, deviceUDID: 95TAY0VNB4, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 2.75, platform: LINUX, platformName: Android, platformVersion: 11, statBarHeight: 66, takesScreenshot: true, uiautomator2ServerInstallTimeout: 60000, viewportRect: {height: 2022, left: 0, top: 66, width: 1080}, warnings: {}, webStorageEnabled: false}
-Session ID: 3409b79f-4cfe-445b-9e7b-46d4ed042de0
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+Capabilities {appActivity: org.telegram.ui.LaunchActivity, appPackage: org.telegram.messenger, autoAcceptAlerts: true, autoGrantPermissions: true, databaseEnabled: false, desired: {appActivity: org.telegram.ui.LaunchActivity, appPackage: org.telegram.messenger, autoAcceptAlerts: true, autoGrantPermissions: true, fullReset: false, noReset: true, platformName: android, uiautomator2ServerInstallTimeout: 60000}, deviceApiLevel: 29, deviceManufacturer: INFINIX MOBILITY LIMITED, deviceModel: Infinix X655F, deviceName: 0526532073000334, deviceScreenDensity: 320, deviceScreenSize: 720x1600, deviceUDID: 0526532073000334, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 2, platform: LINUX, platformName: Android, platformVersion: 10, statBarHeight: 80, takesScreenshot: true, uiautomator2ServerInstallTimeout: 60000, viewportRect: {height: 1344, left: 0, top: 80, width: 720}, warnings: {}, webStorageEnabled: false}
+Session ID: cb393801-0cd6-4f4e-82ba-30ab2f2e7b92
+*** Element info: {Using=accessibility id, value=Search}
+	at jdk.internal.reflect.GeneratedConstructorAccessor20.newInstance(Unknown Source)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
 	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
@@ -191,318 +271,31 @@ Session ID: 3409b79f-4cfe-445b-9e7b-46d4ed042de0
 	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:41)
 	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
 	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
-	at io.appium.java_client.DefaultGenericMobileElement.execute(DefaultGenericMobileElement.java:45)
-	at io.appium.java_client.MobileElement.execute(MobileElement.java:1)
-	at io.appium.java_client.android.AndroidElement.execute(AndroidElement.java:1)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
-	at iiitd.nrl.evalapp.HotstarTests_search.searchTest(HotstarTests_search.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
-	at org.testng.TestRunner.privateRun(TestRunner.java:756)
-	at org.testng.TestRunner.run(TestRunner.java:610)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
-	at org.testng.TestNG.runSuites(TestNG.java:1133)
-	at org.testng.TestNG.run(TestNG.java:1104)
-	at iiitd.nrl.evalapp.MainAppLauncher$1$1$1.run(MainAppLauncher.java:75)
-	at java.base/java.lang.Thread.run(Thread.java:834)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:61)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at io.appium.java_client.FindsByAccessibilityId.findElementByAccessibilityId(FindsByAccessibilityId.java:37)
+	at io.appium.java_client.MobileBy$ByAccessibilityId.findElement(MobileBy.java:274)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:57)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:182)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:179)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	... 24 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.StaleElementReferenceException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchTest -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.HotstarTests_search@22ab8c76]" started-at="2021-04-28T00:00:27Z" name="restart" finished-at="2021-04-28T00:00:28Z" duration-ms="1046" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=searchTest status=FAILURE method=HotstarTests_search.searchTest()[pri:0, instance:iiitd.nrl.evalapp.HotstarTests_search@22ab8c76] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.HotstarTests_search -->
-    </test> <!-- HsTest -->
-  </suite> <!-- HsSuite -->
-  <suite started-at="2021-04-27T18:32:18Z" name="LsSuite" finished-at="2021-04-27T18:32:53Z" duration-ms="35695">
-    <groups>
-    </groups>
-    <test started-at="2021-04-27T18:32:18Z" name="LsTest" finished-at="2021-04-27T18:32:53Z" duration-ms="35695">
-      <class name="iiitd.nrl.evalapp.LinkedInTests_search">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_search@59d9d813]" started-at="2021-04-28T00:02:18Z" name="launchCap" finished-at="2021-04-28T00:02:26Z" duration-ms="8953" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="searchPerson()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_search@59d9d813]" started-at="2021-04-28T00:02:26Z" name="searchPerson" finished-at="2021-04-28T00:02:39Z" duration-ms="12638" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchPerson -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_search@59d9d813]" started-at="2021-04-28T00:02:39Z" name="restart" finished-at="2021-04-28T00:02:40Z" duration-ms="1067" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=searchPerson status=SUCCESS method=LinkedInTests_search.searchPerson()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_search@59d9d813] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.LinkedInTests_search -->
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@4fa4f518]" started-at="2021-04-28T00:02:40Z" name="launchCap" finished-at="2021-04-28T00:02:49Z" duration-ms="8455" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@4fa4f518]" started-at="2021-04-28T00:02:49Z" name="copyTrakBytes" finished-at="2021-04-28T00:02:53Z" duration-ms="3953" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@4fa4f518]" started-at="2021-04-28T00:02:53Z" name="restart" finished-at="2021-04-28T00:02:53Z" duration-ms="624" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@4fa4f518] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-    </test> <!-- LsTest -->
-  </suite> <!-- LsSuite -->
-  <suite started-at="2021-04-27T18:31:45Z" name="LcSuite" finished-at="2021-04-27T18:32:17Z" duration-ms="32256">
-    <groups>
-    </groups>
-    <test started-at="2021-04-27T18:31:45Z" name="LcTest" finished-at="2021-04-27T18:32:17Z" duration-ms="32256">
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@68b0fd8f]" started-at="2021-04-28T00:02:04Z" name="launchCap" finished-at="2021-04-28T00:02:13Z" duration-ms="8569" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@68b0fd8f]" started-at="2021-04-28T00:02:13Z" name="copyTrakBytes" finished-at="2021-04-28T00:02:17Z" duration-ms="3933" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@68b0fd8f]" started-at="2021-04-28T00:02:17Z" name="restart" finished-at="2021-04-28T00:02:17Z" duration-ms="621" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@68b0fd8f] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.LinkedInTests_myConnections">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_myConnections@1fa17a97]" started-at="2021-04-28T00:01:45Z" name="launchCap" finished-at="2021-04-28T00:01:55Z" duration-ms="10154" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="myConnections()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_myConnections@1fa17a97]" started-at="2021-04-28T00:01:55Z" name="myConnections" finished-at="2021-04-28T00:02:03Z" duration-ms="7843" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- myConnections -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_myConnections@1fa17a97]" started-at="2021-04-28T00:02:03Z" name="restart" finished-at="2021-04-28T00:02:04Z" duration-ms="1133" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=myConnections status=SUCCESS method=LinkedInTests_myConnections.myConnections()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_myConnections@1fa17a97] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.LinkedInTests_myConnections -->
-    </test> <!-- LcTest -->
-  </suite> <!-- LcSuite -->
-  <suite started-at="2021-04-27T18:34:58Z" name="AmSuite" finished-at="2021-04-27T18:36:13Z" duration-ms="75030">
-    <groups>
-    </groups>
-    <test started-at="2021-04-27T18:34:58Z" name="AmTest" finished-at="2021-04-27T18:36:13Z" duration-ms="75030">
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@49e8dea8]" started-at="2021-04-28T00:06:00Z" name="launchCap" finished-at="2021-04-28T00:06:08Z" duration-ms="8569" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@49e8dea8]" started-at="2021-04-28T00:06:08Z" name="copyTrakBytes" finished-at="2021-04-28T00:06:12Z" duration-ms="3896" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@49e8dea8]" started-at="2021-04-28T00:06:12Z" name="restart" finished-at="2021-04-28T00:06:13Z" duration-ms="604" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@49e8dea8] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.AmazonTests">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@7cc51c05]" started-at="2021-04-28T00:04:58Z" name="launchCap" finished-at="2021-04-28T00:05:07Z" duration-ms="9500" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="searchProduct()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@7cc51c05]" started-at="2021-04-28T00:05:07Z" name="searchProduct" finished-at="2021-04-28T00:05:59Z" duration-ms="51373" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchProduct -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@7cc51c05]" started-at="2021-04-28T00:05:59Z" name="restart" finished-at="2021-04-28T00:06:00Z" duration-ms="1084" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=searchProduct status=SUCCESS method=AmazonTests.searchProduct()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@7cc51c05] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-        <test-method is-config="true" signature="update()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@7cc51c05]" started-at="2021-04-28T00:06:00Z" name="update" finished-at="2021-04-28T00:06:00Z" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- update -->
-      </class> <!-- iiitd.nrl.evalapp.AmazonTests -->
-    </test> <!-- AmTest -->
-  </suite> <!-- AmSuite -->
-  <suite started-at="2021-04-27T18:37:13Z" name="GmSuite" finished-at="2021-04-27T18:37:49Z" duration-ms="35882">
-    <groups>
-    </groups>
-    <test started-at="2021-04-27T18:37:13Z" name="GmTest" finished-at="2021-04-27T18:37:49Z" duration-ms="35882">
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@670501f]" started-at="2021-04-28T00:07:36Z" name="launchCap" finished-at="2021-04-28T00:07:44Z" duration-ms="7931" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@670501f]" started-at="2021-04-28T00:07:44Z" name="copyTrakBytes" finished-at="2021-04-28T00:07:48Z" duration-ms="4255" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@670501f]" started-at="2021-04-28T00:07:48Z" name="restart" finished-at="2021-04-28T00:07:49Z" duration-ms="698" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@670501f] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.GoogleMapsTest">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.GoogleMapsTest@3893f7ba]" started-at="2021-04-28T00:07:13Z" name="launchCap" finished-at="2021-04-28T00:07:22Z" duration-ms="9230" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="searchPlace()[pri:0, instance:iiitd.nrl.evalapp.GoogleMapsTest@3893f7ba]" started-at="2021-04-28T00:07:22Z" name="searchPlace" finished-at="2021-04-28T00:07:35Z" duration-ms="12805" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchPlace -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.GoogleMapsTest@3893f7ba]" started-at="2021-04-28T00:07:35Z" name="restart" finished-at="2021-04-28T00:07:36Z" duration-ms="960" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=searchPlace status=SUCCESS method=GoogleMapsTest.searchPlace()[pri:0, instance:iiitd.nrl.evalapp.GoogleMapsTest@3893f7ba] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.GoogleMapsTest -->
-    </test> <!-- GmTest -->
-  </suite> <!-- GmSuite -->
-  <suite started-at="2021-04-27T18:33:35Z" name="FsSuite" finished-at="2021-04-27T18:34:11Z" duration-ms="35860">
-    <groups>
-    </groups>
-    <test started-at="2021-04-27T18:33:35Z" name="FsTest" finished-at="2021-04-27T18:34:11Z" duration-ms="35860">
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@2ee3ecad]" started-at="2021-04-28T00:03:58Z" name="launchCap" finished-at="2021-04-28T00:04:07Z" duration-ms="8787" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@2ee3ecad]" started-at="2021-04-28T00:04:07Z" name="copyTrakBytes" finished-at="2021-04-28T00:04:10Z" duration-ms="3907" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@2ee3ecad]" started-at="2021-04-28T00:04:10Z" name="restart" finished-at="2021-04-28T00:04:11Z" duration-ms="604" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@2ee3ecad] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.FacebookTests_search">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_search@1f02bba9]" started-at="2021-04-28T00:03:35Z" name="launchCap" finished-at="2021-04-28T00:03:44Z" duration-ms="9223" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="searchPerson()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_search@1f02bba9]" started-at="2021-04-28T00:03:44Z" name="searchPerson" finished-at="2021-04-28T00:03:57Z" duration-ms="12251" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchPerson -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_search@1f02bba9]" started-at="2021-04-28T00:03:57Z" name="restart" finished-at="2021-04-28T00:03:58Z" duration-ms="1085" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=searchPerson status=SUCCESS method=FacebookTests_search.searchPerson()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_search@1f02bba9] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.FacebookTests_search -->
-    </test> <!-- FsTest -->
-  </suite> <!-- FsSuite -->
-  <suite started-at="2021-04-27T18:36:13Z" name="TgSuite" finished-at="2021-04-27T18:36:43Z" duration-ms="30180">
-    <groups>
-    </groups>
-    <test started-at="2021-04-27T18:36:13Z" name="TgTest" finished-at="2021-04-27T18:36:43Z" duration-ms="30180">
-      <class name="iiitd.nrl.evalapp.TelegramTests">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TelegramTests@6f24eda3]" started-at="2021-04-28T00:06:13Z" name="launchCap" finished-at="2021-04-28T00:06:22Z" duration-ms="8962" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="sendMessage()[pri:0, instance:iiitd.nrl.evalapp.TelegramTests@6f24eda3]" started-at="2021-04-28T00:06:22Z" name="sendMessage" finished-at="2021-04-28T00:06:29Z" duration-ms="7273" status="PASS">
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sendMessage -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TelegramTests@6f24eda3]" started-at="2021-04-28T00:06:29Z" name="restart" finished-at="2021-04-28T00:06:30Z" duration-ms="946" status="PASS">
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TelegramTests@140c9f39]" started-at="2021-09-27T22:09:45Z" name="restart" finished-at="2021-09-27T22:09:46Z" duration-ms="910" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=sendMessage status=SUCCESS method=TelegramTests.sendMessage()[pri:0, instance:iiitd.nrl.evalapp.TelegramTests@6f24eda3] output={null}]]]>
+                <![CDATA[[TestResult name=sendMessage status=FAILURE method=TelegramTests.sendMessage()[pri:0, instance:iiitd.nrl.evalapp.TelegramTests@140c9f39] output={null}]]]>
               </value>
             </param>
           </params>
@@ -511,19 +304,19 @@ Session ID: 3409b79f-4cfe-445b-9e7b-46d4ed042de0
         </test-method> <!-- restart -->
       </class> <!-- iiitd.nrl.evalapp.TelegramTests -->
       <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@4ae0f659]" started-at="2021-04-28T00:06:30Z" name="launchCap" finished-at="2021-04-28T00:06:38Z" duration-ms="8412" status="PASS">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@4d910fd6]" started-at="2021-09-27T22:09:46Z" name="launchCap" finished-at="2021-09-27T22:09:56Z" duration-ms="9825" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@4ae0f659]" started-at="2021-04-28T00:06:38Z" name="copyTrakBytes" finished-at="2021-04-28T00:06:42Z" duration-ms="3920" status="PASS">
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@4d910fd6]" started-at="2021-09-27T22:09:56Z" name="copyTrakBytes" finished-at="2021-09-27T22:10:00Z" duration-ms="4272" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@4ae0f659]" started-at="2021-04-28T00:06:42Z" name="restart" finished-at="2021-04-28T00:06:43Z" duration-ms="665" status="PASS">
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@4d910fd6]" started-at="2021-09-27T22:10:00Z" name="restart" finished-at="2021-09-27T22:10:01Z" duration-ms="546" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@4ae0f659] output={null}]]]>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@4d910fd6] output={null}]]]>
               </value>
             </param>
           </params>
@@ -531,270 +324,47 @@ Session ID: 3409b79f-4cfe-445b-9e7b-46d4ed042de0
           </reporter-output>
         </test-method> <!-- restart -->
       </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-    </test> <!-- TgTest -->
-  </suite> <!-- TgSuite -->
-  <suite started-at="2021-04-27T18:31:13Z" name="LpSuite" finished-at="2021-04-27T18:31:45Z" duration-ms="32473">
-    <groups>
-    </groups>
-    <test started-at="2021-04-27T18:31:13Z" name="LpTest" finished-at="2021-04-27T18:31:45Z" duration-ms="32473">
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@1718c18a]" started-at="2021-04-28T00:01:32Z" name="launchCap" finished-at="2021-04-28T00:01:41Z" duration-ms="8495" status="PASS">
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@1f97cf0d]" started-at="2021-09-27T22:09:05Z" name="launchCap" finished-at="2021-09-27T22:09:15Z" duration-ms="9821" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@1718c18a]" started-at="2021-04-28T00:01:41Z" name="copyTrakBytes" finished-at="2021-04-28T00:01:45Z" duration-ms="3965" status="PASS">
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@1f97cf0d]" started-at="2021-09-27T22:09:15Z" name="copyTrakBytes" finished-at="2021-09-27T22:09:19Z" duration-ms="3736" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@1718c18a]" started-at="2021-04-28T00:01:45Z" name="restart" finished-at="2021-04-28T00:01:45Z" duration-ms="677" status="PASS">
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@1f97cf0d]" started-at="2021-09-27T22:09:19Z" name="restart" finished-at="2021-09-27T22:09:19Z" duration-ms="517" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@1718c18a] output={null}]]]>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@1f97cf0d] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.LinkedInTests_profile">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_profile@2938726e]" started-at="2021-04-28T00:01:13Z" name="launchCap" finished-at="2021-04-28T00:01:23Z" duration-ms="9952" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="viewProfile()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_profile@2938726e]" started-at="2021-04-28T00:01:23Z" name="viewProfile" finished-at="2021-04-28T00:01:31Z" duration-ms="8203" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- viewProfile -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_profile@2938726e]" started-at="2021-04-28T00:01:31Z" name="restart" finished-at="2021-04-28T00:01:32Z" duration-ms="1178" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=viewProfile status=SUCCESS method=LinkedInTests_profile.viewProfile()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_profile@2938726e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.LinkedInTests_profile -->
-    </test> <!-- LpTest -->
-  </suite> <!-- LpSuite -->
-  <suite started-at="2021-04-27T18:32:53Z" name="FpSuite" finished-at="2021-04-27T18:33:35Z" duration-ms="41924">
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+    </test> <!-- TelegramTestsTest -->
+  </suite> <!-- TelegramTestsSuite -->
+  <suite started-at="2021-09-27T16:40:01Z" name="WhatsappTestsSuite" finished-at="2021-09-27T16:41:11Z" duration-ms="69920">
     <groups>
     </groups>
-    <test started-at="2021-04-27T18:32:53Z" name="FpTest" finished-at="2021-04-27T18:33:35Z" duration-ms="41924">
+    <test started-at="2021-09-27T16:40:01Z" name="WhatsappTestsTest" finished-at="2021-09-27T16:41:11Z" duration-ms="69920">
       <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@1e519ad9]" started-at="2021-04-28T00:03:22Z" name="launchCap" finished-at="2021-04-28T00:03:31Z" duration-ms="8580" status="PASS">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@6b8ca3c8]" started-at="2021-09-27T22:10:53Z" name="launchCap" finished-at="2021-09-27T22:11:07Z" duration-ms="13420" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@1e519ad9]" started-at="2021-04-28T00:03:31Z" name="copyTrakBytes" finished-at="2021-04-28T00:03:34Z" duration-ms="3945" status="PASS">
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@6b8ca3c8]" started-at="2021-09-27T22:11:07Z" name="copyTrakBytes" finished-at="2021-09-27T22:11:10Z" duration-ms="3735" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@1e519ad9]" started-at="2021-04-28T00:03:34Z" name="restart" finished-at="2021-04-28T00:03:35Z" duration-ms="665" status="PASS">
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@6b8ca3c8]" started-at="2021-09-27T22:11:10Z" name="restart" finished-at="2021-09-27T22:11:11Z" duration-ms="551" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@1e519ad9] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.FacebookTests_post">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_post@72e61394]" started-at="2021-04-28T00:02:53Z" name="launchCap" finished-at="2021-04-28T00:03:03Z" duration-ms="9484" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="postGroup()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_post@72e61394]" started-at="2021-04-28T00:03:03Z" name="postGroup" finished-at="2021-04-28T00:03:21Z" duration-ms="18306" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- postGroup -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_post@72e61394]" started-at="2021-04-28T00:03:21Z" name="restart" finished-at="2021-04-28T00:03:22Z" duration-ms="941" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=postGroup status=SUCCESS method=FacebookTests_post.postGroup()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_post@72e61394] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-        <test-method is-config="true" signature="update()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_post@72e61394]" started-at="2021-04-28T00:03:22Z" name="update" finished-at="2021-04-28T00:03:22Z" duration-ms="1" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- update -->
-      </class> <!-- iiitd.nrl.evalapp.FacebookTests_post -->
-    </test> <!-- FpTest -->
-  </suite> <!-- FpSuite -->
-  <suite started-at="2021-04-27T18:34:11Z" name="FlSuite" finished-at="2021-04-27T18:34:58Z" duration-ms="46737">
-    <groups>
-    </groups>
-    <test started-at="2021-04-27T18:34:11Z" name="FlTest" finished-at="2021-04-27T18:34:58Z" duration-ms="46737">
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@5d459d94]" started-at="2021-04-28T00:04:45Z" name="launchCap" finished-at="2021-04-28T00:04:53Z" duration-ms="8628" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@5d459d94]" started-at="2021-04-28T00:04:53Z" name="copyTrakBytes" finished-at="2021-04-28T00:04:57Z" duration-ms="3920" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@5d459d94]" started-at="2021-04-28T00:04:57Z" name="restart" finished-at="2021-04-28T00:04:58Z" duration-ms="695" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@5d459d94] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.FlipkartTests">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.FlipkartTests@2d6cbc9b]" started-at="2021-04-28T00:04:11Z" name="launchCap" finished-at="2021-04-28T00:04:20Z" duration-ms="9115" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="getProduct()[pri:0, instance:iiitd.nrl.evalapp.FlipkartTests@2d6cbc9b]" started-at="2021-04-28T00:04:20Z" name="getProduct" finished-at="2021-04-28T00:04:44Z" duration-ms="23438" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- getProduct -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.FlipkartTests@2d6cbc9b]" started-at="2021-04-28T00:04:44Z" name="restart" finished-at="2021-04-28T00:04:45Z" duration-ms="936" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=getProduct status=SUCCESS method=FlipkartTests.getProduct()[pri:0, instance:iiitd.nrl.evalapp.FlipkartTests@2d6cbc9b] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.FlipkartTests -->
-    </test> <!-- FlTest -->
-  </suite> <!-- FlSuite -->
-  <suite started-at="2021-04-27T18:30:41Z" name="HtSuite" finished-at="2021-04-27T18:31:13Z" duration-ms="31681">
-    <groups>
-    </groups>
-    <test started-at="2021-04-27T18:30:41Z" name="HtTest" finished-at="2021-04-27T18:31:13Z" duration-ms="31681">
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@50e6dd9f]" started-at="2021-04-28T00:01:00Z" name="launchCap" finished-at="2021-04-28T00:01:08Z" duration-ms="8328" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@50e6dd9f]" started-at="2021-04-28T00:01:08Z" name="copyTrakBytes" finished-at="2021-04-28T00:01:12Z" duration-ms="3974" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@50e6dd9f]" started-at="2021-04-28T00:01:12Z" name="restart" finished-at="2021-04-28T00:01:13Z" duration-ms="739" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@50e6dd9f] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.HotstarTests_trending">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.HotstarTests_trending@1be7789d]" started-at="2021-04-28T00:00:41Z" name="launchCap" finished-at="2021-04-28T00:00:50Z" duration-ms="9428" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="trendingTest()[pri:0, instance:iiitd.nrl.evalapp.HotstarTests_trending@1be7789d]" started-at="2021-04-28T00:00:50Z" name="trendingTest" finished-at="2021-04-28T00:00:59Z" duration-ms="8248" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- trendingTest -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.HotstarTests_trending@1be7789d]" started-at="2021-04-28T00:00:59Z" name="restart" finished-at="2021-04-28T00:01:00Z" duration-ms="962" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=trendingTest status=SUCCESS method=HotstarTests_trending.trendingTest()[pri:0, instance:iiitd.nrl.evalapp.HotstarTests_trending@1be7789d] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.HotstarTests_trending -->
-    </test> <!-- HtTest -->
-  </suite> <!-- HtSuite -->
-  <suite started-at="2021-04-27T18:29:06Z" name="YtsSuite (0)" finished-at="2021-04-27T18:29:39Z" duration-ms="33071">
-    <groups>
-    </groups>
-    <test started-at="2021-04-27T18:29:06Z" name="YtsTest" finished-at="2021-04-27T18:29:39Z" duration-ms="33071">
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@bb1450]" started-at="2021-04-27T23:59:26Z" name="launchCap" finished-at="2021-04-27T23:59:34Z" duration-ms="8690" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@bb1450]" started-at="2021-04-27T23:59:34Z" name="copyTrakBytes" finished-at="2021-04-27T23:59:38Z" duration-ms="3966" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@bb1450]" started-at="2021-04-27T23:59:38Z" name="restart" finished-at="2021-04-27T23:59:39Z" duration-ms="676" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@bb1450] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.YouTubeTests_SearchChannel">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_SearchChannel@7a1b4e44]" started-at="2021-04-27T23:59:06Z" name="launchCap" finished-at="2021-04-27T23:59:15Z" duration-ms="9396" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="channelTest()[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_SearchChannel@7a1b4e44]" started-at="2021-04-27T23:59:15Z" name="channelTest" finished-at="2021-04-27T23:59:25Z" duration-ms="9229" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- channelTest -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_SearchChannel@7a1b4e44]" started-at="2021-04-27T23:59:25Z" name="restart" finished-at="2021-04-27T23:59:26Z" duration-ms="1111" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=channelTest status=SUCCESS method=YouTubeTests_SearchChannel.channelTest()[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_SearchChannel@7a1b4e44] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.YouTubeTests_SearchChannel -->
-    </test> <!-- YtsTest -->
-  </suite> <!-- YtsSuite (0) -->
-  <suite started-at="2021-04-27T18:36:43Z" name="WhSuite" finished-at="2021-04-27T18:37:13Z" duration-ms="29825">
-    <groups>
-    </groups>
-    <test started-at="2021-04-27T18:36:43Z" name="WhTest" finished-at="2021-04-27T18:37:13Z" duration-ms="29825">
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@21e4dd9c]" started-at="2021-04-28T00:07:00Z" name="launchCap" finished-at="2021-04-28T00:07:08Z" duration-ms="8459" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@21e4dd9c]" started-at="2021-04-28T00:07:08Z" name="copyTrakBytes" finished-at="2021-04-28T00:07:12Z" duration-ms="3908" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@21e4dd9c]" started-at="2021-04-28T00:07:12Z" name="restart" finished-at="2021-04-28T00:07:13Z" duration-ms="767" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@21e4dd9c] output={null}]]]>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@6b8ca3c8] output={null}]]]>
               </value>
             </param>
           </params>
@@ -803,68 +373,20 @@ Session ID: 3409b79f-4cfe-445b-9e7b-46d4ed042de0
         </test-method> <!-- restart -->
       </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
       <class name="iiitd.nrl.evalapp.WhatsappTests">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.WhatsappTests@3088b84f]" started-at="2021-04-28T00:06:43Z" name="launchCap" finished-at="2021-04-28T00:06:52Z" duration-ms="8880" status="PASS">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.WhatsappTests@49dc7102]" started-at="2021-09-27T22:10:16Z" name="launchCap" finished-at="2021-09-27T22:10:27Z" duration-ms="11136" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchCap -->
-        <test-method signature="sendMessage()[pri:0, instance:iiitd.nrl.evalapp.WhatsappTests@3088b84f]" started-at="2021-04-28T00:06:52Z" name="sendMessage" finished-at="2021-04-28T00:06:59Z" duration-ms="6811" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- sendMessage -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.WhatsappTests@3088b84f]" started-at="2021-04-28T00:06:59Z" name="restart" finished-at="2021-04-28T00:07:00Z" duration-ms="998" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=sendMessage status=SUCCESS method=WhatsappTests.sendMessage()[pri:0, instance:iiitd.nrl.evalapp.WhatsappTests@3088b84f] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.WhatsappTests -->
-    </test> <!-- WhTest -->
-  </suite> <!-- WhSuite -->
-  <suite started-at="2021-04-27T18:38:56Z" name="PtSuite" finished-at="2021-04-27T18:39:34Z" duration-ms="38091">
-    <groups>
-    </groups>
-    <test started-at="2021-04-27T18:38:56Z" name="PtTest" finished-at="2021-04-27T18:39:34Z" duration-ms="38091">
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@81c36b5]" started-at="2021-04-28T00:09:22Z" name="launchCap" finished-at="2021-04-28T00:09:30Z" duration-ms="7627" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@81c36b5]" started-at="2021-04-28T00:09:30Z" name="copyTrakBytes" finished-at="2021-04-28T00:09:34Z" duration-ms="3903" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@81c36b5]" started-at="2021-04-28T00:09:34Z" name="restart" finished-at="2021-04-28T00:09:34Z" duration-ms="519" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@81c36b5] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.PaytmTests">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.PaytmTests@6d29af84]" started-at="2021-04-28T00:08:56Z" name="launchCap" finished-at="2021-04-28T00:09:06Z" duration-ms="9961" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="sendMoneyFromWallet()[pri:0, instance:iiitd.nrl.evalapp.PaytmTests@6d29af84]" started-at="2021-04-28T00:09:06Z" name="sendMoneyFromWallet" finished-at="2021-04-28T00:09:22Z" duration-ms="15295" status="FAIL">
+        <test-method signature="sendMessage()[pri:0, instance:iiitd.nrl.evalapp.WhatsappTests@49dc7102]" started-at="2021-09-27T22:10:27Z" name="sendMessage" finished-at="2021-09-27T22:10:52Z" duration-ms="24650" status="FAIL">
           <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.id: net.one97.paytm:id/image_container_1 (tried for 15 second(s) with 500 milliseconds interval)]]>
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.AndroidUIAutomator: new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text("EvalApp Group")); (tried for 15 second(s) with 500 milliseconds interval)]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.id: net.one97.paytm:id/image_container_1 (tried for 15 second(s) with 500 milliseconds interval)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.AndroidUIAutomator: new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text("EvalApp Group")); (tried for 15 second(s) with 500 milliseconds interval)
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
-	at iiitd.nrl.evalapp.PaytmTests.sendMoneyFromWallet(PaytmTests.java:90)
+	at iiitd.nrl.evalapp.WhatsappTests.sendMessage(WhatsappTests.java:94)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -887,16 +409,854 @@ Session ID: 3409b79f-4cfe-445b-9e7b-46d4ed042de0
 	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
 	at org.testng.TestNG.runSuites(TestNG.java:1133)
 	at org.testng.TestNG.run(TestNG.java:1104)
-	at iiitd.nrl.evalapp.MainAppLauncher$1$1$1.run(MainAppLauncher.java:75)
-	at java.base/java.lang.Thread.run(Thread.java:834)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
 Caused by: org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
 For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'DESKTOP-L1GP92O', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.10'
+System info: host: 'DESKTOP-FU6EMRP', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.12'
 Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appActivity: net.one97.paytm.landingpage..., appPackage: net.one97.paytm, autoAcceptAlerts: true, autoGrantPermissions: true, databaseEnabled: false, desired: {appActivity: net.one97.paytm.landingpage..., appPackage: net.one97.paytm, autoAcceptAlerts: true, autoGrantPermissions: true, fullReset: false, noReset: true, platformName: android, uiautomator2ServerInstallTimeout: 60000}, deviceApiLevel: 30, deviceManufacturer: Google, deviceModel: Pixel 3a, deviceName: 95TAY0VNB4, deviceScreenDensity: 440, deviceScreenSize: 1080x2220, deviceUDID: 95TAY0VNB4, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 2.75, platform: LINUX, platformName: Android, platformVersion: 11, statBarHeight: 66, takesScreenshot: true, uiautomator2ServerInstallTimeout: 60000, viewportRect: {height: 2022, left: 0, top: 66, width: 1080}, warnings: {}, webStorageEnabled: false}
-Session ID: de0d6fa9-07ba-48ff-a1a3-c09e7ae28645
-*** Element info: {Using=id, value=net.one97.paytm:id/image_container_1}
+Capabilities {appActivity: com.whatsapp.Main, appPackage: com.whatsapp, autoAcceptAlerts: true, autoGrantPermissions: true, databaseEnabled: false, desired: {appActivity: com.whatsapp.Main, appPackage: com.whatsapp, autoAcceptAlerts: true, autoGrantPermissions: true, fullReset: false, noReset: true, platformName: android, uiautomator2ServerInstallTimeout: 60000}, deviceApiLevel: 29, deviceManufacturer: INFINIX MOBILITY LIMITED, deviceModel: Infinix X655F, deviceName: 0526532073000334, deviceScreenDensity: 320, deviceScreenSize: 720x1600, deviceUDID: 0526532073000334, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 2, platform: LINUX, platformName: Android, platformVersion: 10, statBarHeight: 80, takesScreenshot: true, uiautomator2ServerInstallTimeout: 60000, viewportRect: {height: 1344, left: 0, top: 80, width: 720}, warnings: {}, webStorageEnabled: false}
+Session ID: 3189fd61-47f1-4c9c-b93c-e449684b9181
+*** Element info: {Using=-android uiautomator, value=new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text("EvalApp Group"));}
+	at jdk.internal.reflect.GeneratedConstructorAccessor20.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:41)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:61)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at io.appium.java_client.FindsByAndroidUIAutomator.findElementByAndroidUIAutomator(FindsByAndroidUIAutomator.java:38)
+	at io.appium.java_client.MobileBy$ByAndroidUIAutomator.findElement(MobileBy.java:210)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:57)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	... 24 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sendMessage -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.WhatsappTests@49dc7102]" started-at="2021-09-27T22:10:52Z" name="restart" finished-at="2021-09-27T22:10:53Z" duration-ms="1580" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=sendMessage status=FAILURE method=WhatsappTests.sendMessage()[pri:0, instance:iiitd.nrl.evalapp.WhatsappTests@49dc7102] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.WhatsappTests -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@7671cb68]" started-at="2021-09-27T22:10:01Z" name="launchCap" finished-at="2021-09-27T22:10:11Z" duration-ms="9903" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@7671cb68]" started-at="2021-09-27T22:10:11Z" name="copyTrakBytes" finished-at="2021-09-27T22:10:15Z" duration-ms="4491" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@7671cb68]" started-at="2021-09-27T22:10:15Z" name="restart" finished-at="2021-09-27T22:10:16Z" duration-ms="453" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@7671cb68] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+    </test> <!-- WhatsappTestsTest -->
+  </suite> <!-- WhatsappTestsSuite -->
+  <suite started-at="2021-09-27T16:43:38Z" name="FacebookTests_search1Suite" finished-at="2021-09-27T16:44:17Z" duration-ms="38867">
+    <groups>
+    </groups>
+    <test started-at="2021-09-27T16:43:38Z" name="FacebookTests_search1Test" finished-at="2021-09-27T16:44:17Z" duration-ms="38867">
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@625732]" started-at="2021-09-27T22:14:03Z" name="launchCap" finished-at="2021-09-27T22:14:13Z" duration-ms="9817" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@625732]" started-at="2021-09-27T22:14:13Z" name="copyTrakBytes" finished-at="2021-09-27T22:14:17Z" duration-ms="3714" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@625732]" started-at="2021-09-27T22:14:17Z" name="restart" finished-at="2021-09-27T22:14:17Z" duration-ms="479" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@625732] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+      <class name="iiitd.nrl.evalapp.FacebookTests_search">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_search@120f102b]" started-at="2021-09-27T22:13:53Z" name="launchCap" finished-at="2021-09-27T22:13:53Z" duration-ms="0" status="FAIL">
+          <exception class="java.lang.NullPointerException">
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:140)
+	at iiitd.nrl.evalapp.FacebookTests_search.launchCap(FacebookTests_search.java:68)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:217)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="searchPerson()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_search@120f102b]" started-at="2021-09-27T22:14:03Z" name="searchPerson" finished-at="2021-09-27T22:14:03Z" duration-ms="0" status="SKIP">
+          <exception class="java.lang.NullPointerException">
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:140)
+	at iiitd.nrl.evalapp.FacebookTests_search.launchCap(FacebookTests_search.java:68)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:217)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchPerson -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_search@120f102b]" started-at="2021-09-27T22:14:03Z" name="restart" finished-at="2021-09-27T22:14:03Z" duration-ms="0" status="SKIP">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.FacebookTests_search -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@41fecb8b]" started-at="2021-09-27T22:13:38Z" name="launchCap" finished-at="2021-09-27T22:13:48Z" duration-ms="9978" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@41fecb8b]" started-at="2021-09-27T22:13:48Z" name="copyTrakBytes" finished-at="2021-09-27T22:13:52Z" duration-ms="3723" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@41fecb8b]" started-at="2021-09-27T22:13:52Z" name="restart" finished-at="2021-09-27T22:13:53Z" duration-ms="535" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@41fecb8b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+    </test> <!-- FacebookTests_search1Test -->
+  </suite> <!-- FacebookTests_search1Suite -->
+  <suite started-at="2021-09-27T16:32:06Z" name="Dailyhunt_TestSuite" finished-at="2021-09-27T16:32:45Z" duration-ms="39219">
+    <groups>
+    </groups>
+    <test started-at="2021-09-27T16:32:06Z" name="Dailyhunt_TestTest" finished-at="2021-09-27T16:32:45Z" duration-ms="39219">
+      <class name="iiitd.nrl.evalapp.DailyhuntTests">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.DailyhuntTests@3571b748]" started-at="2021-09-27T22:02:20Z" name="launchCap" finished-at="2021-09-27T22:02:20Z" duration-ms="0" status="FAIL">
+          <exception class="java.lang.NullPointerException">
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:140)
+	at iiitd.nrl.evalapp.DailyhuntTests.launchCap(DailyhuntTests.java:62)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:217)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.DailyhuntTests@3571b748]" started-at="2021-09-27T22:02:31Z" name="restart" finished-at="2021-09-27T22:02:31Z" duration-ms="0" status="SKIP">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+        <test-method signature="searchNews()[pri:0, instance:iiitd.nrl.evalapp.DailyhuntTests@3571b748]" started-at="2021-09-27T22:02:31Z" name="searchNews" finished-at="2021-09-27T22:02:31Z" duration-ms="0" status="SKIP">
+          <exception class="java.lang.NullPointerException">
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:140)
+	at iiitd.nrl.evalapp.DailyhuntTests.launchCap(DailyhuntTests.java:62)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:217)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchNews -->
+      </class> <!-- iiitd.nrl.evalapp.DailyhuntTests -->
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3e96bacf]" started-at="2021-09-27T22:02:31Z" name="launchCap" finished-at="2021-09-27T22:02:41Z" duration-ms="9978" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3e96bacf]" started-at="2021-09-27T22:02:41Z" name="copyTrakBytes" finished-at="2021-09-27T22:02:45Z" duration-ms="3720" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3e96bacf]" started-at="2021-09-27T22:02:45Z" name="restart" finished-at="2021-09-27T22:02:45Z" duration-ms="520" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3e96bacf] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@fd07cbb]" started-at="2021-09-27T22:02:06Z" name="launchCap" finished-at="2021-09-27T22:02:16Z" duration-ms="9988" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@fd07cbb]" started-at="2021-09-27T22:02:16Z" name="copyTrakBytes" finished-at="2021-09-27T22:02:20Z" duration-ms="3779" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@fd07cbb]" started-at="2021-09-27T22:02:20Z" name="restart" finished-at="2021-09-27T22:02:20Z" duration-ms="474" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@fd07cbb] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+    </test> <!-- Dailyhunt_TestTest -->
+  </suite> <!-- Dailyhunt_TestSuite -->
+  <suite started-at="2021-09-27T16:38:13Z" name="LinkedInTests_searchSuite" finished-at="2021-09-27T16:39:05Z" duration-ms="51999">
+    <groups>
+    </groups>
+    <test started-at="2021-09-27T16:38:13Z" name="LinkedInTests_searchTest" finished-at="2021-09-27T16:39:05Z" duration-ms="51999">
+      <class name="iiitd.nrl.evalapp.LinkedInTests_search">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_search@4da4253]" started-at="2021-09-27T22:08:28Z" name="launchCap" finished-at="2021-09-27T22:08:38Z" duration-ms="10329" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="searchPerson()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_search@4da4253]" started-at="2021-09-27T22:08:38Z" name="searchPerson" finished-at="2021-09-27T22:08:49Z" duration-ms="10557" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchPerson -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_search@4da4253]" started-at="2021-09-27T22:08:49Z" name="restart" finished-at="2021-09-27T22:08:50Z" duration-ms="880" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=searchPerson status=SUCCESS method=LinkedInTests_search.searchPerson()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_search@4da4253] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.LinkedInTests_search -->
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3972a855]" started-at="2021-09-27T22:08:50Z" name="launchCap" finished-at="2021-09-27T22:09:01Z" duration-ms="11309" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3972a855]" started-at="2021-09-27T22:09:01Z" name="copyTrakBytes" finished-at="2021-09-27T22:09:05Z" duration-ms="3732" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3972a855]" started-at="2021-09-27T22:09:05Z" name="restart" finished-at="2021-09-27T22:09:05Z" duration-ms="542" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3972a855] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@865dd6]" started-at="2021-09-27T22:08:13Z" name="launchCap" finished-at="2021-09-27T22:08:23Z" duration-ms="9917" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@865dd6]" started-at="2021-09-27T22:08:23Z" name="copyTrakBytes" finished-at="2021-09-27T22:08:27Z" duration-ms="4278" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@865dd6]" started-at="2021-09-27T22:08:27Z" name="restart" finished-at="2021-09-27T22:08:28Z" duration-ms="455" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@865dd6] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+    </test> <!-- LinkedInTests_searchTest -->
+  </suite> <!-- LinkedInTests_searchSuite -->
+  <suite started-at="2021-09-27T16:32:45Z" name="Flipkart_Test5Suite" finished-at="2021-09-27T16:33:57Z" duration-ms="71564">
+    <groups>
+    </groups>
+    <test started-at="2021-09-27T16:32:45Z" name="Flipkart_Test5Test" finished-at="2021-09-27T16:33:57Z" duration-ms="71564">
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@65b3f4a4]" started-at="2021-09-27T22:03:40Z" name="launchCap" finished-at="2021-09-27T22:03:52Z" duration-ms="12435" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@65b3f4a4]" started-at="2021-09-27T22:03:52Z" name="copyTrakBytes" finished-at="2021-09-27T22:03:56Z" duration-ms="3706" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@65b3f4a4]" started-at="2021-09-27T22:03:56Z" name="restart" finished-at="2021-09-27T22:03:57Z" duration-ms="506" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@65b3f4a4] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@2f54a33d]" started-at="2021-09-27T22:02:45Z" name="launchCap" finished-at="2021-09-27T22:02:55Z" duration-ms="9970" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@2f54a33d]" started-at="2021-09-27T22:02:55Z" name="copyTrakBytes" finished-at="2021-09-27T22:02:59Z" duration-ms="3725" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@2f54a33d]" started-at="2021-09-27T22:02:59Z" name="restart" finished-at="2021-09-27T22:02:59Z" duration-ms="504" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@2f54a33d] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+      <class name="iiitd.nrl.evalapp.FlipkartTests">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.FlipkartTests@1018bde2]" started-at="2021-09-27T22:02:59Z" name="launchCap" finished-at="2021-09-27T22:03:10Z" duration-ms="10457" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="getProduct()[pri:0, instance:iiitd.nrl.evalapp.FlipkartTests@1018bde2]" started-at="2021-09-27T22:03:10Z" name="getProduct" finished-at="2021-09-27T22:03:38Z" duration-ms="28701" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getProduct -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.FlipkartTests@1018bde2]" started-at="2021-09-27T22:03:38Z" name="restart" finished-at="2021-09-27T22:03:40Z" duration-ms="1559" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=getProduct status=SUCCESS method=FlipkartTests.getProduct()[pri:0, instance:iiitd.nrl.evalapp.FlipkartTests@1018bde2] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.FlipkartTests -->
+    </test> <!-- Flipkart_Test5Test -->
+  </suite> <!-- Flipkart_Test5Suite -->
+  <suite started-at="2021-09-27T16:37:24Z" name="LinkedInTests_profileSuite" finished-at="2021-09-27T16:38:13Z" duration-ms="49668">
+    <groups>
+    </groups>
+    <test started-at="2021-09-27T16:37:24Z" name="LinkedInTests_profileTest" finished-at="2021-09-27T16:38:13Z" duration-ms="49668">
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@29647f75]" started-at="2021-09-27T22:07:57Z" name="launchCap" finished-at="2021-09-27T22:08:09Z" duration-ms="11380" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@29647f75]" started-at="2021-09-27T22:08:09Z" name="copyTrakBytes" finished-at="2021-09-27T22:08:13Z" duration-ms="4135" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@29647f75]" started-at="2021-09-27T22:08:13Z" name="restart" finished-at="2021-09-27T22:08:13Z" duration-ms="539" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@29647f75] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@2892dae4]" started-at="2021-09-27T22:07:24Z" name="launchCap" finished-at="2021-09-27T22:07:33Z" duration-ms="9889" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@2892dae4]" started-at="2021-09-27T22:07:33Z" name="copyTrakBytes" finished-at="2021-09-27T22:07:37Z" duration-ms="3730" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@2892dae4]" started-at="2021-09-27T22:07:37Z" name="restart" finished-at="2021-09-27T22:07:38Z" duration-ms="468" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@2892dae4] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+      <class name="iiitd.nrl.evalapp.LinkedInTests_profile">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_profile@355ce81c]" started-at="2021-09-27T22:07:38Z" name="launchCap" finished-at="2021-09-27T22:07:48Z" duration-ms="10330" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="viewProfile()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_profile@355ce81c]" started-at="2021-09-27T22:07:48Z" name="viewProfile" finished-at="2021-09-27T22:07:56Z" duration-ms="8260" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- viewProfile -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_profile@355ce81c]" started-at="2021-09-27T22:07:56Z" name="restart" finished-at="2021-09-27T22:07:57Z" duration-ms="935" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=viewProfile status=SUCCESS method=LinkedInTests_profile.viewProfile()[pri:0, instance:iiitd.nrl.evalapp.LinkedInTests_profile@355ce81c] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.LinkedInTests_profile -->
+    </test> <!-- LinkedInTests_profileTest -->
+  </suite> <!-- LinkedInTests_profileSuite -->
+  <suite started-at="2021-09-27T16:44:17Z" name="PingSuite" finished-at="2021-09-27T16:44:17Z" duration-ms="1">
+    <groups>
+    </groups>
+    <test started-at="2021-09-27T16:44:17Z" name="PingTest" finished-at="2021-09-27T16:44:17Z" duration-ms="1">
+      <class name="iiitd.nrl.evalapp.PingUpload">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.PingUpload@1613674b]" started-at="2021-09-27T22:14:17Z" name="launchCap" finished-at="2021-09-27T22:14:17Z" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="dummyTest()[pri:0, instance:iiitd.nrl.evalapp.PingUpload@1613674b]" started-at="2021-09-27T22:14:17Z" name="dummyTest" finished-at="2021-09-27T22:14:17Z" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- dummyTest -->
+      </class> <!-- iiitd.nrl.evalapp.PingUpload -->
+    </test> <!-- PingTest -->
+  </suite> <!-- PingSuite -->
+  <suite started-at="2021-09-27T16:42:59Z" name="FacebookTests_postSuite" finished-at="2021-09-27T16:43:38Z" duration-ms="38922">
+    <groups>
+    </groups>
+    <test started-at="2021-09-27T16:42:59Z" name="FacebookTests_postTest" finished-at="2021-09-27T16:43:38Z" duration-ms="38922">
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@41e1e210]" started-at="2021-09-27T22:13:24Z" name="launchCap" finished-at="2021-09-27T22:13:34Z" duration-ms="9952" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@41e1e210]" started-at="2021-09-27T22:13:34Z" name="copyTrakBytes" finished-at="2021-09-27T22:13:38Z" duration-ms="3719" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@41e1e210]" started-at="2021-09-27T22:13:38Z" name="restart" finished-at="2021-09-27T22:13:38Z" duration-ms="522" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@41e1e210] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@2f8dad04]" started-at="2021-09-27T22:12:59Z" name="launchCap" finished-at="2021-09-27T22:13:09Z" duration-ms="9844" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@2f8dad04]" started-at="2021-09-27T22:13:09Z" name="copyTrakBytes" finished-at="2021-09-27T22:13:13Z" duration-ms="3749" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@2f8dad04]" started-at="2021-09-27T22:13:13Z" name="restart" finished-at="2021-09-27T22:13:13Z" duration-ms="458" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@2f8dad04] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+      <class name="iiitd.nrl.evalapp.FacebookTests_post">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_post@29e495ff]" started-at="2021-09-27T22:13:13Z" name="launchCap" finished-at="2021-09-27T22:13:13Z" duration-ms="0" status="FAIL">
+          <exception class="java.lang.NullPointerException">
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:140)
+	at iiitd.nrl.evalapp.FacebookTests_post.launchCap(FacebookTests_post.java:73)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:217)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method is-config="true" signature="update()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_post@29e495ff]" started-at="2021-09-27T22:13:24Z" name="update" finished-at="2021-09-27T22:13:24Z" duration-ms="0" status="SKIP">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- update -->
+        <test-method signature="postGroup()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_post@29e495ff]" started-at="2021-09-27T22:13:24Z" name="postGroup" finished-at="2021-09-27T22:13:24Z" duration-ms="0" status="SKIP">
+          <exception class="java.lang.NullPointerException">
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:140)
+	at iiitd.nrl.evalapp.FacebookTests_post.launchCap(FacebookTests_post.java:73)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:217)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- postGroup -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_post@29e495ff]" started-at="2021-09-27T22:13:24Z" name="restart" finished-at="2021-09-27T22:13:24Z" duration-ms="0" status="SKIP">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.FacebookTests_post -->
+    </test> <!-- FacebookTests_postTest -->
+  </suite> <!-- FacebookTests_postSuite -->
+  <suite started-at="2021-09-27T16:41:11Z" name="Youtube_SearchSuite" finished-at="2021-09-27T16:42:05Z" duration-ms="54020">
+    <groups>
+    </groups>
+    <test started-at="2021-09-27T16:41:11Z" name="Youtube_SearchTest" finished-at="2021-09-27T16:42:05Z" duration-ms="54020">
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3d1cfad4]" started-at="2021-09-27T22:11:50Z" name="launchCap" finished-at="2021-09-27T22:12:01Z" duration-ms="10991" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3d1cfad4]" started-at="2021-09-27T22:12:01Z" name="copyTrakBytes" finished-at="2021-09-27T22:12:04Z" duration-ms="3682" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3d1cfad4]" started-at="2021-09-27T22:12:04Z" name="restart" finished-at="2021-09-27T22:12:05Z" duration-ms="537" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@3d1cfad4] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@55536d9e]" started-at="2021-09-27T22:11:11Z" name="launchCap" finished-at="2021-09-27T22:11:22Z" duration-ms="10782" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@55536d9e]" started-at="2021-09-27T22:11:22Z" name="copyTrakBytes" finished-at="2021-09-27T22:11:25Z" duration-ms="3714" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@55536d9e]" started-at="2021-09-27T22:11:25Z" name="restart" finished-at="2021-09-27T22:11:26Z" duration-ms="508" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@55536d9e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+      <class name="iiitd.nrl.evalapp.YouTubeTests_SearchChannel">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_SearchChannel@747edf66]" started-at="2021-09-27T22:11:26Z" name="launchCap" finished-at="2021-09-27T22:11:39Z" duration-ms="12970" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="channelTest()[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_SearchChannel@747edf66]" started-at="2021-09-27T22:11:39Z" name="channelTest" finished-at="2021-09-27T22:11:49Z" duration-ms="9895" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- channelTest -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_SearchChannel@747edf66]" started-at="2021-09-27T22:11:49Z" name="restart" finished-at="2021-09-27T22:11:50Z" duration-ms="938" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=channelTest status=SUCCESS method=YouTubeTests_SearchChannel.channelTest()[pri:0, instance:iiitd.nrl.evalapp.YouTubeTests_SearchChannel@747edf66] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.YouTubeTests_SearchChannel -->
+    </test> <!-- Youtube_SearchTest -->
+  </suite> <!-- Youtube_SearchSuite -->
+  <suite started-at="2021-09-27T16:35:29Z" name="HotstarTests_search2Suite" finished-at="2021-09-27T16:36:28Z" duration-ms="59142">
+    <groups>
+    </groups>
+    <test started-at="2021-09-27T16:35:29Z" name="HotstarTests_search2Test" finished-at="2021-09-27T16:36:28Z" duration-ms="59142">
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@61d6015a]" started-at="2021-09-27T22:06:11Z" name="launchCap" finished-at="2021-09-27T22:06:23Z" duration-ms="12455" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@61d6015a]" started-at="2021-09-27T22:06:23Z" name="copyTrakBytes" finished-at="2021-09-27T22:06:27Z" duration-ms="4321" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@61d6015a]" started-at="2021-09-27T22:06:27Z" name="restart" finished-at="2021-09-27T22:06:28Z" duration-ms="502" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@61d6015a] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@7e9131d5]" started-at="2021-09-27T22:05:29Z" name="launchCap" finished-at="2021-09-27T22:05:39Z" duration-ms="9831" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@7e9131d5]" started-at="2021-09-27T22:05:39Z" name="copyTrakBytes" finished-at="2021-09-27T22:05:43Z" duration-ms="4027" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@7e9131d5]" started-at="2021-09-27T22:05:43Z" name="restart" finished-at="2021-09-27T22:05:43Z" duration-ms="439" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@7e9131d5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+      <class name="iiitd.nrl.evalapp.HotstarTests_search">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.HotstarTests_search@2e1d27ba]" started-at="2021-09-27T22:05:43Z" name="launchCap" finished-at="2021-09-27T22:05:54Z" duration-ms="11180" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="searchTest()[pri:0, instance:iiitd.nrl.evalapp.HotstarTests_search@2e1d27ba]" started-at="2021-09-27T22:05:54Z" name="searchTest" finished-at="2021-09-27T22:06:09Z" duration-ms="15187" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.id: in.startv.hotstar:id/action_search (tried for 15 second(s) with 500 milliseconds interval)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.id: in.startv.hotstar:id/action_search (tried for 15 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at iiitd.nrl.evalapp.HotstarTests_search.searchTest(HotstarTests_search.java:100)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
+Caused by: org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-FU6EMRP', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.12'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appActivity: in.startv.hotstar.rocky.lau..., appPackage: in.startv.hotstar, autoAcceptAlerts: true, autoGrantPermissions: true, databaseEnabled: false, desired: {appActivity: in.startv.hotstar.rocky.lau..., appPackage: in.startv.hotstar, autoAcceptAlerts: true, autoGrantPermissions: true, fullReset: false, noReset: true, platformName: android, uiautomator2ServerInstallTimeout: 60000}, deviceApiLevel: 29, deviceManufacturer: INFINIX MOBILITY LIMITED, deviceModel: Infinix X655F, deviceName: 0526532073000334, deviceScreenDensity: 320, deviceScreenSize: 720x1600, deviceUDID: 0526532073000334, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 2, platform: LINUX, platformName: Android, platformVersion: 10, statBarHeight: 80, takesScreenshot: true, uiautomator2ServerInstallTimeout: 60000, viewportRect: {height: 1344, left: 0, top: 80, width: 720}, warnings: {}, webStorageEnabled: false}
+Session ID: 2d8e23f8-4439-4385-8f20-d1987a9d2548
+*** Element info: {Using=id, value=in.startv.hotstar:id/action_search}
 	at jdk.internal.reflect.GeneratedConstructorAccessor20.newInstance(Unknown Source)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
@@ -925,66 +1285,45 @@ Session ID: de0d6fa9-07ba-48ff-a1a3-c09e7ae28645
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
-	... 25 more
+	... 24 more
 ]]>
             </full-stacktrace>
           </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- sendMoneyFromWallet -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.PaytmTests@6d29af84]" started-at="2021-04-28T00:09:22Z" name="restart" finished-at="2021-04-28T00:09:22Z" duration-ms="783" status="PASS">
+        </test-method> <!-- searchTest -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.HotstarTests_search@2e1d27ba]" started-at="2021-09-27T22:06:09Z" name="restart" finished-at="2021-09-27T22:06:11Z" duration-ms="1181" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=sendMoneyFromWallet status=FAILURE method=PaytmTests.sendMoneyFromWallet()[pri:0, instance:iiitd.nrl.evalapp.PaytmTests@6d29af84] output={null}]]]>
+                <![CDATA[[TestResult name=searchTest status=FAILURE method=HotstarTests_search.searchTest()[pri:0, instance:iiitd.nrl.evalapp.HotstarTests_search@2e1d27ba] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.PaytmTests -->
-    </test> <!-- PtTest -->
-  </suite> <!-- PtSuite -->
-  <suite started-at="2021-04-27T18:38:22Z" name="DhSuite" finished-at="2021-04-27T18:38:56Z" duration-ms="34085">
+      </class> <!-- iiitd.nrl.evalapp.HotstarTests_search -->
+    </test> <!-- HotstarTests_search2Test -->
+  </suite> <!-- HotstarTests_search2Suite -->
+  <suite started-at="2021-09-27T16:31:19Z" name="Amazon_Test1Suite" finished-at="2021-09-27T16:32:06Z" duration-ms="46867">
     <groups>
     </groups>
-    <test started-at="2021-04-27T18:38:22Z" name="DhTest" finished-at="2021-04-27T18:38:56Z" duration-ms="34085">
-      <class name="iiitd.nrl.evalapp.DailyhuntTests">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.DailyhuntTests@72f8085e]" started-at="2021-04-28T00:08:22Z" name="launchCap" finished-at="2021-04-28T00:08:33Z" duration-ms="10623" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="searchNews()[pri:0, instance:iiitd.nrl.evalapp.DailyhuntTests@72f8085e]" started-at="2021-04-28T00:08:33Z" name="searchNews" finished-at="2021-04-28T00:08:43Z" duration-ms="9659" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchNews -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.DailyhuntTests@72f8085e]" started-at="2021-04-28T00:08:43Z" name="restart" finished-at="2021-04-28T00:08:44Z" duration-ms="1080" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=searchNews status=SUCCESS method=DailyhuntTests.searchNews()[pri:0, instance:iiitd.nrl.evalapp.DailyhuntTests@72f8085e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.DailyhuntTests -->
+    <test started-at="2021-09-27T16:31:19Z" name="Amazon_Test1Test" finished-at="2021-09-27T16:32:06Z" duration-ms="46867">
       <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@40ee78da]" started-at="2021-04-28T00:08:44Z" name="launchCap" finished-at="2021-04-28T00:08:52Z" duration-ms="8333" status="PASS">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@762ef0ea]" started-at="2021-09-27T22:01:35Z" name="launchCap" finished-at="2021-09-27T22:02:01Z" duration-ms="26091" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@40ee78da]" started-at="2021-04-28T00:08:52Z" name="copyTrakBytes" finished-at="2021-04-28T00:08:56Z" duration-ms="3839" status="PASS">
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@762ef0ea]" started-at="2021-09-27T22:02:01Z" name="copyTrakBytes" finished-at="2021-09-27T22:02:05Z" duration-ms="3744" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@40ee78da]" started-at="2021-04-28T00:08:56Z" name="restart" finished-at="2021-04-28T00:08:56Z" duration-ms="548" status="PASS">
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@762ef0ea]" started-at="2021-09-27T22:02:05Z" name="restart" finished-at="2021-09-27T22:02:06Z" duration-ms="1167" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@40ee78da] output={null}]]]>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@762ef0ea] output={null}]]]>
               </value>
             </param>
           </params>
@@ -992,6 +1331,302 @@ Session ID: de0d6fa9-07ba-48ff-a1a3-c09e7ae28645
           </reporter-output>
         </test-method> <!-- restart -->
       </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-    </test> <!-- DhTest -->
-  </suite> <!-- DhSuite -->
+      <class name="iiitd.nrl.evalapp.AmazonTests">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@2d2ffcb7]" started-at="2021-09-27T22:01:34Z" name="launchCap" finished-at="2021-09-27T22:01:34Z" duration-ms="0" status="FAIL">
+          <exception class="java.lang.NullPointerException">
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:140)
+	at iiitd.nrl.evalapp.AmazonTests.launchCap(AmazonTests.java:58)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:217)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@2d2ffcb7]" started-at="2021-09-27T22:01:35Z" name="restart" finished-at="2021-09-27T22:01:35Z" duration-ms="0" status="SKIP">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+        <test-method is-config="true" signature="update()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@2d2ffcb7]" started-at="2021-09-27T22:01:35Z" name="update" finished-at="2021-09-27T22:01:35Z" duration-ms="0" status="SKIP">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- update -->
+        <test-method signature="searchProduct()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@2d2ffcb7]" started-at="2021-09-27T22:01:35Z" name="searchProduct" finished-at="2021-09-27T22:01:35Z" duration-ms="0" status="SKIP">
+          <exception class="java.lang.NullPointerException">
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:140)
+	at iiitd.nrl.evalapp.AmazonTests.launchCap(AmazonTests.java:58)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:217)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchProduct -->
+      </class> <!-- iiitd.nrl.evalapp.AmazonTests -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@291b4bf5]" started-at="2021-09-27T22:01:19Z" name="launchCap" finished-at="2021-09-27T22:01:19Z" duration-ms="0" status="FAIL">
+          <exception class="java.lang.NullPointerException">
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:140)
+	at iiitd.nrl.evalapp.TrakBytesData.launchCap(TrakBytesData.java:45)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:217)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@291b4bf5]" started-at="2021-09-27T22:01:34Z" name="copyTrakBytes" finished-at="2021-09-27T22:01:34Z" duration-ms="1" status="SKIP">
+          <exception class="java.lang.NullPointerException">
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:140)
+	at iiitd.nrl.evalapp.TrakBytesData.launchCap(TrakBytesData.java:45)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:217)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@291b4bf5]" started-at="2021-09-27T22:01:34Z" name="restart" finished-at="2021-09-27T22:01:34Z" duration-ms="0" status="SKIP">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+    </test> <!-- Amazon_Test1Test -->
+  </suite> <!-- Amazon_Test1Suite -->
+  <suite started-at="2021-09-27T16:34:50Z" name="GooglenewsTestsSuite" finished-at="2021-09-27T16:35:29Z" duration-ms="39243">
+    <groups>
+    </groups>
+    <test started-at="2021-09-27T16:34:50Z" name="GooglenewsTestsTest" finished-at="2021-09-27T16:35:29Z" duration-ms="39243">
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@dd0c991]" started-at="2021-09-27T22:05:15Z" name="launchCap" finished-at="2021-09-27T22:05:25Z" duration-ms="9777" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@dd0c991]" started-at="2021-09-27T22:05:25Z" name="copyTrakBytes" finished-at="2021-09-27T22:05:28Z" duration-ms="3756" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@dd0c991]" started-at="2021-09-27T22:05:28Z" name="restart" finished-at="2021-09-27T22:05:29Z" duration-ms="529" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesUpload.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@dd0c991] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+      <class name="iiitd.nrl.evalapp.GooglenewsTests">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.GooglenewsTests@6bf0219d]" started-at="2021-09-27T22:05:04Z" name="launchCap" finished-at="2021-09-27T22:05:04Z" duration-ms="0" status="FAIL">
+          <exception class="java.lang.NullPointerException">
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:140)
+	at iiitd.nrl.evalapp.GooglenewsTests.launchCap(GooglenewsTests.java:54)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:217)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="searchTest()[pri:0, instance:iiitd.nrl.evalapp.GooglenewsTests@6bf0219d]" started-at="2021-09-27T22:05:15Z" name="searchTest" finished-at="2021-09-27T22:05:15Z" duration-ms="1" status="SKIP">
+          <exception class="java.lang.NullPointerException">
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException
+	at iiitd.nrl.evalapp.MyDatabase.addTestResult(MyDatabase.java:140)
+	at iiitd.nrl.evalapp.GooglenewsTests.launchCap(GooglenewsTests.java:54)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:217)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchTest -->
+        <test-method is-config="true" signature="update()[pri:0, instance:iiitd.nrl.evalapp.GooglenewsTests@6bf0219d]" started-at="2021-09-27T22:05:15Z" name="update" finished-at="2021-09-27T22:05:15Z" duration-ms="0" status="SKIP">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- update -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.GooglenewsTests@6bf0219d]" started-at="2021-09-27T22:05:15Z" name="restart" finished-at="2021-09-27T22:05:15Z" duration-ms="0" status="SKIP">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.GooglenewsTests -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@3cc1435c]" started-at="2021-09-27T22:04:50Z" name="launchCap" finished-at="2021-09-27T22:04:59Z" duration-ms="9766" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@3cc1435c]" started-at="2021-09-27T22:04:59Z" name="copyTrakBytes" finished-at="2021-09-27T22:05:04Z" duration-ms="4284" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@3cc1435c]" started-at="2021-09-27T22:05:04Z" name="restart" finished-at="2021-09-27T22:05:04Z" duration-ms="504" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@3cc1435c] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+    </test> <!-- GooglenewsTestsTest -->
+  </suite> <!-- GooglenewsTestsSuite -->
 </testng-results>
