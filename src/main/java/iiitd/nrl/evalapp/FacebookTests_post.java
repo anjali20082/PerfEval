@@ -115,19 +115,8 @@ public class FacebookTests_post {
 		String message = "Hi, this is an automated post:" + rand_str;
 		String ui = "";
 		try {
-//			ui = "new UiSelector().descriptionMatches(\".*(?i)Groups(?-i).*\")";
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
-//			commandsCompleted += "groups:";
-//
-//			ui = "new UiSelector().descriptionMatches(\"(?i)Your Groups(?-i)\")";
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
-//			commandsCompleted += "yourGroups:";
-//
-//			ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().descriptionMatches(\"(?i)Evaluation of Apps Button(?-i)\"));";
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
-//			commandsCompleted += "evalApp:";
-
-			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search Facebook"))).click();
+			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
+//			wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.EditText"))).click();
 			commandsCompleted += "clickSearch:";
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
@@ -183,6 +172,7 @@ public class FacebookTests_post {
 			commandsCompleted += "profilePicture:";
 
 			commandsCompleted += "P";
+
 			/* post group time measurement stops */
 		} catch (Exception e) {
 			testStatusReason = e.toString();

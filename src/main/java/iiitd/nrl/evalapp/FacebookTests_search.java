@@ -111,30 +111,34 @@ public class FacebookTests_search {
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 
         try {
-            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search Facebook"))).click();
+            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Search"))).click();
             commandsCompleted += "clickSearch:";
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).click();
             commandsCompleted += "searchPerson:";
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("Kangana Ranaut");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.EditText"))).sendKeys("IIIT Delhi");
             commandsCompleted += "enterName:";
 
             ((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
             commandsCompleted += "pressEnter:";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().description(\"Posts search results\")")));
+            commandsCompleted += "searchSuccess:";
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Posts\")"))).click();
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Posts\")"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().description(\"Posts search results\")"))).click();
             commandsCompleted += "clickPosts:";
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Profile picture\")"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Profile Picture\")"))).click();
             commandsCompleted += "clickProfilePicture:";
             /* Search person time measurement starts */
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Profile picture\")")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().descriptionContains(\"Profile photo\")")));
             commandsCompleted += "searchPersonProfile:";
             /* Search person time measurement stops */
 
             commandsCompleted += "P";
+
         } catch (Exception e) {
             testStatusReason = e.toString();
             throw e;
