@@ -93,12 +93,21 @@ public class AmazonTests {
 		String ui = "";
 
 		try {
-			ui = "in.amazon.mShop.android.shopping:id/rs_search_src_text";
+//			ui = "in.amazon.mShop.android.shopping:id/rs_search_src_text";
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).click();
+//			commandsCompleted += "searchBox:";
+//
+//			ui = "in.amazon.mShop.android.shopping:id/rs_search_src_text";
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).sendKeys("steamer");
+//			commandsCompleted += "enterProductName:";
+
+			ui = "in.amazon.mShop.android.shopping:id/chrome_search_hint_view";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).click();
 			commandsCompleted += "searchBox:";
 
 			ui = "in.amazon.mShop.android.shopping:id/rs_search_src_text";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).sendKeys("steamer");
+//			driver.findElement(By.id(ui)).sendKeys("steamer");
 			commandsCompleted += "enterProductName:";
 
 			((AndroidDriver<?>) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
@@ -122,9 +131,9 @@ public class AmazonTests {
 			System.out.println(commandsCompleted);
 			// Search Product Completed - 14th
 
-			ui = "in.amazon.mShop.android.shopping:id/chrome_action_bar_cart_count";
+			ui = "in.amazon.mShop.android.shopping:id/cart_count";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui)));
-			MobileElement cartValueElement = driver.findElement(By.id("in.amazon.mShop.android.shopping:id/chrome_action_bar_cart_count"));
+			MobileElement cartValueElement = driver.findElement(By.id("in.amazon.mShop.android.shopping:id/cart_count"));
 
 
 			int cartValueBefore = Integer.parseInt(cartValueElement.getText());
@@ -140,6 +149,7 @@ public class AmazonTests {
 			commandsCompleted += "addToCart:";
 			System.out.println(commandsCompleted);
 
+			driver.navigate().back();
 			int cartValueAfter = Integer.parseInt(cartValueElement.getText());
 			while (cartValueAfter == cartValueBefore) {
 				cartValueAfter = Integer.parseInt(cartValueElement.getText());
@@ -148,8 +158,8 @@ public class AmazonTests {
 			System.out.println("cart value after:" + cartValueAfter);
 			/* add product test measurement stops 20th*/
 
-			ui = "new UiSelector().description(\"Cart\");";
-			wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
+//			ui = "new UiSelector().description(\"Cart\");";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/cart_count"))).click();
 			commandsCompleted += "goToCart:";
 			System.out.println(commandsCompleted);
 
