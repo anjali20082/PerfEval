@@ -3,6 +3,7 @@ package iiitd.nrl.evalapp;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,6 +32,11 @@ public class Amazon_Remove {
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";
+    ArrayList<Integer> txrx;
+    String tx_bytes = "";
+    String rx_bytes = "";
+    Integer rx_initial ;
+    Integer tx_initial ;
 
     @AfterClass
     public void update() {
@@ -39,6 +45,14 @@ public class Amazon_Remove {
 
     @BeforeMethod
     public void launchCap() throws IOException {
+        txrx = NetStats.getstats("10134");
+        rx_initial = txrx.get(0);
+        tx_initial = txrx.get(1);
+//        System.out.println(rx_initial + "  "+ tx_initial);
+
+//        tx_bytes += tx_initial+":";
+//        rx_bytes += rx_initial+":";
+
         DesiredCapabilities cap=new DesiredCapabilities();
         cap.setCapability("appPackage", "in.amazon.mShop.android.shopping");
         cap.setCapability("appActivity", "com.amazon.mShop.android.home.HomeActivity");
@@ -84,13 +98,14 @@ public class Amazon_Remove {
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
+        MyDatabase.set_TX_RX_Bytes(tx_bytes, rx_bytes);
 
         testStatusReason = "NA";
         driver.quit();
     }
 
     @Test
-    public void searchProduct() throws InterruptedException {
+    public void searchProduct() throws InterruptedException, IOException {
         testName = "remove from cart";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
         String ui = "";
@@ -116,6 +131,12 @@ public class Amazon_Remove {
             commandsCompleted += "searchResult:";
             System.out.println(commandsCompleted);
 
+            txrx = NetStats.getstats("10134");
+            Integer rx_1 = txrx.get(0);
+            Integer tx_1 = txrx.get(1);
+//            System.out.println(rx_1 + "  "+ tx_1);
+            tx_bytes += tx_1-tx_initial+":";
+            rx_bytes += rx_1-rx_initial+":";
 
             ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().descriptionContains(\"out of 5 stars\"))";
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
@@ -128,10 +149,17 @@ public class Amazon_Remove {
             commandsCompleted += "productPage:";
             System.out.println(commandsCompleted);
             // Search Product Completed - 14th
+            txrx = NetStats.getstats("10134");
+            Integer rx_2 = txrx.get(0);
+            Integer tx_2 = txrx.get(1);
+            System.out.println(rx_2 + "  "+ tx_2);
+
+            tx_bytes += tx_2-tx_1+":";
+            rx_bytes += rx_2-rx_1+":";
 
             ui = "in.amazon.mShop.android.shopping:id/cart_count";
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui)));
-            MobileElement cartValueElement = driver.findElement(By.id(ui));
+            MobileElement cartValueElement = driver.findElement(By.id("in.amazon.mShop.android.shopping:id/cart_count"));
 
 
             int cartValueBefore = Integer.parseInt(cartValueElement.getText());
@@ -147,6 +175,15 @@ public class Amazon_Remove {
             commandsCompleted += "addToCart:";
             System.out.println(commandsCompleted);
 
+            txrx = NetStats.getstats("10134");
+            Integer rx_3 = txrx.get(0);
+            Integer tx_3 = txrx.get(1);
+            System.out.println(rx_3 + "  "+ tx_3);
+
+            tx_bytes += tx_3-tx_2+":";
+            rx_bytes += rx_3-rx_2+":";
+
+            driver.navigate().back();
             int cartValueAfter = Integer.parseInt(cartValueElement.getText());
             while (cartValueAfter == cartValueBefore) {
                 cartValueAfter = Integer.parseInt(cartValueElement.getText());
@@ -155,26 +192,43 @@ public class Amazon_Remove {
             System.out.println("cart value after:" + cartValueAfter);
             /* add product test measurement stops 20th*/
 
-            ui = "new UiSelector().description(\"Cart\");";
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();//
+//			ui = "new UiSelector().description(\"Cart\");";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("in.amazon.mShop.android.shopping:id/cart_count"))).click();
+            commandsCompleted += "goToCart:";
+            System.out.println(commandsCompleted);
+
+
             /* delete product test measurement starts*/
             Thread.sleep(2000);
 //			ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"Delete\"));";
             ui = "new UiSelector().className(\"android.widget.Button\").text(\"Delete\");";
-            wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
-            commandsCompleted += "goToCart:";
-            System.out.println(commandsCompleted);
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
             commandsCompleted += "removeProduct:";
+
             System.out.println(commandsCompleted);
+            txrx = NetStats.getstats("10134");
+            Integer rx_4 = txrx.get(0);
+            Integer tx_4 = txrx.get(1);
+            System.out.println(rx_4 + "  "+ tx_4);
+
+            tx_bytes += tx_4-tx_3+":";
+            rx_bytes += rx_4-rx_3+":";
 
             ui = "new UiSelector().textContains(\"was removed from Shopping Cart\");";
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui)));
             commandsCompleted += "productRemoved:";
             System.out.println(commandsCompleted);
             /* delete product test measurement stops*/
+            /* delete product test measurement stops*/
 
             commandsCompleted += "P";
+            txrx = NetStats.getstats("10134");
+            Integer rx_5 = txrx.get(0);
+            Integer tx_5 = txrx.get(1);
+            System.out.println(rx_5 + "  "+ tx_5);
+
+            tx_bytes += tx_5-tx_4;
+            rx_bytes += rx_5-rx_4;
             System.out.println(commandsCompleted);
             Thread.sleep(1000);
         } catch (Exception e) {

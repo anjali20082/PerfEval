@@ -34,6 +34,11 @@ public class NetStats {
         String tx_bg = (st1.split(" ")[7]);
         String rx_fg = (st1.split(" ")[25]);
         String tx_fg = (st1.split(" ")[27]);
+//        For Paytm specifically
+//        String rx_bg = (st1.split(" ")[125]);
+//        String tx_bg = (st1.split(" ")[127]);
+//        String rx_fg = (st1.split(" ")[145]);
+//        String tx_fg = (st1.split(" ")[147]);
         ArrayList<Integer> data = new ArrayList<Integer>();
         data.add(Integer.valueOf(rx_bg) +Integer.valueOf(rx_fg));
         data.add(Integer.valueOf(tx_bg) +Integer.valueOf(tx_fg));

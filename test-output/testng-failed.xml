@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Youtube_SearchSuite]">
-  <test name="Youtube_SearchTest(failed)">
+<suite name="Failed suite [Amazon_TestSuite]">
+  <test name="Amazon_TestTest(failed)">
     <classes>
-      <class name="iiitd.nrl.evalapp.YouTubeTest_SearchChannel">
+      <class name="iiitd.nrl.evalapp.Amazon_Remove">
         <methods>
           <include name="launchCap"/>
-          <include name="restart"/>
-          <include name="channelTest"/>
+          <include name="searchProduct"/>
         </methods>
-      </class> <!-- iiitd.nrl.evalapp.YouTubeTest_SearchChannel -->
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <methods>
-          <include name="launchCap"/>
-          <include name="restart"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+      </class> <!-- iiitd.nrl.evalapp.Amazon_Remove -->
       <class name="iiitd.nrl.evalapp.TrakBytesData">
         <methods>
           <include name="launchCap"/>
-          <include name="restart"/>
+          <include name="copyTrakBytes"/>
         </methods>
       </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <methods>
+          <include name="copyTrakBytes"/>
+          <include name="launchCap"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
     </classes>
-  </test> <!-- Youtube_SearchTest(failed) -->
-</suite> <!-- Failed suite [Youtube_SearchSuite] -->
+  </test> <!-- Amazon_TestTest(failed) -->
+</suite> <!-- Failed suite [Amazon_TestSuite] -->
