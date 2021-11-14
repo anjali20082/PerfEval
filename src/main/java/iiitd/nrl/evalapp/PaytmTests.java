@@ -82,22 +82,27 @@ public class PaytmTests {
 	
     @Test
     public void sendMoneyFromWallet() throws InterruptedException {
-        testName = "Pay Anjali Re. 1/-";
+        testName = "Pay Shradha Re. 1/-";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
-        String phoneno = "8059131272";
+        String phoneno = "9467913234";
         String ui;
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/image_container_1"))).click();
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/image_container_1"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/scan_btn"))).click();
+
             commandsCompleted += "scan&Pay:";
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("net.one97.paytm:id/p2p_cp_search_ll"))).click();
             commandsCompleted += "clickSearch:";
 
-            ui = "net.one97.paytm:id/iv_contact";
+
+//            ui = "net.one97.paytm:id/iv_contact";
+            ui ="net.one97.paytm:id/et_search";
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ui))).click();
             commandsCompleted += "clickContacts:";
 
-            ui = "new UiSelector().text(\"Search Name or Mobile Number\")";
+                    ui = "new UiSelector().text(\"Enter Mobile Number or Name\")";
+//            ui = "new UiSelector().text(\"Search Name or Mobile Number\")";
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).sendKeys(phoneno);
             commandsCompleted += "enterNumber:";
 
@@ -188,7 +193,6 @@ public class PaytmTests {
         }
 //        JSON COMMANDS
     }
-
 
 //    net.one97.paytm:id/bankImageCollapsedView
 //    net.one97.paytm:id/selectedBankDownArrowTV
