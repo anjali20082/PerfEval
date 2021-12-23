@@ -17,6 +17,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,9 +29,18 @@ public class PaytmTests {
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";
+    ArrayList<Integer> txrx;
+    String tx_bytes = "";
+    String rx_bytes = "";
+    Integer rx_initial ;
+    Integer tx_initial ;
 
     @BeforeMethod
-    public void launchCap() {
+    public void launchCap() throws IOException {
+        txrx = NetStats.getstats("10141");
+        rx_initial = txrx.get(0);
+        tx_initial = txrx.get(1);
+
         DesiredCapabilities cap=new DesiredCapabilities();
         cap.setCapability("appPackage", "net.one97.paytm");
         cap.setCapability("appActivity", "net.one97.paytm.landingpage.activity.AJRMainActivity");
@@ -75,13 +85,14 @@ public class PaytmTests {
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
+        MyDatabase.set_TX_RX_Bytes(tx_bytes, rx_bytes);
 
         testStatusReason = "NA";
         driver.quit();
     }
 
     @Test
-    public void sendMoneyFromWallet() throws InterruptedException {
+    public void sendMoneyFromWallet() throws InterruptedException, IOException {
         testName = "Pay Shradha Re. 1/-";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
         String phoneno = "9467913234";
@@ -182,6 +193,17 @@ public class PaytmTests {
                 testStatusReason = "Payment successful";
                 commandsCompleted += "P";
             }
+            txrx = NetStats.getstats("10141");
+            Integer rx_1 = txrx.get(0);
+            Integer tx_1 = txrx.get(1);
+//			System.out.println(rx_1 + "  "+ tx_1);
+
+            tx_bytes += tx_1 -tx_initial;
+            rx_bytes += rx_1 - rx_initial;
+
+            System.out.println("TX: "+tx_bytes);
+            System.out.println("RX: "+rx_bytes);
+
         } catch (Exception e) {
             testStatusReason = "Payment Failed\n" + e.toString();
             throw e;

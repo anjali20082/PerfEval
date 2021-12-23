@@ -3,26 +3,24 @@
 <suite name="Failed suite [Amazon_TestSuite]">
   <test name="Amazon_TestTest(failed)">
     <classes>
-      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+      <class name="iiitd.nrl.evalapp.Amazon_Remove">
         <methods>
           <include name="launchCap"/>
-          <include name="restart"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.AmazonTests">
-        <methods>
-          <include name="restart"/>
           <include name="searchProduct"/>
-          <include name="launchCap"/>
-          <include name="update"/>
         </methods>
-      </class> <!-- iiitd.nrl.evalapp.AmazonTests -->
+      </class> <!-- iiitd.nrl.evalapp.Amazon_Remove -->
       <class name="iiitd.nrl.evalapp.TrakBytesData">
         <methods>
           <include name="launchCap"/>
-          <include name="restart"/>
+          <include name="copyTrakBytes"/>
         </methods>
       </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <methods>
+          <include name="copyTrakBytes"/>
+          <include name="launchCap"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
     </classes>
   </test> <!-- Amazon_TestTest(failed) -->
 </suite> <!-- Failed suite [Amazon_TestSuite] -->
