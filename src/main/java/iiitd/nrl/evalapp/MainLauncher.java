@@ -41,6 +41,8 @@ public class MainLauncher {
         public static void main(String[] args) throws MalformedURLException {
 
 
+
+
 //        int versionId;
 //        ArrayList<String> appsToRun = new ArrayList<>();
 //        osId = Integer.parseInt(args[0]);
@@ -63,15 +65,15 @@ public class MainLauncher {
             List<XmlSuite> suiteFiles = new ArrayList<XmlSuite>();
 
 
-        if (appsToRun.contains("amz1")) {
-            List<XmlClass> fp_classes = new ArrayList<XmlClass>();
-            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
-            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.AmazonTests"));
-            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
-            addTestsToSuite(suiteFiles, fp_classes, "Amazon_Test1");
-
-            MyDatabase.totalTests += 1;
-        }
+//        if (appsToRun.contains("amz1")) {
+//            List<XmlClass> fp_classes = new ArrayList<XmlClass>();
+//            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
+//            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.AmazonTests"));
+//            fp_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+//            addTestsToSuite(suiteFiles, fp_classes, "Amazon_Test1");
+//
+//            MyDatabase.totalTests += 1;
+//        }
 
 //            if (appsToRun.contains("dht")) {
 //                List<XmlClass> fs_classes = new ArrayList<XmlClass>();
@@ -200,15 +202,15 @@ public class MainLauncher {
 //            MyDatabase.totalTests += 1;
 //        }
 //
-//         if (appsToRun.contains("fbp")) {
-//                List<XmlClass> fs_classes = new ArrayList<XmlClass>();
-//                fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
-//                fs_classes.add(new XmlClass("iiitd.nrl.evalapp.FacebookTests_post"));
-//                fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
-//                addTestsToSuite(suiteFiles, fs_classes, "FacebookTests_post");
-//
-//                MyDatabase.totalTests += 1;
-//            }
+         if (appsToRun.contains("fbp")) {
+                List<XmlClass> fs_classes = new ArrayList<XmlClass>();
+                fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));
+                fs_classes.add(new XmlClass("iiitd.nrl.evalapp.FacebookTests_post"));
+                fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesUpload"));
+                addTestsToSuite(suiteFiles, fs_classes, "FacebookTests_post");
+
+                MyDatabase.totalTests += 1;
+            }
 //        if (appsToRun.contains("fbs1")) {
 //            List<XmlClass> fs_classes = new ArrayList<XmlClass>();
 //            fs_classes.add(new XmlClass("iiitd.nrl.evalapp.TrakBytesData"));

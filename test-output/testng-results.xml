@@ -2,36 +2,36 @@
 <testng-results ignored="0" total="4" passed="3" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-10-19T11:41:21Z" name="PingSuite" finished-at="2021-10-19T11:41:21Z" duration-ms="3">
+  <suite started-at="2021-12-23T21:37:06Z" name="PingSuite" finished-at="2021-12-23T21:37:06Z" duration-ms="3">
     <groups>
     </groups>
-    <test started-at="2021-10-19T11:41:21Z" name="PingTest" finished-at="2021-10-19T11:41:21Z" duration-ms="3">
+    <test started-at="2021-12-23T21:37:06Z" name="PingTest" finished-at="2021-12-23T21:37:06Z" duration-ms="3">
       <class name="iiitd.nrl.evalapp.PingUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.PingUpload@3571b748]" started-at="2021-10-19T17:11:21Z" name="launchCap" finished-at="2021-10-19T17:11:21Z" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.PingUpload@3571b748]" started-at="2021-12-24T03:07:06Z" name="launchCap" finished-at="2021-12-24T03:07:06Z" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchCap -->
-        <test-method signature="dummyTest()[pri:0, instance:iiitd.nrl.evalapp.PingUpload@3571b748]" started-at="2021-10-19T17:11:21Z" name="dummyTest" finished-at="2021-10-19T17:11:21Z" duration-ms="1" status="PASS">
+        <test-method signature="dummyTest()[pri:0, instance:iiitd.nrl.evalapp.PingUpload@3571b748]" started-at="2021-12-24T03:07:06Z" name="dummyTest" finished-at="2021-12-24T03:07:06Z" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- dummyTest -->
       </class> <!-- iiitd.nrl.evalapp.PingUpload -->
     </test> <!-- PingTest -->
   </suite> <!-- PingSuite -->
-  <suite started-at="2021-10-19T11:39:40Z" name="Amazon_Test1Suite" finished-at="2021-10-19T11:41:21Z" duration-ms="100869">
+  <suite started-at="2021-12-23T21:35:52Z" name="FacebookTests_postSuite" finished-at="2021-12-23T21:37:06Z" duration-ms="73883">
     <groups>
     </groups>
-    <test started-at="2021-10-19T11:39:40Z" name="Amazon_Test1Test" finished-at="2021-10-19T11:41:21Z" duration-ms="100869">
+    <test started-at="2021-12-23T21:35:52Z" name="FacebookTests_postTest" finished-at="2021-12-23T21:37:06Z" duration-ms="73883">
       <class name="iiitd.nrl.evalapp.TrakBytesUpload">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@424e1977]" started-at="2021-10-19T17:11:04Z" name="launchCap" finished-at="2021-10-19T17:11:15Z" duration-ms="10551" status="PASS">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@424e1977]" started-at="2021-12-24T03:06:48Z" name="launchCap" finished-at="2021-12-24T03:07:01Z" duration-ms="13313" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@424e1977]" started-at="2021-10-19T17:11:15Z" name="copyTrakBytes" finished-at="2021-10-19T17:11:20Z" duration-ms="4823" status="PASS">
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@424e1977]" started-at="2021-12-24T03:07:01Z" name="copyTrakBytes" finished-at="2021-12-24T03:07:05Z" duration-ms="3757" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@424e1977]" started-at="2021-10-19T17:11:20Z" name="restart" finished-at="2021-10-19T17:11:21Z" duration-ms="1262" status="PASS">
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesUpload@424e1977]" started-at="2021-12-24T03:07:05Z" name="restart" finished-at="2021-12-24T03:07:06Z" duration-ms="980" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -43,21 +43,42 @@
           </reporter-output>
         </test-method> <!-- restart -->
       </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
-      <class name="iiitd.nrl.evalapp.AmazonTests">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@31f9b85e]" started-at="2021-10-19T17:10:35Z" name="launchCap" finished-at="2021-10-19T17:10:47Z" duration-ms="11979" status="PASS">
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@762ef0ea]" started-at="2021-12-24T03:05:52Z" name="launchCap" finished-at="2021-12-24T03:06:06Z" duration-ms="14438" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchCap -->
-        <test-method signature="searchProduct()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@31f9b85e]" started-at="2021-10-19T17:10:47Z" name="searchProduct" finished-at="2021-10-19T17:11:03Z" duration-ms="15410" status="FAIL">
+        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@762ef0ea]" started-at="2021-12-24T03:06:06Z" name="copyTrakBytes" finished-at="2021-12-24T03:06:10Z" duration-ms="3642" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyTrakBytes -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@762ef0ea]" started-at="2021-12-24T03:06:10Z" name="restart" finished-at="2021-12-24T03:06:11Z" duration-ms="634" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@762ef0ea] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- restart -->
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+      <class name="iiitd.nrl.evalapp.FacebookTests_post">
+        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_post@31f9b85e]" started-at="2021-12-24T03:06:11Z" name="launchCap" finished-at="2021-12-24T03:06:22Z" duration-ms="11598" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchCap -->
+        <test-method signature="postGroup()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_post@31f9b85e]" started-at="2021-12-24T03:06:22Z" name="postGroup" finished-at="2021-12-24T03:06:46Z" duration-ms="23783" status="FAIL">
           <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.id: in.amazon.mShop.android.shopping:id/chrome_search_hint_view (tried for 15 second(s) with 500 milliseconds interval)]]>
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.AndroidUIAutomator: new UiSelector().description("Visit"); (tried for 15 second(s) with 500 milliseconds interval)]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.id: in.amazon.mShop.android.shopping:id/chrome_search_hint_view (tried for 15 second(s) with 500 milliseconds interval)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.AndroidUIAutomator: new UiSelector().description("Visit"); (tried for 15 second(s) with 500 milliseconds interval)
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
-	at iiitd.nrl.evalapp.AmazonTests.searchProduct(AmazonTests.java:106)
+	at iiitd.nrl.evalapp.FacebookTests_post.postGroup(FacebookTests_post.java:135)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -80,15 +101,15 @@
 	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
 	at org.testng.TestNG.runSuites(TestNG.java:1133)
 	at org.testng.TestNG.run(TestNG.java:1104)
-	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:232)
+	at iiitd.nrl.evalapp.MainLauncher.main(MainLauncher.java:234)
 Caused by: org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
 For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
 System info: host: 'DESKTOP-FU6EMRP', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.12'
 Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appActivity: com.amazon.mShop.android.ho..., appPackage: in.amazon.mShop.android.sho..., autoAcceptAlerts: true, autoGrantPermissions: true, databaseEnabled: false, desired: {appActivity: com.amazon.mShop.android.ho..., appPackage: in.amazon.mShop.android.sho..., autoAcceptAlerts: true, autoGrantPermissions: true, fullReset: false, noReset: true, platformName: android, uiautomator2ServerInstallTimeout: 60000}, deviceApiLevel: 29, deviceManufacturer: INFINIX MOBILITY LIMITED, deviceModel: Infinix X655F, deviceName: 0526532073000334, deviceScreenDensity: 320, deviceScreenSize: 720x1600, deviceUDID: 0526532073000334, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 2, platform: LINUX, platformName: Android, platformVersion: 10, statBarHeight: 80, takesScreenshot: true, uiautomator2ServerInstallTimeout: 60000, viewportRect: {height: 1344, left: 0, top: 80, width: 720}, warnings: {}, webStorageEnabled: false}
-Session ID: e2d5ea84-e9a7-4c4c-a65e-4f2570bc6146
-*** Element info: {Using=id, value=in.amazon.mShop.android.shopping:id/chrome_search_hint_view}
+Capabilities {appActivity: com.facebook.katana.activit..., appPackage: com.facebook.katana, autoAcceptAlerts: true, autoGrantPermissions: true, databaseEnabled: false, desired: {appActivity: com.facebook.katana.activit..., appPackage: com.facebook.katana, autoAcceptAlerts: true, autoGrantPermissions: true, fullReset: false, noReset: true, platformName: android, uiautomator2ServerInstallTimeout: 60000}, deviceApiLevel: 29, deviceManufacturer: INFINIX MOBILITY LIMITED, deviceModel: Infinix X655F, deviceName: 0526532073000334, deviceScreenDensity: 320, deviceScreenSize: 720x1600, deviceUDID: 0526532073000334, fullReset: false, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 2, platform: LINUX, platformName: Android, platformVersion: 10, statBarHeight: 80, takesScreenshot: true, uiautomator2ServerInstallTimeout: 60000, viewportRect: {height: 1344, left: 0, top: 80, width: 720}, warnings: {}, webStorageEnabled: false}
+Session ID: 6e5a3c16-2088-421e-8064-baff5934353e
+*** Element info: {Using=-android uiautomator, value=new UiSelector().description("Visit");}
 	at jdk.internal.reflect.GeneratedConstructorAccessor12.newInstance(Unknown Source)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
@@ -105,11 +126,8 @@ Session ID: e2d5ea84-e9a7-4c4c-a65e-4f2570bc6146
 	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:61)
 	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
 	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:372)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElementById(DefaultGenericMobileDriver.java:69)
-	at io.appium.java_client.AppiumDriver.findElementById(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.findElementById(AndroidDriver.java:1)
-	at org.openqa.selenium.By$ById.findElement(By.java:188)
+	at io.appium.java_client.FindsByAndroidUIAutomator.findElementByAndroidUIAutomator(FindsByAndroidUIAutomator.java:38)
+	at io.appium.java_client.MobileBy$ByAndroidUIAutomator.findElement(MobileBy.java:210)
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
 	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:57)
 	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
@@ -123,44 +141,23 @@ Session ID: e2d5ea84-e9a7-4c4c-a65e-4f2570bc6146
           </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- searchProduct -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@31f9b85e]" started-at="2021-10-19T17:11:03Z" name="restart" finished-at="2021-10-19T17:11:04Z" duration-ms="1478" status="PASS">
+        </test-method> <!-- postGroup -->
+        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_post@31f9b85e]" started-at="2021-12-24T03:06:46Z" name="restart" finished-at="2021-12-24T03:06:48Z" duration-ms="1644" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=searchProduct status=FAILURE method=AmazonTests.searchProduct()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@31f9b85e] output={null}]]]>
+                <![CDATA[[TestResult name=postGroup status=FAILURE method=FacebookTests_post.postGroup()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_post@31f9b85e] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- restart -->
-        <test-method is-config="true" signature="update()[pri:0, instance:iiitd.nrl.evalapp.AmazonTests@31f9b85e]" started-at="2021-10-19T17:11:04Z" name="update" finished-at="2021-10-19T17:11:04Z" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="update()[pri:0, instance:iiitd.nrl.evalapp.FacebookTests_post@31f9b85e]" started-at="2021-12-24T03:06:48Z" name="update" finished-at="2021-12-24T03:06:48Z" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- update -->
-      </class> <!-- iiitd.nrl.evalapp.AmazonTests -->
-      <class name="iiitd.nrl.evalapp.TrakBytesData">
-        <test-method is-config="true" signature="launchCap()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@762ef0ea]" started-at="2021-10-19T17:09:40Z" name="launchCap" finished-at="2021-10-19T17:10:28Z" duration-ms="47678" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchCap -->
-        <test-method signature="copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@762ef0ea]" started-at="2021-10-19T17:10:28Z" name="copyTrakBytes" finished-at="2021-10-19T17:10:35Z" duration-ms="6873" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- copyTrakBytes -->
-        <test-method is-config="true" signature="restart(org.testng.ITestResult)[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@762ef0ea]" started-at="2021-10-19T17:10:35Z" name="restart" finished-at="2021-10-19T17:10:35Z" duration-ms="771" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=copyTrakBytes status=SUCCESS method=TrakBytesData.copyTrakBytes()[pri:0, instance:iiitd.nrl.evalapp.TrakBytesData@762ef0ea] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- restart -->
-      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
-    </test> <!-- Amazon_Test1Test -->
-  </suite> <!-- Amazon_Test1Suite -->
+      </class> <!-- iiitd.nrl.evalapp.FacebookTests_post -->
+    </test> <!-- FacebookTests_postTest -->
+  </suite> <!-- FacebookTests_postSuite -->
 </testng-results>

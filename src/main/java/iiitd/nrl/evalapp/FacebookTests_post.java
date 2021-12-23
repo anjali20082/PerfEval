@@ -106,6 +106,9 @@ public class FacebookTests_post {
 	@Test
 	public void postGroup() throws InterruptedException, IOException {
 
+		String loc = GetLocation.getlocation();
+		System.out.println("Location in fbp is : " + loc);
+
 		testName = "post in a group";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 
