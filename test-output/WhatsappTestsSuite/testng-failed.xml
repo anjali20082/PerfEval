@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [WhatsappTestsSuite]">
+  <test name="WhatsappTestsTest(failed)">
+    <classes>
+      <class name="iiitd.nrl.evalapp.WhatsappTests">
+        <methods>
+          <include name="sendMessage"/>
+          <include name="launchCap"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.WhatsappTests -->
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <methods>
+          <include name="launchCap"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <methods>
+          <include name="launchCap"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+    </classes>
+  </test> <!-- WhatsappTestsTest(failed) -->
+</suite> <!-- Failed suite [WhatsappTestsSuite] -->

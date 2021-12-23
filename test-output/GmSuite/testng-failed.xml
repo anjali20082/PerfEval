@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [GmSuite]">
+  <test name="GmTest(failed)">
+    <classes>
+      <class name="iiitd.nrl.evalapp.GoogleMapsTest">
+        <methods>
+          <include name="launchCap"/>
+          <include name="searchPlace"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.GoogleMapsTest -->
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <methods>
+          <include name="copyTrakBytes"/>
+          <include name="launchCap"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+    </classes>
+  </test> <!-- GmTest(failed) -->
+</suite> <!-- Failed suite [GmSuite] -->

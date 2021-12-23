@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [HsSuite]">
+  <test name="HsTest(failed)">
+    <classes>
+      <class name="iiitd.nrl.evalapp.HotstarTests_search">
+        <methods>
+          <include name="searchTest"/>
+          <include name="launchCap"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.HotstarTests_search -->
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <methods>
+          <include name="launchCap"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+    </classes>
+  </test> <!-- HsTest(failed) -->
+</suite> <!-- Failed suite [HsSuite] -->

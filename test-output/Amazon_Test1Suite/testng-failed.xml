@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Amazon_Test1Suite]">
+  <test name="Amazon_Test1Test(failed)">
+    <classes>
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <methods>
+          <include name="launchCap"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+      <class name="iiitd.nrl.evalapp.AmazonTests">
+        <methods>
+          <include name="restart"/>
+          <include name="searchProduct"/>
+          <include name="launchCap"/>
+          <include name="update"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.AmazonTests -->
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <methods>
+          <include name="launchCap"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+    </classes>
+  </test> <!-- Amazon_Test1Test(failed) -->
+</suite> <!-- Failed suite [Amazon_Test1Suite] -->

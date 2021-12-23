@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [GnSuite]">
+  <test name="GnTest(failed)">
+    <classes>
+      <class name="iiitd.nrl.evalapp.GooglenewsTests">
+        <methods>
+          <include name="launchCap"/>
+          <include name="searchTest"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.GooglenewsTests -->
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <methods>
+          <include name="copyTrakBytes"/>
+          <include name="launchCap"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+    </classes>
+  </test> <!-- GnTest(failed) -->
+</suite> <!-- Failed suite [GnSuite] -->

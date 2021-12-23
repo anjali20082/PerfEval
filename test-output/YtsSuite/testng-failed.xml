@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [YtsSuite]">
+  <test name="YtsTest(failed)">
+    <classes>
+      <class name="iiitd.nrl.evalapp.TrakBytesData">
+        <methods>
+          <include name="launchCap"/>
+          <include name="copyTrakBytes"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+    </classes>
+  </test> <!-- YtsTest(failed) -->
+</suite> <!-- Failed suite [YtsSuite] -->

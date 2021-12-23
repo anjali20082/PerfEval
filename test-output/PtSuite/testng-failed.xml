@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [PtSuite]">
+  <test name="PtTest(failed)">
+    <classes>
+      <class name="iiitd.nrl.evalapp.PaytmTests">
+        <methods>
+          <include name="sendMoneyFromWallet"/>
+          <include name="launchCap"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.PaytmTests -->
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <methods>
+          <include name="launchCap"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+    </classes>
+  </test> <!-- PtTest(failed) -->
+</suite> <!-- Failed suite [PtSuite] -->

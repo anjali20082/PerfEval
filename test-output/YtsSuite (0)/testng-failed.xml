@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [YtsSuite (0)]">
+  <test name="YtsTest(failed)">
+    <classes>
+      <class name="iiitd.nrl.evalapp.YouTubeTests_SearchChannel">
+        <methods>
+          <include name="launchCap"/>
+          <include name="channelTest"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.YouTubeTests_SearchChannel -->
+      <class name="iiitd.nrl.evalapp.TrakBytesUpload">
+        <methods>
+          <include name="copyTrakBytes"/>
+          <include name="launchCap"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
+    </classes>
+  </test> <!-- YtsTest(failed) -->
+</suite> <!-- Failed suite [YtsSuite (0)] -->
