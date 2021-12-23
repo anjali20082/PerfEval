@@ -141,11 +141,13 @@ public class Amazon_Remove {
 
             /* add product test measurement starts 18th*/
 
-            ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().resourceId(\"add-to-cart-button\"));";
+//          ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().resourceId(\"add-to-cart-button\"));";
+            ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().descriptionContains(\"Submit Add to Shopping Cart\"));";
 //			ui = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().textContains(\"Add to Cart\"));";
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AndroidUIAutomator(ui))).click();
             commandsCompleted += "addToCart:";
             System.out.println(commandsCompleted);
+
 
             int cartValueAfter = Integer.parseInt(cartValueElement.getText());
             while (cartValueAfter == cartValueBefore) {

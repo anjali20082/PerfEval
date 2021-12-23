@@ -11,6 +11,7 @@ public class NetStats {
 
         //String cmd = "adb shell ifconfig wlan0|grep \"RX bytes\" >F:\\appsData.txt ";
         String cmd = "adb shell cat /proc/net/xt_qtaguid/stats|grep "+ uid;
+//        String cmd = "$ adb shell am broadcast -a io.appium.settings.location -n io.appium.settings/.receivers.LocationInfoReceiver";
         ProcessBuilder processBuilder = new ProcessBuilder();
 //      if (Config.osName.contains("Windows"))
         processBuilder.command("cmd.exe", "/c", cmd);
@@ -22,7 +23,7 @@ public class NetStats {
         BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 
 // Read the output from the command
-        System.out.println("Here is the standard output of the command:\n");
+//        System.out.println("Here is the standard output of the command:\n");
         String s = null;
         StringBuilder st= new StringBuilder() ;
         while ((s = stdInput.readLine()) != null) {

@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Youtube_SearchSuite]">
-  <test name="Youtube_SearchTest(failed)">
+<suite name="Failed suite [FacebookTests_postSuite]">
+  <test name="FacebookTests_postTest(failed)">
     <classes>
-      <class name="iiitd.nrl.evalapp.YouTubeTest_SearchChannel">
-        <methods>
-          <include name="launchCap"/>
-          <include name="restart"/>
-          <include name="channelTest"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.YouTubeTest_SearchChannel -->
       <class name="iiitd.nrl.evalapp.TrakBytesUpload">
         <methods>
           <include name="launchCap"/>
@@ -22,6 +15,14 @@
           <include name="restart"/>
         </methods>
       </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+      <class name="iiitd.nrl.evalapp.FacebookTestsP">
+        <methods>
+          <include name="update"/>
+          <include name="launchCap"/>
+          <include name="postGroup"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.FacebookTestsP -->
     </classes>
-  </test> <!-- Youtube_SearchTest(failed) -->
-</suite> <!-- Failed suite [Youtube_SearchSuite] -->
+  </test> <!-- FacebookTests_postTest(failed) -->
+</suite> <!-- Failed suite [FacebookTests_postSuite] -->

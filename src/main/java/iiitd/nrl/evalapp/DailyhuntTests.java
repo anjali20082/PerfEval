@@ -128,7 +128,8 @@ public class DailyhuntTests  {
 
 
 			/* Search news time measurement starts*/
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/follow_button"))).isDisplayed();
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/follow_button"))).isDisplayed();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.eterno:id/news_title"))).isDisplayed();
 			commandsCompleted += "checkNews:";
 			/* Search news time measurement stops*/
 			commandsCompleted += "P";

@@ -3,13 +3,6 @@
 <suite name="Failed suite [FacebookTests_postSuite]">
   <test name="FacebookTests_postTest(failed)">
     <classes>
-      <class name="iiitd.nrl.evalapp.FacebookTestsP">
-        <methods>
-          <include name="update"/>
-          <include name="launchCap"/>
-          <include name="restart"/>
-        </methods>
-      </class> <!-- iiitd.nrl.evalapp.FacebookTestsP -->
       <class name="iiitd.nrl.evalapp.TrakBytesUpload">
         <methods>
           <include name="launchCap"/>
@@ -19,10 +12,17 @@
       <class name="iiitd.nrl.evalapp.TrakBytesData">
         <methods>
           <include name="launchCap"/>
-          <include name="copyTrakBytes"/>
           <include name="restart"/>
         </methods>
       </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
+      <class name="iiitd.nrl.evalapp.FacebookTestsP">
+        <methods>
+          <include name="update"/>
+          <include name="launchCap"/>
+          <include name="postGroup"/>
+          <include name="restart"/>
+        </methods>
+      </class> <!-- iiitd.nrl.evalapp.FacebookTestsP -->
     </classes>
   </test> <!-- FacebookTests_postTest(failed) -->
 </suite> <!-- Failed suite [FacebookTests_postSuite] -->
