@@ -40,6 +40,7 @@ public class FlipkartTests {
 	String testName = "NA";
 	String testStatusReason = "NA";
 	String commandsCompleted = "";
+	String loc = "", lat = "", longi = "", alt ="";
 	boolean addToCartClicked = false;
 
 	@BeforeMethod
@@ -87,11 +88,19 @@ public class FlipkartTests {
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
+		MyDatabase.setLocation(lat, longi, alt);
 		driver.quit();
 	}
 
 	@Test
-	public void getProduct() throws InterruptedException {
+	public void getProduct() throws InterruptedException, IOException {
+
+		loc = GetLocation.getlocation();
+		lat = loc.split( " ")[0];
+		longi = loc.split(" ")[1];
+		alt = loc.split(" ")[2];
+		System.out.println("Location in fbp is : " + loc);
+
 		testName = "search product";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 		String ui = "";

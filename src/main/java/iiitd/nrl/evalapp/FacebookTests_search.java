@@ -45,6 +45,7 @@ public class FacebookTests_search {
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";
+    String loc = "", lat = "", longi = "", alt ="";
 
     @BeforeMethod
     public void launchCap() {
@@ -91,6 +92,7 @@ public class FacebookTests_search {
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
+        MyDatabase.setLocation(lat, longi, alt);
 
 //        List<List<Object>> performanceData = driver.getPerformanceData("com.facebook.katana", "memoryinfo", 5);
 //        List<List<Object>> performanceData1 = driver.getPerformanceData("com.facebook.katana", "batteryinfo", 5);
@@ -105,7 +107,14 @@ public class FacebookTests_search {
 
 
     @Test
-    public void searchPerson() throws InterruptedException{
+    public void searchPerson() throws InterruptedException, IOException {
+
+
+        loc = GetLocation.getlocation();
+        lat = loc.split( " ")[0];
+        longi = loc.split(" ")[1];
+        alt = loc.split(" ")[2];
+        System.out.println("Location in fbp is : " + loc);
 
         testName = "search person";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);

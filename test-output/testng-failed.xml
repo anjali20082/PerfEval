@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [FacebookTests_postSuite]">
-  <test name="FacebookTests_postTest(failed)">
+<suite name="Failed suite [Amazon_Test1Suite]">
+  <test name="Amazon_Test1Test(failed)">
     <classes>
       <class name="iiitd.nrl.evalapp.TrakBytesData">
         <methods>
@@ -9,14 +9,14 @@
           <include name="restart"/>
         </methods>
       </class> <!-- iiitd.nrl.evalapp.TrakBytesData -->
-      <class name="iiitd.nrl.evalapp.FacebookTests_post">
+      <class name="iiitd.nrl.evalapp.AmazonTests">
         <methods>
-          <include name="postGroup"/>
           <include name="restart"/>
-          <include name="update"/>
+          <include name="searchProduct"/>
           <include name="launchCap"/>
+          <include name="update"/>
         </methods>
-      </class> <!-- iiitd.nrl.evalapp.FacebookTests_post -->
+      </class> <!-- iiitd.nrl.evalapp.AmazonTests -->
       <class name="iiitd.nrl.evalapp.TrakBytesUpload">
         <methods>
           <include name="launchCap"/>
@@ -24,5 +24,5 @@
         </methods>
       </class> <!-- iiitd.nrl.evalapp.TrakBytesUpload -->
     </classes>
-  </test> <!-- FacebookTests_postTest(failed) -->
-</suite> <!-- Failed suite [FacebookTests_postSuite] -->
+  </test> <!-- Amazon_Test1Test(failed) -->
+</suite> <!-- Failed suite [Amazon_Test1Suite] -->

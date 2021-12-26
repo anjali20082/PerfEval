@@ -34,6 +34,7 @@ public class TelegramTests  {
     String testName = "NA";
     String testStatusReason = "NA";
     String commandsCompleted = "";
+    String loc = "", lat = "", longi = "", alt ="";
 
     @BeforeMethod
     public void launchCap() {
@@ -80,6 +81,7 @@ public class TelegramTests  {
         MyDatabase.setTestStatus(testResult.isSuccess());
         MyDatabase.setTestStatusReason(testStatusReason);
         MyDatabase.setConnType(getConnectionType());
+        MyDatabase.setLocation(lat, longi, alt);
 
         testStatusReason = "NA";
         driver.quit();
@@ -87,6 +89,14 @@ public class TelegramTests  {
 
     @Test
     public void sendMessage() throws Exception {
+
+        loc = GetLocation.getlocation();
+        lat = loc.split( " ")[0];
+        longi = loc.split(" ")[1];
+        alt = loc.split(" ")[2];
+        System.out.println("Location in fbp is : " + loc);
+
+
         testName = "send message";
         WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
         Random rand = new Random();

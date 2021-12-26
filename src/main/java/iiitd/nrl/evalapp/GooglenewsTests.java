@@ -15,6 +15,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -26,6 +27,7 @@ public class GooglenewsTests {
 	String testName = "NA";
 	String testStatusReason = "NA";
 	String commandsCompleted = "";
+	String loc = "", lat = "", longi = "", alt ="";
 
     @AfterClass
     public void update() {
@@ -76,13 +78,21 @@ public class GooglenewsTests {
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
+		MyDatabase.setLocation(lat, longi, alt);
 
 		testStatusReason = "NA";
 		driver.quit();
 	}
 
 	@Test
-	public void searchTest() throws InterruptedException{
+	public void searchTest() throws InterruptedException, IOException {
+
+		loc = GetLocation.getlocation();
+		lat = loc.split( " ")[0];
+		longi = loc.split(" ")[1];
+		alt = loc.split(" ")[2];
+		System.out.println("Location in fbp is : " + loc);
+
 		testName = "Search News Test";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);
 

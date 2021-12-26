@@ -40,6 +40,7 @@ public class MyDatabase {
     public static String testStatusReason;
     public static boolean testStatus;
     public static String connType;
+    public static  String latitude, longitude, altitude;
 
 
     public static void setCommands(String commands) {
@@ -72,6 +73,12 @@ public class MyDatabase {
 
     public static void setPacket_sizes_after(String packet_sizes_after) {
         MyDatabase.packet_sizes_after = packet_sizes_after;
+    }
+
+    public static void setLocation(String latitude, String longitude, String altitude){
+        MyDatabase.latitude = latitude;
+        MyDatabase.longitude = longitude;
+        MyDatabase.altitude = altitude;
     }
 
     public static void setUpDatabase()
@@ -146,6 +153,9 @@ public class MyDatabase {
         document.append("connType", connType);
         document.append("status", testStatus);
         document.append("reason", testStatusReason);
+        document.append("latitude", latitude);
+        document.append("longitude",longitude );
+        document.append("altitude", altitude);
 
         student_collection.insertOne(document);
     }
@@ -171,6 +181,10 @@ public class MyDatabase {
         document.append("reason", MyDatabase.testStatusReason);
         document.append("data_before", packet_sizes_before);
         document.append("data_after", packet_sizes_after);
+
+        document.append("latitude", latitude);
+        document.append("longitude",longitude );
+        document.append("altitude", altitude);
 
         MyDatabase.setPacket_sizes_before(MyDatabase.packet_sizes_after);
 

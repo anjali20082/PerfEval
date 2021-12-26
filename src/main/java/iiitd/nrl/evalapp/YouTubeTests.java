@@ -29,6 +29,7 @@ public class YouTubeTests {
 	String testStatusReason = "NA";
 	String video_time = "";
 	String copy_info = "";
+	String loc = "", lat = "", longi = "", alt ="";
 
 //	Process process = null;
 //

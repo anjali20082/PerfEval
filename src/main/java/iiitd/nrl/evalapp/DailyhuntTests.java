@@ -39,6 +39,8 @@ public class DailyhuntTests  {
 	String testName = "NA";
 	String testStatusReason = "NA";
 	String commandsCompleted = "";
+	String loc = "", lat = "", longi = "", alt ="";
+
 
 	@BeforeMethod
 	public void launchCap() {
@@ -85,13 +87,20 @@ public class DailyhuntTests  {
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
+		MyDatabase.setLocation(lat, longi, alt);
 
 		testStatusReason = "NA";
 		driver.quit();
 	}
 
 	@Test
-	public void searchNews(){
+	public void searchNews() throws IOException {
+
+		loc = GetLocation.getlocation();
+		lat = loc.split( " ")[0];
+		longi = loc.split(" ")[1];
+		alt = loc.split(" ")[2];
+		System.out.println("Location in fbp is : " + loc);
 
 		testName = "search news";
 		WebDriverWait wait = new WebDriverWait(driver, MyDatabase.testTimeLimit);

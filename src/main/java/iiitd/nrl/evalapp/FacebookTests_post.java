@@ -45,6 +45,7 @@ public class FacebookTests_post {
 	String testName = "NA";
 	String testStatusReason = "NA";
 	String commandsCompleted = "";
+	String loc = "", lat = "", longi = "", alt ="";
 	
 	@AfterClass
     public void update() {
@@ -97,6 +98,7 @@ public class FacebookTests_post {
 		MyDatabase.setTestStatus(testResult.isSuccess());
 		MyDatabase.setTestStatusReason(testStatusReason);
 		MyDatabase.setConnType(getConnectionType());
+		MyDatabase.setLocation(lat, longi, alt);
 
 		driver.quit();
 	}
@@ -106,7 +108,10 @@ public class FacebookTests_post {
 	@Test
 	public void postGroup() throws InterruptedException, IOException {
 
-		String loc = GetLocation.getlocation();
+		loc = GetLocation.getlocation();
+		lat = loc.split( " ")[0];
+		longi = loc.split(" ")[1];
+		alt = loc.split(" ")[2];
 		System.out.println("Location in fbp is : " + loc);
 
 		testName = "post in a group";
